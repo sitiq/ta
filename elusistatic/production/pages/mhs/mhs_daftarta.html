@@ -107,51 +107,12 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Data diri <br/><small>Mohon isikan data lengkap dan benar</small></h2>
+                                <h2><small>Mohon isikan data lengkap dan benar</small></h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
                                 <br />
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">No Telp <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="telp" required="required" class="form-control col-md-7 col-xs-12">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Email <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="full-name">Nama Lengkap <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="full-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nim" class="control-label col-md-3 col-sm-3 col-xs-12">Nomor Induk Mahasiswa (NIM) <span class="required">*</span></label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="nim" class="form-control col-md-7 col-xs-12" type="text" name="nim">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sks" class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah SKS yang sudah ditempuh <span class="required">*</span></label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="sks" class="form-control col-md-7 col-xs-12" type="text" name="sks">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ipk" class="control-label col-md-3 col-sm-3 col-xs-12">IPK <span class="required">*</span></label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="ipk" class="form-control col-md-7 col-xs-12" type="text" name="ipk">
-                                        </div>
-                                    </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Pertama kali daftar tugas akhir <span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -162,64 +123,123 @@
                                                 <option>Semester Genap 2017/2018</option>
                                             </select>
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!--<div class="ln_solid"></div>-->
-                            <div class="x_title">
-                                <h2>Pengalaman project dan kemampuan
-                                    <br/>
-                                    <small>1. Tuliskan proyek yang pernah dikerjakan (boleh >1)
-                                        <br/>&nbsp;    &nbsp;2. Jika tidak ada, tuliskan "0"
-                                    </small></h2>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <br />
-                                <form data-parsley-validate class="form-horizontal form-label-left">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Pengalaman <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <textarea type="text" id="pengalaman" required="required" class="form-control col-md-7 col-xs-12" placeholder="Deskripsikan pengalaman yang dimiliki dalam hal sistem informasi atau multimedia"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kemampuan <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <textarea type="text" id="skill" required="required" class="form-control col-md-7 col-xs-12" placeholder="Deskripsikan kemampuan yang dimiliki dalam hal sistem informasi atau multimedia"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Status Pengambilan <span class="required">*</span>
+                                        <div class="clearfix" style="margin-bottom: 2%"></div>
+                                        <!--status-->
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Status Pengambilan <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <!--<input type="text" id="status" required="required" class="form-control col-md-7 col-xs-12">-->
-                                            <div class="btn-group" data-toggle="buttons">
+                                            <div class="btn-group" data-toggle="buttons" id="status">
                                                 <label class="btn btn-default">
-                                                    <input type="radio" name="options" id="option1"> Baru
+                                                    <a href="#tab_content2" role="tab" id="baru" data-toggle="tab" aria-expanded="true">
+                                                        <input type="radio" name="options" id="option1"> Baru
+                                                    </a>
                                                 </label>
                                                 <label class="btn btn-default">
-                                                    <input type="radio" name="options" id="option2"> Perpanjangan
+                                                    <a href="#tab_content1" role="tab" id="panjang" data-toggle="tab" aria-expanded="true">
+                                                        <input type="radio" name="options" id="option2"> Perpanjangan
+                                                    </a>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ln_solid"></div>
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                            <button class="btn btn-danger" type="button">Cancel</button>
-                                            <button class="btn btn-primary" type="reset">Reset</button>
-                                            <button type="submit" class="btn btn-success">Next</button>
-                                        </div>
-                                    </div>
-
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--pane-->
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <div id="myTabContent" class="tab-content">
+                        <!--pane panjang-->
+                        <div role="tabpanel" class="tab-pane fade in" id="tab_content1" aria-labelledby="home-tab">
+                            <!--status perpanjangan-->
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>Perpanjangan <small></small></h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <br />
+                                            <form id="extend" data-parsley-validate class="form-horizontal form-label-left">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Judul TA <span class="required">*</span></label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="clearfix" style="margin-bottom: 2%"></div>
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Dosen Pembimbing <span class="required">*</span></label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="text" class="form-control">
+                                                        <small><i>Sesuai dengan hasil plotting sebelumnya</i></small>
+                                                    </div>
+                                                    <div class="clearfix" style="margin-bottom: 2%"></div>
+                                                    <button class="btn btn-success pull-right">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end perpanjangan-->
+                        </div>
+                        <!--end panjang-->
+                        <!--start baru-->
+                        <div role="tabpanel" class="tab-pane fade in" id="tab_content2" aria-labelledby="home-tab">
+                            <!--status baru-->
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>Baru <small>Wajib memilih 1 project tersedia</small></h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <br />
+                                            <form id="new" data-parsley-validate class="form-horizontal form-label-left">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 1 <span class="required">*</span></label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <select class="form-control">
+                                                            <option>Pilih ..</option>
+                                                            <option>Sistem Informasi Cuti Frontend</option>
+                                                            <option>Sistem Informasi Cuti Backend</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="clearfix" style="margin-bottom: 2%"></div>
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 2 <span class="required">*</span></label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <select class="form-control">
+                                                            <option>Pilih ..</option>
+                                                            <option>Sistem Informasi Cuti Frontend</option>
+                                                            <option>Sistem Informasi Cuti Backend</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="clearfix" style="margin-bottom: 2%"></div>
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 3 <span class="required">*</span></label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <select class="form-control">
+                                                            <option>Pilih ..</option>
+                                                            <option>Usul Ide</option>
+                                                            <option>Sistem Informasi Cuti Frontend</option>
+                                                            <option>Sistem Informasi Cuti Backend</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="clearfix" style="margin-bottom: 2%"></div>
+                                                    <button class="btn btn-success pull-right">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end baru-->
+                    </div>
+                </div>
+                <!--end pane-->
             </div>
         </div>
         <!-- /page content -->
