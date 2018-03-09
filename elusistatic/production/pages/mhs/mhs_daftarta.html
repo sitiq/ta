@@ -47,23 +47,23 @@
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <h3>Mahasiswa</h3>
-                        <ul class="nav side-menu">
-                            <li><a href="mhs_dash.html"><i class="fa fa-home"></i> Dashboard</a></li>
-                            <li><a><i class="fa fa-files-o"></i> Berkas <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="mhs_berkas.html">Akademik</a></li>
-                                    <li><a href="mhs_berkasmhs.html">Mahasiswa</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-edit"></i> Daftar <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="mhs_daftarta.html">Tugas Akhir</a></li>
-                                    <li><a href="mhs_unggahproposal.html">Unggah Proposal</a></li>
-                                    <li><a href="mhs_daftarsidang.html">Sidang</a></li>
-                                    <li><a href="mhs_daftaryudisium.html">Yudisium</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <!--<ul class="nav side-menu">-->
+                            <!--<li><a href="mhs_dash.html"><i class="fa fa-home"></i> Dashboard</a></li>-->
+                            <!--<li><a><i class="fa fa-files-o"></i> Berkas <span class="fa fa-chevron-down"></span></a>-->
+                                <!--<ul class="nav child_menu">-->
+                                    <!--<li><a href="mhs_berkas.html">Akademik</a></li>-->
+                                    <!--<li><a href="mhs_berkasmhs.html">Mahasiswa</a></li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                            <!--<li><a><i class="fa fa-edit"></i> Daftar <span class="fa fa-chevron-down"></span></a>-->
+                                <!--<ul class="nav child_menu">-->
+                                    <!--<li><a href="mhs_daftarta.html">Tugas Akhir</a></li>-->
+                                    <!--<li><a href="mhs_unggahproposal.html">Unggah Proposal</a></li>-->
+                                    <!--<li><a href="mhs_daftarsidang.html">Sidang</a></li>-->
+                                    <!--<li><a href="mhs_daftaryudisium.html">Yudisium</a></li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                        <!--</ul>-->
                     </div>
                 </div>
                 <!-- /sidebar menu -->
@@ -118,9 +118,9 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <select class="form-control">
                                                 <option>Pilih ..</option>
-                                                <option>Semester Genap 2016/2017</option>
-                                                <option>Semester Gasal 2017/2018</option>
-                                                <option>Semester Genap 2017/2018</option>
+                                                <option>Genap 2016/2017</option>
+                                                <option>Gasal 2017/2018</option>
+                                                <option>Genap 2017/2018</option>
                                             </select>
                                         </div>
                                         <div class="clearfix" style="margin-bottom: 2%"></div>
@@ -128,7 +128,6 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Status Pengambilan <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <!--<input type="text" id="status" required="required" class="form-control col-md-7 col-xs-12">-->
                                             <div class="btn-group" data-toggle="buttons" id="status">
                                                 <label class="btn btn-default">
                                                     <a href="#tab_content2" role="tab" id="baru" data-toggle="tab" aria-expanded="true">
@@ -150,7 +149,7 @@
                 </div>
                 <!--pane-->
                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                    <div id="myTabContent" class="tab-content">
+                    <div id="myTab" class="tab-content">
                         <!--pane panjang-->
                         <div role="tabpanel" class="tab-pane fade in" id="tab_content1" aria-labelledby="home-tab">
                             <!--status perpanjangan-->
@@ -220,14 +219,61 @@
                                                     <div class="clearfix" style="margin-bottom: 2%"></div>
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 3 <span class="required">*</span></label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select class="form-control">
-                                                            <option>Pilih ..</option>
-                                                            <option>Usul Ide</option>
-                                                            <option>Sistem Informasi Cuti Frontend</option>
-                                                            <option>Sistem Informasi Cuti Backend</option>
-                                                        </select>
+                                                        <!--Project-->
+                                                        <!--<a href="#tab_content3" role="tab" id="i-project" data-toggle="tab" aria-expanded="true">-->
+                                                            <!--<input type="radio" class="flat" name="pilihan" id="project" value="baru" required />-->
+                                                        <!--</a>-->
+                                                        <!--Usul Ide-->
+                                                        <!--<a href="#tab_content4" role="tab" id="i-usul" data-toggle="tab" aria-expanded="true">-->
+                                                            <!--<input type="radio" class="flat" name="pilihan" id="ide" value="perpanjang" />-->
+                                                        <!--</a>-->
+                                                        <div class="btn-group" data-toggle="buttons" id="pilihan3">
+                                                            <label class="btn btn-default">
+                                                                <a href="#tab_content3" role="tab" id="ide" data-toggle="tab" aria-expanded="true">
+                                                                    <input type="radio" name="options" id="option3"> Usul Ide
+                                                                </a>
+                                                            </label>
+                                                            <label class="btn btn-default">
+                                                                <a href="#tab_content4" role="tab" id="proyek" data-toggle="tab" aria-expanded="true">
+                                                                    <input type="radio" name="options" id="option4"> Project
+                                                                </a>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                     <div class="clearfix" style="margin-bottom: 2%"></div>
+                                                    <!--pane 2-->
+                                                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                                        <div id="myTabContent" class="tab-content">
+                                                            <!--pane ide-->
+                                                            <div role="tabpanel" class="tab-pane fade in" id="tab_content3" aria-labelledby="home-tab">
+                                                                <!--status perpanjangan-->
+                                                                <div class="row">
+                                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequatur et impedit maxime optio soluta voluptatum? Aliquid consectetur, deserunt, dolore, eius fugiat libero nam nobis non omnis repellat vel voluptate.
+                                                                </div>
+                                                                <!--end perpanjangan-->
+                                                            </div>
+                                                            <!--end ide-->
+                                                            <!--start project-->
+                                                            <div role="tabpanel" class="tab-pane fade in" id="tab_content4" aria-labelledby="home-tab">
+                                                                <!--status baru-->
+                                                                <div class="row">
+                                                                    <div>
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">&nbsp;</label>
+                                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                            <select class="form-control">
+                                                                                <option>Pilih ..</option>
+                                                                                <option>Sistem Informasi Cuti Frontend</option>
+                                                                                <option>Sistem Informasi Cuti Backend</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--end project-->
+                                                        </div>
+                                                    </div>
+                                                    <!--end pane 2-->
+                                                    <!--div pane project-->
                                                     <button class="btn btn-success pull-right">Submit</button>
                                                 </div>
                                             </form>
