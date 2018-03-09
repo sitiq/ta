@@ -92,14 +92,17 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>User Management<small>Add, Edit, Delete</small></h2>
+                            <h2>AKADEMIK &nbsp;<i class="fa fa-angle-right"></i> User Management<small>Add, Edit, Delete</small></h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <a href="adduser.html"><button class="btn btn-success pull-right">Tambah user</button></a>
-                            <table id="datatable-akademik" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <a href="adduser.html"><button class="btn btn-success pull-right" style="margin-bottom: 2%">Add New User</button></a>
+                            <table id="datatable-checkbox" class="table table-striped table-bordered dt-responsive nowrap bulk_action" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
+                                    <th>
+                                        <input type="checkbox" id="check-all" class="flat">
+                                    </th>
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Username</th>
@@ -108,6 +111,9 @@
                                 </thead>
                                 <tbody>
                                 <tr>
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
                                     <td>1</td>
                                     <td>Budi</td>
                                     <td>386071</td>
@@ -118,6 +124,7 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <button class="btn btn-default">Delete</button>
                         </div>
                     </div>
                 </div>

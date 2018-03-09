@@ -48,12 +48,13 @@
                     <div class="menu_section">
                         <h3>Admin</h3>
                         <ul class="nav side-menu">
+                            <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li><a><i class="fa fa-user"></i>  Users  <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="usermhs.html">Mahasiswa</a></li>
+                                    <li><a href="userakademik.html">Akademik</a></li>
                                     <li><a href="userdosen.html">Dosen</a></li>
                                     <li><a href="userkaprodi.html">Kaprodi</a></li>
-                                    <li><a href="userakademik.html">Akademik</a></li>
+                                    <li><a href="usermhs.html">Mahasiswa</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -77,7 +78,8 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="#">Ubah Password</a></li>
+                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -91,13 +93,55 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>User <small>Add, Edit</small></h3>
+                        <h3>User Management <small>Add, Edit</small></h3>
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2><strong>Tambah User dengan IMPORT EXCEL</strong></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div class="col-md-12">
+                                    <img src="" alt="">//image
+                                </div>
+                                <div class="col-md-12" style="margin-bottom: 3%">
+                                    <center>
+                                        <h4>PENTING UNTUK DIBACA</h4>
+                                        <div class="col-md-6">
+                                            <span class="label label-warning">1</span>
+                                            Setelah mengunduh format Excel, pastikan Anda telah <strong>mengisikan</strong> data dengan benar dan sesuai dengan petunjuk yang ada.
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="label label-warning">2</span>
+                                            <strong>Unggah</strong> file Excel berisi data user yang akan ditambahkan, pada form input file dibawah. Setelah itu klik tombol "Import dari Excel"
+                                        </div>
+                                    </center>
+                                </div>
+                                <h5><strong>Unduh format</strong></h5>
+                                <button class="btn btn-block btn-sm btn-default">Download</button>
+                                <h5><strong>Unggah file Excel</strong></h5>
+                                <input type="file" class="form-control"><br>
+                                <button class="btn btn-success btn-sm pull-right">Import dari Excel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Masukkan Detail User</h2>
+                                <div class="clearfix"></div>
+                            </div>
                             <div class="x_content">
                                 <br />
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
@@ -122,12 +166,24 @@
                                             <input type="password" required="required" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Role<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="form-control">
+                                                <option>Pilih</option>
+                                                <option>Akademik</option>
+                                                <option>Dosen</option>
+                                                <option>Kaprodi</option>
+                                                <option>Mahasiswa</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                            <button class="btn btn-danger" type="button">Cancel</button>
-                                            <button class="btn btn-primary" type="reset">Reset</button>
-                                            <button type="submit" class="btn btn-success">Submit</button>
+                                            <button type="submit" class="btn btn-success pull-right">Submit</button>
                                         </div>
                                     </div>
                                 </form>
