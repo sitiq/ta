@@ -47,23 +47,23 @@
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <h3>Mahasiswa</h3>
-                        <ul class="nav side-menu">
-                            <li><a href="mhs_dash.html"><i class="fa fa-home"></i> Dashboard</a></li>
-                            <li><a><i class="fa fa-files-o"></i> Berkas <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="mhs_berkas.html">Akademik</a></li>
-                                    <li><a href="mhs_berkasmhs.html">Mahasiswa</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-edit"></i> Daftar <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="mhs_daftarta.html">Tugas Akhir</a></li>
-                                    <li><a href="mhs_unggahproposal.html">Unggah Proposal</a></li>
-                                    <li><a href="mhs_daftarsidang.html">Sidang</a></li>
-                                    <li><a href="mhs_daftaryudisium.html">Yudisium</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <!--<ul class="nav side-menu">-->
+                            <!--<li><a href="mhs_dash.html"><i class="fa fa-home"></i> Dashboard</a></li>-->
+                            <!--<li><a><i class="fa fa-files-o"></i> Berkas <span class="fa fa-chevron-down"></span></a>-->
+                                <!--<ul class="nav child_menu">-->
+                                    <!--<li><a href="mhs_berkas.html">Akademik</a></li>-->
+                                    <!--<li><a href="mhs_berkasmhs.html">Mahasiswa</a></li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                            <!--<li><a><i class="fa fa-edit"></i> Daftar <span class="fa fa-chevron-down"></span></a>-->
+                                <!--<ul class="nav child_menu">-->
+                                    <!--<li><a href="mhs_daftarta.html">Tugas Akhir</a></li>-->
+                                    <!--<li><a href="mhs_unggahproposal.html">Unggah Proposal</a></li>-->
+                                    <!--<li><a href="mhs_daftarsidang.html">Sidang</a></li>-->
+                                    <!--<li><a href="mhs_daftaryudisium.html">Yudisium</a></li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                        <!--</ul>-->
                     </div>
                 </div>
                 <!-- /sidebar menu -->
@@ -116,36 +116,32 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <!--<p class="text-muted font-13 m-b-30">-->
-                                <!--Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.-->
-                                <!--</p>-->
                                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
-                                        <th>Nama File</th>
+                                        <th>File</th>
                                         <th>Tanggal Unggah</th>
-                                        <th>Download</th>
                                         <th>Status</th>
-                                        <th>Unggah</th>
                                         <th>Aksi</th>
+                                        <th>Revisi</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>09457-proposal</td>
-                                        <td>02-12-2017</td>
-                                        <td><a href="#">09457-proposal.pdf</a></td>
-                                        <td>Accepted</td>
-                                        <td><input type="file" disabled></td>
-                                        <td><button class="btn btn-primary btn-sm">Save</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>09457-lembar pengesahan</td>
+                                        <td>Proposal</td>
                                         <td>22-02-2017</td>
-                                        <td><a href="#">09457-lembarpengesahan.pdf</a></td>
                                         <td>Pending</td>
-                                        <td><input type="file"></td>
-                                        <td><button class="btn btn-primary btn-sm">Save</button></td>
+                                        <td>
+                                            <button class="btn btn-default btn-sm" style="hover"><i class="fa fa-download"></i></button>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="file" class="form-control">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                                                </span>
+                                            </div>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
