@@ -47,42 +47,27 @@
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <h3>Akademik</h3>
-                        <!--<ul class="nav side-menu">-->
-                            <!--<li><a href="akdm_berkas.html"><i class="fa fa-file-o"></i> Berkas</a></li>-->
-                            <!--<li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>-->
-                                <!--<ul class="nav child_menu">-->
-                                    <!--<li><a>Judul Proyek<span class="fa fa-chevron-down"></span></a>-->
-                                        <!--<ul class="nav child_menu">-->
-                                            <!--<li class="sub_menu"><a href="akdm_daftartabaru.html">Baru</a>-->
-                                            <!--</li>-->
-                                            <!--<li><a href="akdm_daftarta.html">Perpanjangan</a>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                    <!--</li>-->
-                                    <!--<li><a href="akdm_daftarsidang.html">Sidang</a></li>-->
-                                    <!--<li><a href="akdm_daftaryudisium.html">Yudisium</a></li>-->
-                                    <!--</li>-->
-                                <!--</ul>-->
-                            <!--</li>-->
-                            <!--<li><a><i class="fa fa-calendar-o"></i>  Periode  <span class="fa fa-chevron-down"></span></a>-->
-                                <!--<ul class="nav child_menu">-->
-                                    <!--<li><a href="akdm_setperiode.html">Tambah Periode</a></li>-->
-                                    <!--<li><a href="akdm_daftarperiode.html">Daftar Periode</a></li>-->
-                                <!--</ul>-->
-                            <!--</li>-->
-                            <!--<li><a><i class="fa fa-user"></i>  Dosen  <span class="fa fa-chevron-down"></span></a>-->
-                                <!--<ul class="nav child_menu">-->
-                                    <!--<li><a href="akdm_setdosen.html">Tambah Dosen</a></li>-->
-                                    <!--<li><a href="akdm_daftardosen.html">Daftar Dosen</a></li>-->
-                                <!--</ul>-->
-                            <!--</li>-->
-                            <!--<li><a><i class="fa fa-files-o"></i>  Proyek  <span class="fa fa-chevron-down"></span></a>-->
-                                <!--<ul class="nav child_menu">-->
-                                    <!--<li><a href="../dosen/dosen_setproyek.html">Tambah Proyek</a></li>-->
-                                    <!--<li><a href="../dosen/dosen_listproyek.html">Daftar Proyek</a></li>-->
-                                <!--</ul>-->
-                            <!--</li>-->
-                        <!--</ul>-->
+                        <ul class="nav side-menu">
+                            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                            <li><a href="pengumuman.html"><i class="fa fa-cloud-upload"></i> Pengumuman</a></li>
+                            <li><a href="status.html"><i class="fa fa-user"></i> Status Mahasiswa</a></li>
+                            <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a>Judul Proyek<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li class="sub_menu"><a href="akdm_daftartabaru.html">Baru</a>
+                                            </li>
+                                            <li><a href="akdm_daftarta.html">Perpanjangan</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="proposal.html">Proposal</a></li>
+                                    <li><a href="akdm_daftarsidang.html">Sidang</a></li>
+                                    <li><a href="akdm_daftaryudisium.html">Yudisium</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="akdm_daftarperiode.html"><i class="fa fa-clock-o"></i> Periode</a></li>
+                        </ul>
                     </div>
                 </div>
                 <!-- /sidebar menu -->
@@ -103,7 +88,8 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="login.html"><i class="fa fa-key pull-right"></i> Ubah Password</a></li>
+                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -131,141 +117,143 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <p><span class="badge">Nama</span> Nadya Azzani</p>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <p><span class="badge">NIM</span> 15/386071/SV/09358</p>
-                                </div>
                                 <div class="col-md-12">
+                                    <div class="row">
+                                        <span class="col-md-2 badge"><strong>NIM</strong></span>
+                                        <span class="col-md-7">15/386071/SV/09457</span>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <span class="col-md-2 badge"><strong>Nama</strong></span>
+                                        <span class="col-md-7">Mail Hamidy</span>
+                                    </div>
+                                    <br>
                                     <div class="table-responsive">
-                                        <p><span class="badge">Berkas</span></p>
-                                        <table class="table">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr bgcolor="#67CEA6" style="color: white">
+                                                <th colspan="4"><h4><strong>Data Berkas Sidang</strong></h4></th>
+                                            </tr>
+                                            <tr bgcolor="#59BD96" style="color: white">
+                                                <th>No</th>
+                                                <th>Berkas</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                            </thead>
                                             <tbody>
                                             <tr>
-                                                <th>Usulan Sidang</th>
-                                                <td><a href="">09457-usulansidang.pdf</a></td>
+                                                <td>1</td>
+                                                <td>Usulan Sidang</td>
+                                                <td>Pending</td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm"><i class="fa fa-check"></i>Terima</button>
-                                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-times"></i>Tunda</button>
+                                                    <button class="btn btn-info btn-sm"><i class="fa fa-check"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#RevisiModal"><i class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>KRS Semester Terakhir</th>
-                                                <td><a href="">09457-krsterakhir.pdf</a></td>
+                                                <td>2</td>
+                                                <td>KRS Semester Terakhir <small><i>[ACC DPA]</i></small></td>
+                                                <td>Pending</td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm"><i class="fa fa-check"></i>Terima</button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-times"></i>Tunda</button>
+                                                    <button class="btn btn-info btn-sm"><i class="fa fa-check"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#RevisiModal"><i class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Rekap Nilai</th>
-                                                <td><a href="">09457-rekapnilai.pdf</a></td>
+                                                <td>3</td>
+                                                <td>Rekap Nilai</td>
+                                                <td>Pending</td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm"><i class="fa fa-check"></i>Terima</button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-times"></i>Tunda</button>
+                                                    <button class="btn btn-info btn-sm"><i class="fa fa-check"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#RevisiModal"><i class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>KHS Semester Awal - Akhir</th>
-                                                <td><a href="">09457-khsseluruh.pdf</a></td>
+                                                <td>4</td>
+                                                <td>KHS <small><i>[Semester awal hingga akhir]</i></small></td>
+                                                <td>Pending</td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm"><i class="fa fa-check"></i>Terima</button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-times"></i>Tunda</button>
+                                                    <button class="btn btn-info btn-sm"><i class="fa fa-check"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#RevisiModal"><i class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Kartu Bimbingan</th>
-                                                <td><a href="">09457-kartubimbingan.pdf</a></td>
+                                                <td>5</td>
+                                                <td>Kartu Bimbingan <small><i>[Min. 6 pertemuan]</i></small></td>
+                                                <td>Pending</td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm"><i class="fa fa-check"></i>Terima</button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-times"></i>Tunda</button>
+                                                    <button class="btn btn-info btn-sm"><i class="fa fa-check"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#RevisiModal"><i class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Kartu Tanda Mahasiswa</th>
-                                                <td><a href="">09457-ktm.pdf</a></td>
+                                                <td>6</td>
+                                                <td>KTM</td>
+                                                <td>Pending</td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm"><i class="fa fa-check"></i>Terima</button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-times"></i>Tunda</button>
+                                                    <button class="btn btn-info btn-sm"><i class="fa fa-check"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#RevisiModal"><i class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Riwayat Registrasi</th>
-                                                <td><a href="">09457-riwayatregistrasi.pdf</a></td>
+                                                <td>7</td>
+                                                <td>Riwayat Registrasi</td>
+                                                <td>Pending</td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm"><i class="fa fa-check"></i>Terima</button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-times"></i>Tunda</button>
+                                                    <button class="btn btn-info btn-sm"><i class="fa fa-check"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#RevisiModal"><i class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Proposal Tugas Akhir</th>
-                                                <td><a href="">09457-proposaltugasakhir.pdf</a></td>
+                                                <td>8</td>
+                                                <td>Laporan Tugas Akhir</td>
+                                                <td>Pending</td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm"><i class="fa fa-check"></i>Terima</button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-times"></i>Tunda</button>
+                                                    <button class="btn btn-info btn-sm"><i class="fa fa-check"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#RevisiModal"><i class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Halaman Depan Jilid TA</th>
-                                                <td><a href="">09457-halamandepanjilidta.pdf</a></td>
+                                                <td>9</td>
+                                                <td>Cover Laporan TA <small><i>[ACC dosen pembimbing]</i></small></td>
+                                                <td>Pending</td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm"><i class="fa fa-check"></i>Terima</button>
-                                                    <button type="button" data-toggle="modal" data-target=".bs-example-modal-lg" class="btn btn-danger btn-sm"><i class="fa fa-times"></i>Tunda</button>
+                                                    <button class="btn btn-info btn-sm"><i class="fa fa-check"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#RevisiModal"><i class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                         <!--modal-->
-                                        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
+                                        <div id="RevisiModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog">
                                                 <div class="modal-content">
-
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                                                         </button>
-                                                        <h4 class="modal-title" id="myModalLabel">Pesan Revisi</h4>
+                                                        <h4 class="modal-title" id="myModalLabel">Revisi</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <textarea id="" class="col-md-12" rows="5"></textarea>
+                                                        <div id="testmodal" style="padding: 5px 20px;">
+                                                            <form id="antoform" class="form-horizontal calender" role="form">
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-3 control-label">Pesan</label>
+                                                                    <div class="col-sm-9">
+                                                                        <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button style="margin-top: 2%" type="button" class="btn btn-primary">Kirim</button>
+                                                        <button style="margin-top: 2%" type="button" class="btn btn-primary">Submit</button>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Jadwal Sidang Pendadaran<small></small></h2>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label for="laporan">Tanggal Uji</label><small></small>
-                                    <input type="date" id="laporan" class="form-control"><br>
-                                    <label for="pukul">Pukul</label><small></small>
-                                    <input type="time" id="pukul" class="form-control"><br>
-                                    <label for="ruang">Ruang</label><small></small>
-                                    <input type="text" id="ruang" class="form-control">
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label for="ketua">Ketua Sidang</label><small></small>
-                                    <input type="text" id="ketua" class="form-control"><br>
-                                    <label for="sekre">Sekretaris Sidang</label><small></small>
-                                    <input type="text" id="sekre" class="form-control">
-                                </div>
-                                <div class="col-md-12 col-sm-12">
-                                    <button class="btn btn-primary pull-right">Submit</button>
                                 </div>
                             </div>
                         </div>
