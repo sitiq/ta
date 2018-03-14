@@ -116,28 +116,18 @@
                                 <br />
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Pertama kali daftar tugas akhir <span class="required">*</span></label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select class="form-control">
-                                                <option>Pilih ..</option>
-                                                <option>Genap 2016/2017</option>
-                                                <option>Gasal 2017/2018</option>
-                                                <option>Genap 2017/2018</option>
-                                            </select>
-                                        </div>
-                                        <div class="clearfix" style="margin-bottom: 2%"></div>
                                         <!--status-->
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Status Pengambilan <span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status_baru">Status Pengambilan <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="btn-group" data-toggle="buttons" id="status">
+                                            <div class="btn-group" data-toggle="buttons" id="status_baru">
                                                 <label class="btn btn-default">
                                                     <a href="#tab_content2" role="tab" id="baru" data-toggle="tab" aria-expanded="true">
                                                         <input type="radio" name="options" id="option1"> Baru
                                                     </a>
                                                 </label>
                                                 <label class="btn btn-default">
-                                                    <a href="#tab_content1" role="tab" id="panjang" data-toggle="tab" aria-expanded="true">
+                                                    <a href="#tab_content1" role="tab" id="status_panjang" data-toggle="tab" aria-expanded="true">
                                                         <input type="radio" name="options" id="option2"> Perpanjangan
                                                     </a>
                                                 </label>
@@ -164,7 +154,21 @@
                                         </div>
                                         <div class="x_content">
                                             <br />
+                                            <!--form perpanjangan-->
                                             <form id="extend" data-parsley-validate class="form-horizontal form-label-left">
+                                                <!--input status perpanjangan-->
+                                                <input id="status-baru" type="number" hidden value="baru">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pertama kali daftar tugas akhir <span class="required">*</span></label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <select class="form-control">
+                                                            <option>Pilih ..</option>
+                                                            <option>Genap 2016/2017</option>
+                                                            <option>Gasal 2017/2018</option>
+                                                            <option>Genap 2017/2018</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Judul TA <span class="required">*</span></label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -177,7 +181,7 @@
                                                         <small><i>Sesuai dengan hasil plotting sebelumnya</i></small>
                                                     </div>
                                                     <div class="clearfix" style="margin-bottom: 2%"></div>
-                                                    <button class="btn btn-success pull-right">Submit</button>
+                                                    <button class="btn btn-success pull-right" type="submit">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -199,7 +203,10 @@
                                         </div>
                                         <div class="x_content">
                                             <br />
+                                            <!--form baru-->
                                             <form id="new" data-parsley-validate class="form-horizontal form-label-left">
+                                                <!--input status  perpanjangan-->
+                                                <input id="status-panjang" type="number" hidden value="perpanjangan">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 1 <span class="required">*</span></label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -221,14 +228,6 @@
                                                     <div class="clearfix" style="margin-bottom: 2%"></div>
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 3 <span class="required">*</span></label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <!--Project-->
-                                                        <!--<a href="#tab_content3" role="tab" id="i-project" data-toggle="tab" aria-expanded="true">-->
-                                                            <!--<input type="radio" class="flat" name="pilihan" id="project" value="baru" required />-->
-                                                        <!--</a>-->
-                                                        <!--Usul Ide-->
-                                                        <!--<a href="#tab_content4" role="tab" id="i-usul" data-toggle="tab" aria-expanded="true">-->
-                                                            <!--<input type="radio" class="flat" name="pilihan" id="ide" value="perpanjang" />-->
-                                                        <!--</a>-->
                                                         <div class="btn-group" data-toggle="buttons" id="pilihan3">
                                                             <label class="btn btn-default">
                                                                 <a href="#tab_content3" role="tab" id="ide" data-toggle="tab" aria-expanded="true">
@@ -261,21 +260,21 @@
                                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Usulan Judul <span class="required">*</span>
                                                                         </label>
                                                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                            <input type="text" required="required" class="form-control col-md-7 col-xs-12" placeholder="jawaban anda">
+                                                                            <input type="text" class="form-control col-md-7 col-xs-12" placeholder="jawaban anda">
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Deskripsi Project <span class="required">*</span>
                                                                         </label>
                                                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                            <textarea type="text" required="required" class="form-control col-md-7 col-xs-12" placeholder="Deskripsikan dengan singkat dan jelas"></textarea>
+                                                                            <textarea type="text" class="form-control col-md-7 col-xs-12" placeholder="Deskripsikan dengan singkat dan jelas"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Business Rule <span class="required">*</span>
                                                                         </label>
                                                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                            <textarea type="text" required="required" class="form-control col-md-7 col-xs-12" placeholder="Bisnis yang diusulkan meliputi alur proses yang ada, data dan pengguna yang terlibat di dalamnya"></textarea>
+                                                                            <textarea type="text" class="form-control col-md-7 col-xs-12" placeholder="Bisnis yang diusulkan meliputi alur proses yang ada, data dan pengguna yang terlibat di dalamnya"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
@@ -284,6 +283,9 @@
                                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                                             <input type="file" class="form-control col-md-7 col-xs-12">
                                                                         </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-9">
+                                                                        <button class="btn btn-success pull-right">Submit</button>
                                                                     </div>
                                                                 </div>
                                                                 <!--end perpanjangan-->
@@ -301,6 +303,7 @@
                                                                                 <option>Sistem Informasi Cuti Frontend</option>
                                                                                 <option>Sistem Informasi Cuti Backend</option>
                                                                             </select>
+                                                                            <button type="submit" class="btn btn-success pull-right" style="margin-top: 3%">Submit</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -309,8 +312,6 @@
                                                         </div>
                                                     </div>
                                                     <!--end pane 2-->
-                                                    <!--div pane project-->
-                                                    <button class="btn btn-success pull-right">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
