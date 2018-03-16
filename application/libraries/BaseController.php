@@ -60,7 +60,28 @@ class BaseController extends CI_Controller {
 			return false;
 		}
 	}
-	
+
+    /**
+     * This function is used to check the access
+     */
+    function isDosen() {
+        if ($this->role != ROLE_DOSEN) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * This function is used to check the access
+     */
+    function isMahasiswa() {
+        if ($this->role != ROLE_MAHASISWA) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 	/**
 	 * This function is used to check the access
 	 */
