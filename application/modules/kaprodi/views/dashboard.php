@@ -6,4 +6,4 @@
  * Description:
  */
 ?>
-<h3>Dashboard Akademik</h3>
+<h3>Dashboard Kaprodi</h3>
