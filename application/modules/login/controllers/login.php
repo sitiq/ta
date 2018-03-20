@@ -25,7 +25,7 @@ class Login extends CI_Controller
     {
         $this->isLoggedIn();
     }
-    
+
     /**
      * This function used to check the ta is logged in or not
      */
@@ -33,7 +33,7 @@ class Login extends CI_Controller
     {
         $isLoggedIn = $this->session->userdata('isLoggedIn');
         $id_user_role = $this->session->userdata('role');
-        
+
         if(!isset($isLoggedIn) || $isLoggedIn != TRUE)
         {
             $this->load->view('login');
@@ -47,18 +47,18 @@ class Login extends CI_Controller
 			}
         }
     }
-    
-    
+
+
     /**
      * This function used to logged in ta
      */
     public function loginMe()
     {
         $this->load->library('form_validation');
-		
+
         $this->form_validation->set_rules('username', 'Username');
         $this->form_validation->set_rules('password', 'Password', 'required|max_length[255]');
-        
+
         if($this->form_validation->run() == FALSE)
         {
             $this->index();
@@ -67,35 +67,35 @@ class Login extends CI_Controller
         {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
-            
+
             $result = $this->login_model->loginAll($username, $password);
-            
+
             if(count($result) > 0)
             {
                 foreach ($result as $res)
                 {
-					$id_user_role = $res->id_user_role;
-					
-                    $sessionArray = array('id_user'=>$res->id_user,
-                                            'role'=>$res->id_user_role,
-                                            'roleText'=>$res->role,
-                                            'name'=>$res->name,
-                                            'isLoggedIn' => TRUE
-                                    );
-                                    
-                    $this->session->set_userdata($sessionArray);
-                    
-                    if($id_user_role == 4) {
-						redirect('mahasiswa');
-					}else if($id_user_role == 3) {
-						redirect('dosen');
-					}
+        					$id_user_role = $res->id_user_role;
+
+                            $sessionArray = array('id_user'=>$res->id_user,
+                                                    'role'=>$res->id_user_role,
+                                                    'roleText'=>$res->role,
+                                                    'name'=>$res->name,
+                                                    'isLoggedIn' => TRUE
+                                            );
+
+                            $this->session->set_userdata($sessionArray);
+
+                            if($id_user_role == 4) {
+        						redirect('mahasiswa');
+        					}else if($id_user_role == 3) {
+        						redirect('dosen');
+        					}
                 }
             }
             else
             {
                 $this->session->set_flashdata('error', 'username or password mismatch');
-                
+
                 redirect('login');
             }
         }
@@ -108,39 +108,39 @@ class Login extends CI_Controller
     {
         $this->load->view('forgotPassword');
     }
-    
+
     /**
      * This function used to generate reset password request link
      */
     function resetPasswordUser()
     {
         $status = '';
-        
+
         $this->load->library('form_validation');
-        
+
         $this->form_validation->set_rules('login_username','username');
-                
+
         if($this->form_validation->run() == FALSE)
         {
             $this->forgotPassword();
         }
-        else 
+        else
         {
             $username = $this->input->post('login_username');
-            
+
             if($this->login_model->checkusernameExist($username))
             {
                 $encoded_username = urlencode($username);
-                
+
                 $this->load->helper('string');
                 $data['username'] = $username;
                 $data['activation_id'] = random_string('alnum',15);
                 $data['createdDtm'] = date('Y-m-d H:i:s');
                 $data['agent'] = getBrowserAgent();
                 $data['client_ip'] = $this->input->ip_address();
-                
-                $save = $this->login_model->resetPasswordUser($data);                
-                
+
+                $save = $this->login_model->resetPasswordUser($data);
+
                 if($save)
                 {
                     $data1['reset_link'] = base_url() . "login/resetPasswordConfirmUser/" . $data['activation_id'] . "/" . $encoded_username;
@@ -177,18 +177,18 @@ class Login extends CI_Controller
         }
     }
 
-    // This function used to reset the password 
+    // This function used to reset the password
     function resetPasswordConfirmUser($activation_id, $username)
     {
         // Get username and activation code from URL values at index 3-4
         $username = urldecode($username);
-        
+
         // Check activation id in database
         $is_correct = $this->login_model->checkActivationDetails($username, $activation_id);
-        
+
         $data['username'] = $username;
         $data['activation_code'] = $activation_id;
-        
+
         if ($is_correct == 1)
         {
             $this->load->view('newPassword', $data);
@@ -198,7 +198,7 @@ class Login extends CI_Controller
             redirect('login');
         }
     }
-    
+
     // This function used to create new password
     function createPasswordUser()
     {
@@ -206,12 +206,12 @@ class Login extends CI_Controller
         $message = '';
         $username = $this->input->post("username");
         $activation_id = $this->input->post("activation_code");
-        
+
         $this->load->library('form_validation');
-        
+
         $this->form_validation->set_rules('password','Password','required|max_length[20]');
         $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
-        
+
         if($this->form_validation->run() == FALSE)
         {
             $this->resetPasswordConfirmUser($activation_id, urlencode($username));
@@ -220,14 +220,14 @@ class Login extends CI_Controller
         {
             $password = $this->input->post('password');
             $cpassword = $this->input->post('cpassword');
-            
+
             // Check activation id in database
             $is_correct = $this->login_model->checkActivationDetails($username, $activation_id);
-            
+
             if($is_correct == 1)
-            {                
+            {
                 $this->login_model->createPasswordUser($username, $password);
-                
+
                 $status = 'success';
                 $message = 'Password changed successfully';
             }
@@ -236,7 +236,7 @@ class Login extends CI_Controller
                 $status = 'error';
                 $message = 'Password changed failed';
             }
-            
+
             setFlashData($status, $message);
 
             redirect("login");
