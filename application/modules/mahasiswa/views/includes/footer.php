@@ -171,10 +171,6 @@
             });
         }, 500);
 
-
-
-
-
         myTable.on( 'select', function ( e, dt, type, index ) {
             if ( type === 'row' ) {
                 $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
@@ -185,9 +181,6 @@
                 $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
             }
         } );
-
-
-
 
         /////////////////////////////////
         //table checkboxes
@@ -211,15 +204,11 @@
             else myTable.row(row).select();
         });
 
-
-
         $(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
             e.stopImmediatePropagation();
             e.stopPropagation();
             e.preventDefault();
         });
-
-
 
         //And for the first simple table, which doesn't have TableTools or dataTables
         //select/deselect all rows according to table header checkbox
@@ -261,9 +250,6 @@
             if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
             return 'left';
         }
-
-
-
 
         /***************/
         $('.show-details-btn').on('click', function(e) {

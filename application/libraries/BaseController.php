@@ -1,4 +1,4 @@
-<?php defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' ); 
+<?php defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 
 /**
  * Class : BaseController
@@ -14,7 +14,7 @@ class BaseController extends CI_Controller {
 	protected $roleText = '';
 	protected $global = array ();
 	protected $lastLogin = '';
-	
+
 	/**
 	 * Takes mixed data and optionally a status code, then creates the response
 	 *
@@ -27,34 +27,43 @@ class BaseController extends CI_Controller {
 		$this->output->set_status_header ( 200 )->set_content_type ( 'application/json', 'utf-8' )->set_output ( json_encode ( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) )->_display ();
 		exit ();
 	}
-	
+
 	/**
 	 * This function used to check the user is logged in or not
 	 */
 	function isLoggedIn() {
 		$isLoggedIn = $this->session->userdata ( 'isLoggedIn' );
-		
+
 		if (! isset ( $isLoggedIn ) || $isLoggedIn != TRUE) {
 			redirect ( 'login' );
 		} else {
 			$this->role = $this->session->userdata ( 'role' );
-			$this->vendorId = $this->session->userdata ( 'userId' );
+			$this->vendorId = $this->session->userdata ( 'id_user' );
 			$this->name = $this->session->userdata ( 'name' );
 			$this->roleText = $this->session->userdata ( 'roleText' );
 			$this->lastLogin = $this->session->userdata ( 'lastLogin' );
-			
+
 			$this->global ['name'] = $this->name;
 			$this->global ['role'] = $this->role;
 			$this->global ['role_text'] = $this->roleText;
 			$this->global ['last_login'] = $this->lastLogin;
 		}
 	}
-	
+    /**
+     * This function is used to check the access
+     */
+    function isKaprodi() {
+        if ($this->role != ROLE_KAPRODI) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 	/**
 	 * This function is used to check the access
 	 */
-	function isAdmin() {
-		if ($this->role != ROLE_ADMIN) {
+	function isAkademik() {
+		if ($this->role != ROLE_AKADEMIK) {
 			return true;
 		} else {
 			return false;
@@ -82,34 +91,24 @@ class BaseController extends CI_Controller {
             return false;
         }
     }
-	/**
-	 * This function is used to check the access
-	 */
-	function isTicketter() {
-		if ($this->role != ROLE_ADMIN || $this->role != ROLE_MANAGER) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
+
 	/**
 	 * This function is used to load the set of views
 	 */
 	function loadThis() {
 		$this->global ['pageTitle'] = 'CodeInsect : Access Denied';
-		
+
 		$this->load->view ( 'includes/header', $this->global );
 		$this->load->view ( 'access' );
 		$this->load->view ( 'includes/footer' );
 	}
-	
+
 	/**
 	 * This function is used to logged out user from system
 	 */
 	function logout() {
 		$this->session->sess_destroy ();
-		
+
 		redirect ( 'login' );
 	}
 
@@ -127,7 +126,7 @@ class BaseController extends CI_Controller {
         $this->load->view($viewName, $pageInfo);
         $this->load->view('includes/footer', $footerInfo);
     }
-	
+
 	/**
 	 * This function used provide the pagination resources
 	 * @param {string} $link : This is page link
@@ -161,11 +160,11 @@ class BaseController extends CI_Controller {
 		$config ['last_tag_open'] = '<li class="arrow">';
 		$config ['last_link'] = 'Last';
 		$config ['last_tag_close'] = '</li>';
-	
+
 		$this->pagination->initialize ( $config );
 		$page = $config ['per_page'];
 		$segment = $this->uri->segment ( $segment );
-	
+
 		return array (
 				"page" => $page,
 				"segment" => $segment
