@@ -59,7 +59,6 @@
                             <li><a><i class="fa fa-edit"></i> Daftar <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="mhs_daftarta.html">Tugas Akhir</a></li>
-                                    <li><a href="mhs_unggahproposal.html">Unggah Proposal</a></li>
                                     <li><a href="mhs_daftarsidang.html">Sidang</a></li>
                                     <li><a href="mhs_daftaryudisium.html">Yudisium</a></li>
                                 </ul>
@@ -109,220 +108,181 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada Profil</h5>
+                                <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada Profil Anda</h5>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
                                 <br />
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                                     <div class="form-group">
-                                        <!--status-->
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status_baru">Status Pengambilan <span class="required">*</span>
-                                        </label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 1 <span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="btn-group" data-toggle="buttons" id="status_baru">
+                                            <select class="form-control">
+                                                <option>Pilih ..</option>
+                                                <option>Sistem Informasi Cuti Frontend</option>
+                                                <option>Sistem Informasi Cuti Backend</option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix" style="margin-bottom: 2%"></div>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 2 <span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="form-control">
+                                                <option>Pilih ..</option>
+                                                <option>Sistem Informasi Cuti Frontend</option>
+                                                <option>Sistem Informasi Cuti Backend</option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix" style="margin-bottom: 2%"></div>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 3 <span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="btn-group" data-toggle="buttons" id="pilihan3">
                                                 <label class="btn btn-default">
-                                                    <a href="#tab_content2" role="tab" id="baru" data-toggle="tab" aria-expanded="true">
-                                                        <input type="radio" name="options" id="option1"> Baru
+                                                    <a href="#tab_content3" role="tab" id="ide" data-toggle="tab" aria-expanded="true">
+                                                        <input type="radio" name="options" id="option3"> Usul Ide
                                                     </a>
                                                 </label>
                                                 <label class="btn btn-default">
-                                                    <a href="#tab_content1" role="tab" id="status_panjang" data-toggle="tab" aria-expanded="true">
-                                                        <input type="radio" name="options" id="option2"> Perpanjangan
+                                                    <a href="#tab_content4" role="tab" id="proyek" data-toggle="tab" aria-expanded="true">
+                                                        <input type="radio" name="options" id="option4"> Project
                                                     </a>
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="clearfix" style="margin-bottom: 2%"></div>
+                                        <!--pane 2-->
+                                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                            <div id="myTabContent" class="tab-content">
+                                                <!--pane ide-->
+                                                <div role="tabpanel" class="tab-pane fade in" id="tab_content3" aria-labelledby="home-tab">
+                                                    <!--status perpanjangan-->
+                                                    <div class="row">
+                                                        <br/>
+                                                        <h4><strong>Usulan Ide</strong></h4>
+                                                        <small>
+                                                            Lengkapi form sesuai dengan usulan ide<br/>
+                                                            <br/>
+                                                        </small>
+                                                        <br/>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Usulan Judul <span class="required">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="jawaban anda">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Deskripsi Project <span class="required">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                <textarea type="text" class="form-control col-md-7 col-xs-12" placeholder="Deskripsikan dengan singkat dan jelas"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Business Rule <span class="required">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                <textarea type="text" class="form-control col-md-7 col-xs-12" placeholder="Bisnis yang diusulkan meliputi alur proses yang ada, data dan pengguna yang terlibat di dalamnya"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Persetujuan Institusi
+                                                            </label><small>Bagi yang mengajukan project dari institusi (jika ada)</small>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                <input type="file" class="form-control col-md-7 col-xs-12">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-9">
+                                                            <button class="btn btn-success pull-right">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                    <!--end perpanjangan-->
+                                                </div>
+                                                <!--end ide-->
+                                                <!--start project-->
+                                                <div role="tabpanel" class="tab-pane fade in" id="tab_content4" aria-labelledby="home-tab">
+                                                    <!--status baru-->
+                                                    <div class="row">
+                                                        <div>
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">&nbsp;</label>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                <select class="form-control">
+                                                                    <option>Pilih ..</option>
+                                                                    <option>Sistem Informasi Cuti Frontend</option>
+                                                                    <option>Sistem Informasi Cuti Backend</option>
+                                                                </select>
+                                                                <button type="submit" class="btn btn-success pull-right" style="margin-top: 3%">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end project-->
+                                            </div>
+                                        </div>
+                                        <!--end pane 2-->
                                     </div>
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!--pane-->
-                <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                    <div id="myTab" class="tab-content">
-                        <!--pane panjang-->
-                        <div role="tabpanel" class="tab-pane fade in" id="tab_content1" aria-labelledby="home-tab">
-                            <!--status perpanjangan-->
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="x_panel">
-                                        <div class="x_title">
-                                            <h2>Pengajuan Perpanjangan <small></small></h2>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="x_content">
-                                            <br />
-                                            <!--form perpanjangan-->
-                                            <form id="extend" data-parsley-validate class="form-horizontal form-label-left">
-                                                <!--input status perpanjangan-->
-                                                <input id="status-baru" type="number" hidden value="baru">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pertama kali daftar tugas akhir <span class="required">*</span></label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select class="form-control">
-                                                            <option>Pilih ..</option>
-                                                            <option>Genap 2016/2017</option>
-                                                            <option>Gasal 2017/2018</option>
-                                                            <option>Genap 2017/2018</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Judul TA <span class="required">*</span></label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                    <div class="clearfix" style="margin-bottom: 2%"></div>
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Dosen Pembimbing <span class="required">*</span></label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="text" class="form-control">
-                                                        <small><i>Sesuai dengan hasil plotting sebelumnya</i></small>
-                                                    </div>
-                                                    <div class="clearfix" style="margin-bottom: 2%"></div>
-                                                    <button class="btn btn-success pull-right" type="submit">Submit</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h3><strong>STATUS : AKTIF</strong></h3>
+                                <div class="clearfix"></div>
                             </div>
-                            <!--end perpanjangan-->
-                        </div>
-                        <!--end panjang-->
-                        <!--start baru-->
-                        <div role="tabpanel" class="tab-pane fade in" id="tab_content2" aria-labelledby="home-tab">
-                            <!--status baru-->
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="x_panel">
-                                        <div class="x_title">
-                                            <h2>Pengajuan Baru <small></small></h2>
-                                            <div class="clearfix"></div>
+                            <button class="btn btn-primary pull-right"><i class="fa fa-edit"></i> Edit</button>
+                            <button class="btn btn-warning pull-right"><i class="fa fa-edit"></i> Ganti Judul</button>
+                            <div class="x_content">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 1</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control" value="Sistem Informasi Cuti Frontend" readonly>
+                                    </div>
+                                    <div class="clearfix" style="margin-bottom: 2%"></div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 2</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control" value="Sistem Informasi Cuti Frontend" readonly>
+                                    </div>
+                                    <!--Pilihan 3 proyek-->
+                                    <div class="clearfix" style="margin-bottom: 2%"></div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 3</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control" value="Sistem Informasi Cuti Frontend">
+                                    </div>
+                                    <!--Pilihan 3 usul ide-->
+                                    <div class="clearfix" style="margin-bottom: 2%"></div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 3</label>
+                                    <div class="clearfix" style="margin-bottom: 2%"></div>
+                                    <!--usulan-->
+                                    <div class="well col-md-8">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Usulan Judul</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <span>Sistem Informasi Cuti Frontend</span>
                                         </div>
-                                        <div class="x_content">
-                                            <br />
-                                            <!--form baru-->
-                                            <form id="new" data-parsley-validate class="form-horizontal form-label-left">
-                                                <!--input status  perpanjangan-->
-                                                <input id="status-panjang" type="number" hidden value="perpanjangan">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 1 <span class="required">*</span></label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select class="form-control">
-                                                            <option>Pilih ..</option>
-                                                            <option>Sistem Informasi Cuti Frontend</option>
-                                                            <option>Sistem Informasi Cuti Backend</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="clearfix" style="margin-bottom: 2%"></div>
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 2 <span class="required">*</span></label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select class="form-control">
-                                                            <option>Pilih ..</option>
-                                                            <option>Sistem Informasi Cuti Frontend</option>
-                                                            <option>Sistem Informasi Cuti Backend</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="clearfix" style="margin-bottom: 2%"></div>
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan 3 <span class="required">*</span></label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <div class="btn-group" data-toggle="buttons" id="pilihan3">
-                                                            <label class="btn btn-default">
-                                                                <a href="#tab_content3" role="tab" id="ide" data-toggle="tab" aria-expanded="true">
-                                                                    <input type="radio" name="options" id="option3"> Usul Ide
-                                                                </a>
-                                                            </label>
-                                                            <label class="btn btn-default">
-                                                                <a href="#tab_content4" role="tab" id="proyek" data-toggle="tab" aria-expanded="true">
-                                                                    <input type="radio" name="options" id="option4"> Project
-                                                                </a>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearfix" style="margin-bottom: 2%"></div>
-                                                    <!--pane 2-->
-                                                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                                                        <div id="myTabContent" class="tab-content">
-                                                            <!--pane ide-->
-                                                            <div role="tabpanel" class="tab-pane fade in" id="tab_content3" aria-labelledby="home-tab">
-                                                                <!--status perpanjangan-->
-                                                                <div class="row">
-                                                                    <br/>
-                                                                    <h4><strong>Usulan Ide</strong></h4>
-                                                                    <small>
-                                                                        Lengkapi form sesuai dengan usulan ide<br/>
-                                                                        <br/>
-                                                                    </small>
-                                                                    <br/>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Usulan Judul <span class="required">*</span>
-                                                                        </label>
-                                                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                            <input type="text" class="form-control col-md-7 col-xs-12" placeholder="jawaban anda">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Deskripsi Project <span class="required">*</span>
-                                                                        </label>
-                                                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                            <textarea type="text" class="form-control col-md-7 col-xs-12" placeholder="Deskripsikan dengan singkat dan jelas"></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Business Rule <span class="required">*</span>
-                                                                        </label>
-                                                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                            <textarea type="text" class="form-control col-md-7 col-xs-12" placeholder="Bisnis yang diusulkan meliputi alur proses yang ada, data dan pengguna yang terlibat di dalamnya"></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Persetujuan Institusi
-                                                                        </label><small>Bagi yang mengajukan project dari institusi (jika ada)</small>
-                                                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                            <input type="file" class="form-control col-md-7 col-xs-12">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group col-md-9">
-                                                                        <button class="btn btn-success pull-right">Submit</button>
-                                                                    </div>
-                                                                </div>
-                                                                <!--end perpanjangan-->
-                                                            </div>
-                                                            <!--end ide-->
-                                                            <!--start project-->
-                                                            <div role="tabpanel" class="tab-pane fade in" id="tab_content4" aria-labelledby="home-tab">
-                                                                <!--status baru-->
-                                                                <div class="row">
-                                                                    <div>
-                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">&nbsp;</label>
-                                                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                            <select class="form-control">
-                                                                                <option>Pilih ..</option>
-                                                                                <option>Sistem Informasi Cuti Frontend</option>
-                                                                                <option>Sistem Informasi Cuti Backend</option>
-                                                                            </select>
-                                                                            <button type="submit" class="btn btn-success pull-right" style="margin-top: 3%">Submit</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!--end project-->
-                                                        </div>
-                                                    </div>
-                                                    <!--end pane 2-->
-                                                </div>
-                                            </form>
+                                        <div class="clearfix" style="margin-bottom: 2%"></div>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Deskripsi Project</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <span>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A beatae commodi, consectetur corporis earum eos exercitationem facilis fuga iste quo reprehenderit repudiandae sit! Cupiditate facere magni minus nam quas, velit.
+                                            </span>
                                         </div>
+                                        <div class="clearfix" style="margin-bottom: 2%"></div>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Business Rule</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <span>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, magni, odit! Ab fuga hic illum laboriosam reprehenderit! Ad distinctio expedita illum magni maxime mollitia officia quidem sapiente, sequi, soluta, temporibus.
+                                            </span>
+                                        </div>
+                                        <div class="clearfix" style="margin-bottom: 2%"></div>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Persetujuan Instansi</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="">persetujuan.pdf</a>
+                                        </div>
+                                        <div class="clearfix" style="margin-bottom: 2%"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--end baru-->
                     </div>
                 </div>
-                <!--end pane-->
             </div>
         </div>
         <!-- /page content -->
