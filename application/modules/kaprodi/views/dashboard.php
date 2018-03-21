@@ -6,5 +6,4 @@
  * Description:
  */
 ?>
-<h3>Dashboard Akademik</h3>
-<?php echo $userId; ?>
+<h3>Dashboard Kaprodi</h3>

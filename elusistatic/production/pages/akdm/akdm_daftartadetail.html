@@ -155,27 +155,43 @@
                                         <table class="table">
                                             <tbody>
                                             <tr>
-                                                <th>Pilihan 1</th>
-                                                <td>Core Aplikasi Online Ticketing Backend</td>
+                                                <th>Pilihan</th>
+                                                <th>Judul</th>
+                                                <th>Dosen Pembimbing</th>
+                                                <th>Terima</th>
+                                                <th>Tolak</th>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>C  e Aplikasi Online Ticketing Backend</td>
                                                 <td>Endro Purnomo., M.Cs</td>
                                                 <td>
-                                                    <button class="btn btn-success"><i class="fa fa-check"></i> Accept</button>
+                                                    <input type="radio" class="flat" name="tata" id="t1" value="1" />
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-danger"><i class="fa fa-times"></i> </button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Pilihan 2</th>
+                                                <td>2</td>
                                                 <td>Core Aplikasi Online Ticketing Frontend</td>
                                                 <td>Anindita Suryarasmi., M.Cs</td>
                                                 <td>
-                                                    <button class="btn btn-success"><i class="fa fa-check"></i> Accept</button>
+                                                    <input type="radio" class="flat" name="tata" id="t2" value="2" />
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-danger"><i class="fa fa-times"></i> </button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Pilihan 3</th>
-                                                <td>Usul Ide</td>
+                                                <td>3</td>
+                                                <td>Usulan</td>
                                                 <td>-</td>
                                                 <td>
-                                                    <button class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-check"></i> Accept</button>
+                                                    <input type="radio" class="flat" name="tata" id="t3" value="3" required/>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-danger"><i class="fa fa-times"></i> </button>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -226,6 +242,22 @@
                                                 <th>Persetujuan Institusi</th>
                                                 <td><a href="#">persetujuanproyek.pdf</a></td>
                                             </tr>
+                                            <tr>
+                                                <th>Tentukan dosen</th>
+                                                <td>
+                                                    <div class="col-md-6">
+                                                        <select name="dosen" id="" class="form-control">
+                                                            <option>Pilih..</option>
+                                                            <option value="1">M Fakhrurrifqi., M.Cs</option>
+                                                            <option value="2">Imam Fahrurrozi., M.Cs</option>
+                                                            <option value="3">Irkham Huda., M.Cs</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <button class="btn btn-success">Submit</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -235,36 +267,7 @@
                     </div>
                 </div>
                 <!--end detail pengajuan panel-->
-                <!--start plotting project-->
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Pilihan Lainnya
-                                    <br><small>Pilih project lain, jika 3 pilihan <strong>Pengajuan Judul</strong> mahasiswa tidak disetujui</small></h2>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="col-md-2">
-                                        Project
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select class="form-control">
-                                            <option>Sistem Informasi Cuti Karyawan</option>
-                                            <option>Sistem Pengembangan Perangkat Lunak</option>
-                                            <option>Aplikasi Pelacak Mobil</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <button class="btn btn-success">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end plotting project-->
+
             </div>
         </div>
         <!-- /page content -->

@@ -8,7 +8,16 @@
 
 class Akademik extends BaseController
 {
+  public function __construct()
+  {
+      parent::__construct();
+      // $this->load->model('profil_model');
+      $this->isLoggedIn();
+  }
     function index() {
-        $this->loadViews("dashboard", NULL, NULL, NULL);
+      $userId = $this->vendorId;
+      $data['userId']=$userId;
+
+        $this->loadViews("dashboard", $data, NULL, NULL);
     }
 }

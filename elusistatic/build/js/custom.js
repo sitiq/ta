@@ -4081,10 +4081,10 @@ if (typeof NProgress != 'undefined') {
 				  max: 40,
 				  sort: 'ascending',
 				  data: [{
-					value: 10,
+					value: 3.45,
 					name: 'rose1'
 				  }, {
-					value: 5,
+					value: 3.45,
 					name: 'rose2'
 				  }, {
 					value: 15,
