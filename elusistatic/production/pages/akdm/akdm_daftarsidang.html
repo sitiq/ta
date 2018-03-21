@@ -50,25 +50,25 @@
                         <ul class="nav side-menu">
                             <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li><a href="pengumuman.html"><i class="fa fa-cloud-upload"></i> Pengumuman</a></li>
+                            <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="akdm_daftartabaru.html">Pengajuan</a></li>
+                                    <li><a href="akdm_daftarsidang.html">Sidang</a></li>
+                                    <li><a href="akdm_daftaryudisium.html">Yudisium</a></li>
+                                </ul>
+                            </li>
                             <li><a><i class="fa fa-user"></i> Daftar User <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="status.html">Mahasiswa</a></li>
                                     <li><a href="status_dosen.html">Dosen</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-users"></i> Akun User <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a>Judul Proyek<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li class="sub_menu"><a href="akdm_daftartabaru.html">Baru</a>
-                                            </li>
-                                            <li><a href="akdm_daftarta.html">Perpanjangan</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="proposal.html">Proposal</a></li>
-                                    <li><a href="akdm_daftarsidang.html">Sidang</a></li>
-                                    <li><a href="akdm_daftaryudisium.html">Yudisium</a></li>
+                                    <li><a href="">Mahasiswa</a></li>
+                                    <li><a href="">Dosen</a></li>
+                                    <li><a href="">Akademik</a></li>
+                                    <li><a href="">Kaprodi</a></li>
                                 </ul>
                             </li>
                             <li><a href="akdm_daftarperiode.html"><i class="fa fa-clock-o"></i> Periode</a></li>
@@ -119,7 +119,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Daftar Pengajuan Sidang<small></small></h2>
+                                <h2>Daftar Mahasiswa Mengajukan<small></small></h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
@@ -128,43 +128,34 @@
                                     <tr>
                                         <th>NIM</th>
                                         <th>Nama</th>
-                                        <th>Tanggal Daftar</th>
                                         <th>Tanggal Ujian</th>
                                         <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th>Detail</th>
+                                        <th>Plot Jadwal</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>15/386071/SV/09457</td>
                                         <td><a href="akdm_daftarsidangset.html">Mail Hamidy</a></td>
-                                        <td>02/12/2017</td>
                                         <td>04/12/2017</td>
-                                        <td><span class="badge bg-green"><i class="fa fa-check"></i></span></td>
+                                        <td><span class="label label-success">Lengkap</span></td>
                                         <td>
                                             <a href="akdm_daftarsidangset.html" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
+                                        </td>
+                                        <td>
                                             <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-tasks"></i></button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>15/386071/SV/09457</td>
                                         <td><a href="akdm_daftarsidangset.html">Mail Hamidy</a></td>
-                                        <td>02/12/2017</td>
                                         <td></td>
-                                        <td><span class="badge bg-default"><i class="fa fa-minus"></i></span></td>
+                                        <td><span class="label label-warning">Belum Lengkap</span></td>
                                         <td>
                                             <a href="akdm_daftarsidangset.html" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
-                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-tasks"></i></button>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>15/386071/SV/09457</td>
-                                        <td><a href="akdm_daftarsidangset.html">Mail Hamidy</a></td>
-                                        <td>02/12/2017</td>
-                                        <td></td>
-                                        <td><span class="badge bg-orange"><i class="fa fa-clock-o"></i></span></td>
                                         <td>
-                                            <a href="akdm_daftarsidangset.html" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
                                             <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-tasks"></i></button>
                                         </td>
                                     </tr>
@@ -178,33 +169,57 @@
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                                                 </button>
-                                                <div class="col-md-5">
-                                                    <label for="dosbing">Dosen Pembimbing</label><small></small>
-                                                    <input type="text" id="dosbing" class="form-control" readonly placeholder="Irkham Huda">
-                                                </div>
+                                                <h3>Sidang Pendadaran</h3>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="x_panel">
                                                     <div class="x_title">
-                                                        <h2>Jadwal Sidang Pendadaran<small></small></h2>
+                                                        <h2>Jadwal<small></small></h2>
                                                         <div class="clearfix"></div>
                                                     </div>
                                                     <div class="x_content">
-                                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                                            <label for="laporan">Tanggal Uji</label><small></small>
-                                                            <input type="date" id="laporan" class="form-control"><br>
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                                             <label for="pukul">Pukul</label><small></small>
                                                             <input type="time" id="pukul" class="form-control"><br>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                                            <label for="tanggal">Tanggal Uji</label><small></small>
+                                                            <input type="date" id="tanggal" class="form-control"><br>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                                             <label for="ruang">Ruang</label><small></small>
                                                             <input type="text" id="ruang" class="form-control">
                                                         </div>
-                                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                                            <label for="ketua">Ketua Sidang</label><small></small>
-                                                            <input type="text" id="ketua" class="form-control"><br>
-                                                            <label for="sekre">Sekretaris Sidang</label><small></small>
-                                                            <input type="text" id="sekre" class="form-control">
+                                                    </div>
+                                                    <div class="x_title">
+                                                        <h2>Anggota<small></small></h2>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="x_content">
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                                            <label for="ketua">Ketua</label><small></small>
+                                                            <select class="form-control" id="ketua">
+                                                                <option>Pilih..</option>
+                                                                <option value="">Imam</option>
+                                                                <option value="">Rifqi</option>
+                                                            </select>
                                                         </div>
-                                                        <div class="col-md-12 col-sm-12">
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                                            <label for="sekre">Sekretaris</label><small></small>
+                                                            <select class="form-control" id="sekre">
+                                                                <option>Pilih..</option>
+                                                                <option value="">Imam</option>
+                                                                <option value="">Rifqi</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                                            <label for="anggota">Dosen Pembimbing</label><small></small>
+                                                            <select class="form-control" id="anggota">
+                                                                <option value="">Imam</option>
+                                                                <option value="">Rifqi</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-12 col-sm-12" style="margin-top: 5%">
                                                             <button class="btn btn-primary pull-right">Submit</button>
                                                         </div>
                                                     </div>

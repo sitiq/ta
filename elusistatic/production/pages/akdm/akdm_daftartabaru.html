@@ -50,25 +50,25 @@
                         <ul class="nav side-menu">
                             <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li><a href="pengumuman.html"><i class="fa fa-cloud-upload"></i> Pengumuman</a></li>
+                            <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="akdm_daftartabaru.html">Pengajuan</a></li>
+                                    <li><a href="akdm_daftarsidang.html">Sidang</a></li>
+                                    <li><a href="akdm_daftaryudisium.html">Yudisium</a></li>
+                                </ul>
+                            </li>
                             <li><a><i class="fa fa-user"></i> Daftar User <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="status.html">Mahasiswa</a></li>
                                     <li><a href="status_dosen.html">Dosen</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-users"></i> Akun User <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a>Judul Proyek<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li class="sub_menu"><a href="akdm_daftartabaru.html">Baru</a>
-                                            </li>
-                                            <li><a href="akdm_daftarta.html">Perpanjangan</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="proposal.html">Proposal</a></li>
-                                    <li><a href="akdm_daftarsidang.html">Sidang</a></li>
-                                    <li><a href="akdm_daftaryudisium.html">Yudisium</a></li>
+                                    <li><a href="">Mahasiswa</a></li>
+                                    <li><a href="">Dosen</a></li>
+                                    <li><a href="">Akademik</a></li>
+                                    <li><a href="">Kaprodi</a></li>
                                 </ul>
                             </li>
                             <li><a href="akdm_daftarperiode.html"><i class="fa fa-clock-o"></i> Periode</a></li>
@@ -109,7 +109,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Persetujuan Judul Proyek</h3>
+                        <h3>Persetujuan Tugas Akhir</h3>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -119,7 +119,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Daftar Pengajuan Judul Baru<small></small></h2>
+                                <h2>Daftar Mahasiswa Mengajukan<small></small></h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
@@ -129,7 +129,7 @@
                                         <th>NIM</th>
                                         <th>Nama</th>
                                         <th>Tanggal Daftar</th>
-                                        <th>Status</th>
+                                        <th>Status Penerimaan</th>
                                         <th>Aksi</th>
                                     </tr>
                                     </thead>
@@ -138,10 +138,14 @@
                                         <td>15/386071/SV/09457</td>
                                         <td>Mail Hamidy</td>
                                         <td>02-12-2017</td>
-                                        <td>Diterima</td>
+                                        <td>
+                                            <span class="label label-warning">Proses</span>
+                                            <span class="label label-success">Plot</span>
+                                            <span class="label label-info">Manual</span>
+                                            <span class="label label-default">Tidak Aktif</span>
+                                        </td>
                                         <td>
                                             <a href="akdm_daftartadetail.html" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                     </tbody>
