@@ -52,13 +52,12 @@
                 </div>
                 <div class="clearfix"></div>
                 <br />
-
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <h3>Mahasiswa</h3>
                         <ul class="nav side-menu">
-                            <li><a href="mahasiswa"><i class="fa fa-home"></i> Dashboard</a></li>
+                            <li><a href="mhs_dash.html"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li><a href="<?php echo base_url();?>mahasiswa/profil"><i class="fa fa-user"></i> Profil</a></li>
                             <li><a><i class="fa fa-files-o"></i> Berkas <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
@@ -68,8 +67,7 @@
                             </li>
                             <li><a><i class="fa fa-edit"></i> Daftar <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="mhs_daftarta.html">Tugas Akhir</a></li>
-                                    <li><a href="mhs_unggahproposal.html">Unggah Proposal</a></li>
+                                    <li><a href="<?php echo base_url();?>mahasiswa/pengajuan/tugasakhir">Tugas Akhir</a></li>
                                     <li><a href="mhs_daftarsidang.html">Sidang</a></li>
                                     <li><a href="mhs_daftaryudisium.html">Yudisium</a></li>
                                 </ul>

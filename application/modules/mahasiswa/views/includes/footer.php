@@ -12,7 +12,7 @@
 <!-- footer content -->
 <footer>
     <div class="pull-right">
-        eLusi - Kelulusan Komsi
+        KOMSI - Tugas Akhir
     </div>
     <div class="clearfix"></div>
 </footer>
@@ -62,7 +62,7 @@
 <!-- Datatables -->
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<!--<script src="--><?php //echo base_url()?><!--elusistatic/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>-->
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
@@ -75,6 +75,9 @@
 <script src="<?php echo base_url()?>elusistatic/vendors/jszip/dist/jszip.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/pdfmake/build/pdfmake.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+<script src="<?php echo base_url(); ?>assets/js/jquery.validate.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/validation.js" type="text/javascript"></script>
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
@@ -260,14 +263,52 @@
         /***************/
 
     })
-    // input file or upload
-    $('#id-input-file-1 , #id-input-file-2').ace_file_input({
-        no_file:'No File ...',
-        btn_choose:'Choose',
-        btn_change:'Change',
-        droppable:false,
-        onchange:null,
-        thumbnail:false //| true | large
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        jQuery.validator.addMethod("notEqualToGroup", function(value, element, options) {
+            // get all the elements passed here with the same class
+            var elems = $(element).parents('form').find(options[0]);
+            // the value of the current element
+            var valueToCompare = value;
+            // count
+            var matchesFound = 0;
+            // loop each element and compare its value with the current value
+            // and increase the count every time we find one
+            jQuery.each(elems, function(){
+                thisVal = $(this).val();
+                if(thisVal == valueToCompare){
+                    matchesFound++;
+                }
+            });
+            // count should be either 0 or 1 max
+            if(this.optional(element) || matchesFound <= 1) {
+                //elems.removeClass('error');
+                return true;
+            } else {
+                //elems.addClass('error');
+            }
+        }, jQuery.validator.format("Please enter a Unique Value."))
+
+
+        $("#lele").validate({
+            rules: {
+                satu: {
+                    required: true,
+                    notEqualToGroup: ['.distinctemails']
+                },
+                dua: {
+                    required: true,
+                    notEqualToGroup: ['.distinctemails']
+                },
+                tiga: {
+                    required: true,
+                    notEqualToGroup: ['.distinctemails']
+                },
+            },
+        });
     });
 
 </script>
