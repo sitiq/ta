@@ -1,6 +1,10 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
-
-require APPPATH . '/libraries/BaseController.php';
+<?php
+/**
+ * Created by nad.
+ * Date: 23/03/2018
+ * Time: 14:03
+ * Description:
+ */
 
 class Profil extends BaseController
 {
@@ -13,6 +17,7 @@ class Profil extends BaseController
         $this->load->model('profil_model');
         $this->isLoggedIn();
     }
+
     /**
      * This function is used to load the profil list
      */
@@ -30,7 +35,6 @@ class Profil extends BaseController
             $data['profilInfo'] = $this->profil_model->getDosen($userId);
             $data['userId'] = $userId;
             $data['userRole'] = $userRole;
-
             $this->loadViews("profil", $this->global, $data, NULL);
         }
     }
@@ -62,16 +66,20 @@ class Profil extends BaseController
                 $id_dosen = $this->input->post('id_dosen');
                 $nid = $this->input->post('nid');
                 $nama = $this->input->post('nama');
+                $jumlah_sks = $this->input->post('jumlah_sks');
+                $ipk = $this->input->post('ipk');
                 $email = $this->input->post('email');
                 $mobile = $this->input->post('mobile');
                 $skill = $this->input->post('skill');
+                $pengalaman = $this->input->post('pengalaman');
 
-//                $cekNid = $this->profil_model->cekNid($id_dosen);
-
+                // Apabila NID empty atau nid di tabel dosen tidak ada yang memiliki
                 if (empty($cekNid)) {
                     $dosenInfo = array(
                         'nid'=>$nid,
                         'nama'=>$nama,
+                        'jumlah_sks'=>$jumlah_sks,
+                        'ipk'=>$ipk,
                         'email'=>$email,
                         'mobile'=>$mobile,
                         'skill'=>$skill);
@@ -80,11 +88,11 @@ class Profil extends BaseController
 
                     if($result > 0)
                     {
-                        $this->session->set_flashdata('success', 'Profil updated');
+                        $this->session->set_flashdata('success', 'Profil created successfully');
                     }
                     else
                     {
-                        $this->session->set_flashdata('error', 'Profil update failed');
+                        $this->session->set_flashdata('error', 'Profil creation failed');
                     }
                 } else {
                     $this->session->set_flashdata('error', 'NID sudah ada');
@@ -109,11 +117,11 @@ class Profil extends BaseController
 
             $id_dosen = $this->input->post('id_dosen');
 
-            $config['upload_path'] = 'uploads/foto/dosen';
-            $config['allowed_types'] = 'jpg|png';
+            $config['upload_path'] = 'berkas/foto/dosen';
+            $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = 4000;
-            $config['max_width'] = 1024;
-            $config['max_height'] = 1024;
+            $config['max_width'] = 3024;
+            $config['max_height'] = 3024;
 
             $this->load->library('upload', $config);
 
@@ -131,7 +139,7 @@ class Profil extends BaseController
 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Photo updated');
+                    $this->session->set_flashdata('success', 'Photo updated successfully');
                 }
                 else
                 {
