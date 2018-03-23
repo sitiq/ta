@@ -49,12 +49,12 @@
                     <div class="menu_section">
                         <h3>Dosen</h3>
                         <ul class="nav side-menu">
-                            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
-                            <li><a href="profil.html"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a href="<?php echo base_url()?>dosen"><i class="fa fa-home"></i> Dashboard</a></li>
+                            <li><a href="<?php echo base_url()?>dosen/profil"><i class="fa fa-user"></i> Profile</a></li>
                             <li><a><i class="fa fa-users"></i>  Mahasiswa <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="dosen_daftaruji.html">Pendadaran</a></li>
-                                    <li><a href="dosen_daftarmhs.html">Bimbingan</a></li>
+                                    <li><a href="<?php echo base_url()?>dosen/pendadaran">Pendadaran</a></li>
+                                    <li><a href="<?php echo base_url()?>dosen/bimbingan">Bimbingan</a></li>
                                 </ul>
                             </li>
                             <li><a href="<?php echo base_url()?>dosen/proyek"><i class="fa fa-files-o"></i> Project</a></li>

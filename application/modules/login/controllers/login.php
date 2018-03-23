@@ -41,7 +41,7 @@ class Login extends CI_Controller
         else
         {
 			if($id_user_role == 4) {
-				redirect('mahasiswa');
+				redirect('Pendadaran');
 			}else if($id_user_role == 3) {
 				redirect('dosen');
 			}
@@ -86,7 +86,7 @@ class Login extends CI_Controller
                             $this->session->set_userdata($sessionArray);
 
                             if($id_user_role == 4) {
-        						redirect('mahasiswa');
+        						redirect('Pendadaran');
         					}else if($id_user_role == 3) {
         						redirect('dosen');
         					}

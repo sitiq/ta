@@ -10,7 +10,7 @@ class Profil_model extends CI_Model
     function getMahasiswa($userId)
     {
         $this->db->select('id_mahasiswa, nim, nama, foto, jumlah_sks, ipk, email, mobile, skill, pengalaman');
-        $this->db->from('mahasiswa');
+        $this->db->from('Pendadaran');
         $this->db->where('id_user', $userId);
         $query = $this->db->get();
         
@@ -26,7 +26,7 @@ class Profil_model extends CI_Model
     function cekNim($id)
     {
         $this->db->select('nim, nama');
-        $this->db->from('mahasiswa');
+        $this->db->from('Pendadaran');
         $this->db->where('id_mahasiswa', $id);
         $query = $this->db->get();
         
@@ -42,7 +42,7 @@ class Profil_model extends CI_Model
     function getProfilInfo($id)
     {
         $this->db->select('id_mahasiswa, nama');
-        $this->db->from('mahasiswa');
+        $this->db->from('Pendadaran');
         $this->db->where('isDeleted', 0);
         $this->db->where('id_mahasiswa', $id);
         $query = $this->db->get();
@@ -58,7 +58,7 @@ class Profil_model extends CI_Model
     function editProfil($mahasiswaInfo, $id_mahasiswa)
     {
         $this->db->where('id_mahasiswa', $id_mahasiswa);
-        $this->db->update('mahasiswa', $mahasiswaInfo);
+        $this->db->update('Pendadaran', $mahasiswaInfo);
         
         if($this->db->affected_rows() >= 0){
 			return true;
