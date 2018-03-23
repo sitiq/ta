@@ -21,7 +21,7 @@
     <link href="<?php echo base_url()?>elusistatic/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
     <link href="<?php echo base_url()?>elusistatic/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
-    
+
     <!-- Datatables -->
     <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
