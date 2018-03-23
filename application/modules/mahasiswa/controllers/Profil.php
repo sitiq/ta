@@ -52,7 +52,7 @@ class Profil extends BaseController
             $this->load->library('form_validation');
 
             $this->form_validation->set_rules('nim','NIM','trim|required|xss_clean');
-            $this->form_validation->set_rules('nama','Nama Pendadaran','trim|required|xss_clean');
+            $this->form_validation->set_rules('nama','Nama Mahasiswa','trim|required|xss_clean');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|xss_clean|max_length[128]');
             $this->form_validation->set_rules('mobile','Mobile','trim|required|xss_clean');
 

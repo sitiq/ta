@@ -9,7 +9,7 @@
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Berkas Akademik</h3>
+            <h3>Pengumuman</h3>
         </div>
     </div>
     <div class="clearfix"></div>
