@@ -86,7 +86,7 @@ class Login extends CI_Controller
                             $this->session->set_userdata($sessionArray);
 
                             if($id_user_role == 4) {
-        						redirect('Pendadaran');
+        						redirect('mahasiswa');
         					}else if($id_user_role == 3) {
         						redirect('dosen');
         					}
