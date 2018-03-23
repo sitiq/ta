@@ -24,7 +24,7 @@ class ChangePassword extends BaseController
      */
     function edit()
     {
-        if($this->isMahasiswa() == TRUE)
+        if($this->isDosen() == TRUE)
         {
             $this->loadThis();
         }
@@ -42,7 +42,7 @@ class ChangePassword extends BaseController
      */
     function changePassword()
     {
-        if($this->isMahasiswa() == TRUE)
+        if($this->isDosen() == TRUE)
         {
             $this->loadThis();
         }
@@ -68,7 +68,7 @@ class ChangePassword extends BaseController
                 if(empty($resultPas))
                 {
                     $this->session->set_flashdata('nomatch', 'Your old password not correct');
-                    redirect('mahasiswa/changepassword/edit');
+                    redirect('dosen/changepassword/edit');
                 }
                 else
                 {
@@ -79,7 +79,7 @@ class ChangePassword extends BaseController
                     if($result > 0) { $this->session->set_flashdata('success', 'Password updation successful'); }
                     else { $this->session->set_flashdata('error', 'Password updation failed'); }
 
-                    redirect('mahasiswa/changepassword/edit');
+                    redirect('dosen/changepassword/edit');
                 }
             }
         }
