@@ -45,21 +45,17 @@
                     <div class="menu_section">
                         <h3>Mahasiswa</h3>
                         <ul class="nav side-menu">
-                            <li><a href="mhs_dash.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                            <li><a href="<?php echo base_url();?>mahasiswa"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li><a href="<?php echo base_url();?>mahasiswa/profil"><i class="fa fa-user"></i> Profil</a></li>
-                            <li><a><i class="fa fa-files-o"></i> Berkas <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="mhs_berkas.html">Akademik</a></li>
-                                    <li><a href="mhs_berkasmhs.html">Mahasiswa</a></li>
-                                </ul>
-                            </li>
                             <li><a><i class="fa fa-edit"></i> Daftar <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="<?php echo base_url();?>mahasiswa/pengajuan/tugasakhir">Tugas Akhir</a></li>
-                                    <li><a href="mhs_daftarsidang.html">Sidang</a></li>
-                                    <li><a href="mhs_daftaryudisium.html">Yudisium</a></li>
+                                    <li><a href="<?php echo base_url();?>mahasiswa/sidang">Sidang</a></li>
+                                    <li><a href="<?php echo base_url();?>mahasiswa/yudisium">Yudisium</a></li>
                                 </ul>
                             </li>
+                            <li><a href="<?php echo base_url();?>mahasiswa/pengumuman"><i class="fa fa-bell"></i> Pengumuman</a></li>
+                            <li><a href="<?php echo base_url();?>mahasiswa/berkas"><i class="fa fa-files-o"></i> Berkas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -81,7 +77,7 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="login.html"><i class="fa fa-key pull-right"></i> Ubah Password</a></li>
+                                <li><a href="<?php echo base_url(); ?>mahasiswa/changepassword/edit"><i class="fa fa-key pull-right"></i> Ubah Password</a></li>
                                 <li><a href="<?php echo base_url();?>mahasiswa/logout"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
                             </ul>
                         </li>

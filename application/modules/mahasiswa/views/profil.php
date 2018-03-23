@@ -1,4 +1,3 @@
-<?php //var_dump($profilInfo) ?>
 <?php
 //echo $userId + ' ';
 //echo $userRole;
@@ -50,7 +49,7 @@ if(!empty($profilInfo))
                     <div class="profile_left">
                         <div class="profile_img">
                             <div id="crop-photo">
-                                <img class="img-responsive avatar-view img-circle" style="height: 200px; width: 200px" src="<?php echo base_url()?>/berkas/foto/mahasiswa/<?php echo $foto?>" alt="Avatar" title="Change the avatar">
+                                <center><img class="img-responsive avatar-view img-circle" style="height: 150px; width: 150px" src="<?php echo base_url()?>/uploads/foto/dosen/<?php echo $foto?>" onerror="this.src='<?php echo base_url(); ?>elusistatic/build/images/default.jpg'" alt="Avatar" title="Change the avatar"></center>
                                 <form action="<?php echo base_url();?>mahasiswa/profil/editPhoto" enctype="multipart/form-data" method="post">
                                     <!-- Current avatar -->
                                     <center>
@@ -170,12 +169,11 @@ if(!empty($profilInfo))
                             <!-- start update profile -->
                             <div class="x_title">
                                 <h2>Detail Profil<small></small></h2>
-
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
                                 <!-- form start update profile -->
-                                <form role="form" action="<?php echo base_url() ?>mahasiswa/profil/editProfil" method="post" id="editProfil" enctype="multipart/form-data" >
+                                <form role="form" action="<?php echo base_url() ?>mahasiswa/profil/editProfil" method="post" id="editProfil" enctype="multipart/form-data">
                                     <input type="hidden" class="form-control required" id="id_mahasiswa" name="id_mahasiswa" value="<?php echo $id_mahasiswa ?>" >
                                     <div class="row">
                                         <div class="col-md-6">

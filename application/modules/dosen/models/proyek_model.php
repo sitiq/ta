@@ -21,14 +21,17 @@ class proyek_model extends CI_Model
         $result = $query->result();
         return $result;
     }
-    function getProyekInfo($dosenId)
+    function getProyekInfo($proyekId=NULL)
     {
-        $this->db->select('id_proyek, nama, klien, status, id_dosen');
+        $this->db->select('proyek.id_proyek, proyek.nama nama_proyek, proyek.klien, proyek.status, proyek.id_dosen, Dosen.nama nama_dosen');
         $this->db->from('proyek');
-        $this->db->where('isDeleted', 0);
-        $this->db->where('id_dosen', $dosenId);
+        $this->db->join('dosen as Dosen', 'Dosen.id_dosen = proyek.id_dosen','left');
+        $this->db->where('proyek.isDeleted', 0);
+        if ($proyekId!=null){
+            $this->db->where('id_proyek', $proyekId);
+        }
+//        $this->db->where('status', 'disetujui');
         $query = $this->db->get();
-
         return $query->result();
     }
     function getDosen()
@@ -55,5 +58,15 @@ class proyek_model extends CI_Model
 
         return $insert_id;
     }
-
+    /**
+     * This function is used to update the user information
+     * @param array $proyekInfo : This is project updated information
+     * @param number projectId : This is project id
+     */
+    function editProject($proyekInfo, $proyekId)
+    {
+        $this->db->where('id_proyek', $proyekId);
+        $this->db->update('proyek', $proyekInfo);
+        return TRUE;
+    }
 }
