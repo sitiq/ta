@@ -36,8 +36,6 @@ class Profil extends BaseController
             $this->loadViews("profil", $this->global, $data, NULL);
         }
     }
-
-
     /**
      * This function is used to edit the profil information
      */
@@ -73,7 +71,7 @@ class Profil extends BaseController
                 $skill = $this->input->post('skill');
                 $pengalaman = $this->input->post('pengalaman');
 
-//				$cekNim = $this->profil_model->cekNim($id_mahasiswa);
+				$cekNim = $this->profil_model->cekNim($id_mahasiswa);
 
                 // Apabila NIM empty atau nim di tabel mahasiswa tidak ada yang memiliki
                 if (empty($cekNim)) {
@@ -121,19 +119,19 @@ class Profil extends BaseController
 
             $id_mahasiswa = $this->input->post('id_mahasiswa');
 
-            $config['upload_path'] = 'berkas/foto/mahasiswa';
-            $config['allowed_types'] = 'gif|jpg|png';
+            $config['upload_path'] = 'uploads/foto/mahasiswa';
+            $config['allowed_types'] = 'jpg|png';
             $config['max_size'] = 4000;
-            $config['max_width'] = 3024;
-            $config['max_height'] = 3024;
+            $config['max_width'] = 1024;
+            $config['max_height'] = 1024;
 
             $this->load->library('upload', $config);
 
             if ( ! $this->upload->do_upload('foto')){
-                // bila uplod foto error
+                // if upload foto tidak sesuai
                 $error = array('error' => $this->upload->display_errors());
                 // echo $error['error'];
-                $this->session->set_flashdata('error', 'Upload foto dari editFoto failed');
+                $this->session->set_flashdata('error', 'Upload photo failed');
             }else{
                 // bila upload foto berhasil
                 $terupload = $this->upload->data();
@@ -143,7 +141,7 @@ class Profil extends BaseController
 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Photo updated successfully');
+                    $this->session->set_flashdata('success', 'Photo updated');
                 }
                 else
                 {
