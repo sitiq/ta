@@ -5,6 +5,7 @@
  * Time: 22:26
  * Description:
  */
+//var_dump($proyekInfo)
 ?>
 <div class="">
     <div class="page-title">
@@ -23,7 +24,38 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <a href="dosen_setproyek.html" class="btn btn-success pull-right">Add New Project</a>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?php
+                            $this->load->helper('form');
+                            $error = $this->session->flashdata('error');
+                            if($error)
+                            {
+                                ?>
+                                <div class="alert alert-danger alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <?php echo $this->session->flashdata('error'); ?>
+                                </div>
+                            <?php } ?>
+                            <?php
+                            $success = $this->session->flashdata('success');
+                            if($success)
+                            {
+                                ?>
+                                <div class="alert alert-success alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <?php echo $this->session->flashdata('success'); ?>
+                                </div>
+                            <?php } ?>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="<?php echo base_url()?>dosen/proyek/addNew" class="btn btn-success pull-right">Add New Project</a>
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
@@ -36,18 +68,27 @@
                         </thead>
                         <tbody>
                         <?php
-                        if(!empty($userRecords))
+                        if(!empty($proyekInfo))
                             {
-                            foreach($userRecords as $record)
+                            foreach($proyekInfo as $record)
                             {
                         ?>
                         <tr>
-                            <td><?php echo $nama ?></td>
-                            <td><?php echo $nama ?></td>
-                            <td><?php echo $instansi ?></td>
-                            <td><span class="label label-success"><?php echo $status ?></span></td>
+                            <td><?php echo $record->nama_proyek ?></td>
+                            <td><?php echo $record->nama_dosen ?></td>
+                            <td><?php echo $record->klien ?></td>
+<!--                            <td><span class="label label-success">--><?php //echo $record->status ?><!--</span></td>-->
+
+                            <?php if ($record->status == 'disetujui') {
+                                echo "<td><span class=\"label label-success\">" . $record->status . "</span></td>";
+                            } elseif ($record->status == 'pending') {
+                                echo "<td><span class=\"label label-warning\">" . $record->status . "</span></td>";
+                            } else {
+                                echo "<td><span class=\"label label-danger\">" . $record->status . "</span></td>";
+                            }
+                            ?>
                             <td>
-                                <a href="" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                <a href="<?php echo base_url() ?>dosen/proyek/editOld/<?php echo $record->id_proyek?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                             </td>
                         </tr>
                                 <?php
@@ -56,26 +97,6 @@
                         ?>
                         </tbody>
                     </table>
-                    <!--modal-->
-                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel">Pesan Revisi</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <textarea id="" class="col-md-12" rows="5"></textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button style="margin-top: 2%" type="button" class="btn btn-primary">Kirim</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

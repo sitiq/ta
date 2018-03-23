@@ -19,6 +19,24 @@ if(!empty($dosenInfo))
     }
 }
 ?>
+<?php
+$id_proyek = '';
+$nama_proyek = '';
+$nama_dosen = '';
+$klien = '';
+
+if(!empty($proyekInfo))
+{
+    foreach ($proyekInfo as $uf)
+    {
+        $id_proyek = $uf->id_proyek;
+        $nama_proyek = $uf->nama_proyek;
+        $nama_dosen = $uf->nama_dosen;
+        $klien = $uf->klien;
+    }
+}
+//var_dump($proyekInfo);
+?>
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -65,20 +83,20 @@ if(!empty($dosenInfo))
                         </div>
                     </div>
                     <br />
-                    <form id="tambah-proyek" action="<?php echo base_url()?>dosen/proyek/addNewProject" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="edit-proyek" action="<?php echo base_url()?>dosen/proyek/editProject" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                         <div class="form-group">
+                            <input type="hidden" name="id-proyek" id="id-proyek" class="form-control col-md-7 col-xs-12" value="<?php echo $id_proyek?>">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama-dosen">Penanggung jawab<span class="required"> *</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control col-md-7 col-xs-12" id="nama-dosen" name="id_dosen">
-                                    <option value="0" disabled selected>Pilih ..</option>
                                     <?php
                                     if(!empty($dosenInfo))
                                     {
                                         foreach ($dosenInfo as $dosen)
                                         {
                                             ?>
-                                            <option value="<?php echo $dosen->id_dosen ?>"><?php echo $dosen->nama ?></option>
+                                            <option value="<?php echo $dosen->id_dosen?>" <?php echo ($dosen->id_dosen == $id_dosen) ? "selected=\"selected\"" : ""; ?>><?php echo $dosen->nama ?></option>
                                             <?php
                                         }
                                     }
@@ -90,13 +108,13 @@ if(!empty($dosenInfo))
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama-proyek">Nama Proyek <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" name="nama-proyek" id="nama-proyek" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" name="nama-proyek" id="nama-proyek" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $nama_proyek?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="instansi" class="control-label col-md-3 col-sm-3 col-xs-12">Instansi <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="klien" class="form-control col-md-7 col-xs-12" type="text" name="klien">
+                                <input id="klien" class="form-control col-md-7 col-xs-12" type="text" name="klien" value="<?php echo $klien?>">
                             </div>
                         </div>
                         <div class="form-group">
