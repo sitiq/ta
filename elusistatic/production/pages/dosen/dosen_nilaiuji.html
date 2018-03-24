@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>e-Lusi </title>
+
+    <!-- Bootstrap -->
+    <link href="../../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="../../../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="../../../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="../../../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="../../../vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../../../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../../../build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title"><i class="fa fa-graduation-cap"></i> <span>e-Lusi</span></a>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>Dosen</h3>
+                        <ul class="nav side-menu">
+                            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                            <li><a href="profil.html"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a><i class="fa fa-users"></i>  Mahasiswa <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="dosen_daftaruji.html">Pendadaran</a></li>
+                                    <li><a href="dosen_daftarmhs.html">Bimbingan</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="dosen_listproyek.html"><i class="fa fa-files-o"></i> Project</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="images/img.jpg" alt="">John Doe
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3><a href="dosen_daftaruji.html"><i class="fa fa-chevron-left"></i></a> &nbsp;Sidang Pendadaran</h3>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <!--berkas mahasiswa-->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Form Penilaian</h2>
+                                <div class="clearfix" style="margin-top: -5%"></div>
+                                <div class="well">
+                                    <ul>
+                                        <li>Simpan Laporan Tugas Akhir(.pdf) yang telah diberi pesan revisi, lalu unggah</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="x_content">
+                                <p class="col-md-12 product_price"><strong>Penilaian : </strong>
+                                    <span class="badge bg-red">1</span> Kurang
+                                    <span class="badge bg-orange">2</span> Cukup
+                                    <span class="badge bg-green">3</span> Baik
+                                    <span class="badge bg-blue">4</span> Sangat Baik
+                                </p>
+                                <div class="col-md-6">
+                                    <!--table nilai-->
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr bgcolor="#67CEA6" style="color: white">
+                                            <th colspan="4"><h4><strong>Data Penilaian</strong></h4></th>
+                                        </tr>
+                                        <tr bgcolor="#59BD96" style="color: white">
+                                            <th>No</th>
+                                            <th>Subject</th>
+                                            <th>Nilai</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <th>Tata Tulis</th>
+                                            <td>
+                                                1<input type="radio" class="flat" name="tata" id="t1" value="1" />
+                                                2<input type="radio" class="flat" name="tata" id="t2" value="2" />
+                                                3<input type="radio" class="flat" name="tata" id="t3" value="3" />
+                                                4<input type="radio" class="flat" name="tata" id="t4" value="4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <th>Bahasa</th>
+                                            <td>
+                                                1<input type="radio" class="flat" name="bahasa" id="b1" value="1" />
+                                                2<input type="radio" class="flat" name="bahasa" id="b2" value="2" />
+                                                3<input type="radio" class="flat" name="bahasa" id="b3" value="3" />
+                                                4<input type="radio" class="flat" name="bahasa" id="b4" value="4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <th>Kesesuaian Naskah dengan Rancangan</th>
+                                            <td>
+                                                1<input type="radio" class="flat" name="naskah" id="n1" value="1" />
+                                                2<input type="radio" class="flat" name="naskah" id="n2" value="2" />
+                                                3<input type="radio" class="flat" name="naskah" id="n3" value="3" />
+                                                4<input type="radio" class="flat" name="naskah" id="n4" value="4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <th>Rancangan Masalah</th>
+                                            <td>
+                                                1<input type="radio" class="flat" name="rancang" id="r1" value="1" />
+                                                2<input type="radio" class="flat" name="rancang" id="r2" value="2" />
+                                                3<input type="radio" class="flat" name="rancang" id="r3" value="3" />
+                                                4<input type="radio" class="flat" name="rancang" id="r4" value="4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <th>Tujuan</th>
+                                            <td>
+                                                1<input type="radio" class="flat" name="tujuan" id="j1" value="1" />
+                                                2<input type="radio" class="flat" name="tujuan" id="j2" value="2" />
+                                                3<input type="radio" class="flat" name="tujuan" id="j3" value="3" />
+                                                4<input type="radio" class="flat" name="tujuan" id="j4" value="4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <th>Inovasi</th>
+                                            <td>
+                                                1<input type="radio" class="flat" name="inovasi" id="i1" value="1" />
+                                                2<input type="radio" class="flat" name="inovasi" id="i2" value="2" />
+                                                3<input type="radio" class="flat" name="inovasi" id="i3" value="3" />
+                                                4<input type="radio" class="flat" name="inovasi" id="i4" value="4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <th>Penguasaan Metode</th>
+                                            <td>
+                                                1<input type="radio" class="flat" name="metode" id="m1" value="1" />
+                                                2<input type="radio" class="flat" name="metode" id="m2" value="2" />
+                                                3<input type="radio" class="flat" name="metode" id="m3" value="3" />
+                                                4<input type="radio" class="flat" name="metode" id="m4" value="4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <th>Penguasaan Analisis</th>
+                                            <td>
+                                                1<input type="radio" class="flat" name="analisis" id="a1" value="1" />
+                                                2<input type="radio" class="flat" name="analisis" id="a2" value="2" />
+                                                3<input type="radio" class="flat" name="analisis" id="a3" value="3" />
+                                                4<input type="radio" class="flat" name="analisis" id="a4" value="4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <th>Presentasi</th>
+                                            <td>
+                                                1<input type="radio" class="flat" name="presentasi" id="p1" value="1" />
+                                                2<input type="radio" class="flat" name="presentasi" id="p2" value="2" />
+                                                3<input type="radio" class="flat" name="presentasi" id="p3" value="3" />
+                                                4<input type="radio" class="flat" name="presentasi" id="p4" value="4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <th>Kesimpulan</th>
+                                            <td>
+                                                1<input type="radio" class="flat" name="kesimpulan" id="k1" value="1" />
+                                                2<input type="radio" class="flat" name="kesimpulan" id="k2" value="2" />
+                                                3<input type="radio" class="flat" name="kesimpulan" id="k3" value="3" />
+                                                4<input type="radio" class="flat" name="kesimpulan" id="k4" value="4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <span><h4><strong>Total : </strong>3,78</h4></span>
+                                                <button class="btn btn-warning pull-right">Submit</button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--end table nilai-->
+                                </div>
+                                <div class="col-md-6">
+                                    <!--table nilai-->
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr bgcolor="#59BD96" style="color: white">
+                                            <th colspan="4"><h4><strong>Unggah Revisi Laporan</strong></h4></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="3">
+                                                <input type="number" name="id" hidden>
+                                                <input type="text" name="revisi" hidden>
+                                                <input type="file" class="form-control" name="path">
+                                                <button class="btn btn-warning pull-right" style="margin-top: 3%">Submit</button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--end table nilai-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                eLusi - Kelulusan Komsi
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+<!-- Dropzone.js -->
+<script src="../../../vendors/dropzone/dist/min/dropzone.min.js"></script>
+<!-- jQuery -->
+<script src="../../../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../../vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="../../../vendors/iCheck/icheck.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../../../vendors/moment/min/moment.min.js"></script>
+<script src="../../../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="../../../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="../../../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="../../../vendors/google-code-prettify/src/prettify.js"></script>
+<!-- jQuery Tags Input -->
+<script src="../../../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="../../../vendors/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="../../../vendors/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="../../../vendors/parsleyjs/dist/parsley.min.js"></script>
+<!-- Autosize -->
+<script src="../../../vendors/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="../../../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="../../../vendors/starrr/dist/starrr.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../build/js/custom.min.js"></script>
+<!-- Datatables -->
+<script src="../../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../../../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="../../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="../../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="../../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="../../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="../../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="../../../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="../../../vendors/jszip/dist/jszip.min.js"></script>
+<script src="../../../vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="../../../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+</body>
+</html>

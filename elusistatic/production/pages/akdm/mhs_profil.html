@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>KOMSI - TA</title>
+
+    <!-- Bootstrap -->
+    <link href="../../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="../../../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="../../../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="../../../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="../../../vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../../../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../../../build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title"><i class="fa fa-graduation-cap"></i> <span>KOMSI - TA</span></a>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>Akademik</h3>
+                        <ul class="nav side-menu">
+                            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                            <li><a href="pengumuman.html"><i class="fa fa-cloud-upload"></i> Pengumuman</a></li>
+                            <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="akdm_daftartabaru.html">Pengajuan</a></li>
+                                    <li><a href="akdm_daftarsidang.html">Sidang</a></li>
+                                    <li><a href="akdm_daftaryudisium.html">Yudisium</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-user"></i> Daftar User <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="status.html">Mahasiswa</a></li>
+                                    <li><a href="status_dosen.html">Dosen</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-users"></i> Akun User <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="">Mahasiswa</a></li>
+                                    <li><a href="">Dosen</a></li>
+                                    <li><a href="">Akademik</a></li>
+                                    <li><a href="">Kaprodi</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="akdm_daftarperiode.html"><i class="fa fa-clock-o"></i> Periode</a></li>
+                            <li><a href="proyek.html"><i class="fa fa-files-o"></i> Project</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="images/img.jpg" alt="">John Doe
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="login.html"><i class="fa fa-key pull-right"></i> Ubah Password</a></li>
+                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Profil <small>Mahasiswa</small></h3>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_content">
+                                <div class="profile_left">
+                                    <div class="profile_img">
+                                        <div id="crop-photo">
+                                            <!-- Current avatar -->
+                                            <img class="img-responsive avatar-view" src="../../images/picture.jpg" alt="Avatar" title="Change the avatar">
+                                        </div>
+                                    </div>
+                                    <h3>Maila Hamidy</h3>
+
+                                    <ul class="list-unstyled user_data">
+                                        <li class="m-top-xs">
+                                            <strong>NIM : </strong>
+                                            15/386071/SV/09457
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-briefcase user-profile-icon"></i> Mahasiswa
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--tab panel-->
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="col-md-12">
+                            <div class="x_panel">
+
+                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Home</a>
+                                        </li>
+                                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Tugas Akhir</a>
+                                        </li>
+                                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Penilaian</a>
+                                        </li>
+                                    </ul>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                            <!-- start detail profile-->
+                                            <div class="x_title">
+                                                <h3>Detail Profil</h3>
+                                            </div>
+                                            <div class="x_content">
+                                                <div class="col-md-2">
+                                                    <label>IPK</label>
+                                                    <h5>3.68</h5>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label>SKS</label>
+                                                    <h5>107</h5>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>Email</label>
+                                                    <h5>nadyaprabaningrum@gmail.com</h5>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>HP</label>
+                                                    <h5>085712939029</h5>
+                                                </div>
+                                                <div class="profile_left">
+                                                    <label><h5><i class="fa fa-user"></i> <strong>Nama Lengkap</strong></h5></label>
+                                                    <h5>Maila Hamidy</h5>
+                                                    <hr>
+                                                    <label><h5><strong>NIM</strong></h5></label>
+                                                    <h5>15/386071/SV/0945</h5>
+                                                    <hr>
+                                                    <label><h5><strong>KEAHLIAN</strong></h5></label>
+                                                    <h5>
+                                                        <ul>
+                                                            <li>Java</li>
+                                                            <li>C++</li>
+                                                        </ul>
+                                                    </h5>
+                                                    <hr>
+                                                    <label><h5><strong>PENGALAMAN</strong></h5></label>
+                                                    <h5>
+                                                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur, blanditiis consectetur cumque dolor eos, error facilis fugit inventore iusto labore odio quibusdam quidem quod sapiente suscipit veritatis, voluptas voluptatem?</span>
+                                                    </h5>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <!-- end detail profile -->
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                            <!-- start detail profile-->
+                                            <div class="x_title">
+                                                <h3>Tugas Akhir</h3>
+                                            </div>
+                                            <div class="x_content">
+                                                <div class="profile_left">
+                                                    <label><h5><i class="fa fa-user"></i> <strong>Dosen Pembimbing</strong></h5></label>
+                                                    <h5>Irkham Huda., M.Cs</h5>
+                                                    <hr>
+                                                    <label><h5><strong>Judul Proyek</strong></h5></label>
+                                                    <h5>Sistem Core Ticketing Backend</h5>
+                                                    <hr>
+                                                    <label><h5><strong>Berkas</strong></h5></label><br>
+                                                    <a class="btn btn-success">Proposal</a>
+                                                    <a href="akdm_daftarsidangset.html" class="btn btn-success">Sidang</a>
+                                                    <a href="akdm_daftaryudisiumset.html" class="btn btn-success">Yudisium</a>
+                                                </div>
+                                            </div>
+                                            <!-- end detail profile -->
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                            <div class="col-md-6">
+                                                <!--table nilai-->
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                    <tr bgcolor="#67CEA6" style="color: white">
+                                                        <th colspan="4"><h4><strong>Data Penilaian</strong></h4></th>
+                                                    </tr>
+                                                    <tr bgcolor="#59BD96" style="color: white">
+                                                        <th>No</th>
+                                                        <th>Subject</th>
+                                                        <th>Nilai</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <th>Tata Tulis</th>
+                                                        <td>3.45</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <th>Bahasa</th>
+                                                        <td>3.45</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <th>Kesesuaian Naskah dengan Rancangan</th>
+                                                        <td>3.45</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <th>Rancangan Masalah</th>
+                                                        <td>3.45</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <th>Tujuan</th>
+                                                        <td>3.45</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <th>Inovasi</th>
+                                                        <td>3.45</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <th>Penguasaan Metode</th>
+                                                        <td>3.45</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8</td>
+                                                        <th>Penguasaan Analisis</th>
+                                                        <td>3.45</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>9</td>
+                                                        <th>Presentasi</th>
+                                                        <td>3.45</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10</td>
+                                                        <th>Kesimpulan</th>
+                                                        <td>3.45</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--end table nilai-->
+                                            </div>
+                                            <center>
+                                                <div class="col-md-6">
+                                                    <h5>Nilai Akhir</h5>
+                                                    <h1><strong>A / B</strong></h1>
+                                                </div>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--tab panel-->
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                KOMSI - TA
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+<!-- Dropzone.js -->
+<script src="../../../vendors/dropzone/dist/min/dropzone.min.js"></script>
+<!-- jQuery -->
+<script src="../../../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../../vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="../../../vendors/iCheck/icheck.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../../../vendors/moment/min/moment.min.js"></script>
+<script src="../../../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="../../../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="../../../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="../../../vendors/google-code-prettify/src/prettify.js"></script>
+<!-- jQuery Tags Input -->
+<script src="../../../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="../../../vendors/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="../../../vendors/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="../../../vendors/parsleyjs/dist/parsley.min.js"></script>
+<!-- Autosize -->
+<script src="../../../vendors/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="../../../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="../../../vendors/starrr/dist/starrr.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../build/js/custom.min.js"></script>
+<!-- Datatables -->
+<script src="../../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../../../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="../../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="../../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="../../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="../../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="../../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="../../../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="../../../vendors/jszip/dist/jszip.min.js"></script>
+<script src="../../../vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="../../../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+</body>
+</html>

@@ -232,8 +232,6 @@ class Login_admin extends CI_Controller
             redirect("login_admin");
         }
     }
-
-
 }
 
 ?>
