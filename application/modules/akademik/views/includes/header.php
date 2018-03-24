@@ -1,30 +1,57 @@
-<?php
-/**
- * Created by nad.
- * Date: 07/03/2018
- * Time: 11:31
- * Description:
- */
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta charset="utf-8" />
-    <title>Elusi</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php if(isset($pageTitle)){
+            echo '<title>' . $pageTitle . '</title>';
+        } else {
+            echo '<title>e-Lusi</title>';  
+        }?>
+    
+        <!-- jQuery -->
+    <script src="<?php echo base_url()?>elusistatic/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link href="<?php echo base_url()?>elusistatic/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="<?php echo base_url()?>elusistatic/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="<?php echo base_url()?>elusistatic/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="<?php echo base_url()?>elusistatic/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="<?php echo base_url()?>elusistatic/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
     <link href="<?php echo base_url()?>elusistatic/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="<?php echo base_url()?>elusistatic/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="<?php echo base_url()?>elusistatic/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="<?php echo base_url()?>elusistatic/vendors/starrr/dist/starrr.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="<?php echo base_url()?>elusistatic/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- validation css -->
+    <link href="<?php echo base_url()?>elusistatic/css/validation.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url()?>elusistatic/build/css/custom.min.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    
+    <script src="<?php echo base_url()?>elusistatic/js/jquery.validate.js"></script>
+    <script type="text/javascript">
+        var baseURL = "<?php echo base_url(); ?>";
+    </script>
+
 </head>
 
 <body class="nav-md">
@@ -43,27 +70,33 @@
                     <div class="menu_section">
                         <h3>Akademik</h3>
                         <ul class="nav side-menu">
-                            <li><a href="berkas"><i class="fa fa-file-o"></i> Berkas</a></li>
+                            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                            <li><a href="<?php echo base_url()?>akademik/pengumuman/"><i class="fa fa-cloud-upload"></i> Pengumuman</a></li>
+                            <li><a><i class="fa fa-user"></i> Akun User <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="<?php echo base_url()?>akademik/akun_mahasiswa/">Mahasiswa</a></li>
+                                    <li><a href="<?php echo base_url()?>akademik/akun_dosen/">Dosen</a></li>
+                                    <li><a href="<?php echo base_url()?>akademik/akun_akademik/">Akademik</a></li>
+                                    <li><a href="<?php echo base_url()?>akademik/akun_kaprodi/">Kaprodi</a></li>
+                                </ul>
+                            </li>
                             <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a>Judul Proyek<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li class="sub_menu"><a href="judulBaru">Baru</a>
+                                            <li class="sub_menu"><a href="akdm_daftartabaru.html">Baru</a>
                                             </li>
-                                            <li><a href="judulLama">Perpanjangan</a>
+                                            <li><a href="akdm_daftarta.html">Perpanjangan</a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a href="listSidang">Sidang</a></li>
-                                    <li><a href="listYudisium">Yudisium</a></li>
+                                    <li><a href="proposal.html">Proposal</a></li>
+                                    <li><a href="akdm_daftarsidang.html">Sidang</a></li>
+                                    <li><a href="akdm_daftaryudisium.html">Yudisium</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-calendar-o"></i>  Periode  <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="setPeriode">Tambah Periode</a></li>
-                                    <li><a href="listPeriode">Daftar Periode</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="<?php echo base_url()?>akademik/periode/"><i class="fa fa-clock-o"></i> Periode Registrasi</a></li>
+                            <li><a href="proyek.html"><i class="fa fa-files-o"></i> Project</a></li>
                         </ul>
                     </div>
                 </div>
@@ -81,11 +114,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user"></i>
+                                <img src="images/img.jpg" alt="">John Doe
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="login.html"><i class="fa fa-key pull-right"></i> Ubah Password</a></li>
+                                <li><a href="<?php echo base_url(); ?>mahasiswa/changepassword/edit"><i class="fa fa-key pull-right"></i> Ubah Password</a></li>
                                 <li><a href="<?php echo base_url();?>mahasiswa/logout"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
                             </ul>
                         </li>
@@ -97,4 +130,3 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-

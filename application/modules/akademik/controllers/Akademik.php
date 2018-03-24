@@ -1,23 +1,13 @@
-<?php
-/**
- * Created by nad.
- * Date: 07/03/2018
- * Time: 11:30
- * Description:
- */
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Akademik extends BaseController
 {
-  public function __construct()
-  {
-      parent::__construct();
-      // $this->load->model('profil_model');
-      $this->isLoggedIn();
-  }
-    function index() {
-      $userId = $this->vendorId;
-      $data['userId']=$userId;
+    public function __construct() {
+        parent::__construct();
+        $this->isLoggedIn();
+    }
 
-        $this->loadViews("dashboard", $data, NULL, NULL);
+    public function index(){
+        redirect('akademik/dashboard');
     }
 }
