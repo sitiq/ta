@@ -10,12 +10,13 @@ class sidang_model extends CI_Model
 {
     function getBerkasInfo($userId)
     {
-        $this->db->select('berkas.id_berkas_sidang, berkas.nama_berkas, val.id_valid_sidang, val.isValid, val.path, sidang.id_mahasiswa, mahasiswa.id_user');
+        $this->db->select('berkas.id_berkas_sidang, berkas.nama_berkas, val.id_valid_sidang,
+         val.isValid, val.path, sidang.id_sidang, mahasiswa.id_mahasiswa');
         $this->db->from('berkas_sidang berkas');
         $this->db->join('validasi_berkas_sidang val','val.id_berkas_sidang = berkas.id_berkas_sidang');
         $this->db->join('sidang','sidang.id_sidang = val.id_sidang');
         $this->db->join('mahasiswa','mahasiswa.id_mahasiswa = sidang.id_mahasiswa');
-//        $this->db->where('isDeleted', 0);
+        $this->db->join('user','user.id_user = mahasiswa.id_user');
         $this->db->where('mahasiswa.id_user', $userId);
         $query = $this->db->get();
 
@@ -29,13 +30,14 @@ class sidang_model extends CI_Model
      */
     function cekMahasiswa($id)
     {
-        $this->db->select('id_mahasiswa');
-        $this->db->from('sidang');
-        $this->db->where('id_mahasiswa', $id);
+        $this->db->select('mahasiswa.id_mahasiswa');
+        $this->db->from('mahasiswa');
+        $this->db->join('user','mahasiswa.id_user = user.id_user');
+        $this->db->where('mahasiswa.id_user', $id);
         $query = $this->db->get();
 
         $result = $query->result();
-        return count($result);
+        return $result;
     }
     /**
      * This function is used to add new project to system
@@ -56,10 +58,10 @@ class sidang_model extends CI_Model
      * This function is used to add new project to system
      * @return number $insert_id : This is last inserted id
      */
-    function addNewBerkas($berkasInfo)
+    function addNewValidasi($id)
     {
         $this->db->trans_start();
-        $this->db->insert('validasi_berkas_sidang', $berkasInfo);
+        $this->db->insert('validasi_berkas_sidang', $id);
 
         $insert_id = $this->db->insert_id();
 

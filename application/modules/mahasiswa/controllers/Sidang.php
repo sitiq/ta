@@ -23,11 +23,56 @@ class Sidang extends BaseController
         }
         else
         {
-            $this->load->model('sidang_model');
             $userId = $this->vendorId;
             $data['berkasInfo'] = $this->sidang_model->getBerkasInfo($userId);
+            $data['idMahasiswa'] = $this->sidang_model->cekMahasiswa($userId);
             $this->loadViews("sidang", $this->global, $data, NULL);
         }
+    }
+    function daftar(){
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('id_mahasiswa','ID Mahasiswa','required|xss_clean');
+        $this->form_validation->set_rules('id_sidang','ID Sidang','required|xss_clean');
+        $this->form_validation->set_rules('id_validasi_sidang','ID Validasi','required|xss_clean');
+        $this->form_validation->set_rules('id_berkas_sidang','ID Berkas','required|xss_clean');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            redirect('mahasiswa/sidang');
+        }else{
+            $id_user = $this->vendorId;
+            $cek = $this->sidang_model->cekMahasiswa($id_user);
+
+            $id_mahasiswa = $this->input->post('id_mahasiswa');
+            $id_sidang = $this->input->post('id_sidang');
+            $id_validasi_sidang = $this->input->post('id_validasi_sidang');
+            $id_berkas_sidang = $this->input->post('id_berkas_sidang');
+
+            $sidangId = array(
+              "id_mahasiswa"=>$id_mahasiswa,
+              "id_sidang"=>$id_sidang
+            );
+            $sidang = $this->sidang_model->addNewSidang($sidangId);
+
+            $daftarId = array(
+                "id_sidang"=>$sidang,
+                "id_validasi_sidang"=>$id_validasi_sidang,
+                "id_berkas_sidang"=>$id_berkas_sidang
+            );
+//            insert to sidang table
+            $result = $this->sidang_model->addNewValidasi($daftarId);
+//            lebih dari 0 berarti ada data yg masuk
+            if ($result>0)
+            {
+                $this->sesion->set_flashdata('success','Sidang registered');
+            }
+            else
+            {
+                $this->session->set_flashdata('error','Sidang register failed');
+            }
+        }
+        redirect('mahasiswa/sidang');
     }
     /**
      * This function is used to edit the photo information
