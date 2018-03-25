@@ -73,7 +73,7 @@ class Login_admin extends CI_Controller
                     $sessionArray = array('id_user'=>$res->id_user,
                                             'role'=>$res->id_user_role,
                                             'roleText'=>$res->role,
-                                            'name'=>$res->name,
+                                            'name'=>$res->nama,
                                             'isLoggedIn' => TRUE
                                     );
                                     

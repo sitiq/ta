@@ -15,8 +15,7 @@ class Dashboard extends BaseController
       $this->isLoggedIn();
   }
     function index() {
-      $data['userId']=$userId;
-
-        $this->loadViews("dashboard", $data, NULL, NULL);
+      //$data['userId']=$userId;
+      $this->loadViews("dashboard");
     }
 }

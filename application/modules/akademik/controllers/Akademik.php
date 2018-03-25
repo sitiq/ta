@@ -10,4 +10,6 @@ class Akademik extends BaseController
     public function index(){
         redirect('akademik/dashboard');
     }
+
+    
 }
