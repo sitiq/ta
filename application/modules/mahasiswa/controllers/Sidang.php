@@ -30,48 +30,38 @@ class Sidang extends BaseController
         }
     }
     function daftar(){
-        $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('id_mahasiswa','ID Mahasiswa','required|xss_clean');
-        $this->form_validation->set_rules('id_sidang','ID Sidang','required|xss_clean');
-        $this->form_validation->set_rules('id_validasi_sidang','ID Validasi','required|xss_clean');
-        $this->form_validation->set_rules('id_berkas_sidang','ID Berkas','required|xss_clean');
-
-        if ($this->form_validation->run() == FALSE)
-        {
-            redirect('mahasiswa/sidang');
-        }else{
             $id_user = $this->vendorId;
             $cek = $this->sidang_model->cekMahasiswa($id_user);
 
-            $id_mahasiswa = $this->input->post('id_mahasiswa');
-            $id_sidang = $this->input->post('id_sidang');
-            $id_validasi_sidang = $this->input->post('id_validasi_sidang');
-            $id_berkas_sidang = $this->input->post('id_berkas_sidang');
+            $id_mahasiswa = $cek[0]->id_mahasiswa;
 
-            $sidangId = array(
+            $infoSidang = array(
               "id_mahasiswa"=>$id_mahasiswa,
-              "id_sidang"=>$id_sidang
             );
-            $sidang = $this->sidang_model->addNewSidang($sidangId);
+            $idSidang = $this->sidang_model->addNewSidang($infoSidang);
 
-            $daftarId = array(
-                "id_sidang"=>$sidang,
-                "id_validasi_sidang"=>$id_validasi_sidang,
-                "id_berkas_sidang"=>$id_berkas_sidang
-            );
+            $idBerkas = 1;
+
 //            insert to sidang table
-            $result = $this->sidang_model->addNewValidasi($daftarId);
+            for ($i=1;$i<=10;$i++){
+                $daftarId = array(
+                    "id_sidang"=>$idSidang,
+                    "id_berkas_sidang"=>$idBerkas
+                );
+                $result = $this->sidang_model->addNewValidasi($daftarId);
+                $idBerkas++;
+            }
 //            lebih dari 0 berarti ada data yg masuk
             if ($result>0)
             {
-                $this->sesion->set_flashdata('success','Sidang registered');
+                $this->session->set_flashdata('success','Sidang registered');
             }
             else
             {
                 $this->session->set_flashdata('error','Sidang register failed');
             }
-        }
+
         redirect('mahasiswa/sidang');
     }
     /**
@@ -86,7 +76,7 @@ class Sidang extends BaseController
         {
             $id_folder = $this->input->post('id_berkas_sidang');
             $nim = $this->input->post('id_mahasiswa');
-            $cekMhs = $this->profil_model->cekMahasiswa($nim);
+            $cekMhs = $this->sidang_model->cekMahasiswa($nim);
 
             if (!$cekMhs)
             $this->load->library('form_validation');

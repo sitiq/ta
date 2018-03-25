@@ -5,12 +5,16 @@
  * Time: 07:28
  * Description:
  */
-//var_dump($berkasInfo);
+var_dump($idMahasiswa);
+//echo date('Y-m-d h:s:i');
 ?>
 <?php
 $id_berkas_sidang = '';
-$id_sidang = '';
+$nama_berkas = '';
 $id_valid_sidang = '';
+$isValid = '';
+$path = '';
+$id_sidang = '';
 $id_mahasiswa = '';
 
 if(!empty($berkasInfo))
@@ -18,8 +22,11 @@ if(!empty($berkasInfo))
     foreach ($berkasInfo as $uf)
     {
         $id_berkas_sidang = $uf->id_berkas_sidang;
-        $id_sidang = $uf->id_sidang;
+        $nama_berkas = $uf->nama_berkas;
         $id_valid_sidang = $uf->id_valid_sidang;
+        $isValid = $uf->isValid;
+        $path = $uf->path;
+        $id_sidang = $uf->id_sidang;
         $id_mahasiswa = $uf->id_mahasiswa;
     }
 }
@@ -46,12 +53,6 @@ if(!empty($berkasInfo))
                     <div class="col-md-6">
                         <?php if ($id_sidang == null){?>
                         <form action="<?php echo base_url() ?>mahasiswa/sidang/daftar" method="post" enctype="multipart/form-data" role="form">
-                            <input type="text" name="id_mahasiswa" value="<?php echo $idMahasiswa[0]->id_mahasiswa; ?>">
-                            <input type="text" name="id_sidang" value="<?php echo $id_sidang;?>">
-                            <?php for ($i=1;$i<=10;$i++){?>
-                                <input type="text" name="id_valid_sidang" value="<?php echo $id_valid_sidang;?>">
-                                <input type="text" name="id_berkas_sidang" value="<?php echo $i;?>">
-                            <?php }?>
                             <input type="submit" class="btn btn-primary pull-right" value="Daftar">
                         </form>
                         <?php }?>

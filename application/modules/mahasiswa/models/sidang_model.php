@@ -43,10 +43,10 @@ class sidang_model extends CI_Model
      * This function is used to add new project to system
      * @return number $insert_id : This is last inserted id
      */
-    function addNewSidang($id)
+    function addNewSidang($infoSidang)
     {
         $this->db->trans_start();
-        $this->db->insert('sidang', $id);
+        $this->db->insert('sidang', $infoSidang);
 
         $insert_id = $this->db->insert_id();
 
@@ -76,7 +76,7 @@ class sidang_model extends CI_Model
      */
     function editBerkas($berkasInfo, $id_berkas, $idMhs)
     {
-        $this->db->where('id_berkas_sidang', $id_berkas);
+        $this->db->where('id_valid_sidang', $id_berkas);
         $this->db->update('validasi_berkas_sidang', $berkasInfo);
 
         if($this->db->affected_rows() >= 0){
