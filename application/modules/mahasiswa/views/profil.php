@@ -49,7 +49,7 @@ if(!empty($profilInfo))
                     <div class="profile_left">
                         <div class="profile_img">
                             <div id="crop-photo">
-                                <center><img class="img-responsive avatar-view img-circle" style="height: 150px; width: 150px" src="<?php echo base_url()?>/uploads/foto/dosen/<?php echo $foto?>" onerror="this.src='<?php echo base_url(); ?>elusistatic/build/images/default.jpg'" alt="Avatar" title="Change the avatar"></center>
+                                <center><img class="img-responsive avatar-view img-circle" style="height: 150px; width: 150px" src="<?php echo base_url()?>/uploads/foto/mahasiswa/<?php echo $foto?>" onerror="this.src='<?php echo base_url(); ?>elusistatic/build/images/default.jpg'" alt="Avatar" title="Change the avatar"></center>
                                 <form action="<?php echo base_url();?>mahasiswa/profil/editPhoto" enctype="multipart/form-data" method="post">
                                     <!-- Current avatar -->
                                     <center>

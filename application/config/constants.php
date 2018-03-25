@@ -87,12 +87,12 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 /**** USER DEFINED CONSTANTS **********/
 
-define('ROLE_KAPRODI',          '1');
-define('ROLE_AKADEMIK',         '2');
-define('ROLE_DOSEN',            '3');
-define('ROLE_MAHASISWA',        '4');
+define('ROLE_KAPRODI',                              '1');
+define('ROLE_AKADEMIK',                         	'2');
+define('ROLE_DOSEN',                                '3');
+define('ROLE_MAHASISWA',                            '4');
 
-//define('SEGMENT',								2);
+define('SEGMENT',								2);
 
 /************************** EMAIL CONSTANTS *****************************/
 

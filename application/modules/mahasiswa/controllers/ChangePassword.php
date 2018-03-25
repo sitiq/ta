@@ -22,7 +22,7 @@ class ChangePassword extends BaseController
     /**
      * This function is used to load the change password screen
      */
-    function edit()
+    function index()
     {
         if($this->isMahasiswa() == TRUE)
         {
@@ -56,7 +56,7 @@ class ChangePassword extends BaseController
 
             if($this->form_validation->run() == FALSE)
             {
-                $this->edit();
+                $this->index();
             }
             else
             {
@@ -68,7 +68,7 @@ class ChangePassword extends BaseController
                 if(empty($resultPas))
                 {
                     $this->session->set_flashdata('nomatch', 'Your old password not correct');
-                    redirect('mahasiswa/changepassword/edit');
+                    redirect('mahasiswa/changepassword');
                 }
                 else
                 {
@@ -79,7 +79,7 @@ class ChangePassword extends BaseController
                     if($result > 0) { $this->session->set_flashdata('success', 'Password updation successful'); }
                     else { $this->session->set_flashdata('error', 'Password updation failed'); }
 
-                    redirect('mahasiswa/changepassword/edit');
+                    redirect('mahasiswa/changepassword');
                 }
             }
         }
