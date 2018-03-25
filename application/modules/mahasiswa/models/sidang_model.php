@@ -24,8 +24,8 @@ class sidang_model extends CI_Model
         return $result;
     }
     /**
-     * This function is used to get the nim mahasiswa count
-     * @param string $searchText : This is optional search text
+     * This function is used to get the nim mahasiswa who is login
+     * @param string $id : This is optional search text
      * @return array $result : This is result
      */
     function cekMahasiswa($id)

@@ -5,6 +5,31 @@
  * Time: 07:28
  * Description:
  */
+var_dump($idMahasiswa);
+//var_dump($cekPeriode);
+?>
+<?php
+$id_berkas_yudisium = '';
+$nama_berkas = '';
+$id_valid_yudisium = '';
+$isValid = '';
+$path = '';
+$id_yudisium = '';
+$id_mahasiswa = '';
+
+if(!empty($berkasInfo))
+{
+    foreach ($berkasInfo as $uf)
+    {
+        $id_berkas_yudisium = $uf->id_berkas_yudisium;
+        $nama_berkas = $uf->nama_berkas;
+        $id_valid_yudisium = $uf->id_valid_yudisium;
+        $isValid = $uf->isValid;
+        $path = $uf->path;
+        $id_yudisium = $uf->id_yudisium;
+        $id_mahasiswa = $uf->id_mahasiswa;
+    }
+}
 ?>
 <div class="">
     <div class="page-title">
@@ -17,196 +42,112 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Penting !<br><small>
-                            <ul>
-                                <li>Diwajibkan untuk membaca tata cara pada berkas bagian akademik.</li>
-                                <li>Format nama file : NIF - label . Contoh : 09457 - usulan sidang</li>
-                            </ul>
-                            <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada Profil Anda</h5>
-                        </small>
-                    </h2>
+                    <div class="col-md-6">
+                        <h2>Penting !<br><small>
+                                <ul>
+                                    <li>Diwajibkan untuk membaca tata cara pada PENGUMUMAN.</li>
+                                </ul>
+                                <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada Profil Anda</h5>
+                            </small></h2>
+                    </div>
+                    <div class="col-md-6">
+                        <?php if ($id_yudisium == null){?>
+                            <form action="<?php echo base_url() ?>mahasiswa/yudisium/daftar" method="post" enctype="multipart/form-data" role="form">
+                                <input type="submit" class="btn btn-primary pull-right" value="Daftar">
+                            </form>
+                        <?php }?>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?php
+                            $this->load->helper('form');
+                            $error = $this->session->flashdata('error');
+                            if($error)
+                            {
+                                ?>
+                                <div class="alert alert-danger alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <?php echo $this->session->flashdata('error'); ?>
+                                </div>
+                            <?php } ?>
+                            <?php
+                            $success = $this->session->flashdata('success');
+                            if($success)
+                            {
+                                ?>
+                                <div class="alert alert-success alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <?php echo $this->session->flashdata('success'); ?>
+                                </div>
+                            <?php } ?>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!--start pane upload-->
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <div id="myTabContent" class="tab-content">
-                            <!--Pane mohon-->
-                            <div role="tabpanel" class="tab-pane fade in" id="tab_content1" aria-labelledby="mohon">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <strong><h4>Berkas Permohonan Yudisium</h4>
-                                        </strong>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 2mb</th>
-                                        <th>
-                                            <form>
-                                                <input type="number" name="id" hidden>
-                                                <input type="text" name="berkas" value="mohon-yudisium" hidden>
-                                                <input type="file" name="path" class="form-control">
+                            <?php
+                            if(!empty($berkasInfo))
+                            {
+                                foreach($berkasInfo as $record)
+                                {
+                                    ?>
+                                    <!--Pane upload berkas-->
+                                    <div role="tabpanel" class="tab-pane fade in" id="tab_content_<?php echo $record->id_valid_yudisium ?>" aria-labelledby="usulan">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <strong><h4><?php echo $record->nama_berkas?></h4>
+                                                </strong>
+                                                <?php echo $record->path ?>
+                                            </tr>
+                                            <form action="<?php echo base_url();?>mahasiswa/yudisium/editBerkas" enctype="multipart/form-data" method="post">
+                                                <tr>
+                                                    <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 2mb</th>
+                                                    <th>
+                                                        <input type="hidden" value="<?php echo $record->id_mahasiswa?>">
+                                                        <input value="<?php echo $record->id_berkas_yudisium ?>" type="number" name="id_berkas_yudisium" hidden>
+                                                        <input value="<?php echo $record->id_valid_yudisium ?>" type="number" name="id_valid_yudisium" hidden>
+                                                        <input type="text" name="nama_berkas" value="<?php echo $record->nama_berkas ?>" hidden>
+                                                        <input value="<?php echo $record->path ?>" type="file" name="path" class="form-control">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <input type="submit" class="btn btn-primary btn-sm" value="Save">
+                                                </td>
+                                            </tr>
+                                            </tbody>
                                             </form>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td colspan="3">
-                                            <button class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--pane acara-->
-                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="acara">
+                                        </table>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                            ?>
+                            <!--pane krs semester-->
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="krs">
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <strong><h4>Berkas Berita Acara</h4></strong>
+                                        <strong><h4>Berkas KRS Semester Terakhir<small><i> Ditandatangan oleh Dosen Pembimbing Akademik</i></small></h4></strong>
                                     </tr>
                                     <tr>
                                         <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 2mb</th>
                                         <th>
                                             <form>
                                                 <input type="number" name="id" hidden>
-                                                <input type="text" name="berkas" value="berita" hidden>
-                                                <input type="file" name="path" class="form-control">
-                                            </form>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td colspan="3">
-                                            <button class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--pane sttm-->
-                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="sttm">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <strong><h4>Berkas Surat Tanda Terima Menyerahkan Tugas Akhir & Bebas Perpustakaan UGM</h4></strong>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 2mb</th>
-                                        <th>
-                                            <form>
-                                                <input type="number" name="id" hidden>
-                                                <input type="text" name="berkas" value="sttm" hidden>
-                                                <input type="file" name="path" class="form-control">
-                                            </form>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td colspan="3">
-                                            <button class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--pane poster-->
-                            <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="poster">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <strong><h4>Berkas Poster Tugas Akhir <small><i>Ukuran A3</i></small></h4></strong>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 2mb</th>
-                                        <th>
-                                            <form>
-                                                <input type="number" name="id" hidden>
-                                                <input type="text" name="berkas" value="poster" hidden>
-                                                <input type="file" name="path" class="form-control">
-                                            </form>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td colspan="3">
-                                            <button class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--pane lap-->
-                            <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="lap">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <strong><h4>Berkas Laporan Tugas Akhir<small><i> Yang telah direvisi FINAL</i></small></h4></strong>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 2mb</th>
-                                        <th>
-                                            <form>
-                                                <input type="number" name="id" hidden>
-                                                <input type="text" name="berkas" value="tugasakhir-fix" hidden>
-                                                <input type="file" name="path" class="form-control">
-                                            </form>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td colspan="3">
-                                            <button class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--pane ijazah-->
-                            <div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="ijazah">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <strong><h4>Berkas Ijazah SMA/K Terakhir</h4></strong>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 2mb</th>
-                                        <th>
-                                            <form>
-                                                <input type="number" name="id" hidden>
-                                                <input type="text" name="berkas" value="ijazah" hidden>
-                                                <input type="file" name="path" class="form-control">
-                                            </form>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td colspan="3">
-                                            <button class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--pane sertif-->
-                            <div role="tabpanel" class="tab-pane fade" id="tab_content7" aria-labelledby="sertif">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <strong><h4>Sertifikat Kemampuan Bahasa Inggris <small><i> Sesuai ketentuan berlaku</i></small></h4></strong>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 2mb</th>
-                                        <th>
-                                            <form>
-                                                <input type="number" name="id" hidden>
-                                                <input type="text" name="berkas" value="sertif" hidden>
+                                                <input type="text" name="berkas" value="krs-terakhir" hidden>
                                                 <input type="file" name="path" class="form-control">
                                             </form>
                                         </th>
@@ -227,7 +168,7 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr bgcolor="#67CEA6" style="color: white">
-                            <th colspan="4"><h4><strong>Data Berkas Sidang</strong></h4></th>
+                            <th colspan="4"><h4><strong>Data Berkas Yudisium</strong></h4></th>
                         </tr>
                         <tr bgcolor="#59BD96" style="color: white">
                             <th>Aksi</th>
@@ -237,64 +178,36 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <a href="#tab_content1" id="mohon" role="tab" data-toggle="tab" aria-expanded="true" class="btn btn-sm btn-warning">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                            </td>
-                            <td>1</td>
-                            <td>Permohonan Yudisium</td>
-                            <td>Pending</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#tab_content2" role="tab" id="acara" data-toggle="tab" aria-expanded="false" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                            </td>
-                            <td>2</td>
-                            <td>Berita Acara</td>
-                            <td>Pending</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#tab_content3" role="tab" id="sttm" data-toggle="tab" aria-expanded="false" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                            </td>
-                            <td>3</td>
-                            <td>Surat Tanda Terima Menyerahkan Tugas Akhir & Bebas Perpustakaan UGM</td>
-                            <td>Pending</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#tab_content4" role="tab" id="poster" data-toggle="tab" aria-expanded="false" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                            </td>
-                            <td>4</td>
-                            <td>Poster Hasil Tugas Akhir <small><i>[ukuran A3]</i></small></td>
-                            <td>Pending</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#tab_content5" role="tab" id="lap" data-toggle="tab" aria-expanded="false" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                            </td>
-                            <td>5</td>
-                            <td>Laporan Tugas Akhir <small><i>[telah direvisi FINAL]</i></small></td>
-                            <td>Pending</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#tab_content6" role="tab" id="ijazah" data-toggle="tab" aria-expanded="false" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                            </td>
-                            <td>6</td>
-                            <td>Ijazah SMA/K Terakhir</td>
-                            <td>Pending</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#tab_content7" role="tab" id="sertif" data-toggle="tab" aria-expanded="false" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                            </td>
-                            <td>7</td>
-                            <td>Sertifikat Kemampuan Bahasa Inggris <small>[sesuai ketentuan berlaku]</small></td>
-                            <td>Pending</td>
-                        </tr>
+                        <?php
+                        if(!empty($berkasInfo))
+                        {
+                            foreach($berkasInfo as $record)
+                            {
+                                ?>
+                                <tr>
+                                    <td>
+                                        <a href="#tab_content_<?php echo $record->id_valid_yudisium ?>" id="usulan" role="tab" data-toggle="tab" aria-expanded="true" class="btn btn-sm btn-warning">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <input type="hidden" value="<?php echo $record->id_valid_yudisium ?>">
+                                    </td>
+                                    <td><?php echo $record->id_berkas_yudisium ?></td>
+                                    <td><?php echo $record->nama_berkas ?></td>
+                                    <?php if ($record->isValid == '3') {
+                                        echo "<td><span class=\"label label-danger\">" . "Ditolak" . "</span></td>";
+                                    } elseif ($record->isValid == '2') {
+                                        echo "<td><span class=\"label label-success\">" . "Diterima" . "</span></td>";
+                                    }elseif ($record->isValid == '1') {
+                                        echo "<td><span class=\"label label-warning\">" . "Proses" . "</span></td>";
+                                    } else {
+                                        echo "<td><span class=\"label label-default\">" . "Belum Diunggah" . "</span></td>";
+                                    }
+                                    ?>
+                                </tr>
+                                <?php
+                            }
+                        }
+                        ?>
                         </tbody>
                     </table>
                     <!--end upload berkas-->
