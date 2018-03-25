@@ -124,21 +124,21 @@ class Profil extends BaseController
             $config['max_size'] = 4000;
             $config['max_width'] = 1024;
             $config['max_height'] = 1024;
+            $new_name = "Foto-".time();
+            $config['file_name'] = $new_name;
 
             $this->load->library('upload', $config);
 
             if ( ! $this->upload->do_upload('foto')){
                 // if upload foto tidak sesuai
                 $error = array('error' => $this->upload->display_errors());
-                // echo $error['error'];
-                $this->session->set_flashdata('error', 'Upload photo failed');
+                $this->session->set_flashdata('error', 'Max Size 1024x1024');
             }else{
                 // bila upload foto berhasil
                 $terupload = $this->upload->data();
-                $mahasiswaInfo = array('foto'=>$terupload['file_name'], 'updatedDtm'=>date('Y-m-d H:i:s'));
+                $mahasiswaInfo = array('foto'=>$terupload['file_name']);
 
                 $result = $this->profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
-
                 if($result == true)
                 {
                     $this->session->set_flashdata('success', 'Photo updated');
