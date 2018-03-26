@@ -124,16 +124,46 @@ class Proyek extends BaseController
         redirect('akademik/proyek');
     }
 
-    public function accept_multiple(){
+    public function multiple_action(){
         $array_data = $this->input->post('table_records');
-        if(!empty($array_data)){
+        $submit = $this->input->post('submit_form');
+        if(!empty($array_data) && $submit == 1){
             for ($i=0; $i < count($array_data); $i++) { 
                 $result = $this->proyek_model->change_status($array_data[$i],1);
             }
             if($result){
-                $this->session->set_flashdata('success', count($array_data) . 'Proyek telah disetujui');
+                $this->session->set_flashdata('success', count($array_data) . ' Proyek telah disetujui');
             } else {
                 $this->session->set_flashdata('error', 'Proyek gagal disetujui. Masalah di database');
+            };
+        } elseif(!empty($array_data) && $submit == 0){
+            for ($i=0; $i < count($array_data); $i++) { 
+                $result = $this->proyek_model->change_status($array_data[$i],0);
+            }
+            if($result){
+                $this->session->set_flashdata('success', count($array_data) . ' Proyek telah ditolak');
+            } else {
+                $this->session->set_flashdata('error', 'Proyek gagal ditolak. Masalah di database');
+            };
+        }
+        else {
+            $this->session->set_flashdata('error', 'Pilih salah satu proyek terlebih dahulu');
+        }
+
+        redirect('akademik/proyek');
+    }
+
+    public function decline_multiple(){
+        $array_data = $this->input->post('table_records');
+        $submit = $this->input->post('submit_form');
+        if(!empty($array_data) && $submit == 0){
+            for ($i=0; $i < count($array_data); $i++) { 
+                $result = $this->proyek_model->change_status($array_data[$i],0);
+            }
+            if($result){
+                $this->session->set_flashdata('success', count($array_data) . ' Proyek telah ditolak');
+            } else {
+                $this->session->set_flashdata('error', 'Proyek gagal ditolak. Masalah di database');
             };
         }
         else {
