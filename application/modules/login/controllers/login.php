@@ -40,10 +40,14 @@ class Login extends CI_Controller
         }
         else
         {
-			if($id_user_role == 4) {
-				redirect('Pendadaran');
-			}else if($id_user_role == 3) {
+			if($id_user_role == ROLE_MAHASISWA) {
+				redirect('mahasiswa');
+			}elseif($id_user_role == ROLE_DOSEN) {
 				redirect('dosen');
+			}elseif($id_user_role == ROLE_AKADEMIK) {
+				redirect('akademik');
+			}elseif($id_user_role == ROLE_KAPRODI) {
+				redirect('kaprodi');
 			}
         }
     }
