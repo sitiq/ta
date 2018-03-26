@@ -81,7 +81,7 @@ if(!empty($pendadaranInfo))
                             <td><?php echo $record->nama ?></td>
                             <td>
                                 <?php if ($record->path != ''){?>
-                                    <a href="<?php echo base_url()?>uploads/sidang/usulan-sidang/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                    <a href="<?php echo base_url()?>uploads/sidang/proposal/<?php echo $record->path?>" class="btn btn-sm btn-info" download>
                                         <i class="fa fa-download"></i>
                                     </a>
                                 <?php }else{?>
