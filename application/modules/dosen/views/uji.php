@@ -5,7 +5,7 @@
  * Time: 07:30
  * Description:
  */
-//var_dump($pendadaranInfo);
+var_dump($pendadaranInfo);
 ?>
 <?php
 $id_sidang = '';
@@ -80,9 +80,13 @@ if(!empty($pendadaranInfo))
                             <td><?php echo $record->nim ?></td>
                             <td><?php echo $record->nama ?></td>
                             <td>
-                                <a href="<?php echo base_url()?>uploads/sidang/usulan-sidang/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                    <i class="fa fa-download"></i>
-                                </a>
+                                <?php if ($record->path != ''){?>
+                                    <a href="<?php echo base_url()?>uploads/sidang/usulan-sidang/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                        <i class="fa fa-download"></i>
+                                    </a>
+                                <?php }else{?>
+                                    <button class="btn btn-sm btn-danger" title="tidak ada"><i class="fa fa-times"></i></button>
+                                <?php }?>
                             </td>
                             <td><a href="dosen_nilaiuji.html" class="btn btn-success btn-sm"><i class="fa fa-tasks"></i></a></td>
                             <td><?php echo $record->nilai_akhir_sidang ?></td>
