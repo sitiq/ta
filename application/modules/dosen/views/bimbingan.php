@@ -5,6 +5,28 @@
  * Time: 07:29
  * Description:
  */
+//var_dump($bimbinganInfo);
+?>
+<?php
+$id_dosen = '';
+$nim = '';
+$nama = '';
+$id_sidang = '';
+$id_yudisium = '';
+$id_ta = '';
+
+if(!empty($bimbinganInfo))
+{
+    foreach ($bimbinganInfo as $uf)
+    {
+        $id_dosen = $uf->id_dosen;
+        $nim = $uf->nim;
+        $nama = $uf->nama;
+        $id_sidang = $uf->id_sidang;
+        $id_yudisium = $uf->id_yudisium;
+        $id_ta = $uf->id_ta;
+    }
+}
 ?>
 <div class="">
     <div class="page-title">
@@ -34,35 +56,33 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php
+                        if(!empty($bimbinganInfo))
+                        {
+                            foreach($bimbinganInfo as $record)
+                            {
+                        ?>
                         <tr>
-                            <td>14/386071/SV/09457</td>
-                            <td>Mail Hamidy</td>
-                            <td>Sistem Informasi Cuti</td>
-                            <td>Judul</td>
+                            <td><?php echo $record->nim ?></td>
+                            <td><?php echo $record->nama ?></td>
+                            <td><?php echo $record->nama_proyek ?></td>
+                            <td>
+                                <?php if ($record->id_ta != '' and $record->id_sidang == '' and $record->id_yudisium == ''){?>
+                                    Judul
+                                <?php }elseif ($record->id_ta != '' and $record->id_sidang != '' and $record->id_yudisium == ''){?>
+                                    Sidang
+                                <?php }else{?>
+                                    Yudisium
+                                <?php }?>
+                            </td>
                             <td><a href="profil_mhs.html" class="btn btn-info"><i class="fa fa-tasks"></i></a></td>
                         </tr>
                         </tbody>
+                        <?php
+                            }
+                        }
+                        ?>
                     </table>
-                    <!--modal-->
-                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel">Pesan Revisi</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <textarea id="" class="col-md-12" rows="5"></textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button style="margin-top: 2%" type="button" class="btn btn-primary">Kirim</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -8,7 +8,33 @@
 
 class Bimbingan extends BaseController
 {
-    function index() {
-        $this->loadViews("bimbingan", NULL, NULL, NULL);
+    /**
+     * This is default constructor of the class
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('bimbingan_model');
+        $this->isLoggedIn();
+    }
+    /**
+     * This function is used to load the profil list
+     */
+    function index()
+    {
+        if($this->isDosen() == TRUE)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            $userId = $this->vendorId;
+            $userRole = $this->role;
+            $data['bimbinganInfo'] = $this->bimbingan_model->getBimbingan($userId);
+            $data['userId'] = $userId;
+            $data['userRole'] = $userRole;
+
+            $this->loadViews("bimbingan", $this->global, $data, NULL);
+        }
     }
 }
