@@ -7,4 +7,4 @@
  */
 ?>
 <h3>Dashboard Akademik</h3>
-<?php echo $userId; ?>
+
