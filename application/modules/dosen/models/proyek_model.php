@@ -8,19 +8,6 @@
 
 class proyek_model extends CI_Model
 {
-    function proyekList($dosen)
-    {
-        $this->db->select('BaseTbl.id_proyek, BaseTbl.nama, BaseTbl.klien, BaseTbl.status, Dosen.nama');
-        $this->db->from('proyek as BaseTbl');
-        $this->db->join('dosen as Dosen', 'Dosen.id_dosen = BaseTbl.id_proyek','left');
-        $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.status', 'disetujui');
-        $this->db->where('BaseTbl.id_dosen', $dosen);
-        $query = $this->db->get();
-
-        $result = $query->result();
-        return $result;
-    }
     function getProyekInfo($proyekId=NULL)
     {
         $this->db->select('proyek.id_proyek, proyek.nama nama_proyek, proyek.klien, proyek.status, proyek.id_dosen, Dosen.nama nama_dosen');

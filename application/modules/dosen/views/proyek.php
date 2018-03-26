@@ -77,7 +77,6 @@
                             <td><?php echo $record->nama_proyek ?></td>
                             <td><?php echo $record->nama_dosen ?></td>
                             <td><?php echo $record->klien ?></td>
-<!--                            <td><span class="label label-success">--><?php //echo $record->status ?><!--</span></td>-->
 
                             <?php if ($record->status == 'disetujui') {
                                 echo "<td><span class=\"label label-success\">" . $record->status . "</span></td>";
