@@ -10,7 +10,7 @@ class bimbingan_model extends CI_Model
 {
     function getBimbingan($userId)
     {
-        $this->db->select('dosbing.id_dosen, m.nim, m.nama, s.id_sidang, y.id_yudisium, t.id_ta, pr.nama nama_proyek, u.judul nama_usulan');
+        $this->db->select('dosbing.id_dosen, m.nim, m.nama, m.id_mahasiswa, s.id_sidang, y.id_yudisium, t.id_ta, pr.nama nama_proyek, u.judul nama_usulan');
         $this->db->from('dosbing');
         $this->db->join('dosen d','d.id_dosen = dosbing.id_dosen');
         $this->db->join('mahasiswa m','m.id_mahasiswa = dosbing.id_mahasiswa');
@@ -30,5 +30,14 @@ class bimbingan_model extends CI_Model
 
         $result = $query->result();
         return $result;
+    }
+    function getMahasiswa($idMhs)
+    {
+        $this->db->select('*');
+        $this->db->from('mahasiswa');
+        $this->db->where('id_mahasiswa',$idMhs);
+        $query = $this->db->get();
+
+        return $query->result();
     }
 }

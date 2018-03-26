@@ -9,6 +9,7 @@
 ?>
 <?php
 $id_dosen = '';
+$id_mahasiswa = '';
 $nim = '';
 $nama = '';
 $id_sidang = '';
@@ -20,6 +21,7 @@ if(!empty($bimbinganInfo))
     foreach ($bimbinganInfo as $uf)
     {
         $id_dosen = $uf->id_dosen;
+        $id_mahasiswa = $uf->id_mahasiswa;
         $nim = $uf->nim;
         $nama = $uf->nama;
         $id_sidang = $uf->id_sidang;
@@ -75,7 +77,9 @@ if(!empty($bimbinganInfo))
                                     Yudisium
                                 <?php }?>
                             </td>
-                            <td><a href="profil_mhs.html" class="btn btn-info"><i class="fa fa-tasks"></i></a></td>
+                            <td>
+                                <a href="<?php echo base_url() ?>dosen/bimbingan/detail/<?php echo $record->id_mahasiswa?>" class="btn btn-info"><i class="fa fa-tasks"></i></a>
+                            </td>
                         </tr>
                         </tbody>
                         <?php

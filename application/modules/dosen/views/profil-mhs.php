@@ -5,11 +5,39 @@
  * Time: 07:32
  * Description:
  */
+//var_dump($mhsInfo);
+?>
+<?php
+$nim = '';
+$nama = '';
+$ipk = '';
+$foto = '';
+$jumlah_sks = '';
+$email = '';
+$mobile = '';
+$skill = '';
+$pengalaman = '';
+
+if(!empty($mhsInfo))
+{
+    foreach ($mhsInfo as $uf)
+    {
+        $nim = $uf->nim;
+        $nama = $uf->nama;
+        $ipk = $uf->ipk;
+        $foto = $uf->foto;
+        $jumlah_sks = $uf->jumlah_SKS;
+        $email = $uf->email;
+        $mobile = $uf->mobile;
+        $skill = $uf->skill;
+        $pengalaman = $uf->pengalaman;
+    }
+}
 ?>
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3><a href="dosen_daftarmhs.html"><i class="fa fa-chevron-left"></i></a> Profil <small>Mahasiswa</small></h3>
+            <h3><a href="<?php echo base_url()?>dosen/bimbingan"><i class="fa fa-chevron-left"></i></a> Profil <small>Mahasiswa</small></h3>
         </div>
     </div>
 
@@ -23,15 +51,15 @@
                         <div class="profile_img">
                             <div id="crop-photo">
                                 <!-- Current avatar -->
-                                <img class="img-responsive avatar-view" src="../../images/picture.jpg" alt="Avatar" title="Change the avatar">
+                                <center><img class="img-responsive avatar-view img-circle" style="height: 150px; width: 150px" src="<?php echo base_url()?>/uploads/foto/akademik/<?php echo $foto?>" onerror="this.src='<?php echo base_url(); ?>elusistatic/build/images/default.jpg'" alt="Avatar"></center>
                             </div>
                         </div>
-                        <h3>Maila Hamidy</h3>
+                        <h3><?php echo $nama?></h3>
 
                         <ul class="list-unstyled user_data">
                             <li class="m-top-xs">
                                 <strong>NIM : </strong>
-                                15/386071/SV/09457
+                                <?php echo $nim?>
                             </li>
                             <li>
                                 <i class="fa fa-briefcase user-profile-icon"></i> Mahasiswa
@@ -55,39 +83,32 @@
                             <div class="x_content">
                                 <div class="col-md-2">
                                     <label>IPK</label>
-                                    <h5>3.68</h5>
+                                    <h5><?php echo $ipk?></h5>
                                 </div>
                                 <div class="col-md-2">
                                     <label>SKS</label>
-                                    <h5>107</h5>
+                                    <h5><?php echo $jumlah_sks?></h5>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Email</label>
-                                    <h5>nadyaprabaningrum@gmail.com</h5>
+                                    <h5><?php echo $email?></h5>
                                 </div>
                                 <div class="col-md-4">
                                     <label>HP</label>
-                                    <h5>085712939029</h5>
+                                    <h5><?php echo $mobile?></h5>
                                 </div>
                                 <div class="profile_left">
                                     <label><h5><i class="fa fa-user"></i> <strong>Nama Lengkap</strong></h5></label>
-                                    <h5>Maila Hamidy</h5>
+                                    <h5><?php echo $nama?></h5>
                                     <hr>
                                     <label><h5><strong>NIM</strong></h5></label>
-                                    <h5>15/386071/SV/0945</h5>
+                                    <h5><?php echo $nim?></h5>
                                     <hr>
                                     <label><h5><strong>KEAHLIAN</strong></h5></label>
-                                    <h5>
-                                        <ul>
-                                            <li>Java</li>
-                                            <li>C++</li>
-                                        </ul>
-                                    </h5>
+                                    <h5><?php echo $skill?></h5>
                                     <hr>
                                     <label><h5><strong>PENGALAMAN</strong></h5></label>
-                                    <h5>
-                                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur, blanditiis consectetur cumque dolor eos, error facilis fugit inventore iusto labore odio quibusdam quidem quod sapiente suscipit veritatis, voluptas voluptatem?</span>
-                                    </h5>
+                                    <h5><?php echo $pengalaman?></h5>
                                     <br>
                                 </div>
                             </div>

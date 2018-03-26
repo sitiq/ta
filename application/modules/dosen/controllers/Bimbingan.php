@@ -37,4 +37,25 @@ class Bimbingan extends BaseController
             $this->loadViews("bimbingan", $this->global, $data, NULL);
         }
     }
+    /**
+     * This function is used load project edit information
+     * @param number $projectId : Optional : This is project id
+     */
+    function detail($idMhs = NULL)
+    {
+        if($this->isDosen() == TRUE)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            if($idMhs == null)
+            {
+                redirect('dosen/bimbingan');
+            }
+            $data['bimbinganInfo'] = $this->bimbingan_model->getBimbingan($idMhs);
+            $data['mhsInfo'] = $this->bimbingan_model->getMahasiswa($idMhs);
+            $this->loadViews("profil-mhs", $this->global, $data, NULL);
+        }
+    }
 }
