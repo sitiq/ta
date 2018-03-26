@@ -8,7 +8,33 @@
 
 class Pendadaran extends BaseController
 {
-    function index() {
-        $this->loadViews("uji", NULL, NULL, NULL);
+    /**
+     * This is default constructor of the class
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('pendadaran_model');
+        $this->isLoggedIn();
+    }
+    /**
+     * This function is used to load the profil list
+     */
+    function index()
+    {
+        if($this->isDosen() == TRUE)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            $userId = $this->vendorId;
+            $userRole = $this->role;
+            $data['pendadaranInfo'] = $this->pendadaran_model->getSidang($userId);
+            $data['userId'] = $userId;
+            $data['userRole'] = $userRole;
+
+            $this->loadViews("uji", $this->global, $data, NULL);
+        }
     }
 }
