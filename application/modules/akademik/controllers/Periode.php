@@ -11,7 +11,7 @@ class Periode extends BaseController
     public function index(){
         $data['dataTable'] = $this->periode_model->getPeriode();
         $this->global['pageTitle'] = "Elusi : Periode"; 
-        $this->loadViews("periode_view",$this->global,$data);
+        $this->loadViews("dashboard_periode",$this->global,$data);
     }
 
     public function add_form(){
@@ -54,9 +54,9 @@ class Periode extends BaseController
         );
         $result = $this->periode_model->insert($data);
         if($result){
-            $this->session->set_flashdata('success', 'New Periode created successfully');
+            $this->session->set_flashdata('success', 'Periode berhasil dibuat');
         } else {
-            $this->session->set_flashdata('error', 'Periode creation failed');
+            $this->session->set_flashdata('error', 'Periode gagal dibuat. Masalah database');
         };
 
         redirect('akademik/periode');
@@ -85,7 +85,7 @@ class Periode extends BaseController
         );
         $result = $this->periode_model->update($data,$id_periode);
         if($result){
-            $this->session->set_flashdata('success', 'New Periode updated successfully');
+            $this->session->set_flashdata('success', 'Periode berhasil diubah');
         } else {
             $this->session->set_flashdata('error', 'Gagal mengupdate periode');
         };
@@ -97,9 +97,9 @@ class Periode extends BaseController
         $id_periode = $this->input->post("id_periode");
         $result = $this->periode_model->delete($id_periode);
         if($result){
-            $this->session->set_flashdata('success', 'User Deleted successfully');
+            $this->session->set_flashdata('success', 'Periode berhasil dihapus');
         } else {
-            $this->session->set_flashdata('error', 'Delete User failed');
+            $this->session->set_flashdata('error', 'Periode gagal dihapus. Masalah database');
         };
 
         redirect('akademik/periode');
