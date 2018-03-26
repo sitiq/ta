@@ -82,15 +82,7 @@
                             </li>
                             <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a>Judul Proyek<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li class="sub_menu"><a href="akdm_daftartabaru.html">Baru</a>
-                                            </li>
-                                            <li><a href="akdm_daftarta.html">Perpanjangan</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="proposal.html">Proposal</a></li>
+                                    <li><a href="proposal.html">Tugas Akhir</a></li>
                                     <li><a href="akdm_daftarsidang.html">Sidang</a></li>
                                     <li><a href="akdm_daftaryudisium.html">Yudisium</a></li>
                                 </ul>
