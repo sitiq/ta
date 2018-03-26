@@ -96,7 +96,7 @@
                                 </ul>
                             </li>
                             <li><a href="<?php echo base_url()?>akademik/periode/"><i class="fa fa-clock-o"></i> Periode Registrasi</a></li>
-                            <li><a href="<?php echo base_url()?>dosen/proyek"><i class="fa fa-files-o"></i> Project</a></li>
+                            <li><a href="<?php echo base_url()?>akademik/proyek/"><i class="fa fa-files-o"></i> Proyek</a></li>
                         </ul>
                     </div>
                 </div>

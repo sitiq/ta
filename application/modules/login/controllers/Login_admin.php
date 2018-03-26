@@ -40,7 +40,11 @@ class Login_admin extends CI_Controller
         }
         else
         {
-            redirect('akademik');
+            if($id_user_role == ROLE_AKADEMIK) {
+                redirect('akademik');
+            }elseif($id_user_role == ROLE_KAPRODI) {
+                redirect('kaprodi');
+            }
         }
     }
     
@@ -70,6 +74,7 @@ class Login_admin extends CI_Controller
             {
                 foreach ($result as $res)
                 {
+                    $id_user_role = $res->id_user_role;
                     $sessionArray = array('id_user'=>$res->id_user,
                                             'role'=>$res->id_user_role,
                                             'roleText'=>$res->role,
@@ -79,7 +84,11 @@ class Login_admin extends CI_Controller
                                     
                     $this->session->set_userdata($sessionArray);
                     
-                    redirect('akademik');
+                    if($id_user_role == ROLE_AKADEMIK) {
+                        redirect('akademik');
+                    }elseif($id_user_role == ROLE_KAPRODI) {
+                        redirect('kaprodi');
+                    }
                 }
             }
             else

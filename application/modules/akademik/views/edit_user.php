@@ -116,7 +116,5 @@
             z.style.display = "block";
         }
     }
-
-
 </script>
 <script src="<?php echo base_url() . 'elusistatic/js/addEditUser.js'?>"></script>

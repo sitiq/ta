@@ -8,7 +8,7 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12 text-center">
-                <img src="<?php echo base_url() ?>elusistatic/assets/images/access.png" alt="Access Denied Image" />
+                <img src="<?php echo base_url() ?>elusistatic/images/access.png" alt="Access Denied Image" />
             </div>
         </div>
     </section>

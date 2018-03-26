@@ -55,7 +55,6 @@
                                 </ul>
                             </li>
                             <li><a href="<?php echo base_url();?>mahasiswa/pengumuman"><i class="fa fa-bell"></i> Pengumuman</a></li>
-                            <li><a href="<?php echo base_url();?>mahasiswa/berkas"><i class="fa fa-files-o"></i> Berkas</a></li>
                         </ul>
                     </div>
                 </div>

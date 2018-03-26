@@ -145,10 +145,49 @@ class User_model extends CI_Model{
 
     public function delete($id){
         $this->db->trans_start();
+
         
+        $this->db->select('id_user_role');
+        $this->db->from('user');
+        $this->db->where('id_user',$id);
+        $query = $this->db->get();
+        $role = $query->result()[0]->id_user_role;
+
         $this->db->set('isDeleted',1);
         $this->db->where('id_user',$id);
         $this->db->update('user');
+
+        if($role == ROLE_MAHASISWA){
+            $data_another_table = array(
+                'isDeleted' => 1
+            );
+            $this->db->where('id_user',$id);
+            $this->db->update('mahasiswa', $data_another_table);
+        }
+
+        if($role == ROLE_DOSEN){
+            $data_another_table = array(
+                'isDeleted' => 1
+            );
+            $this->db->where('id_user',$id);
+            $this->db->update('dosen', $data_another_table);
+        }
+
+        if($role == ROLE_AKADEMIK){
+            $data_another_table = array(
+                'isDeleted' => 1
+            );
+            $this->db->where('id_user',$id);
+            $this->db->update('akademik', $data_another_table);
+        }
+
+        if($role == ROLE_KAPRODI){
+            $data_another_table = array(
+                'isDeleted' => 1
+            );
+            $this->db->where('id_user',$id);
+            $this->db->update('kaprodi', $data_another_table);
+        }
 
         $this->db->trans_complete();
         $result = $this->db->trans_status();

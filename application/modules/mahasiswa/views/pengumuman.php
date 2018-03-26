@@ -22,24 +22,59 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <table id="datatable-akademik" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap bulk_action" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th>Judul</th>
-                            <th>Deskripsi</th>
-                            <th>Lampiran</th>
+                            <th>Judul Pengumuman</th>
                             <th>Tanggal Unggah</th>
-                            <th>Unduh</th>
+                            <th>Lampiran</th>
+                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Syarat Sidang</td>
-                            <td>Syarat Sidang terbaru</td>
-                            <td>syarat-sidang.pdf</td>
-                            <td>28/02/2018</td>
-                            <td><button class="btn btn-default"><i class="fa fa-download"></i></button></td>
-                        </tr>
+                        <?php
+                        $i=1;
+                        foreach($dataTable as $data) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php echo substr($data->judul,0,15) . "..."; ?>
+                                </td>
+                                <div class="modal fade" id="seeModal<?php echo $data->id_pengumuman; ?>" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Pengumuman</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p align="center"><b><?php echo $data->judul ?></b></p>
+                                                <br>
+                                                <br>
+                                                <p id="teks">
+                                                    <?php echo $data->deskripsi;?>
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <td>
+                                    <?php echo $data->createdDtm; ?>
+                                </td>
+                                <td>
+                                    <?php echo (isset($data->lampiran) ?  explode('-', $data->lampiran)[1] : "Tidak ada lampiran");?>
+                                </td>
+                                <td align="center">
+                                    <a class="btn btn-sm btn-info" title="Download" data-toggle='modal' id="see_modal" data-target='#seeModal<?php echo $data->id_pengumuman; ?>'>
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php $i++; } ?>
                         </tbody>
                     </table>
                 </div>
