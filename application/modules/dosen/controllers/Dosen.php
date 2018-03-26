@@ -9,6 +9,8 @@
 class Dosen extends BaseController
 {
     function index() {
-        $this->loadViews("dashboard", NULL, NULL, NULL);
+        $id = $this->session->userdata('role');
+        $data['id'] = $id;
+        $this->loadViews("dashboard", NULL, $data, NULL);
     }
 }

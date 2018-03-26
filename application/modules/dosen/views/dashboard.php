@@ -5,6 +5,7 @@
  * Time: 11:32
  * Description:
  */
+var_dump($id);
 ?>
 <div class="">
     <div class="page-title">
