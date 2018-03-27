@@ -24,17 +24,13 @@ class yudisium_model extends CI_Model
         $result = $query->result();
         return $result;
     }
-    /**
-     * This function is used to get the nim mahasiswa who is login
-     * @param string $id : This is optional search text
-     * @return array $result : This is result
-     */
-    function cekMahasiswa($id)
+
+    function cekMahasiswa($userId)
     {
         $this->db->select('mahasiswa.id_mahasiswa');
         $this->db->from('mahasiswa');
         $this->db->join('user','mahasiswa.id_user = user.id_user');
-        $this->db->where('mahasiswa.id_user', $id);
+        $this->db->where('mahasiswa.id_user', $userId);
         $query = $this->db->get();
 
         $result = $query->result();

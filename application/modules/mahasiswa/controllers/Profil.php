@@ -31,7 +31,7 @@ class Profil extends BaseController
             $data['profilInfo'] = $this->profil_model->getMahasiswa($userId);
             $data['userId'] = $userId;
             $data['userRole'] = $userRole;
-
+            $this->global['pageTitle'] = "Elusi : Profil";
 
             $this->loadViews("profil", $this->global, $data, NULL);
         }
@@ -49,7 +49,6 @@ class Profil extends BaseController
         {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('nim','NIM','trim|required|xss_clean');
             $this->form_validation->set_rules('nama','Nama Mahasiswa','trim|required|xss_clean');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|xss_clean|max_length[128]');
             $this->form_validation->set_rules('mobile','Mobile','trim|required|xss_clean');
@@ -62,7 +61,6 @@ class Profil extends BaseController
             else
             {
                 $id_mahasiswa = $this->input->post('id_mahasiswa');
-                $nim = $this->input->post('nim');
                 $nama = $this->input->post('nama');
                 $jumlah_sks = $this->input->post('jumlah_sks');
                 $ipk = $this->input->post('ipk');
@@ -71,33 +69,25 @@ class Profil extends BaseController
                 $skill = $this->input->post('skill');
                 $pengalaman = $this->input->post('pengalaman');
 
-				$cekNim = $this->profil_model->cekNim($id_mahasiswa);
+                $mahasiswaInfo = array(
+                    'nama'=>$nama,
+                    'jumlah_sks'=>$jumlah_sks,
+                    'ipk'=>$ipk,
+                    'email'=>$email,
+                    'mobile'=>$mobile,
+                    'skill'=>$skill,
+                    'pengalaman'=>$pengalaman,
+                    'createdDtm'=>date('Y-m-d H:i:s'));
 
-                // Apabila NIM empty atau nim di tabel mahasiswa tidak ada yang memiliki
-                if (empty($cekNim)) {
-                    $mahasiswaInfo = array(
-                        'nim'=>$nim,
-                        'nama'=>$nama,
-                        'jumlah_sks'=>$jumlah_sks,
-                        'ipk'=>$ipk,
-                        'email'=>$email,
-                        'mobile'=>$mobile,
-                        'skill'=>$skill,
-                        'pengalaman'=>$pengalaman,
-                        'createdDtm'=>date('Y-m-d H:i:s'));
+                $result = $this->profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
 
-                    $result = $this->profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
-
-                    if($result > 0)
-                    {
-                        $this->session->set_flashdata('success', 'Profil created successfully');
-                    }
-                    else
-                    {
-                        $this->session->set_flashdata('error', 'Profil creation failed');
-                    }
-                } else {
-                    $this->session->set_flashdata('error', 'NIM sudah ada');
+                if($result > 0)
+                {
+                    $this->session->set_flashdata('success', 'Ubah profil berhasil!');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Ubah profil gagal!');
                 }
                 redirect('mahasiswa/profil');
             }
@@ -141,11 +131,11 @@ class Profil extends BaseController
                 $result = $this->profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Photo updated');
+                    $this->session->set_flashdata('success', 'Ubah foto berhasil!');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Photo update failed');
+                    $this->session->set_flashdata('error', 'Ubah foto gagal!');
                 }
             }
             redirect('mahasiswa/profil');

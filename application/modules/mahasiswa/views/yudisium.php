@@ -5,7 +5,7 @@
  * Time: 07:28
  * Description:
  */
-var_dump($idMahasiswa);
+//var_dump($idMahasiswa);
 //var_dump($cekPeriode);
 ?>
 <?php

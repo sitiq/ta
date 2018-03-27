@@ -20,7 +20,7 @@ class ChangePassword extends BaseController
     }
 
     /**
-     * This function is used to load the change password screen
+     * This function is used to load the main page
      */
     function index()
     {
@@ -30,7 +30,7 @@ class ChangePassword extends BaseController
         }
         else
         {
-            $this->global['pageTitle'] = 'Komsi : Change Password';
+            $this->global['pageTitle'] = 'Elusi : Change Password';
 
             $this->loadViews("change_password", $this->global, NULL, NULL);
         }
@@ -67,7 +67,7 @@ class ChangePassword extends BaseController
 
                 if(empty($resultPas))
                 {
-                    $this->session->set_flashdata('nomatch', 'Your old password not correct');
+                    $this->session->set_flashdata('nomatch', 'Tidak sesuai dengan password lama anda');
                     redirect('mahasiswa/changepassword');
                 }
                 else
@@ -76,8 +76,8 @@ class ChangePassword extends BaseController
 
                     $result = $this->change_password_model->changePassword($this->vendorId, $usersData);
 
-                    if($result > 0) { $this->session->set_flashdata('success', 'Password updation successful'); }
-                    else { $this->session->set_flashdata('error', 'Password updation failed'); }
+                    if($result > 0) { $this->session->set_flashdata('success', 'Ubah password berhasil!'); }
+                    else { $this->session->set_flashdata('error', 'Ubah password gagal!'); }
 
                     redirect('mahasiswa/changepassword');
                 }

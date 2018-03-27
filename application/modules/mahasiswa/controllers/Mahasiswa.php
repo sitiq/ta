@@ -8,7 +8,17 @@
 
 class Mahasiswa extends BaseController
 {
-    function index() {
-        $this->loadViews("dashboard", NULL, NULL, NULL);
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('dashboard_model');
+        $this->isLoggedIn();
+    }
+
+    public function index(){
+        $userId = $this->vendorId;
+
+        $data['pesanInfo'] = $this->dashboard_model->getPesanList($userId);
+        $this->global['pageTitle'] = "Elusi : Dashboard";
+        $this->loadViews("dashboard",$this->global,$data);
     }
 }

@@ -5,6 +5,7 @@
  * Time: 11:32
  * Description:
  */
+//var_dump($pesanInfo);
 ?>
 <div class="">
     <div class="page-title">
@@ -22,62 +23,35 @@
                 </div>
                 <div class="x_content">
                     <ul class="list-unstyled timeline">
+                        <?php
+                        if(!empty($pesanInfo))
+                        {
+                            foreach($pesanInfo as $record)
+                            {
+                            ?>
                         <li>
                             <div class="block">
                                 <div class="tags">
                                     <a href="" class="tag">
-                                        <span>10/02/2018</span>
+                                        <span><?php echo substr($record->createdDtm,0,10) ?></span>
                                     </a>
+                                    <span class="label label-warning"><?php echo substr($record->createdDtm,10,6) ?></span>
                                 </div>
                                 <div class="block_content">
                                     <h2 class="title">
-                                        <a>13:20</a>
-                                    </h2>
-                                    <div class="byline">
-                                    </div>
-                                    <p class="excerpt">Proposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahanProposal kurang halaman pengesahan
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="block">
-                                <div class="tags">
-                                    <a href="" class="tag">
-                                        <span>05/02/2018</span>
-                                    </a>
-                                </div>
-                                <div class="block_content">
-                                    <h2 class="title">
-                                        <a>10:45</a>
+                                        <a><?php echo $record->nama ?></a>
                                     </h2>
                                     <div class="byline">
                                         <span></span>
                                     </div>
-                                    <p class="excerpt">Judul TA : "Sistem Informasi Cuti Mahasiswa"
-                                    </p>
+                                    <p class="excerpt well"><?php echo $record->deskripsi ?></p>
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <div class="block">
-                                <div class="tags">
-                                    <a href="" class="tag">
-                                        <span>10/01/2018</span>
-                                    </a>
-                                </div>
-                                <div class="block_content">
-                                    <h2 class="title">
-                                        <a>14:52</a>
-                                    </h2>
-                                    <div class="byline">
-                                        <span></span>
-                                    </div>
-                                    <p class="excerpt">Pendaftaran Tugas Akhir berhasil
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
+                                <?php
+                            }
+                        }
+                        ?>
                     </ul>
 
                 </div>

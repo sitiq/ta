@@ -5,9 +5,7 @@
  * Time: 07:28
  * Description:
  */
-var_dump($idMahasiswa);
-//echo date('Y-m-d h:s:i');
-?>
+//var_dump($idMahasiswa);?>
 <?php
 $id_berkas_sidang = '';
 $nama_berkas = '';

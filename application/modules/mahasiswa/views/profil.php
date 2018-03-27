@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by nad.
+ * Date: 20/03/2018
+ * Time: 10:28
+ * Description:
+ */
 //echo $userId + ' ';
 //echo $userRole;
 //?>
@@ -199,8 +205,6 @@ if(!empty($profilInfo))
                                     <div class="clearfix"></div>
                                     <label for="fullname">Nama Lengkap</label>
                                     <input type="text" id="fullname" class="form-control" name="nama" value="<?php echo $nama ?>"><br>
-                                    <label for="nim">NIM</label>
-                                    <input type="text" id="nim" name="nim" class="form-control" data-parsley-trigger="change" value="<?php echo $nim ?>"/><br>
                                     <label for="skill">Keahlian <small>(pisahkan dengan 'koma')</small></label>
                                     <input class="form-control" id="skill" name="skill" value="<?php echo $skill ?>">
                                     <br/>

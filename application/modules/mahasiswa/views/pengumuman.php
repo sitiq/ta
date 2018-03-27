@@ -2,7 +2,7 @@
 /**
  * Created by nad.
  * Date: 23/03/2018
- * Time: 07:27
+ * Time: 08:27
  * Description:
  */
 ?>
@@ -22,13 +22,13 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap bulk_action" cellspacing="0" width="100%">
+                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>Judul Pengumuman</th>
                             <th>Tanggal Unggah</th>
                             <th>Lampiran</th>
-                            <th>Aksi</th>
+                            <th>Lihat</th>
                         </tr>
                         </thead>
                         <tbody>
