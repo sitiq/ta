@@ -6,6 +6,7 @@
  * Description:
  */
 //var_dump($berkasInfo);
+var_dump($sidangInfo);
 ?>
 <?php
 $id_berkas_sidang = '';
@@ -137,31 +138,43 @@ if(!empty($sidangInfo))
                                             ?>
                                             <td>
                                                 <?php if($record->id_berkas_sidang == '1' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/sidang/permohonan/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                    <a href="<?php echo base_url()?>uploads/sidang/usulan-sidang/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 <?php }elseif($record->id_berkas_sidang == '2' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/sidang/berita-acara/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                    <a href="<?php echo base_url()?>uploads/sidang/krs/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 <?php }elseif($record->id_berkas_sidang == '3' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/sidang/surat-tanda-terima/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                    <a href="<?php echo base_url()?>uploads/sidang/rekap-nilai/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 <?php }elseif($record->id_berkas_sidang == '4' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/sidang/poster/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                    <a href="<?php echo base_url()?>uploads/sidang/kartu-hasil-studi/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 <?php }elseif($record->id_berkas_sidang == '5' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/sidang/laporan-final/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                    <a href="<?php echo base_url()?>uploads/sidang/kartu-bimbingan/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 <?php }elseif($record->id_berkas_sidang == '6' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/sidang/ijazah/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                    <a href="<?php echo base_url()?>uploads/sidang/ktm/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 <?php }elseif($record->id_berkas_sidang == '7' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/sidang/sertifikat/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                    <a href="<?php echo base_url()?>uploads/sidang/riwayat-registrasi/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                <?php }elseif($record->id_berkas_sidang == '8' && $record->path !=''){?>
+                                                    <a href="<?php echo base_url()?>uploads/sidang/proposal/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                <?php }elseif($record->id_berkas_sidang == '9' && $record->path !=''){?>
+                                                    <a href="<?php echo base_url()?>uploads/sidang/laporan/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                <?php }elseif($record->id_berkas_sidang == '10' && $record->path !=''){?>
+                                                    <a href="<?php echo base_url()?>uploads/sidang/cover/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 <?php }else{?>

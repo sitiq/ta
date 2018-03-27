@@ -63,32 +63,9 @@ class Sidang extends BaseController
                 } else {
                     $this->session->set_flashdata('error', 'File accept failed');
                 }
-                $this->editOld($idMhs);
+//                $this->editOld($idMhs);
+                redirect('akademik/sidang/editOld/'.$idMhs);
             }else{echo "asda";}
-        }
-    }
-    function reject($idValidSidang=null, $idMhs)
-    {
-        if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
-        else {
-            if (!empty($idValidSidang)) {
-                $berkasInfo = array(
-                    'id_valid_sidang' => $idValidSidang,
-                    'isValid' => 3,
-                );
-
-                $result = $this->sidang_model->decBerkas($berkasInfo, $idValidSidang);
-
-                if ($result == true) {
-                    $this->session->set_flashdata('success', 'File rejected');
-                } else {
-                    $this->session->set_flashdata('error', 'File reject failed');
-                }
-                $this->editOld($idMhs);
-            }
         }
     }
     /**

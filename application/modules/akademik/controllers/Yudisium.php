@@ -1,8 +1,8 @@
 <?php
 /**
  * Created by nad.
- * Date: 26/03/2018
- * Time: 21:15
+ * Date: 27/03/2018
+ * Time: 07:10
  * Description:
  */
 
@@ -43,7 +43,7 @@ class Yudisium extends BaseController
             $this->loadViews("edit_yudisium", $this->global, $data, NULL);
         }
     }
-    function accept($idValidYudisium=null, $idMhs)
+    function accept($idValidYudisium=null, $idYudisium)
     {
         if($this->isAkademik() == TRUE)
         {
@@ -63,8 +63,67 @@ class Yudisium extends BaseController
                 } else {
                     $this->session->set_flashdata('error', 'File accept failed');
                 }
-                $this->editOld($idMhs);
+                redirect('akademik/yudisium/editOld/'.$idYudisium);
+//                $this->editOld($idMhs);
             }else{echo "asda";}
+        }
+    }
+    /**
+     * This function is used to add new message to the system
+     */
+    function pesan($idValidYudisium=null)
+    {
+        if($this->isAkademik() == TRUE)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            $this->load->library('form_validation');
+
+            $idMhs = $this->input->post('id_mahasiswa');
+
+            $this->form_validation->set_rules('nama','Judul','trim|required|max_length[128]');
+            $this->form_validation->set_rules('deskripsi','Pesan','trim|required|max_length[128]');
+
+            if($this->form_validation->run() == FALSE)
+            {
+                $this->editOld($idMhs);
+            }
+            else
+            {
+                if (!empty($idValidYudisium)) {
+                    $berkasInfo = array(
+                        'id_valid_yudisium' => $idValidYudisium,
+                        'isValid' => 3,
+                    );
+
+                    $result = $this->yudisium_model->decBerkas($berkasInfo, $idValidYudisium);
+
+                    if ($result == true) {
+                        $this->session->set_flashdata('success', 'File rejected');
+                    } else {
+                        $this->session->set_flashdata('error', 'File reject failed');
+                    }
+                    $this->editOld($idMhs);
+                }
+                $nama = $this->input->post('nama');
+                $deskripsi = $this->input->post('deskripsi');
+
+                $pesanInfo = array('id_mahasiswa'=>$idMhs, 'nama'=>$nama, 'deskripsi'=>$deskripsi);
+
+                $result = $this->yudisium_model->addPesan($pesanInfo);
+
+                if($result > 0)
+                {
+                    $this->session->set_flashdata('success', 'Revision sent');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Revision unsent');
+                }
+                $this->editOld($idMhs);
+            }
         }
     }
 }
