@@ -106,8 +106,8 @@ class Sidang extends BaseController
 
             $idMhs = $this->input->post('id_mahasiswa');
 
-            $this->form_validation->set_rules('judul','Judul','trim|required|max_length[128]');
-            $this->form_validation->set_rules('pesan','Pesan','trim|required|max_length[128]');
+            $this->form_validation->set_rules('nama','Judul','trim|required|max_length[128]');
+            $this->form_validation->set_rules('deskripsi','Pesan','trim|required|max_length[128]');
 
             if($this->form_validation->run() == FALSE)
             {
@@ -130,10 +130,10 @@ class Sidang extends BaseController
                     }
                     $this->editOld($idMhs);
                 }
-                $judul = $this->input->post('judul');
-                $pesan = $this->input->post('pesan');
+                $nama = $this->input->post('nama');
+                $deskripsi = $this->input->post('deskripsi');
 
-                $pesanInfo = array('id_mahasiswa'=>$idMhs, 'judul'=>$judul, 'pesan'=>$pesan);
+                $pesanInfo = array('id_mahasiswa'=>$idMhs, 'nama'=>$nama, 'deskripsi'=>$deskripsi);
 
                 $result = $this->sidang_model->addPesan($pesanInfo);
 

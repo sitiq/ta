@@ -193,10 +193,10 @@ if(!empty($sidangInfo))
                                                                             <div class="form-group">
                                                                                 <input type="hidden" class="form-control" name="id_mahasiswa" value="<?php echo $sidangInfo[0]->id_mahasiswa?>">
                                                                                 <label class="col-sm-3 control-label">Judul</label>
-                                                                                <input type="text" class="form-control" name="judul" value="<?php echo $record->nama_berkas?>">
+                                                                                <input type="text" class="form-control" name="nama" value="<?php echo $record->nama_berkas?>">
                                                                                 <label class="col-sm-3 control-label">Pesan</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <textarea class="form-control" style="height:55px;" id="pesan" name="pesan"></textarea>
+                                                                                    <textarea class="form-control" style="height:55px;" id="pesan" name="deskripsi"></textarea>
                                                                                 </div>
                                                                             </div>
                                                                             <input type="submit" value="Submit" class="btn btn-primary">

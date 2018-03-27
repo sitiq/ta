@@ -90,7 +90,7 @@ class yudisium_model extends CI_Model
      * @param array $berkasInfo : This is mahasiswas updated information
      * @param number $nim : This is mahasiswa id
      */
-    function editBerkas($berkasInfo, $id_berkas, $idMhs)
+    function editBerkas($berkasInfo, $id_berkas)
     {
         $this->db->where('id_valid_yudisium', $id_berkas);
         $this->db->update('validasi_berkas_yudisium', $berkasInfo);
