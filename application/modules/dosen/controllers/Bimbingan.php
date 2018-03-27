@@ -33,6 +33,7 @@ class Bimbingan extends BaseController
             $data['bimbinganInfo'] = $this->bimbingan_model->getBimbingan($userId);
             $data['userId'] = $userId;
             $data['userRole'] = $userRole;
+            $this->global['pageTitle'] = "Elusi : Bimbingan";
 
             $this->loadViews("bimbingan", $this->global, $data, NULL);
         }

@@ -5,7 +5,7 @@
  * Time: 07:30
  * Description:
  */
-var_dump($pendadaranInfo);
+//var_dump($pendadaranInfo);
 ?>
 <?php
 $id_sidang = '';
