@@ -55,13 +55,10 @@
 <!-- starrr -->
 <script src="<?php echo base_url()?>elusistatic/vendors/starrr/dist/starrr.js"></script>
 <!-- Custom Theme Scripts -->
-<script src="<?php echo base_url()?>elusistatic/build/js/custom.min.js"></script>
+<script src="<?php echo base_url()?>elusistatic/build/js/custom.js"></script>
 <!-- Datatables -->
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-<script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>

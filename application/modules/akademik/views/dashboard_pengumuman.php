@@ -33,15 +33,15 @@
                 <a href="adduser.html">
                     <a href="<?php echo base_url() ?>akademik/pengumuman/add_form" class="btn btn-success pull-right" style="margin-bottom: 2%">Buat Pengumuman</button>
                     </a>
-                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap bulk_action" cellspacing="0" width="100%">
+                    <table id="datatable" class="table table-striped table-bordered dt-responsive bulk_action" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>Judul Pengumuman</th>
-                                <th>Detail</th>
-                                <th>Dibuat pada:</th>
-                                <th>Terupdate pada:</th>
-                                <th>Lampiran</th>
-                                <th>Aksi</th>
+                                <th class="col-md-3">Judul Pengumuman</th>
+                                <th class="col-md-1">Detail</th>
+                                <th class="col-md-1">Dibuat pada:</th>
+                                <th class="col-md-1">Terupdate pada:</th>
+                                <th class="col-md-3">Lampiran</th>
+                                <th class="col-md-2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,7 +51,7 @@
                             ?>
                             <tr>
                                 <td>
-                                    <?php echo substr($data->judul,0,15) . "..."; ?>
+                                    <?php echo $data->judul; ?>
                                 </td>
                                 <td align="center">
                                     <a class="btn btn-sm btn-default" data-toggle='modal' id="see_modal" data-target='#seeModal<?php echo $data->id_pengumuman; ?>'>
