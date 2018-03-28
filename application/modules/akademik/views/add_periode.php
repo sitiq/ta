@@ -1,7 +1,7 @@
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>User
+            <h3>Periode
                 <small>Add</small>
             </h3>
         </div>

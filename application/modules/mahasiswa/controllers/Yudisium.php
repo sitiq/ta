@@ -48,7 +48,7 @@ class Yudisium extends BaseController
 
         $idBerkas = 1;
 
-//            insert to yudisium table
+//            insert to validasi yudisium table
         for ($i=1;$i<=7;$i++){
             $daftarId = array(
                 "id_yudisium"=>$idYudisium,
