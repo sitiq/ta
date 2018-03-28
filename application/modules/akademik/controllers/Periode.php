@@ -38,7 +38,6 @@ class Periode extends BaseController
         $thn_ajaran2 = trim($this->input->post('thn2'));
         $tahun_ajaran = $thn_ajaran1 . "/" . $thn_ajaran2;
 
-
         $tanggal_awal = date_format(date_create_from_format('d/m/Y', $this->input->post('tanggal_awal')), 'Y-m-d');
         $tanggal_akhir = date_format(date_create_from_format('d/m/Y', $this->input->post('tanggal_akhir')), 'Y-m-d');
 

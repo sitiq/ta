@@ -82,7 +82,7 @@
                             </li>
                             <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="proposal.html">Tugas Akhir</a></li>
+                                    <li><a href="<?php echo base_url()?>akademik/tugas_akhir">Tugas Akhir</a></li>
                                     <li><a href="<?php echo base_url()?>akademik/sidang">Sidang</a></li>
                                     <li><a href="<?php echo base_url()?>akademik/yudisium">Yudisium</a></li>
                                 </ul>

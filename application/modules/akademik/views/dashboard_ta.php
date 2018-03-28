@@ -9,6 +9,29 @@
 
         <!--tabel ta mahasiswa-->
         <div class="row">
+            <div class="col-md-4">
+                <?php
+                        $this->load->helper('form');
+                        $error = $this->session->flashdata('error');
+                        if($error)
+                        {
+                    ?>
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <?php echo $this->session->flashdata('error'); ?>
+                    </div>
+                    <?php } ?>
+                    <?php  
+                        $success = $this->session->flashdata('success');
+                        if($success)
+                        {
+                    ?>
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <?php echo $this->session->flashdata('success'); ?>
+                    </div>
+                    <?php } ?>
+            </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
@@ -64,12 +87,28 @@
                                         <span class="label label-default">Nonaktif</span>
                                         <?php } ?>
                                     </td>
-                                    <td align="center" style="vertical-align:middle">
-                                        <a data-toggle="tooltip" title="Edit" href="<?php echo base_url(); ?>akademik/tugas_akhir/detail/<?php echo $data->id_ta; ?>"
-                                            class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </td>
+                                    <?php if($data->status_pengambilan == 'terplotting') { ?>
+                                        <td align="center" style="vertical-align:middle">
+                                            <a data-toggle="tooltip" title="Edit" href="<?php echo base_url(); ?>akademik/tugas_akhir/detail/<?php echo $data->id_ta; ?>"
+                                                class="btn btn-primary">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        </td>
+                                    <?php } elseif($data->status_pengambilan == 'proses') { ?>
+                                        <td align="center" style="vertical-align:middle">
+                                            <a data-toggle="tooltip" title="Edit" href="<?php echo base_url(); ?>akademik/tugas_akhir/plotting/<?php echo $data->id_ta; ?>"
+                                                class="btn btn-primary">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        </td>
+                                    <?php } else { ?>
+                                        <td align="center" style="vertical-align:middle">
+                                            <a data-toggle="tooltip" title="Edit" href="<?php echo base_url(); ?>akademik/tugas_akhir/detail/<?php echo $data->id_ta; ?>"
+                                                class="btn btn-primary">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        </td>
+                                    <?php } ?>
                                 </tr>
                                 <?php } ?>
                             </tbody>

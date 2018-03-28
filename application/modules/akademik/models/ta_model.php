@@ -14,10 +14,13 @@ class Ta_model extends CI_Model{
         return $query->result();
     }
 
-    public function getPengajuanTA($id_ta){
+    public function getPengajuanTA($id_ta,$status = NULL){
         $this->db->select("*");
         $this->db->from('pengajuan_ta');
         $this->db->where('id_ta',$id_ta);
+        if($status != NULL){
+            $this->db->where('status',$status);
+        }
         $this->db->order_by('pilihan', 'ASC');
         $query = $this->db->get();
 
@@ -52,6 +55,16 @@ class Ta_model extends CI_Model{
         return $query->result();
     }
 
+    public function check_proyek($id_proyek){
+        $this->db->select("*");
+        $this->db->from('pengajuan_ta');
+        $this->db->where('id_proyek',$id_proyek);
+        $this->db->where('status','diterima');
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ){ return TRUE; } else { return FALSE; }
+    }
+
     public function getStatus(){
         $this->db->select("status");
         $this->db->from('proyek');
@@ -59,8 +72,6 @@ class Ta_model extends CI_Model{
 
         return $query->result();
     }
-
-
 
     public function insert($data){
         $this->db->trans_start();
@@ -114,8 +125,7 @@ class Ta_model extends CI_Model{
         
         $this->db->where('id_ta',$id_ta);
         $this->db->update('tugas_akhir',$data_ta);
-
-        /* Update tabel log */
+        
         $this->db->select('*');
         $this->db->from('pengajuan_ta');
         $this->db->where('id_pengajuan_ta',$id_pengajuan_ta);
@@ -125,13 +135,28 @@ class Ta_model extends CI_Model{
             $result = $this->getProyek($query->result()[0]->id_proyek);
             $judul_ta = $result[0]->nama_proyek;
             $nama_dosen = $result[0]->nama_dosen;
+
+            /* Insert tabel dosbing*/
+            $data_dosbing = array(
+                'id_dosen' => $result[0]->id_dosen,
+                'id_mahasiswa' => $id_mahasiswa
+            );
+            $this->db->insert('dosbing',$data_dosbing);
+
         } else {
             $result = $this->getUsulan($id_pengajuan_ta);
             $judul_ta = $result[0]->judul;
             $nama_dosen = $this->getDosen($result[0]->id_dosen);
+
+            /* Insert tabel dosbing*/
+            $data_dosbing = array(
+                'id_dosen' => $result[0]->id_dosen,
+                'id_mahasiswa' => $id_mahasiswa
+            );
+            $this->db->insert('dosbing',$data_dosbing);
         }
 
-
+        /* Insert tabel log */
         $data_log = array(
             'id_mahasiswa' => $id_mahasiswa,
             'nama' => 'Tugas akhir terplotting',
@@ -140,18 +165,19 @@ class Ta_model extends CI_Model{
                             <tr>
                             <td>Judul</td>
                             <td>:</td>
-                            <td>'. $judul_ta .'</td>
+                            <td><strong>'. $judul_ta .'</strong></td>
                             <tr>
                             <tr>
                             <td>Dosen Pembimbing</td>
                             <td>:</td>
-                            <td>'. $nama_dosen .'</td>
+                            <td><strong>'. $nama_dosen .'</strong></td>
                             <tr>
                             </table> '
         );
 
         $this->db->insert('log_pesan',$data_log);
 
+       
         $this->db->trans_complete();
         
         $result = $this->db->trans_status();
