@@ -8,7 +8,15 @@
 
 class Pengumuman extends BaseController
 {
-    function index() {
-        $this->loadViews("pengumuman", NULL, NULL, NULL);
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('pengumuman_model');
+        $this->isLoggedIn();
+    }
+
+    public function index(){
+        $data['dataTable'] = $this->pengumuman_model->getPengumumanList();
+        $this->global['pageTitle'] = "Elusi : Pengumuman";
+        $this->loadViews("pengumuman",$this->global,$data);
     }
 }

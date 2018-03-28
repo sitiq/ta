@@ -3,8 +3,8 @@
 class Profil_model extends CI_Model
 {
     /**
-     * This function is used to get the dosen listing count
-     * @param string $searchText : This is optional search text
+     * This function is used to get the dosen listing
+     * @param string $userId : This is hidden id
      * @return array $result : This is result
      */
     function getDosen($userId)
