@@ -45,16 +45,39 @@ class Sidang extends BaseController
             $idSidang = $this->sidang_model->addNewSidang($infoSidang);
 
             $idBerkas = 1;
-
-//            insert to sidang table
+//            insert to validasi table
             for ($i=1;$i<=10;$i++){
                 $daftarId = array(
                     "id_sidang"=>$idSidang,
                     "id_berkas_sidang"=>$idBerkas
                 );
-                $result = $this->sidang_model->addNewValidasi($daftarId);
+                $validasi = $this->sidang_model->addNewValidasi($daftarId);
                 $idBerkas++;
             }
+//            $jadwalInfo = array(
+//                "id_sidang"=>$idSidang
+//            );
+//            $idJadwal = $this->sidang_model->addJadwal($jadwalInfo);
+////            sukses
+//            $idAnggota = $this->sidang_model->addAnggota($jadwalInfo);
+
+            $anggotaInfo = array(
+                "id_sidang"=>$idSidang,
+                "id_anggota_sidang"=>$idAnggota
+            );
+            $idPenilaian = $this->sidang_model->addPenilaian($anggotaInfo);
+
+//            insert to komponen nilai table
+            $idKomponen = 1;
+            for ($i=1;$i<=10;$i++){
+                $daftarNilaiId = array(
+                    "id_penilaian"=>$idPenilaian,
+                    "id_komponen"=>$idKomponen
+                );
+                $result = $this->sidang_model->addNewKomponenNilai($daftarNilaiId);
+                $idKomponen++;
+            }
+
 //            lebih dari 0 berarti ada data yg masuk
             if ($result>0)
             {

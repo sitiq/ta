@@ -60,12 +60,12 @@ if(!empty($yudisiumInfo))
                 <div class="col-md-6">
                     <div class="row">
                         <span class="col-md-2 badge"><strong>NIM</strong></span>
-                        <span class="col-md-7"><?php $nim?></span>
+                        <span class="col-md-7"><?php echo $nim?></span>
                     </div>
                     <br>
                     <div class="row">
                         <span class="col-md-2 badge"><strong>Nama</strong></span>
-                        <span class="col-md-7"><?php $nama?></span>
+                        <span class="col-md-7"><?php echo $nama?></span>
                     </div>
                 </div>
                 <div class="col-md-6">
