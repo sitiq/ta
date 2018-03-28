@@ -26,6 +26,9 @@ class Sidang extends BaseController
             $userId = $this->vendorId;
             $data['berkasInfo'] = $this->sidang_model->getBerkasInfo($userId);
             $data['idMahasiswa'] = $this->sidang_model->cekMahasiswa($userId);
+
+            $this->global['pageTitle'] = "Elusi : Sidang";
+
             $this->loadViews("sidang", $this->global, $data, NULL);
         }
     }

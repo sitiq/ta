@@ -22,7 +22,6 @@ if(!empty($profilInfo))
     }
 }
 ?>
-
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -166,8 +165,6 @@ if(!empty($profilInfo))
                                     </div>
                                     <label for="nama">Nama Lengkap</label>
                                     <input type="text" id="nama" class="form-control" name="nama" value="<?php echo $nama?>"/><br>
-                                    <label for="nid">NIP / NIDN</label>
-                                    <input type="text" id="nid" name="nid" class="form-control" data-parsley-trigger="change" value="<?php echo $nid?>"/><br>
                                     <label for="skill">Keahlian <small>(pisahkan dengan 'koma')</small></label>
                                     <textarea class="form-control" id="skill" name="skill" id=""rows="3"><?php echo $skill?></textarea>
                                     <br/>

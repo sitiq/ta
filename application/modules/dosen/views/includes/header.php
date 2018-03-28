@@ -11,8 +11,11 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Elusi</title>
-
+    <?php if(isset($pageTitle)){
+        echo '<title>' . $pageTitle . '</title>';
+    } else {
+        echo '<title>e-Lusi</title>';
+    }?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- Bootstrap -->
@@ -77,7 +80,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user"></i>
+                                <i class="fa fa-user"></i> <?php echo $this->session->userdata('name'); ?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">

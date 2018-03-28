@@ -33,6 +33,7 @@ class Login_admin extends CI_Controller
     function isLoggedIn()
     {
         $isLoggedIn = $this->session->userdata('isLoggedIn');
+        $id_user_role = $this->session->userdata('role');
         
         if(!isset($isLoggedIn) || $isLoggedIn != TRUE)
         {

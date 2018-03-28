@@ -5,6 +5,33 @@
  * Time: 07:30
  * Description:
  */
+//var_dump($pendadaranInfo);
+?>
+<?php
+$id_sidang = '';
+$tanggal = '';
+$waktu = '';
+$ruang = '';
+$nim = '';
+$nama = '';
+$nilai_akhir_sidang = '';
+$path = '';
+
+
+if(!empty($pendadaranInfo))
+{
+    foreach ($pendadaranInfo as $uf)
+    {
+        $id_sidang = $uf->id_sidang;
+        $tanggal = $uf->tanggal;
+        $waktu = $uf->waktu;
+        $ruang = $uf->ruang;
+        $nim = $uf->nim;
+        $nama = $uf->nama;
+        $nilai_akhir_sidang = $uf->nilai_akhir_sidang;
+        $path = $uf->path;
+    }
+}
 ?>
 <div class="">
     <div class="page-title">
@@ -40,38 +67,36 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php
+                        if(!empty($pendadaranInfo))
+                        {
+                            foreach($pendadaranInfo as $record)
+                            {
+                        ?>
                         <tr>
-                            <td>02-03-2017</td>
-                            <td>10:45</td>
-                            <td>HY-102</td>
-                            <td>14/386071/SV/09457</td>
-                            <td>Mail Hamidy</td>
-                            <td><button class="btn-sm btn btn-info"><i class="fa fa-download"></i></button></td>
+                            <td><?php echo $record->tanggal ?></td>
+                            <td><?php echo $record->waktu ?></td>
+                            <td><?php echo $record->ruang ?></td>
+                            <td><?php echo $record->nim ?></td>
+                            <td><?php echo $record->nama ?></td>
+                            <td>
+                                <?php if ($record->path != ''){?>
+                                    <a href="<?php echo base_url()?>uploads/sidang/proposal/<?php echo $record->path?>" class="btn btn-sm btn-info" download>
+                                        <i class="fa fa-download"></i>
+                                    </a>
+                                <?php }else{?>
+                                    <button class="btn btn-sm btn-danger" title="tidak ada"><i class="fa fa-times"></i></button>
+                                <?php }?>
+                            </td>
                             <td><a href="dosen_nilaiuji.html" class="btn btn-success btn-sm"><i class="fa fa-tasks"></i></a></td>
-                            <td>3.78</td>
+                            <td><?php echo $record->nilai_akhir_sidang ?></td>
                         </tr>
                         </tbody>
+                        <?php
+                            }
+                        }
+                        ?>
                     </table>
-                    <!--modal-->
-                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel">Pesan Revisi</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <textarea id="" class="col-md-12" rows="5"></textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button style="margin-top: 2%" type="button" class="btn btn-primary">Kirim</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

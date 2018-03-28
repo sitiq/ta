@@ -5,7 +5,7 @@
  * Time: 07:28
  * Description:
  */
-var_dump($idMahasiswa);
+//var_dump($idMahasiswa);
 //var_dump($cekPeriode);
 ?>
 <?php
@@ -135,33 +135,6 @@ if(!empty($berkasInfo))
                                 }
                             }
                             ?>
-                            <!--pane krs semester-->
-                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="krs">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <strong><h4>Berkas KRS Semester Terakhir<small><i> Ditandatangan oleh Dosen Pembimbing Akademik</i></small></h4></strong>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 2mb</th>
-                                        <th>
-                                            <form>
-                                                <input type="number" name="id" hidden>
-                                                <input type="text" name="berkas" value="krs-terakhir" hidden>
-                                                <input type="file" name="path" class="form-control">
-                                            </form>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td colspan="3">
-                                            <button class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                     <!--end pane upload-->

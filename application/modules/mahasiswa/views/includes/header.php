@@ -15,7 +15,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>KOMSI - TA</title>
+    <?php if(isset($pageTitle)){
+        echo '<title>' . $pageTitle . '</title>';
+    } else {
+        echo '<title>e-Lusi</title>';
+    }?>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url()?>elusistatic/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +59,6 @@
                                 </ul>
                             </li>
                             <li><a href="<?php echo base_url();?>mahasiswa/pengumuman"><i class="fa fa-bell"></i> Pengumuman</a></li>
-                            <li><a href="<?php echo base_url();?>mahasiswa/berkas"><i class="fa fa-files-o"></i> Berkas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -73,7 +76,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user"></i>
+                                <i class="fa fa-user"></i> <?php echo $this->session->userdata('name'); ?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">

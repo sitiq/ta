@@ -30,6 +30,7 @@ class Profil extends BaseController
             $data['profilInfo'] = $this->profil_model->getDosen($userId);
             $data['userId'] = $userId;
             $data['userRole'] = $userRole;
+            $this->global['pageTitle'] = "Elusi : Profil";
 
             $this->loadViews("profil", $this->global, $data, NULL);
         }

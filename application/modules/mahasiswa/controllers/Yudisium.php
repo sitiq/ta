@@ -24,8 +24,10 @@ class Yudisium extends BaseController
         else
         {
             $userId = $this->vendorId;
+            $this->global['pageTitle'] = "Elusi : Yudisium";
+
             $data['berkasInfo'] = $this->yudisium_model->getBerkasInfo($userId);
-            $data['idMahasiswa'] = $this->yudisium_model->cekMahasiswa($userId);
+//            $data['idMahasiswa'] = $this->yudisium_model->cekMahasiswa($userId);
             $data['cekPeriode'] = $this->yudisium_model->cekPeriode();
             $this->loadViews("yudisium", $this->global, $data, NULL);
         }

@@ -83,8 +83,8 @@
                             <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="proposal.html">Tugas Akhir</a></li>
-                                    <li><a href="akdm_daftarsidang.html">Sidang</a></li>
-                                    <li><a href="akdm_daftaryudisium.html">Yudisium</a></li>
+                                    <li><a href="<?php echo base_url()?>akademik/sidang">Sidang</a></li>
+                                    <li><a href="<?php echo base_url()?>akademik/yudisium">Yudisium</a></li>
                                 </ul>
                             </li>
                             <li><a href="<?php echo base_url()?>akademik/periode/"><i class="fa fa-clock-o"></i> Periode Registrasi</a></li>
@@ -106,7 +106,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="images/img.jpg" alt=""><?php echo $this->session->userdata('name'); ?>
+                                <i class="fa fa-user"></i> <?php echo $this->session->userdata('name'); ?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
