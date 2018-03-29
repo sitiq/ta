@@ -13,7 +13,6 @@ class Sidang extends BaseController
         $this->load->model('sidang_model');
         $this->isLoggedIn();
     }
-
     function index()
     {
         if($this->isAkademik() == TRUE)
@@ -290,6 +289,7 @@ class Sidang extends BaseController
                 $this->index();
             } else {
                 if (!empty($idSidang)) {
+
                     $pesanInfo = array(
                         'id_mahasiswa'=>$idMhs,
                         'nama'=>'Pelaksanaan sidang telah diubah.',

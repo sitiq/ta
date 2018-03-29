@@ -6,7 +6,7 @@
  * Description:
  */
 //var_dump($sidangInfo);
-var_dump($sekreInfo);
+//var_dump($sekreInfo);
 //var_dump($dosenInfo);
 ?>
 <div class="">

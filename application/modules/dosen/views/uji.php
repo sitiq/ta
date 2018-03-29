@@ -5,31 +5,32 @@
  * Time: 07:30
  * Description:
  */
-//var_dump($pendadaranInfo);
+//var_dump($userId);
+var_dump($pendadaranInfo);
 ?>
 <?php
-$id_sidang = '';
 $tanggal = '';
 $waktu = '';
 $ruang = '';
 $nim = '';
 $nama = '';
-$nilai_akhir_sidang = '';
 $path = '';
+$id_penilaian = '';
+$nilai_akhir_sidang = '';
 
 
 if(!empty($pendadaranInfo))
 {
     foreach ($pendadaranInfo as $uf)
     {
-        $id_sidang = $uf->id_sidang;
         $tanggal = $uf->tanggal;
         $waktu = $uf->waktu;
         $ruang = $uf->ruang;
         $nim = $uf->nim;
         $nama = $uf->nama;
-        $nilai_akhir_sidang = $uf->nilai_akhir_sidang;
         $path = $uf->path;
+        $id_penilaian = $uf->id_penilaian;
+        $nilai_akhir_sidang = $uf->nilai_akhir_sidang;
     }
 }
 ?>
@@ -88,7 +89,7 @@ if(!empty($pendadaranInfo))
                                     <button class="btn btn-sm btn-danger" title="tidak ada"><i class="fa fa-times"></i></button>
                                 <?php }?>
                             </td>
-                            <td><a href="dosen_nilaiuji.html" class="btn btn-success btn-sm"><i class="fa fa-tasks"></i></a></td>
+                            <td><a href="<?php echo base_url()?>dosen/pendadaran/nilai/<?php echo $record->id_penilaian?>" class="btn btn-success btn-sm"><i class="fa fa-tasks"></i></a></td>
                             <td><?php echo $record->nilai_akhir_sidang ?></td>
                         </tr>
                         </tbody>

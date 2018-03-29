@@ -5,11 +5,12 @@
  * Time: 07:31
  * Description:
  */
+var_dump($nilaiInfo);
 ?>
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3><a href="dosen_daftaruji.html"><i class="fa fa-chevron-left"></i></a> &nbsp;Sidang Pendadaran</h3>
+            <h3><a href="<?php echo base_url()?>dosen/pendadaran"><i class="fa fa-chevron-left"></i></a> &nbsp;Sidang Pendadaran</h3>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -35,6 +36,37 @@
                         <span class="badge bg-blue">4</span> Sangat Baik
                     </p>
                     <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php
+                                $this->load->helper('form');
+                                $error = $this->session->flashdata('error');
+                                if($error)
+                                {
+                                    ?>
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <?php echo $this->session->flashdata('error'); ?>
+                                    </div>
+                                <?php } ?>
+                                <?php
+                                $success = $this->session->flashdata('success');
+                                if($success)
+                                {
+                                    ?>
+                                    <div class="alert alert-success alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <?php echo $this->session->flashdata('success'); ?>
+                                    </div>
+                                <?php } ?>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!--table nilai-->
                         <table class="table table-bordered">
                             <thead>
@@ -48,112 +80,39 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <th>Tata Tulis</th>
-                                <td>
-                                    1<input type="radio" class="flat" name="tata" id="t1" value="1" />
-                                    2<input type="radio" class="flat" name="tata" id="t2" value="2" />
-                                    3<input type="radio" class="flat" name="tata" id="t3" value="3" />
-                                    4<input type="radio" class="flat" name="tata" id="t4" value="4" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <th>Bahasa</th>
-                                <td>
-                                    1<input type="radio" class="flat" name="bahasa" id="b1" value="1" />
-                                    2<input type="radio" class="flat" name="bahasa" id="b2" value="2" />
-                                    3<input type="radio" class="flat" name="bahasa" id="b3" value="3" />
-                                    4<input type="radio" class="flat" name="bahasa" id="b4" value="4" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <th>Kesesuaian Naskah dengan Rancangan</th>
-                                <td>
-                                    1<input type="radio" class="flat" name="naskah" id="n1" value="1" />
-                                    2<input type="radio" class="flat" name="naskah" id="n2" value="2" />
-                                    3<input type="radio" class="flat" name="naskah" id="n3" value="3" />
-                                    4<input type="radio" class="flat" name="naskah" id="n4" value="4" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <th>Rancangan Masalah</th>
-                                <td>
-                                    1<input type="radio" class="flat" name="rancang" id="r1" value="1" />
-                                    2<input type="radio" class="flat" name="rancang" id="r2" value="2" />
-                                    3<input type="radio" class="flat" name="rancang" id="r3" value="3" />
-                                    4<input type="radio" class="flat" name="rancang" id="r4" value="4" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <th>Tujuan</th>
-                                <td>
-                                    1<input type="radio" class="flat" name="tujuan" id="j1" value="1" />
-                                    2<input type="radio" class="flat" name="tujuan" id="j2" value="2" />
-                                    3<input type="radio" class="flat" name="tujuan" id="j3" value="3" />
-                                    4<input type="radio" class="flat" name="tujuan" id="j4" value="4" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <th>Inovasi</th>
-                                <td>
-                                    1<input type="radio" class="flat" name="inovasi" id="i1" value="1" />
-                                    2<input type="radio" class="flat" name="inovasi" id="i2" value="2" />
-                                    3<input type="radio" class="flat" name="inovasi" id="i3" value="3" />
-                                    4<input type="radio" class="flat" name="inovasi" id="i4" value="4" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <th>Penguasaan Metode</th>
-                                <td>
-                                    1<input type="radio" class="flat" name="metode" id="m1" value="1" />
-                                    2<input type="radio" class="flat" name="metode" id="m2" value="2" />
-                                    3<input type="radio" class="flat" name="metode" id="m3" value="3" />
-                                    4<input type="radio" class="flat" name="metode" id="m4" value="4" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <th>Penguasaan Analisis</th>
-                                <td>
-                                    1<input type="radio" class="flat" name="analisis" id="a1" value="1" />
-                                    2<input type="radio" class="flat" name="analisis" id="a2" value="2" />
-                                    3<input type="radio" class="flat" name="analisis" id="a3" value="3" />
-                                    4<input type="radio" class="flat" name="analisis" id="a4" value="4" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <th>Presentasi</th>
-                                <td>
-                                    1<input type="radio" class="flat" name="presentasi" id="p1" value="1" />
-                                    2<input type="radio" class="flat" name="presentasi" id="p2" value="2" />
-                                    3<input type="radio" class="flat" name="presentasi" id="p3" value="3" />
-                                    4<input type="radio" class="flat" name="presentasi" id="p4" value="4" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <th>Kesimpulan</th>
-                                <td>
-                                    1<input type="radio" class="flat" name="kesimpulan" id="k1" value="1" />
-                                    2<input type="radio" class="flat" name="kesimpulan" id="k2" value="2" />
-                                    3<input type="radio" class="flat" name="kesimpulan" id="k3" value="3" />
-                                    4<input type="radio" class="flat" name="kesimpulan" id="k4" value="4" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3">
-                                    <span><h4><strong>Total : </strong>3,78</h4></span>
-                                    <button class="btn btn-warning pull-right">Submit</button>
-                                </td>
-                            </tr>
+                            <form id="nilai-satu" action="<?php echo base_url()?>dosen/pendadaran/submitnilai" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                                <?php
+                                if(!empty($nilaiInfo))
+                                {
+                                    $i=1;
+                                    foreach($nilaiInfo as $record)
+                                    {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $record->id_komponen ?></td>
+                                            <th><?php echo $record->nama_nilai ?></th>
+                                            <td>
+                                                1<input required type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'1'?>" />
+                                                2<input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'2'?>" />
+                                                3<input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'3'?>" />
+                                                4<input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'4'?>" />
+                                            </td>
+                                        </tr>
+                                        <?php
+                                        $i++;
+                                    }?>
+                                    <input type="hidden" name="last_index" value="<?php echo $i?>">
+                                <?php
+                                }?>
+                                <tr>
+                                    <td colspan="3">
+                                        <span><h4><strong>Total : </strong>3,78</h4></span>
+                                        <input type="submit" class="btn btn-warning pull-right">
+                                    </td>
+                                </tr>
+                                <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
+                                <input type="hidden" name="id_sidang" value="<?php echo $record->id_sidang?>">
+                            </form>
                             </tbody>
                         </table>
                         <!--end table nilai-->
