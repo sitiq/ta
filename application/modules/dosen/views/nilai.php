@@ -118,7 +118,7 @@ var_dump($nilaiInfo);
                         <!--end table nilai-->
                     </div>
                     <div class="col-md-6">
-                        <!--table nilai-->
+                        <!--table revisi-->
                         <table class="table table-bordered">
                             <thead>
                             <tr bgcolor="#59BD96" style="color: white">
@@ -128,10 +128,12 @@ var_dump($nilaiInfo);
                             <tbody>
                             <tr>
                                 <td colspan="3">
-                                    <input type="number" name="id" hidden>
-                                    <input type="text" name="revisi" hidden>
-                                    <input type="file" class="form-control" name="path">
-                                    <button class="btn btn-warning pull-right" style="margin-top: 3%">Submit</button>
+                                    <form id="nilai-satu" action="<?php echo base_url()?>dosen/pendadaran/submitrevisi" enctype="multipart/form-data" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                                        <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
+                                        <input type="text" name="id_anggota_sidang" value="<?php echo $record->id_anggota_sidang?>">
+                                        <input type="file" class="form-control" name="path">
+                                        <input class="btn btn-warning pull-right" style="margin-top: 3%" type="submit">
+                                    </form>
                                 </td>
                             </tr>
                             </tbody>

@@ -29,7 +29,7 @@ class pendadaran_model extends CI_Model
     }
     function getNilaiInfo($userId)
     {
-        $this->db->select('p.id_sidang, p.id_penilaian, p.nilai_akhir_dosen, k.id_komponen, k.nama nama_nilai, kn.id_komponen_nilai, kn.nilai');
+        $this->db->select('p.id_sidang, p.id_penilaian, p.nilai_akhir_dosen, k.id_komponen, k.nama nama_nilai, kn.id_komponen_nilai, kn.nilai, a.id_anggota_sidang');
         $this->db->from('penilaian p');
         $this->db->join('anggota_sidang a', 'a.id_anggota_sidang = p.id_anggota_sidang');
         $this->db->join('dosen d', 'd.id_dosen = a.id_dosen');
@@ -44,7 +44,7 @@ class pendadaran_model extends CI_Model
         return $result;
     }
 
-    function updateNilai($data, $idKomponenNilai)
+    function editKomponenNilai($data, $idKomponenNilai)
     {
         $this->db->where('id_komponen_nilai', $idKomponenNilai);
         $this->db->update('komponen_nilai', $data);
@@ -64,5 +64,13 @@ class pendadaran_model extends CI_Model
         $this->db->where('id_sidang', $sidangId);
         $this->db->update('sidang');
         return TRUE;
+    }
+    function addNewRevisi($revisiInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('revisi_sidang', $revisiInfo);
+        $insert_id = $this->db->insert_id();
+        $this->db->trans_complete();
+        return $insert_id;
     }
 }

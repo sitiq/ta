@@ -152,11 +152,11 @@ class Sidang extends BaseController
 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Berkas berhasil diunggah!');
+                    $this->session->set_flashdata('success', 'Berkas berhasil diunggah');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Berkas gagal diunggah!');
+                    $this->session->set_flashdata('error', 'File upload failed');
                 }
             }
             redirect('mahasiswa/sidang');
