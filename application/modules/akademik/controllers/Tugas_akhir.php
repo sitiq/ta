@@ -122,19 +122,24 @@ class Tugas_akhir extends BaseController
                     redirect('akademik/tugas_akhir');
                 }
             } else {
-                $data = array(
-                    'status' => 'diterima'
-                );
-                $result = $this->ta_model->accept_status($id_ta,$id_pengajuan_ta,$id_mahasiswa,$data);
 
-                if($result){
-                    $this->session->set_flashdata('success', 'Tugas akhir telah terploting');
-                } else {
-                    $this->session->set_flashdata('error', 'Tugas akhir gagal terploting');
-                };
-                redirect('akademik/tugas_akhir');
+                // $data = array(
+                //     'status' => 'diterima'
+                // );
+                // $result = $this->ta_model->accept_status($id_ta,$id_pengajuan_ta,$id_mahasiswa,$data);
+
+                // if($result){
+                //     $this->session->set_flashdata('success', 'Tugas akhir telah terploting');
+                // } else {
+                //     $this->session->set_flashdata('error', 'Tugas akhir gagal terploting');
+                // };
+                redirect('akademik/tugas_akhir/terima_usulan');
             }
         }
+    }
+
+    public function terima_usulan(){
+            
     }
 
     public function ploting_manual(){
