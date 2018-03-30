@@ -23,7 +23,7 @@
 <!-- basic scripts -->
 
 <!--[if !IE]> -->
-<script src="<?php echo base_url()?>elusistatic/vendors/jQuery/dist/jquery.min.js"></script>
+<script src="<?php echo base_url()?>elusistatic/vendors/jquery/dist/jquery.min.js"></script>
 <!-- <![endif]-->
 <script src="<?php echo base_url()?>elusistatic/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- bootstrap-daterangepicker -->
@@ -35,6 +35,9 @@
 <script src="<?php echo base_url()?>elusistatic/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="<?php echo base_url()?>elusistatic/build/js/custom.js"></script>
+<!-- Custom Radio Button -->
+<script src="<?php echo base_url()?>elusistatic/vendors/iCheck/icheck.min.js"></script>
+
 <!-- Datatables -->
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

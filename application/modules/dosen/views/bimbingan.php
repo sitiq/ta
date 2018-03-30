@@ -7,29 +7,6 @@
  */
 //var_dump($bimbinganInfo);
 ?>
-<?php
-$id_dosen = '';
-$id_mahasiswa = '';
-$nim = '';
-$nama = '';
-$id_sidang = '';
-$id_yudisium = '';
-$id_ta = '';
-
-if(!empty($bimbinganInfo))
-{
-    foreach ($bimbinganInfo as $uf)
-    {
-        $id_dosen = $uf->id_dosen;
-        $id_mahasiswa = $uf->id_mahasiswa;
-        $nim = $uf->nim;
-        $nama = $uf->nama;
-        $id_sidang = $uf->id_sidang;
-        $id_yudisium = $uf->id_yudisium;
-        $id_ta = $uf->id_ta;
-    }
-}
-?>
 <div class="">
     <div class="page-title">
         <div class="title_left">

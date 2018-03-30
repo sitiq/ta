@@ -35,6 +35,7 @@
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url()?>elusistatic/build/css/custom.min.css" rel="stylesheet">
     <link href="<?php echo base_url()?>elusistatic/build/css/customm.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>elusistatic/build/css/nilai.css" rel="stylesheet">
 
 </head>
 

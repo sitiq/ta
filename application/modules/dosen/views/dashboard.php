@@ -5,7 +5,6 @@
  * Time: 11:32
  * Description:
  */
-var_dump($countBimbingan);
 //var_dump($id);
 ?>
 <div class="">

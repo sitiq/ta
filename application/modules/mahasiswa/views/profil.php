@@ -154,6 +154,7 @@ if(!empty($profilInfo))
                                     <label>HP</label>
                                     <h5><?php echo $mobile ?></h5>
                                 </div>
+                                <div class="row">&nbsp;</div>
                                 <div class="profile_left">
                                     <label><h5><i class="fa fa-user"></i> <strong>NAMA LENGKAP</strong></h5></label>
                                     <h5><?php echo $nama ?></h5>

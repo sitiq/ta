@@ -18,6 +18,7 @@ class Mahasiswa extends BaseController
         $userId = $this->vendorId;
 
         $data['pesanInfo'] = $this->dashboard_model->getPesanList($userId);
+        $data['revisiInfo'] = $this->dashboard_model->getRevisiSidang($userId);
         $this->global['pageTitle'] = "Elusi : Dashboard";
         $this->loadViews("dashboard",$this->global,$data);
     }

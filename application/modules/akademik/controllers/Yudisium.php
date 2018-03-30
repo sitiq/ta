@@ -71,7 +71,7 @@ class Yudisium extends BaseController
     /**
      * This function is used to add new message to the system
      */
-    function pesan($idValidYudisium=null)
+    function pesan($idValidYudisium=null , $idYudisium)
     {
         if($this->isAkademik() == TRUE)
         {
@@ -101,11 +101,12 @@ class Yudisium extends BaseController
                     $result = $this->yudisium_model->decBerkas($berkasInfo, $idValidYudisium);
 
                     if ($result == true) {
-                        $this->session->set_flashdata('success', 'File rejected');
+                        $this->session->set_flashdata('success', 'Berkas berhasil ditolak!');
                     } else {
-                        $this->session->set_flashdata('error', 'File reject failed');
+                        $this->session->set_flashdata('error', 'Berkas gagal ditolak!');
                     }
-                    $this->editOld($idMhs);
+//                    $this->editOld($idValidYudisium);
+                    redirect('akademik/yudisium/editOld/'.$idYudisium);
                 }
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
@@ -116,14 +117,46 @@ class Yudisium extends BaseController
 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'Revision sent');
+                    $this->session->set_flashdata('success', 'Revisi berhasill dikirim!');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Revision unsent');
+                    $this->session->set_flashdata('error', 'Revisi gagal dikirim!');
                 }
-                $this->editOld($idMhs);
+                redirect('akademik/yudisium/editOld/'.$idYudisium);
             }
+        }
+    }
+    function status($idYudisium, $idMhs)
+    {
+        if($this->isAkademik() == TRUE)
+        {
+            $this->loadThis();
+        }
+        else {
+            if (!empty($idYudisium)) {
+                $statusInfo = array(
+                    'id_yudisium' => $idYudisium,
+                    'status' => 'disetujui'
+                );
+
+                $status = $this->yudisium_model->status($statusInfo, $idYudisium);
+                $pesanInfo = array(
+                    'id_mahasiswa'=>$idMhs,
+                    'nama'=>'Pendaftaran Yudisium',
+                    'deskripsi'=>'Berkas yudisium anda telah diterima, silahkan menghubungi pihak akademik untuk lebih lanjut'
+                );
+
+                $result = $this->yudisium_model->addPesan($pesanInfo);
+
+                if ($result == true) {
+                    $this->session->set_flashdata('success', 'Yudisium berhasil diterima!');
+                } else {
+                    $this->session->set_flashdata('error', 'Yudisium gagal diterima!');
+                }
+                redirect('akademik/yudisium/editOld/'.$idYudisium);
+//                $this->editOld($idMhs);
+            }else{echo "asda";}
         }
     }
 }
