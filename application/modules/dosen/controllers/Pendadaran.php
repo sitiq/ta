@@ -49,6 +49,7 @@ class Pendadaran extends BaseController
             $userId = $this->vendorId;
             $data['nilaiInfo'] = $this->pendadaran_model->getNilaiInfo($userId);
             $data['revisiInfo'] = $this->pendadaran_model->getRevisiInfo($userId);
+            $data['mahasiswaInfo'] = $this->pendadaran_model->getMahasiswaInfo();
             $this->global['pageTitle'] = "Elusi : Sidang";
             $this->loadViews("nilai", $this->global, $data, NULL);
         }
@@ -109,12 +110,13 @@ class Pendadaran extends BaseController
             $this->load->library('form_validation');
 
             $id_penilaian = $this->input->post('id_penilaian');
+            $idMhs = $this->input->post('id_mahasiswa');
 
             $this->form_validation->set_rules('id_anggota_sidang','id','required');
 
             if($this->form_validation->run() == FALSE)
             {
-                $this->session->set_flashdata('success', 'lele');
+                $this->session->set_flashdata('success', 'Revisi gagal dikirim!');
                 redirect("dosen/pendadaran/nilai/$id_penilaian");
             }
             else {
@@ -141,7 +143,24 @@ class Pendadaran extends BaseController
                         'path' => $terupload['file_name'],
                         'id_anggota_sidang' => $id_anggota_sidang
                     );
-                    $result = $this->pendadaran_model->addNewRevisi($revisiInfo);
+                    $revisi = $this->pendadaran_model->addNewRevisi($revisiInfo);
+
+                    $pesanInfo = array(
+                        'id_mahasiswa'=>$idMhs,
+                        'nama'=>'Revisi Sidang',
+                        'deskripsi'=>'
+                            if(!empty($revisiInfo))
+                                {
+                                    $i=1;
+                                    foreach($revisiInfo as $record)
+                                    {
+                                        <\\a href="uploads/sidang/revisi/$record->path">unduh revisi</a\\>
+                                    $i++
+                                    }
+                                }'
+                    );
+                    $result = $this->pendadaran_model->addPesan($pesanInfo);
+
                     if ($result == true) {
                         $this->session->set_flashdata('success', 'Unggah revisi berhasil!');
                     } else {

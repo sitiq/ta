@@ -78,7 +78,13 @@
                                 <tr>
                                     <td><?php echo $record->nim ?></td>
                                     <td><?php echo $record->nama ?></td>
-                                    <td><?php echo date_format(date_create_from_format('Y-m-d',$record->tanggal), 'd/m/Y'); ?></td>
+                                    <td>
+                                    <?php if ($record->tanggal!=null){?>
+                                        <?php echo date_format(date_create_from_format('Y-m-d',$record->tanggal), 'd/m/Y'); ?>
+                                    <?php }else{?>
+                                        <span>-</span>
+                                    <?php }?>
+                                    </td>
                                     <?php if ($record->status == 'disetujui') {
                                         echo "<td><span class=\"label label-success\">" . $record->status . "</span></td>";
                                     } elseif ($record->status == 'pending') {

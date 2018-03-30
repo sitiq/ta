@@ -6,6 +6,8 @@
  * Description:
  */
 //var_dump($nilaiInfo);
+//var_dump($revisiInfo);
+var_dump($mahasiswaInfo);
 ?>
 <?php
 $path = '';
@@ -131,15 +133,43 @@ if(!empty($revisiInfo))
                                 <tr>
                                     <td colspan="3">
                                         <?php if ($record->nilai_akhir_dosen == 0){?>
-                                            <input type="submit" class="btn btn-warning pull-right">
+                                            <a class="btn btn-warning pull-right" data-toggle="modal" data-target="#submit-nilai">Submit</a>
                                         <?php }else{?>
-                                            <center><h4><strong>Total : </strong><?php echo $record->nilai_akhir_dosen?></h4></center>
+                                            <center><h4><strong>Rata-rata : </strong><?php echo $record->nilai_akhir_dosen?></h4></center>
                                         <?php }?>
                                     </td>
                                 </tr>
                                 <input type="hidden" name="nilai_akhir_dosen" value="<?php echo $record->nilai_akhir_dosen?>">
                                 <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
                                 <input type="hidden" name="id_sidang" value="<?php echo $record->id_sidang?>">
+                                <!--modal submit nilai-->
+                                <div id="submit-nilai" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">Penilaian</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="testmodal" style="padding: 5px 20px;">
+                                                    <div class="modal-body">
+                                                        <center>
+                                                            <h4>Pastikan nilai yang terisi telah benar dan sesuai</h4>
+                                                            <h4>Setelah submit nilai, maka nilai tidak akan bisa diubah.</h4>
+                                                            <div id="testmodal" style="padding: 5px 20px;">
+                                                                <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                                                <input type="submit" class="btn btn-success" value="Submit">
+                                                            </div>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                             </tbody>
                         </table>
@@ -158,6 +188,7 @@ if(!empty($revisiInfo))
                                 <td colspan="3">
                                     <form id="nilai-satu" action="<?php echo base_url()?>dosen/pendadaran/submitrevisi" enctype="multipart/form-data" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                         <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
+                                        <input type="hidden" name="id_mahasiswa" value="<?php echo $mahasiswaInfo[0]->id_mahasiswa?>">
                                         <input type="hidden" name="id_anggota_sidang" value="<?php echo $record->id_anggota_sidang?>">
                                         <input type="file" class="form-control" name="path">
                                         <?php if ($path != ""){?>

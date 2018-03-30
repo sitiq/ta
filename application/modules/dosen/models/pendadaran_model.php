@@ -27,6 +27,16 @@ class pendadaran_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    function getMahasiswaInfo()
+    {
+        $this->db->select('s.id_sidang, m.id_mahasiswa');
+        $this->db->from('sidang s');
+        $this->db->join('mahasiswa m','m.id_mahasiswa = s.id_mahasiswa');
+
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
     function getNilaiInfo($userId)
     {
         $this->db->select('p.id_sidang, p.id_penilaian, p.nilai_akhir_dosen, k.id_komponen, k.nama nama_nilai,
@@ -83,6 +93,14 @@ class pendadaran_model extends CI_Model
     {
         $this->db->trans_start();
         $this->db->insert('revisi_sidang', $revisiInfo);
+        $insert_id = $this->db->insert_id();
+        $this->db->trans_complete();
+        return $insert_id;
+    }
+    function addPesan($pesanInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('log_pesan', $pesanInfo);
         $insert_id = $this->db->insert_id();
         $this->db->trans_complete();
         return $insert_id;
