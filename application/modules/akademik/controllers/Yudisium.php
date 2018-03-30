@@ -71,7 +71,7 @@ class Yudisium extends BaseController
     /**
      * This function is used to add new message to the system
      */
-    function pesan($idValidYudisium=null)
+    function pesan($idValidYudisium=null , $idYudisium)
     {
         if($this->isAkademik() == TRUE)
         {
@@ -105,7 +105,8 @@ class Yudisium extends BaseController
                     } else {
                         $this->session->set_flashdata('error', 'File reject failed');
                     }
-                    $this->editOld($idMhs);
+//                    $this->editOld($idValidYudisium);
+                    redirect('akademik/yudisium/editOld/'.$idYudisium);
                 }
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
@@ -122,7 +123,8 @@ class Yudisium extends BaseController
                 {
                     $this->session->set_flashdata('error', 'Revision unsent');
                 }
-                $this->editOld($idMhs);
+//                $this->editOld($idMhs);
+                redirect('akademik/yudisium/editOld/'.$idYudisium);
             }
         }
     }

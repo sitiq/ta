@@ -188,11 +188,11 @@ if(!empty($yudisiumInfo))
                                                         </div>
                                                         <div class="modal-body">
                                                             <div id="testmodal" style="padding: 5px 20px;">
-                                                                <form id="tambah-pesan" action="<?php echo base_url()?>akademik/yudisium/pesan/<?php echo $record->id_valid_yudisium?>" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                                                                <form id="tambah-pesan" action="<?php echo base_url()?>akademik/yudisium/pesan/<?php echo $record->id_valid_yudisium?>/<?php echo $yudisiumInfo[0]->id_yudisium?>" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                                                     <div class="modal-body">
                                                                         <div id="testmodal" style="padding: 5px 20px;">
                                                                             <div class="form-group">
-                                                                                <input type="hidden" class="form-control" name="id_mahasiswa" value="<?php echo $yudisiumInfo[0]->id_yudisium?>">
+                                                                                <input type="hidden" class="form-control" name="id_mahasiswa" value="<?php echo $yudisiumInfo[0]->id_mahasiswa?>">
                                                                                 <label class="col-sm-3 col-md-12 control-label">Judul</label>
                                                                                 <input type="text" class="form-control" name="nama" value="<?php echo $record->nama_berkas?>">
                                                                                 <br>
