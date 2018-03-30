@@ -18,6 +18,7 @@ $id_yudisium = '';
 $nim = '';
 $nama = '';
 $id_mahasiswa = '';
+$status = '';
 
 if(!empty($berkasInfo))
 {
@@ -38,6 +39,7 @@ if(!empty($yudisiumInfo))
         $nim = $uf->nim;
         $nama = $uf->nama;
         $id_mahasiswa = $uf->id_mahasiswa;
+        $status = $uf->status;
     }
 }
 ?>
@@ -217,6 +219,43 @@ if(!empty($yudisiumInfo))
                                 ?>
                                 </tbody>
                             </table>
+                            <?php if ($status != 'disetujui'){?>
+                            <div class="well">
+                                <center>
+                                        <h4><strong>Silahkan pilih jika semua berkas telah diterima</strong></h4>
+                                        <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#status"><i class="fa fa-check"></i> Terima</a>
+                                </center>
+                            </div>
+                            <?php }?>
+                            <!--modal terima-->
+                            <div id="status" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">Setuju Yudisium</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="testmodal" style="padding: 5px 20px;">
+                                                <div class="modal-body">
+                                                    <center>
+                                                        <h4>Yakin telah menerima seluruh berkas yudisium?</h4>
+                                                        <div id="testmodal" style="padding: 5px 20px;">
+                                                            <form action="<?php echo base_url()?>akademik/yudisium/status/<?php echo $yudisiumInfo[0]->id_yudisium?>/<?php echo $yudisiumInfo[0]->id_mahasiswa?>" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                                                                <input type="button" class="btn btn-danger" data-dismiss="modal" value="Tidak">
+                                                                <input type="submit" class="btn btn-success" value="Ya" style="width: 14%">
+                                                            </form>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

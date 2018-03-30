@@ -56,4 +56,10 @@ class yudisium_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
+    function status($statusInfo, $idYudisium)
+    {
+        $this->db->where('id_yudisium', $idYudisium);
+        $this->db->update('yudisium', $statusInfo);
+        return true;
+    }
 }
