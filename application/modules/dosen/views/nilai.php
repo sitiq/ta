@@ -5,7 +5,18 @@
  * Time: 07:31
  * Description:
  */
-var_dump($nilaiInfo);
+//var_dump($nilaiInfo);
+?>
+<?php
+$path = '';
+
+if(!empty($revisiInfo))
+{
+    foreach ($revisiInfo as $uf)
+    {
+        $path = $uf->path;
+    }
+}
 ?>
 <div class="">
     <div class="page-title">
@@ -79,6 +90,7 @@ var_dump($nilaiInfo);
                                 <th>Nilai</th>
                             </tr>
                             </thead>
+<!--                            <input type="radio" name="radio" checked>-->
                             <tbody>
                             <form id="nilai-satu" action="<?php echo base_url()?>dosen/pendadaran/submitnilai" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                 <?php
@@ -92,10 +104,22 @@ var_dump($nilaiInfo);
                                             <td><?php echo $record->id_komponen ?></td>
                                             <th><?php echo $record->nama_nilai ?></th>
                                             <td>
-                                                1<input required type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'1'?>" />
-                                                2<input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'2'?>" />
-                                                3<input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'3'?>" />
-                                                4<input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'4'?>" />
+                                                <?php if ($record->nilai == 0){?>
+                                                    <label>
+                                                        1 <input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'1'?>" required><span class="label-text"></span>
+                                                    </label>
+                                                    <label>
+                                                        2 <input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'2'?>"><span class="label-text"></span>
+                                                    </label>
+                                                    <label>
+                                                        3 <input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'3'?>"><span class="label-text"></span>
+                                                    </label>
+                                                    <label>
+                                                        4 <input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'4'?>"><span class="label-text"></span>
+                                                    </label>
+                                                <?php }else{?>
+                                                    <center><?php echo $record->nilai?></center>
+                                                <?php }?>
                                             </td>
                                         </tr>
                                         <?php
@@ -106,10 +130,14 @@ var_dump($nilaiInfo);
                                 }?>
                                 <tr>
                                     <td colspan="3">
-                                        <span><h4><strong>Total : </strong>3,78</h4></span>
-                                        <input type="submit" class="btn btn-warning pull-right">
+                                        <?php if ($record->nilai_akhir_dosen == 0){?>
+                                            <input type="submit" class="btn btn-warning pull-right">
+                                        <?php }else{?>
+                                            <center><h4><strong>Total : </strong><?php echo $record->nilai_akhir_dosen?></h4></center>
+                                        <?php }?>
                                     </td>
                                 </tr>
+                                <input type="hidden" name="nilai_akhir_dosen" value="<?php echo $record->nilai_akhir_dosen?>">
                                 <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
                                 <input type="hidden" name="id_sidang" value="<?php echo $record->id_sidang?>">
                             </form>
@@ -130,8 +158,13 @@ var_dump($nilaiInfo);
                                 <td colspan="3">
                                     <form id="nilai-satu" action="<?php echo base_url()?>dosen/pendadaran/submitrevisi" enctype="multipart/form-data" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                         <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
-                                        <input type="text" name="id_anggota_sidang" value="<?php echo $record->id_anggota_sidang?>">
+                                        <input type="hidden" name="id_anggota_sidang" value="<?php echo $record->id_anggota_sidang?>">
                                         <input type="file" class="form-control" name="path">
+                                        <?php if ($path != ""){?>
+                                        <a href="<?php echo base_url()?>uploads/sidang/revisi/<?php echo $path?>" class="btn btn-info" style="margin-top: 3%" download>
+                                            <i class="fa fa-save"></i>
+                                        </a>
+                                        <?php }?>
                                         <input class="btn btn-warning pull-right" style="margin-top: 3%" type="submit">
                                     </form>
                                 </td>

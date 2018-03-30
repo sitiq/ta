@@ -11,7 +11,7 @@ class pendadaran_model extends CI_Model
     function getSidang($userId)
     {
         $this->db->select('j.tanggal, j.waktu, j.ruang, m.nim, m.nama, v.path, 
-        p.id_penilaian, s.nilai_akhir_sidang');
+        p.id_penilaian, s.nilai_akhir_sidang, p.nilai_akhir_dosen');
         $this->db->from('sidang s');
         $this->db->join('mahasiswa m', 'm.id_mahasiswa = s.id_mahasiswa');
         $this->db->join('jadwal_sidang j', 'j.id_sidang = s.id_sidang');
@@ -29,7 +29,8 @@ class pendadaran_model extends CI_Model
     }
     function getNilaiInfo($userId)
     {
-        $this->db->select('p.id_sidang, p.id_penilaian, p.nilai_akhir_dosen, k.id_komponen, k.nama nama_nilai, kn.id_komponen_nilai, kn.nilai, a.id_anggota_sidang');
+        $this->db->select('p.id_sidang, p.id_penilaian, p.nilai_akhir_dosen, k.id_komponen, k.nama nama_nilai,
+         kn.id_komponen_nilai, kn.nilai, a.id_anggota_sidang');
         $this->db->from('penilaian p');
         $this->db->join('anggota_sidang a', 'a.id_anggota_sidang = p.id_anggota_sidang');
         $this->db->join('dosen d', 'd.id_dosen = a.id_dosen');
@@ -38,6 +39,19 @@ class pendadaran_model extends CI_Model
         $this->db->join('komponen k', 'k.id_komponen = kn.id_komponen');
         $this->db->where('u.id_user',$userId);
         $this->db->where('k.isDeleted',0);
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
+    function getRevisiInfo($userId)
+    {
+        $this->db->select('r.path');
+        $this->db->from('revisi_sidang r');
+        $this->db->join('anggota_sidang a', 'a.id_anggota_sidang = r.id_anggota_sidang');
+        $this->db->join('dosen d', 'd.id_dosen = a.id_dosen');
+        $this->db->join('user u', 'u.id_user = d.id_user');
+        $this->db->where('u.id_user',$userId);
         $query = $this->db->get();
 
         $result = $query->result();

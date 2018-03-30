@@ -6,7 +6,7 @@
  * Description:
  */
 //var_dump($userId);
-var_dump($pendadaranInfo);
+//var_dump($pendadaranInfo);
 ?>
 <?php
 $tanggal = '';
@@ -17,7 +17,6 @@ $nama = '';
 $path = '';
 $id_penilaian = '';
 $nilai_akhir_sidang = '';
-
 
 if(!empty($pendadaranInfo))
 {

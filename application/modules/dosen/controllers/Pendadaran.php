@@ -48,6 +48,7 @@ class Pendadaran extends BaseController
         {
             $userId = $this->vendorId;
             $data['nilaiInfo'] = $this->pendadaran_model->getNilaiInfo($userId);
+            $data['revisiInfo'] = $this->pendadaran_model->getRevisiInfo($userId);
             $this->global['pageTitle'] = "Elusi : Sidang";
             $this->loadViews("nilai", $this->global, $data, NULL);
         }
@@ -63,6 +64,7 @@ class Pendadaran extends BaseController
             $this->load->library('form_validation');
             $last_index = $this->input->post('last_index');
             $id_penilaian = $this->input->post('id_penilaian');
+            $nilai_akhir_dosen = $this->input->post('nilai_akhir_dosen');
             $id_sidang = $this->input->post('id_sidang');
             echo $last_index;
             $total = 0;
@@ -76,10 +78,12 @@ class Pendadaran extends BaseController
                     'nilai' => $id_nilai_value
                 );
                 $result1 = $this->pendadaran_model->editKomponenNilai($data, $id_komponen_nilai_value);
-                $total = $total+($id_nilai_value/10);
+//                total avg nilai dosen
+                $total = $total+($id_nilai_value/($last_index-1));
             }
 
             $result2 = $this->pendadaran_model->editPenilaian($total, $id_penilaian);
+
             $nilai_akhir_sidang = $total/3;
 
             $result = $this->pendadaran_model->editSidang($nilai_akhir_sidang ,$id_sidang);

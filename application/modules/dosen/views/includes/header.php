@@ -24,8 +24,6 @@
     <link href="<?php echo base_url()?>elusistatic/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
     <link href="<?php echo base_url()?>elusistatic/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
-    <!--  radio button -->
-    <link href="<?php echo base_url()?>elusistatic/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
     <!-- Datatables -->
     <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -37,6 +35,7 @@
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url()?>elusistatic/build/css/custom.min.css" rel="stylesheet">
     <link href="<?php echo base_url()?>elusistatic/build/css/customm.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>elusistatic/build/css/nilai.css" rel="stylesheet">
 
 </head>
 
