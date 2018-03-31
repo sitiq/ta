@@ -8,6 +8,10 @@
 
 class pengumuman_model extends CI_Model
 {
+    /**
+     * This function is used to get the pengumuman by id
+     * @return $result : This is result
+     */
     function getPengumumanList($id = NULL){
         $this->db->select("*");
         $this->db->from('pengumuman');
