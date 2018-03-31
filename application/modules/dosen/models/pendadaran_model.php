@@ -8,6 +8,11 @@
 
 class pendadaran_model extends CI_Model
 {
+    /**
+     * This function is used to get the mahasiswa pendadaran list
+     * @param number $userId : This is get from user who is logged in
+     * @return array $result : This is result
+     */
     function getSidang($userId)
     {
         $this->db->select('j.tanggal, j.waktu, j.ruang, m.nim, m.nama, v.path, 
@@ -27,6 +32,10 @@ class pendadaran_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    /**
+     * This function is used to get the mahasiswa info
+     * @return array $result : This is result
+     */
     function getMahasiswaInfo()
     {
         $this->db->select('s.id_sidang, m.id_mahasiswa');
@@ -37,6 +46,11 @@ class pendadaran_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    /**
+     * This function is used to get the nilai info mahasiswa
+     * @param $userId : This is get from user who is logged in
+     * @return array $result : This is result
+     */
     function getNilaiInfo($userId)
     {
         $this->db->select('p.id_sidang, p.id_penilaian, p.nilai_akhir_dosen, k.id_komponen, k.nama nama_nilai,
@@ -54,6 +68,11 @@ class pendadaran_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    /**
+     * This function is used to get the revisi info mahasiswa
+     * @param $userId : This is get from user who is logged in
+     * @return array $result : This is result
+     */
     function getRevisiInfo($userId)
     {
         $this->db->select('r.path');
@@ -67,14 +86,24 @@ class pendadaran_model extends CI_Model
         $result = $query->result();
         return $result;
     }
-
+    /**
+     * This function is used to edit komponen_nilai mahasiswa
+     * @param array $data : This is array data include nilai
+     * @param $idKomponenNilai : This is get id each komponen_nilai
+     * @return array $result : This is result
+     */
     function editKomponenNilai($data, $idKomponenNilai)
     {
         $this->db->where('id_komponen_nilai', $idKomponenNilai);
         $this->db->update('komponen_nilai', $data);
         return TRUE;
     }
-
+    /**
+     * This function is used to edit penilaian mahasiswa
+     * @param array $total : This is array data include nilai average
+     * @param $penilaianId : This is get id each penilaian
+     * @return array $result : This is result
+     */
     function editPenilaian($total, $penilaianId)
     {
         $this->db->set('nilai_akhir_dosen',$total);
@@ -82,6 +111,12 @@ class pendadaran_model extends CI_Model
         $this->db->update('penilaian');
         return TRUE;
     }
+    /**
+     * This function is used to edit sidang mahasiswa
+     * @param array $nilaiAkhir : This is array data include nilai_akhir_dosen average
+     * @param $sidangId : This is get id each sidang
+     * @return array $result : This is result
+     */
     function editSidang($nilaiAkhir, $sidangId)
     {
         $this->db->set('nilai_akhir_sidang', "nilai_akhir_sidang + $nilaiAkhir", false);
@@ -89,6 +124,11 @@ class pendadaran_model extends CI_Model
         $this->db->update('sidang');
         return TRUE;
     }
+    /**
+     * This function is used to add new revisi report file
+     * @param array $revisiInfo : This is validasi information list
+     * @return number $insert_id : This is last inserted id
+     */
     function addNewRevisi($revisiInfo)
     {
         $this->db->trans_start();
@@ -97,6 +137,11 @@ class pendadaran_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
+    /**
+     * This function is used to add pesan to log_pesan
+     * @param array $pesanInfo : This is pesan information list
+     * @return number $insert_id : This is last inserted id
+     */
     function addPesan($pesanInfo)
     {
         $this->db->trans_start();

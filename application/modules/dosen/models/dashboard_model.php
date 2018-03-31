@@ -8,6 +8,11 @@
 
 class dashboard_model extends CI_Model
 {
+    /**
+     * This function is used to get total bimbingan mahasiswa
+     * @param number $userId : This is get from user who is logged in
+     * @return array $result : This is result
+     */
     function getCountBimbingan($userId)
     {
         $this->db->select('d.*, ds.id_user');
@@ -19,6 +24,11 @@ class dashboard_model extends CI_Model
         $query = $this->db->get();
         return count($query->result());
     }
+    /**
+     * This function is used to get total pendadaran mahasiswa
+     * @param number $userId : This is get from user who is logged in
+     * @return array $result : This is result
+     */
     function getCountPendadaran($userId)
     {
         $this->db->select('a.id_dosen');
@@ -30,6 +40,11 @@ class dashboard_model extends CI_Model
         $query = $this->db->get();
         return count($query->result());
     }
+    /**
+     * This function is used to get total project
+     * @param number $userId : This is get from user who is logged in
+     * @return array $result : This is result
+     */
     function getCountProyek($userId)
     {
         $this->db->select('p.id_dosen');

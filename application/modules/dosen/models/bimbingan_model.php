@@ -8,6 +8,11 @@
 
 class bimbingan_model extends CI_Model
 {
+    /**
+     * This function is used to get the bimbingan list
+     * @param number $userId : This is get from user who is logged in
+     * @return array $result : This is result
+     */
     function getBimbingan($userId)
     {
         $this->db->select('m.id_mahasiswa, m.nim, m.nama, p.nama nama_proyek, u.judul nama_usulan, s.id_sidang, t.id_ta, y.id_yudisium');
@@ -28,6 +33,11 @@ class bimbingan_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    /**
+     * This function is used to get the detail mahasiswa
+     * @param number $idMhs : This is get mahasiswa by id
+     * @return array $result : This is result
+     */
     function getMahasiswa($idMhs)
     {
         $this->db->select('*');

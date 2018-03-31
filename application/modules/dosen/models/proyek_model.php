@@ -8,6 +8,11 @@
 
 class proyek_model extends CI_Model
 {
+    /**
+     * This function used to get proyek information by id
+     * @param number $id : This is project id
+     * @return array $result : This is project information
+     */
     function getProyekInfo($proyekId=NULL)
     {
         $this->db->select('proyek.id_proyek, proyek.nama nama_proyek, proyek.klien, proyek.status, proyek.id_dosen, Dosen.nama nama_dosen');
@@ -21,6 +26,10 @@ class proyek_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    /**
+     * This function used to get dosen information
+     * @return array $result : This is dosen information
+     */
     function getDosen()
     {
         $this->db->select('id_dosen, nama');
