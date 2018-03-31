@@ -104,9 +104,9 @@ class Periode extends BaseController
 
         redirect('akademik/periode');
     }
-
-
-
-
-    
+    function pageNotFound()
+    {
+        $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
+        $this->loadViews("404", $this->global, NULL, NULL);
+    }
 }

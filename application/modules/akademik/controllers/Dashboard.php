@@ -14,8 +14,14 @@ class Dashboard extends BaseController
       // $this->load->model('profil_model');
       $this->isLoggedIn();
   }
-    function index() {
+    function index()
+    {
       //$data['userId']=$userId;
       $this->loadViews("dashboard");
+    }
+    function pageNotFound()
+    {
+        $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
+        $this->loadViews("404", $this->global, NULL, NULL);
     }
 }

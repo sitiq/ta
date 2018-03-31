@@ -225,7 +225,7 @@ class Pengajuan extends BaseController
                 $judul = $this->input->post('judul');
                 $deskripsi = $this->input->post('deskripsi');
                 $bisnis_rule = $this->input->post('bisnis_rule');
-                $file = $this->input->post('file');
+//                $file = $this->input->post('file');
 
                 if (!empty($id_mahasiswa)) {
                     // perulangan edit pengajuan TA
@@ -337,6 +337,11 @@ class Pengajuan extends BaseController
                 redirect('mahasiswa/pengajuan/tugasakhir');
             }
         }
+    }
+    function pageNotFound()
+    {
+        $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
+        $this->loadViews("404", $this->global, NULL, NULL);
     }
 
 }
