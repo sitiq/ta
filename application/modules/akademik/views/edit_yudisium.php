@@ -18,6 +18,7 @@ $id_yudisium = '';
 $nim = '';
 $nama = '';
 $id_mahasiswa = '';
+$status = '';
 
 if(!empty($berkasInfo))
 {
@@ -38,6 +39,7 @@ if(!empty($yudisiumInfo))
         $nim = $uf->nim;
         $nama = $uf->nama;
         $id_mahasiswa = $uf->id_mahasiswa;
+        $status = $uf->status;
     }
 }
 ?>
@@ -188,19 +190,18 @@ if(!empty($yudisiumInfo))
                                                         </div>
                                                         <div class="modal-body">
                                                             <div id="testmodal" style="padding: 5px 20px;">
-                                                                <form id="tambah-pesan" action="<?php echo base_url()?>akademik/yudisium/pesan/<?php echo $record->id_valid_yudisium?>" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                                                                <form id="tambah-pesan" action="<?php echo base_url()?>akademik/yudisium/pesan/<?php echo $record->id_valid_yudisium?>/<?php echo $yudisiumInfo[0]->id_yudisium?>" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                                                     <div class="modal-body">
                                                                         <div id="testmodal" style="padding: 5px 20px;">
                                                                             <div class="form-group">
-                                                                                <input type="hidden" class="form-control" name="id_mahasiswa" value="<?php echo $yudisiumInfo[0]->id_yudisium?>">
-                                                                                <label class="col-sm-3 control-label">Judul</label>
+                                                                                <input type="hidden" class="form-control" name="id_mahasiswa" value="<?php echo $yudisiumInfo[0]->id_mahasiswa?>">
+                                                                                <label class="col-sm-3 col-md-12 control-label">Judul</label>
                                                                                 <input type="text" class="form-control" name="nama" value="<?php echo $record->nama_berkas?>">
-                                                                                <label class="col-sm-3 control-label">Pesan</label>
-                                                                                <div class="col-sm-9">
-                                                                                    <textarea class="form-control" style="height:55px;" id="pesan" name="deskripsi"></textarea>
-                                                                                </div>
+                                                                                <br>
+                                                                                <label class="col-sm-3 col-md-12 control-label">Pesan</label>
+                                                                                <textarea class="form-control" style="height:55px;" id="pesan" name="deskripsi"></textarea>
                                                                             </div>
-                                                                            <input type="submit" value="Submit" class="btn btn-primary">
+                                                                            <input type="submit" value="Submit" class="btn btn-primary pull-right">
                                                                         </div>
                                                                     </div>
                                                                 </form>
@@ -218,6 +219,43 @@ if(!empty($yudisiumInfo))
                                 ?>
                                 </tbody>
                             </table>
+                            <?php if ($status != 'disetujui'){?>
+                            <div class="well">
+                                <center>
+                                        <h4><strong>Silahkan pilih jika semua berkas telah diterima</strong></h4>
+                                        <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#status"><i class="fa fa-check"></i> Terima</a>
+                                </center>
+                            </div>
+                            <?php }?>
+                            <!--modal terima-->
+                            <div id="status" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">Setuju Yudisium</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="testmodal" style="padding: 5px 20px;">
+                                                <div class="modal-body">
+                                                    <center>
+                                                        <h4>Yakin telah menerima seluruh berkas yudisium?</h4>
+                                                        <div id="testmodal" style="padding: 5px 20px;">
+                                                            <form action="<?php echo base_url()?>akademik/yudisium/status/<?php echo $yudisiumInfo[0]->id_yudisium?>/<?php echo $yudisiumInfo[0]->id_mahasiswa?>" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                                                                <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                                                <input type="submit" class="btn btn-success" value="Yes" style="width: 14%">
+                                                            </form>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

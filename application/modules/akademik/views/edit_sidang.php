@@ -6,7 +6,7 @@
  * Description:
  */
 //var_dump($berkasInfo);
-var_dump($sidangInfo);
+//var_dump($sidangInfo);
 ?>
 <?php
 $id_berkas_sidang = '';
@@ -205,14 +205,12 @@ if(!empty($sidangInfo))
                                                                         <div id="testmodal" style="padding: 5px 20px;">
                                                                             <div class="form-group">
                                                                                 <input type="hidden" class="form-control" name="id_mahasiswa" value="<?php echo $sidangInfo[0]->id_mahasiswa?>">
-                                                                                <label class="col-sm-3 control-label">Judul</label>
+                                                                                <label class="col-sm-3 col-md-12 control-label">Judul</label>
                                                                                 <input type="text" class="form-control" name="nama" value="<?php echo $record->nama_berkas?>">
-                                                                                <label class="col-sm-3 control-label">Pesan</label>
-                                                                                <div class="col-sm-9">
-                                                                                    <textarea class="form-control" style="height:55px;" id="pesan" name="deskripsi"></textarea>
-                                                                                </div>
+                                                                                <label class="col-sm-3 col-md-12 control-label">Pesan</label>
+                                                                                <textarea class="form-control" style="height:55px;" id="pesan" name="deskripsi"></textarea>
                                                                             </div>
-                                                                            <input type="submit" value="Submit" class="btn btn-primary">
+                                                                            <input type="submit" value="Submit" class="btn btn-primary pull-right">
                                                                         </div>
                                                                     </div>
                                                                 </form>

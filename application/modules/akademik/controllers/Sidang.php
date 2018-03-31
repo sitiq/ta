@@ -13,7 +13,6 @@ class Sidang extends BaseController
         $this->load->model('sidang_model');
         $this->isLoggedIn();
     }
-
     function index()
     {
         if($this->isAkademik() == TRUE)
@@ -62,9 +61,9 @@ class Sidang extends BaseController
                 $result = $this->sidang_model->accBerkas($berkasInfo, $idValidSidang);
 
                 if ($result == true) {
-                    $this->session->set_flashdata('success', 'File accepted');
+                    $this->session->set_flashdata('success', 'Berkas berhasil diterima!');
                 } else {
-                    $this->session->set_flashdata('error', 'File accept failed');
+                    $this->session->set_flashdata('error', 'Berkas gagal diterima!');
                 }
 //                $this->editOld($idMhs);
                 redirect('akademik/sidang/editOld/'.$idMhs);
@@ -104,9 +103,9 @@ class Sidang extends BaseController
                     $result = $this->sidang_model->decBerkas($berkasInfo, $idValidSidang);
 
                     if ($result == true) {
-                        $this->session->set_flashdata('success', 'File rejected');
+                        $this->session->set_flashdata('success', 'Berkas ditolak!');
                     } else {
-                        $this->session->set_flashdata('error', 'File reject failed');
+                        $this->session->set_flashdata('error', 'Berkas gagal ditolak!');
                     }
                     $this->editOld($idMhs);
                 }
@@ -119,11 +118,11 @@ class Sidang extends BaseController
 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'Revision sent');
+                    $this->session->set_flashdata('success', 'Revisi berhasil dikirim!');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Revision unsent');
+                    $this->session->set_flashdata('error', 'Revisi gagal dikirim!');
                 }
                 redirect('akademik/sidang/editOld/'.$idMhs);
 //                $this->editOld($idMhs);
@@ -290,6 +289,7 @@ class Sidang extends BaseController
                 $this->index();
             } else {
                 if (!empty($idSidang)) {
+
                     $pesanInfo = array(
                         'id_mahasiswa'=>$idMhs,
                         'nama'=>'Pelaksanaan sidang telah diubah.',
@@ -333,5 +333,10 @@ class Sidang extends BaseController
                 }else{echo "asda";}
             }
         }
+    }
+    function pageNotFound()
+    {
+        $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
+        $this->loadViews("404", $this->global, NULL, NULL);
     }
 }

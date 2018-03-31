@@ -142,6 +142,10 @@ class Profil extends BaseController
             redirect('dosen/profil');
         }
     }
+    function pageNotFound()
+    {
+        $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
+        $this->loadViews("404", $this->global, NULL, NULL);
+    }
 }
-
 ?>

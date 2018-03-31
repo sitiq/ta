@@ -35,6 +35,7 @@
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url()?>elusistatic/build/css/custom.min.css" rel="stylesheet">
     <link href="<?php echo base_url()?>elusistatic/build/css/customm.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>elusistatic/build/css/nilai.css" rel="stylesheet">
 
 </head>
 
@@ -44,7 +45,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-graduation-cap"></i> <span>e-Lusi</span></a>
+                    <a href="<?php echo base_url()?>dosen" class="site_title"><i class="fa fa-graduation-cap"></i> <span>e-Lusi</span></a>
                 </div>
                 <div class="clearfix"></div>
                 <br />

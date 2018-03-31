@@ -8,13 +8,28 @@
 
 class dashboard_model extends CI_Model
 {
-    function getPesanList($userId){
+    function getPesanList($userId)
+    {
         $this->db->select("l.*, m.id_mahasiswa, u.id_user");
         $this->db->from('log_pesan l');
         $this->db->join('mahasiswa m','m.id_mahasiswa = l.id_mahasiswa');
         $this->db->join('user u','u.id_user = m.id_user');
         $this->db->where('u.id_user',$userId);
         $this->db->order_by('l.createdDtm','desc');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+    function getRevisiSidang($userId)
+    {
+        $this->db->select('r.path');
+        $this->db->from('mahasiswa m');
+        $this->db->join('user u','u.id_user = m.id_user','left');
+        $this->db->join('sidang s','s.id_mahasiswa = m.id_mahasiswa','left');
+        $this->db->join('anggota_sidang a','a.id_sidang = s.id_sidang','left');
+        $this->db->join('revisi_sidang r','r.id_anggota_sidang = a.id_anggota_sidang','left');
+
+        $this->db->where('u.id_user',$userId);
         $query = $this->db->get();
 
         return $query->result();

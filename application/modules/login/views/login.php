@@ -76,8 +76,7 @@
                             <input type="password" name="password" class="form-control" placeholder="Password" required />
                         </div>
                         <div>
-                            <input type="submit" class="btn btn-default submit btn-success" value="Log In" />
-                            <a class="reset_pass" href="ubah.html">Lost your password?</a>
+                            <input type="submit" class="btn btn-default submit btn-success pull-right" value="Log In" />
                         </div>
                     </form>
                     <div class="clearfix"></div>

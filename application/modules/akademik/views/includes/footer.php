@@ -22,7 +22,6 @@
 
 <!-- Dropzone.js -->
 <script src="<?php echo base_url()?>elusistatic/vendors/dropzone/dist/min/dropzone.min.js"></script>
-
 <!-- Bootstrap -->
 <script src="<?php echo base_url()?>elusistatic/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->

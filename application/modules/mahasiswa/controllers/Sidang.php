@@ -51,31 +51,8 @@ class Sidang extends BaseController
                     "id_sidang"=>$idSidang,
                     "id_berkas_sidang"=>$idBerkas
                 );
-                $validasi = $this->sidang_model->addNewValidasi($daftarId);
+                $result = $this->sidang_model->addNewValidasi($daftarId);
                 $idBerkas++;
-            }
-//            $jadwalInfo = array(
-//                "id_sidang"=>$idSidang
-//            );
-//            $idJadwal = $this->sidang_model->addJadwal($jadwalInfo);
-////            sukses
-//            $idAnggota = $this->sidang_model->addAnggota($jadwalInfo);
-
-            $anggotaInfo = array(
-                "id_sidang"=>$idSidang,
-                "id_anggota_sidang"=>$idAnggota
-            );
-            $idPenilaian = $this->sidang_model->addPenilaian($anggotaInfo);
-
-//            insert to komponen nilai table
-            $idKomponen = 1;
-            for ($i=1;$i<=10;$i++){
-                $daftarNilaiId = array(
-                    "id_penilaian"=>$idPenilaian,
-                    "id_komponen"=>$idKomponen
-                );
-                $result = $this->sidang_model->addNewKomponenNilai($daftarNilaiId);
-                $idKomponen++;
             }
 
 //            lebih dari 0 berarti ada data yg masuk
@@ -169,13 +146,16 @@ class Sidang extends BaseController
             }else{
                 // bila upload path berhasil
                 $terupload = $this->upload->data();
-                $berkasInfo = array('path'=>$terupload['file_name'], 'isValid'=>1);
+                $berkasInfo = array(
+                    'path'=>$terupload['file_name'],
+                    'isValid'=>1
+                );
 
                 $result = $this->sidang_model->editBerkas($berkasInfo, $id_berkas);
 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'File uploaded');
+                    $this->session->set_flashdata('success', 'Berkas berhasil diunggah');
                 }
                 else
                 {
@@ -184,5 +164,10 @@ class Sidang extends BaseController
             }
             redirect('mahasiswa/sidang');
         }
+    }
+    function pageNotFound()
+    {
+        $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
+        $this->loadViews("404", $this->global, NULL, NULL);
     }
 }

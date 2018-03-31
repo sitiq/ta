@@ -28,4 +28,9 @@ class Akun_mahasiswa extends BaseController
         $this->global['pageTitle'] = "Elusi : Edit User"; 
         $this->loadViews("edit_user",$this->global,$data);
     }
+    function pageNotFound()
+    {
+        $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
+        $this->loadViews("404", $this->global, NULL, NULL);
+    }
 }
