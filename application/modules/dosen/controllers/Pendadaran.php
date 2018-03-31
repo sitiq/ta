@@ -143,23 +143,7 @@ class Pendadaran extends BaseController
                         'path' => $terupload['file_name'],
                         'id_anggota_sidang' => $id_anggota_sidang
                     );
-                    $revisi = $this->pendadaran_model->addNewRevisi($revisiInfo);
-
-                    $pesanInfo = array(
-                        'id_mahasiswa'=>$idMhs,
-                        'nama'=>'Revisi Sidang',
-                        'deskripsi'=>'
-                            if(!empty($revisiInfo))
-                                {
-                                    $i=1;
-                                    foreach($revisiInfo as $record)
-                                    {
-                                        <\\a href="uploads/sidang/revisi/$record->path">unduh revisi</a\\>
-                                    $i++
-                                    }
-                                }'
-                    );
-                    $result = $this->pendadaran_model->addPesan($pesanInfo);
+                    $result = $this->pendadaran_model->addNewRevisi($revisiInfo);
 
                     if ($result == true) {
                         $this->session->set_flashdata('success', 'Unggah revisi berhasil!');
