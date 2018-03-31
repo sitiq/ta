@@ -8,13 +8,18 @@
 
 class Yudisium extends BaseController
 {
+    /**
+     * This is default constructor of the class
+     */
     public function __construct()
     {
         parent::__construct();
         $this->load->model('yudisium_model');
         $this->isLoggedIn();
     }
-
+    /**
+     * This function is used to load main page
+     */
     function index()
     {
         if($this->isMahasiswa() == TRUE)
@@ -31,12 +36,13 @@ class Yudisium extends BaseController
             $this->loadViews("yudisium", $this->global, $data, NULL);
         }
     }
+    /**
+     * This function is used to registration Yudisium
+     */
     function daftar(){
-
         $id_user = $this->vendorId;
-        $cek = $this->yudisium_model->cekMahasiswa($id_user);
-//        $cekPeriode = $this->yudisium_model->cekPeriode();
 
+        $cek = $this->yudisium_model->cekMahasiswa($id_user);
         $id_mahasiswa = $cek[0]->id_mahasiswa;
 
         $infoYudisium = array(
@@ -45,9 +51,8 @@ class Yudisium extends BaseController
         );
         $idYudisium = $this->yudisium_model->addNewYudisium($infoYudisium);
 
+//            insert to validasi yudisium table, 7 files important to yudisium
         $idBerkas = 1;
-
-//            insert to validasi yudisium table
         for ($i=1;$i<=7;$i++){
             $daftarId = array(
                 "id_yudisium"=>$idYudisium,
@@ -69,7 +74,7 @@ class Yudisium extends BaseController
         redirect('mahasiswa/yudisium');
     }
     /**
-     * This function is used to edit the photo information
+     * This function is used to edit files for Yudisium
      */
     function editBerkas () {
         if($this->isMahasiswa() == TRUE)
@@ -86,7 +91,7 @@ class Yudisium extends BaseController
                 $this->load->library('form_validation');
             $this->form_validation->set_rules('id_valid_yudisium','ID','required');
             $id_berkas = $this->input->post('id_valid_yudisium');
-
+// upload files based on each folder in uploads folder
             if ($id_folder==1){
                 $config['upload_path'] = 'uploads/yudisium/permohonan';
                 $new_name = "permohonan-".time();
@@ -128,12 +133,12 @@ class Yudisium extends BaseController
             $this->load->library('upload', $config);
 
             if ( ! $this->upload->do_upload('path')){
-                // bila uplod path error
+                // if upload path error
                 $error = array('error' => $this->upload->display_errors());
                 // echo $error['error'];
                 $this->session->set_flashdata('error', 'Upload file failed');
             }else{
-                // bila upload path berhasil
+                // if upload path success
                 $terupload = $this->upload->data();
                 $berkasInfo = array('path'=>$terupload['file_name'], 'isValid'=>1);
 

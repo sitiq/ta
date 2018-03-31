@@ -31,7 +31,6 @@ class ChangePassword extends BaseController
         else
         {
             $this->global['pageTitle'] = 'Elusi : Change Password';
-
             $this->loadViews("change_password", $this->global, NULL, NULL);
         }
     }
@@ -84,6 +83,9 @@ class ChangePassword extends BaseController
             }
         }
     }
+    /**
+     * This function is used to load the 404 page not found
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
