@@ -92,7 +92,6 @@ if(!empty($revisiInfo))
                                 <th>Nilai</th>
                             </tr>
                             </thead>
-<!--                            <input type="radio" name="radio" checked>-->
                             <tbody>
                             <form id="nilai-satu" action="<?php echo base_url()?>dosen/pendadaran/submitnilai" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                 <?php

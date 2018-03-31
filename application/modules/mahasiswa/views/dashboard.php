@@ -5,8 +5,6 @@
  * Time: 11:32
  * Description:
  */
-//var_dump($pesanInfo);
-//var_dump($revisiInfo);
 ?>
 <div class="">
     <div class="page-title">
@@ -14,6 +12,38 @@
             <h3>Dashboard</h3>
         </div>
     </div>
+    <?php if ($revisiInfo[0]->path!=null){?>
+    <div class="clearfix"></div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Revisi Sidang <small>Silahkan unduh</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <ul>
+                    <?php
+                    if(!empty($revisiInfo))
+                    {
+                        $i=1;
+                        foreach($revisiInfo as $record)
+                        {
+                            ?>
+                            <li>
+                                <u>
+                                    <a href="<?php echo base_url()?>uploads/sidang/revisi/<?php echo $record->path ?>" target="_blank">Revisi-<?php echo $i?></a>
+                                </u>
+                            </li>
+                            <?php
+                            $i++;
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php }?>
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
