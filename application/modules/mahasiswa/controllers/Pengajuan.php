@@ -35,6 +35,7 @@ class Pengajuan extends BaseController
             $data['userRole'] = $this->role;
 
             $data['proyekInfo'] = $this->pengajuan_model->getProyek();
+            $data['periodeInfo'] = $this->pengajuan_model->getPeriode();
 
             // apabila dia sudah mendaftarkan TA
             $id_mahasiswa = $this->pengajuan_model->getIdMahasiswa($userId);
@@ -256,26 +257,58 @@ class Pengajuan extends BaseController
                             if ($jenis_pilihan3 == "usul") {
                                 // jenis pengajuan ta = usulan
                                 // sebelumnya pilihannya = usulan
-                                $usulan = array (
-                                    'judul'=>$judul,
-                                    'deskripsi'=>$deskripsi,
-                                    'bisnis_rule'=>$bisnis_rule,
-                                    'file'=>$file
-                                );
+                                $config['upload_path'] = 'uploads/persetujuan';
+                                $config['allowed_types'] = 'pdf';
+                                $config['max_size'] = 8000;
+                                $config['max_width'] = 1024;
+                                $config['max_height'] = 1024;
+                                $new_name = "persetujuan-" . time();
+                                $config['file_name'] = $new_name;
 
+                                $this->load->library('upload', $config);
+
+                                if (!$this->upload->do_upload('file')) {
+                                    // if upload revisi tidak sesuai
+                                    $error = array('error' => $this->upload->display_errors());
+                                    $this->session->set_flashdata('error', 'Unggah file gagal!');
+                                } else {
+                                    $terupload = $this->upload->data();
+                                    $usulan = array(
+                                        'judul' => $judul,
+                                        'deskripsi' => $deskripsi,
+                                        'bisnis_rule' => $bisnis_rule,
+                                        'file' => $terupload['file_name'],
+                                    );
+                                }
                                 // edit data tabel usulan
                                 $resultUsulan = $this->pengajuan_model->editUsulan($usulan, $id_usulan);
                             } else {
                                 // jenis pengajuan ta = usulan
                                 // sebelumnya pilihannya = proyek
-                                $usulan = array (
-                                    'id_pengajuan_ta'=>$id_pengajuan_ta[$i],
-                                    'judul'=>$judul,
-                                    'deskripsi'=>$deskripsi,
-                                    'bisnis_rule'=>$bisnis_rule,
-                                    'file'=>$file
-                                );
+                                $config['upload_path'] = 'uploads/persetujuan';
+                                $config['allowed_types'] = 'pdf';
+                                $config['max_size'] = 8000;
+                                $config['max_width'] = 1024;
+                                $config['max_height'] = 1024;
+                                $new_name = "persetujuan-" . time();
+                                $config['file_name'] = $new_name;
 
+                                $this->load->library('upload', $config);
+
+                                if (!$this->upload->do_upload('file')) {
+                                    // if upload revisi tidak sesuai
+                                    $error = array('error' => $this->upload->display_errors());
+                                    $this->session->set_flashdata('error', 'Unggah file gagal!');
+                                } else {
+                                    $terupload = $this->upload->data();
+                                    $usulan = array(
+                                        'id_pengajuan_ta' => $id_pengajuan_ta[$i],
+                                        'judul' => $judul,
+                                        'deskripsi' => $deskripsi,
+                                        'bisnis_rule' => $bisnis_rule,
+                                        'file' => $terupload['file_name'],
+                                    );
+                                }
                                 // insert data ke tabel usulan
                                 $resultUsulan = $this->pengajuan_model->addNewUsulan($usulan);
                             }

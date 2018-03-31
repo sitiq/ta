@@ -8,6 +8,16 @@
 
 class yudisium_model extends CI_Model
 {
+    function getPeriode(){
+        $this->db->select('p.tanggal_awal_regis, p.tanggal_akhir_regis');
+        $this->db->from('periode p');
+        $this->db->join('yudisium y','y.id_periode = p.id_periode');
+        $this->db->where('jenis','yudisium');
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
     function getBerkasInfo($userId)
     {
         $this->db->select('berkas.id_berkas_yudisium, berkas.nama_berkas, val.id_valid_yudisium,
@@ -33,21 +43,6 @@ class yudisium_model extends CI_Model
         $this->db->where('mahasiswa.id_user', $userId);
         $query = $this->db->get();
 
-        $result = $query->result();
-        return $result;
-    }
-    /**
-     * This function is used to get the nim mahasiswa who is login
-     * @param string $id : This is optional search text
-     * @return array $result : This is result
-     */
-    function cekPeriode()
-    {
-        $this->db->select('yudisium.id_periode');
-        $this->db->from('yudisium');
-        $this->db->join('periode','periode.id_periode = yudisium.id_periode');
-        $this->db->where('yudisium.id_periode', 2);
-        $query = $this->db->get();
         $result = $query->result();
         return $result;
     }
