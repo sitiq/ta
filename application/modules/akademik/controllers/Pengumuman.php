@@ -143,4 +143,9 @@ class Pengumuman extends BaseController
 
         redirect('akademik/pengumuman');
     }
+    function pageNotFound()
+    {
+        $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
+        $this->loadViews("404", $this->global, NULL, NULL);
+    }
 }

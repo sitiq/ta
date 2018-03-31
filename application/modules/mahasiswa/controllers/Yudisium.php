@@ -27,8 +27,7 @@ class Yudisium extends BaseController
             $this->global['pageTitle'] = "Elusi : Yudisium";
 
             $data['berkasInfo'] = $this->yudisium_model->getBerkasInfo($userId);
-//            $data['idMahasiswa'] = $this->yudisium_model->cekMahasiswa($userId);
-            $data['cekPeriode'] = $this->yudisium_model->cekPeriode();
+            $data['periodeInfo'] = $this->yudisium_model->getPeriode();
             $this->loadViews("yudisium", $this->global, $data, NULL);
         }
     }
@@ -151,5 +150,10 @@ class Yudisium extends BaseController
             }
             redirect('mahasiswa/yudisium');
         }
+    }
+    function pageNotFound()
+    {
+        $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
+        $this->loadViews("404", $this->global, NULL, NULL);
     }
 }

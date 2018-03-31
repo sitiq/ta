@@ -13,6 +13,16 @@ class pengajuan_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return array $result : This is result
      */
+    function getPeriode(){
+        $this->db->select('p.tanggal_awal_regis, p.tanggal_akhir_regis');
+        $this->db->from('periode p');
+        $this->db->join('tugas_akhir t','t.id_periode = p.id_periode');
+        $this->db->where('jenis','ta');
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
     function getProyek()
     {
         $this->db->select('id_proyek, id_dosen, nama');
@@ -23,7 +33,6 @@ class pengajuan_model extends CI_Model
         $result = $query->result();
         return $result;
     }
-
     function getTa($id_mahasiswa)
     {
         $this->db->select('ta.id_ta, pt.id_pengajuan_ta, pt.pilihan, pt.jenis, p.id_proyek, p.nama, u.id_usulan, u.judul, u.deskripsi, u.bisnis_rule, u.file');

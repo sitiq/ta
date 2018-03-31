@@ -5,10 +5,8 @@
  * Time: 12:48
  * Description:
  */
-//var_dump($proyekInfo);
 ?>
 <?php
-
 $pilihan = array();
 //diset null karna untuk pilihan ke tiga
 $pilihan[2] = '';
@@ -26,6 +24,15 @@ $jenis = '';
 // active pane saat edit form
 $active_proyek = 0;
 $active_usulan = 0;
+
+if(!empty($periodeInfo))
+{
+    foreach ($periodeInfo as $uf)
+    {
+        $periode_awal = $uf->tanggal_awal_regis;
+        $periode_akhir = $uf->tanggal_akhir_regis;
+    }
+}
 
 if (!empty($taInfo)) {
     $i = 0;
@@ -60,6 +67,12 @@ if (!empty($taInfo)) {
         }
     }
 }
+$date_now = (new DateTime())->format('Y-m-d');
+$time_now = (new DateTime())->format('H:i');
+$tanggal_awal = substr($periode_awal,0,10);
+$waktu_awal = substr($periode_awal,10,6);
+$tanggal_akhir = substr($periode_akhir,0,10);
+$waktu_akhir = substr($periode_akhir,10,6);
 ?>
 <div class="">
     <div class="page-title">
@@ -68,6 +81,25 @@ if (!empty($taInfo)) {
         </div>
     </div>
     <div class="clearfix"></div>
+<!--    validasi berdasarkan periode-->
+    <?php if ($date_now > $tanggal_awal && $date_now > $tanggal_akhir && $time_now > $waktu_awal && $time_now > $waktu_akhir){?>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <center>
+                        <h4>
+                            <strong>BUKAN PERIODE </strong>PENDAFTARAN TUGAS AKHIR
+                        </h4>
+                        <br>
+                        <h5>Silahkan tunggu informasi selanjutnya</h5>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } else {?>
+<!--    end validasi berdasarkan periode-->
     <div class="row">
         <div class="col-md-12">
             <?php
@@ -592,6 +624,7 @@ if (!empty($taInfo)) {
             </div>
         </div>
     </div>
+    <?php }?>
 </div>
 <script>
     $(document).ready(function(){

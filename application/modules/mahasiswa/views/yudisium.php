@@ -5,8 +5,6 @@
  * Time: 07:28
  * Description:
  */
-//var_dump($idMahasiswa);
-//var_dump($cekPeriode);
 ?>
 <?php
 $id_berkas_yudisium = '';
@@ -16,6 +14,15 @@ $isValid = '';
 $path = '';
 $id_yudisium = '';
 $id_mahasiswa = '';
+
+if(!empty($periodeInfo))
+{
+    foreach ($periodeInfo as $uf)
+    {
+        $periode_awal = $uf->tanggal_awal_regis;
+        $periode_akhir = $uf->tanggal_akhir_regis;
+    }
+}
 
 if(!empty($berkasInfo))
 {
@@ -30,6 +37,12 @@ if(!empty($berkasInfo))
         $id_mahasiswa = $uf->id_mahasiswa;
     }
 }
+$date_now = (new DateTime())->format('Y-m-d');
+$time_now = (new DateTime())->format('H:i');
+$tanggal_awal = substr($periode_awal,0,10);
+$waktu_awal = substr($periode_awal,10,6);
+$tanggal_akhir = substr($periode_akhir,0,10);
+$waktu_akhir = substr($periode_akhir,10,6);
 ?>
 <div class="">
     <div class="page-title">
@@ -38,6 +51,25 @@ if(!empty($berkasInfo))
         </div>
     </div>
     <div class="clearfix"></div>
+    <!--    validasi berdasarkan periode-->
+    <?php if ($date_now > $tanggal_awal && $date_now > $tanggal_akhir && $time_now > $waktu_awal && $time_now > $waktu_akhir){?>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <center>
+                            <h4>
+                                <strong>BUKAN PERIODE </strong>PENDAFTARAN YUDISIUM
+                            </h4>
+                            <br>
+                            <h5>Silahkan tunggu informasi selanjutnya</h5>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } else {?>
+    <!--    end validasi berdasarkan periode-->
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -224,4 +256,5 @@ if(!empty($berkasInfo))
             </div>
         </div>
     </div>
+    <?php }?>
 </div>
