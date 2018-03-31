@@ -115,7 +115,7 @@ class pendadaran_model extends CI_Model
      * This function is used to edit sidang mahasiswa
      * @param array $nilaiAkhir : This is array data include nilai_akhir_dosen average
      * @param $sidangId : This is get id each sidang
-     * @return array $result : This is result
+     * @return bool true : where affected row increase
      */
     function editSidang($nilaiAkhir, $sidangId)
     {
