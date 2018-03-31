@@ -18,7 +18,7 @@ class Bimbingan extends BaseController
         $this->isLoggedIn();
     }
     /**
-     * This function is used to load the profil list
+     * This function is used to load the main page
      */
     function index()
     {
@@ -39,8 +39,8 @@ class Bimbingan extends BaseController
         }
     }
     /**
-     * This function is used load project edit information
-     * @param number $projectId : Optional : This is project id
+     * This function is used load detail mahasiswa information
+     * @param number $idMhs : This is mahasiswa id
      */
     function detail($idMhs = NULL)
     {
@@ -59,6 +59,9 @@ class Bimbingan extends BaseController
             $this->loadViews("profil-mhs", $this->global, $data, NULL);
         }
     }
+    /**
+     * This function is used to load the 404 page not found
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';

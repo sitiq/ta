@@ -18,7 +18,7 @@ class Dosen extends BaseController
         $this->isLoggedIn();
     }
     /**
-     * This function is used to load the profil list
+     * This function is used to load the dashboard items
      */
     function index()
     {
@@ -28,7 +28,6 @@ class Dosen extends BaseController
         }
         else
         {
-//            $userRole = $this->role;
             $userId = $this->vendorId;
 
             $this->global['pageTitle'] = "Elusi : Dashboard";
@@ -36,11 +35,12 @@ class Dosen extends BaseController
             $data['countPendadaran'] = $this->dashboard_model->getCountPendadaran($userId);
             $data['countProyek'] = $this->dashboard_model->getCountProyek($userId);
 
-            //------------- Cek Periode PKL -------------//
-//            $data['cekPeriode'] = $this->dosen_model->cekPeriode(date('Y')); // cek info periode pada tahun ini
             $this->loadViews("dashboard", $this->global, $data, NULL);
         }
     }
+    /**
+     * This function is used to load the 404 page not found
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
