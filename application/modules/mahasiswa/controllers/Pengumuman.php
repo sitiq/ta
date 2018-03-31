@@ -8,17 +8,25 @@
 
 class Pengumuman extends BaseController
 {
+    /**
+     * This is default constructor of the class
+     */
     public function __construct() {
         parent::__construct();
         $this->load->model('pengumuman_model');
         $this->isLoggedIn();
     }
-
+    /**
+     * This function is used to load the main page
+     */
     public function index(){
         $data['dataTable'] = $this->pengumuman_model->getPengumumanList();
         $this->global['pageTitle'] = "Elusi : Pengumuman";
         $this->loadViews("pengumuman",$this->global,$data);
     }
+    /**
+     * This function is used to load the 404 page not found
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';

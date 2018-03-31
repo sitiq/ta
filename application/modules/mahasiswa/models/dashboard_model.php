@@ -8,6 +8,11 @@
 
 class dashboard_model extends CI_Model
 {
+    /**
+     * This function is used to  get pesan list related to mahasiswa
+     * @param number $userId : This is user id who is logged in
+     * @return array $result : This is result
+     */
     function getPesanList($userId)
     {
         $this->db->select("l.*, m.id_mahasiswa, u.id_user");
@@ -20,6 +25,11 @@ class dashboard_model extends CI_Model
 
         return $query->result();
     }
+    /**
+     * This function is used to  get revisi from Sidang related to mahasiswa
+     * @param number $userId : This is user id who is logged in
+     * @return array $result : This is result
+     */
     function getRevisiSidang($userId)
     {
         $this->db->select('r.path');

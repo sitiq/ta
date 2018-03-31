@@ -8,6 +8,11 @@
 
 class sidang_model extends CI_Model
 {
+    /**
+     * This function used to get berkas list by id
+     * @param number $userId : This is user who is logged in
+     * @return array $result : This is mahasiswa information
+     */
     function getBerkasInfo($userId)
     {
         $this->db->select('berkas.id_berkas_sidang, berkas.nama_berkas, val.id_valid_sidang,
@@ -25,7 +30,7 @@ class sidang_model extends CI_Model
     }
     /**
      * This function is used to get the nim mahasiswa who is login
-     * @param string $id : This is optional search text
+     * @param string $id : This is got from who is logged in
      * @return array $result : This is result
      */
     function cekMahasiswa($id)
@@ -40,28 +45,28 @@ class sidang_model extends CI_Model
         return $result;
     }
     /**
-     * This function is used to add new project to system
+     * This function is used to add new sidang to system / registration sidang
+     * @param array $infoSidang : This is sidang information list
      * @return number $insert_id : This is last inserted id
      */
     function addNewSidang($infoSidang)
     {
         $this->db->trans_start();
         $this->db->insert('sidang', $infoSidang);
-
         $insert_id = $this->db->insert_id();
-
         $this->db->trans_complete();
 
         return $insert_id;
     }
     /**
-     * This function is used to add new project to system
+     * This function is used to add new validasi berkas to system / registration sidang
+     * @param array $infoValidasi : This is validasi information list
      * @return number $insert_id : This is last inserted id
      */
-    function addNewValidasi($id)
+    function addNewValidasi($infoValidasi)
     {
         $this->db->trans_start();
-        $this->db->insert('validasi_berkas_sidang', $id);
+        $this->db->insert('validasi_berkas_sidang', $infoValidasi);
 
         $insert_id = $this->db->insert_id();
 
@@ -70,11 +75,11 @@ class sidang_model extends CI_Model
         return $insert_id;
     }
     /**
-     * This function is used to update the mahasiswa information
-     * @param array $berkasInfo : This is mahasiswas updated information
-     * @param number $nim : This is mahasiswa id
+     * This function is used to edit the files in validasi_berkas_sidang table
+     * @param array $berkasInfo : This is array files wanna insert to validasi_berkas_sidang field
+     * @param number $id_berkas : This is berkas id
      */
-    function editBerkas($berkasInfo, $id_berkas, $idMhs)
+    function editBerkas($berkasInfo, $id_berkas)
     {
         $this->db->where('id_valid_sidang', $id_berkas);
         $this->db->update('validasi_berkas_sidang', $berkasInfo);

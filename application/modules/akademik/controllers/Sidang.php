@@ -8,11 +8,17 @@
 
 class Sidang extends BaseController
 {
+    /**
+     * This is default constructor of the class
+     */
     public function __construct() {
         parent::__construct();
         $this->load->model('sidang_model');
         $this->isLoggedIn();
     }
+    /**
+     * This function is used to load the main page
+     */
     function index()
     {
         if($this->isAkademik() == TRUE)
@@ -28,6 +34,9 @@ class Sidang extends BaseController
             $this->loadViews("dashboard_sidang", $this->global, $data, NULL);
         }
     }
+    /**
+     * This function is used to load form accepting files sidang from mahasiswa
+     */
     function editOld($sidangId = NULL)
     {
         if($this->isAkademik() == TRUE)
@@ -45,6 +54,9 @@ class Sidang extends BaseController
             $this->loadViews("edit_sidang", $this->global, $data, NULL);
         }
     }
+    /**
+     * This function is used to accepting files sidang from mahasiswa
+     */
     function accept($idValidSidang=null, $idMhs)
     {
         if($this->isAkademik() == TRUE)
@@ -129,6 +141,9 @@ class Sidang extends BaseController
             }
         }
     }
+    /**
+     * This function is used to plotting dosen who is scheduled to sidang
+     */
     function plot($idSidang=null, $idMhs)
     {
         if($this->isAkademik() == TRUE)
@@ -259,6 +274,9 @@ class Sidang extends BaseController
             }
         }
     }
+    /**
+     * This function is used to udpate plotting dosen who is scheduled to sidang
+     */
     function editPlot($idSidang=null, $idMhs)
     {
         if($this->isAkademik() == TRUE)
@@ -334,6 +352,9 @@ class Sidang extends BaseController
             }
         }
     }
+    /**
+     * This function is used to load the 404 page not found
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';

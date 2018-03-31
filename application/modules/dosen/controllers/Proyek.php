@@ -92,7 +92,7 @@ class Proyek extends BaseController
     }
     /**
      * This function is used load project edit information
-     * @param number $projectId : Optional : This is project id
+     * @param number $proyekId: This is project id
      */
     function editOld($proyekId = NULL)
     {
@@ -156,6 +156,9 @@ class Proyek extends BaseController
             }
         }
     }
+    /**
+     * This function is used to load the 404 page not found
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';

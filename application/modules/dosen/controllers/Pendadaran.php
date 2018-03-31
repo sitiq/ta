@@ -18,7 +18,7 @@ class Pendadaran extends BaseController
         $this->isLoggedIn();
     }
     /**
-     * This function is used to load the profil list
+     * This function is used to load the main page
      */
     function index()
     {
@@ -38,6 +38,9 @@ class Pendadaran extends BaseController
             $this->loadViews("uji", $this->global, $data, NULL);
         }
     }
+    /**
+     * This function is used to get nilai detail information list
+     */
     function nilai()
     {
         if($this->isDosen() == TRUE)
@@ -54,6 +57,9 @@ class Pendadaran extends BaseController
             $this->loadViews("nilai", $this->global, $data, NULL);
         }
     }
+    /**
+     * This function is used to submit nilai form
+     */
     function submitNilai()
     {
         if ($this->isDosen() == true)
@@ -78,15 +84,15 @@ class Pendadaran extends BaseController
                 $data = array(
                     'nilai' => $id_nilai_value
                 );
+//                update nilai to table komponen_nilai
                 $result1 = $this->pendadaran_model->editKomponenNilai($data, $id_komponen_nilai_value);
 //                total avg nilai dosen
                 $total = $total+($id_nilai_value/($last_index-1));
             }
-
+//            update penilaian average to penilaian table
             $result2 = $this->pendadaran_model->editPenilaian($total, $id_penilaian);
-
+//            update nilai_akhir_sidang to table sidang
             $nilai_akhir_sidang = $total/3;
-
             $result = $this->pendadaran_model->editSidang($nilai_akhir_sidang ,$id_sidang);
 
             if($result > 0)
@@ -100,6 +106,9 @@ class Pendadaran extends BaseController
             redirect("dosen/pendadaran/nilai/$id_penilaian");
         }
     }
+    /**
+     * This function is used to submit report revision each dosen
+     */
     function submitRevisi () {
         if($this->isDosen() == TRUE)
         {
@@ -108,10 +117,10 @@ class Pendadaran extends BaseController
         else
         {
             $this->load->library('form_validation');
-
+//            get id needed
             $id_penilaian = $this->input->post('id_penilaian');
             $idMhs = $this->input->post('id_mahasiswa');
-
+//            validation
             $this->form_validation->set_rules('id_anggota_sidang','id','required');
 
             if($this->form_validation->run() == FALSE)
@@ -121,7 +130,7 @@ class Pendadaran extends BaseController
             }
             else {
                 $id_anggota_sidang = $this->input->post('id_anggota_sidang');
-
+//                upload file revision
                 $config['upload_path'] = 'uploads/sidang/revisi';
                 $config['allowed_types'] = 'pdf';
                 $config['max_size'] = 8000;
@@ -131,7 +140,6 @@ class Pendadaran extends BaseController
                 $config['file_name'] = $new_name;
 
                 $this->load->library('upload', $config);
-
                 if (!$this->upload->do_upload('path')) {
                     // if upload revisi tidak sesuai
                     $error = array('error' => $this->upload->display_errors());
@@ -155,6 +163,9 @@ class Pendadaran extends BaseController
             }
         }
     }
+    /**
+     * This function is used to load the 404 page not found
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';

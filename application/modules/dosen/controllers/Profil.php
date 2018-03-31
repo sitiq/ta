@@ -67,8 +67,6 @@ class Profil extends BaseController
                 $mobile = $this->input->post('mobile');
                 $skill = $this->input->post('skill');
 
-//                $cekNid = $this->profil_model->cekNid($id_dosen);
-
                 if (empty($cekNid)) {
                     $dosenInfo = array(
                         'nid'=>$nid,
@@ -122,7 +120,7 @@ class Profil extends BaseController
                 // bila uplod foto error
                 $error = array('error' => $this->upload->display_errors());
                 // echo $error['error'];
-                $this->session->set_flashdata('error', 'Upload foto dari editFoto failed');
+                $this->session->set_flashdata('error', 'Ukuran maksimum 4mb');
             }else{
                 // bila upload foto berhasil
                 $terupload = $this->upload->data();
@@ -132,16 +130,19 @@ class Profil extends BaseController
 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Photo updated');
+                    $this->session->set_flashdata('success', 'Foto berhasil diperbaharui!');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Photo update failed');
+                    $this->session->set_flashdata('error', 'Foto gagal diperbaharui!');
                 }
             }
             redirect('dosen/profil');
         }
     }
+    /**
+     * This function is used to load the 404 page not found
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';

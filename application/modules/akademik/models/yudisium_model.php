@@ -8,6 +8,11 @@
 
 class yudisium_model extends CI_Model
 {
+    /**
+     * This function is used to get the yudisium info by id
+     * @param number $yudisiumId: This is id needed
+     * @return array $result : This is result
+     */
     function getYudisiumInfo($yudisiumId=NULL)
     {
         $this->db->select('s.id_yudisium, s.status, m.nim, m.nama, m.id_mahasiswa');
@@ -19,6 +24,11 @@ class yudisium_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    /**
+     * This function is used to get the berkas info
+     * @param number $idMhs : This is id mahasiswa having berkas
+     * @return array $result : This is result
+     */
     function getBerkas($idMhs)
     {
         $this->db->select('*');
@@ -28,6 +38,12 @@ class yudisium_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    /**
+     * This function is used to edit status berkas yudisium to accepted
+     * @param array $berkasInfo : Status where accepted
+     * @param array $idValidYudisium : Where is id wanna change to be accepted
+     * @return bool true : where affected row increase
+     */
     function accBerkas($berkasInfo, $idValidYudisium)
     {
         $this->db->where('id_valid_yudisium', $idValidYudisium);
@@ -35,8 +51,10 @@ class yudisium_model extends CI_Model
         return true;
     }
     /**
-     * This function is used to decline file to system
-     * @return number $insert_id : This is last inserted id
+     * This function is used to edit status berkas yudisium to declined
+     * @param array $berkasInfo : Status where declined
+     * @param array $idValidYudisium : Where is id wanna change to be declined
+     * @return bool true : where affected row increase
      */
     function decBerkas($berkasInfo, $idValidYudisium)
     {
@@ -45,7 +63,7 @@ class yudisium_model extends CI_Model
         return true;
     }
     /**
-     * This function is used to add new project to system
+     * This function is used to add new pesan to log_pesan
      * @return number $insert_id : This is last inserted id
      */
     function addPesan($pesanInfo)
@@ -56,6 +74,12 @@ class yudisium_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
+    /**
+     * This function is used to edit status yudisium to accepted
+     * @param array $statusInfo : Status where accepted
+     * @param array $idYudisium : Where is id wanna change to be accepted
+     * @return bool true : where affected row increase
+     */
     function status($statusInfo, $idYudisium)
     {
         $this->db->where('id_yudisium', $idYudisium);

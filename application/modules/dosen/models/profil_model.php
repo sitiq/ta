@@ -3,8 +3,8 @@
 class Profil_model extends CI_Model
 {
     /**
-     * This function is used to get the dosen listing
-     * @param string $userId : This is hidden id
+     * This function is used to get the dosen list
+     * @param number $userId : This is get from user who is logged in
      * @return array $result : This is result
      */
     function getDosen($userId)
@@ -19,8 +19,8 @@ class Profil_model extends CI_Model
     }
 
     /**
-     * This function is used to get the nid dosen count
-     * @param string $searchText : This is optional search text
+     * This function is used to get the nid dosen
+     * @param number $id : This is to get nid and nama dosen
      * @return array $result : This is result
      */
     function cekNid($id)
@@ -36,7 +36,7 @@ class Profil_model extends CI_Model
 
     /**
      * This function used to get dosen information by id
-     * @param number $nid : This is dosen id
+     * @param number $id : This is dosen id
      * @return array $result : This is dosen information
      */
     function getProfilInfo($id)
@@ -53,7 +53,7 @@ class Profil_model extends CI_Model
     /**
      * This function is used to update the dosen information
      * @param array $dosenInfo : This is dosens updated information
-     * @param number $nid : This is dosen id
+     * @return array $result : This is result
      */
     function editProfil($dosenInfo, $id_dosen)
     {

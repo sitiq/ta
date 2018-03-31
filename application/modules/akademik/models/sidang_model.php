@@ -8,6 +8,11 @@
 
 class sidang_model extends CI_Model
 {
+    /**
+     * This function is used to get the mahasiswa sidang list
+     * @param number $sidangId : This is get to know where is want to get data
+     * @return array $result : This is result
+     */
     function getSidangInfo($sidangId=NULL)
     {
         $this->db->select('s.id_sidang, s.status, m.nim, m.nama, m.id_mahasiswa, j.tanggal, j.ruang, j.waktu,
@@ -25,6 +30,10 @@ class sidang_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    /**
+     * This function is used to get the dosen info
+     * @return array $result : This is result
+     */
     function getDosen()
     {
         $this->db->select('id_dosen, nama');
@@ -33,6 +42,10 @@ class sidang_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    /**
+     * This function is used to get the anggota_sidang info where is ketua
+     * @return array $result : This is result
+     */
     function getPengujiKetua()
     {
         $this->db->select('a.id_dosen, a.role, d.nama');
@@ -44,6 +57,10 @@ class sidang_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    /**
+     * This function is used to get the anggota_sidang info where is sekretaris
+     * @return array $result : This is result
+     */
     function getPengujiSekre()
     {
         $this->db->select('a.id_dosen, a.role, d.nama');
@@ -55,6 +72,11 @@ class sidang_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    /**
+     * This function is used to get the berkas info
+     * @param number $idMhs : This is id mahasiswa having berkas
+     * @return array $result : This is result
+     */
     function getBerkas($idMhs)
     {
         $this->db->select('*');
@@ -64,12 +86,24 @@ class sidang_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    /**
+     * This function is used to edit status sidang to be accepted
+     * @param array $berkasInfo : Status where accepted
+     * @param array $idValidSidang : Where is id wanna change to be accepted
+     * @return bool true : where affected row increase
+     */
     function accSidang($berkasInfo, $idValidSidang)
     {
         $this->db->where('id_valid_sidang', $idValidSidang);
         $this->db->update('sidang', $berkasInfo);
         return true;
     }
+    /**
+     * This function is used to edit status berkas sidang to accepted
+     * @param array $berkasInfo : Status where accepted
+     * @param array $idValidSidang : Where is id wanna change to be accepted
+     * @return bool true : where affected row increase
+     */
     function accBerkas($berkasInfo, $idValidSidang)
     {
         $this->db->where('id_valid_sidang', $idValidSidang);
@@ -77,8 +111,10 @@ class sidang_model extends CI_Model
         return true;
     }
     /**
-     * This function is used to decline file to system
-     * @return number $insert_id : This is last inserted id
+     * This function is used to edit status berkas sidang to declined
+     * @param array $berkasInfo : Status where declined
+     * @param array $idValidSidang : Where is id wanna change to be declined
+     * @return bool true : where affected row increase
      */
     function decBerkas($berkasInfo, $idValidSidang)
     {
@@ -87,7 +123,7 @@ class sidang_model extends CI_Model
         return true;
     }
     /**
-     * This function is used to add new project to system
+     * This function is used to add new pesan to system
      * @return number $insert_id : This is last inserted id
      */
     function addPesan($pesanInfo)
@@ -98,6 +134,10 @@ class sidang_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
+    /**
+     * This function is used to add new scehdule to system
+     * @return number $insert_id : This is last inserted id
+     */
     function addJadwal($jadwalInfo)
     {
         $this->db->trans_start();
@@ -106,6 +146,10 @@ class sidang_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
+    /**
+     * This function is used to add new member to system
+     * @return number $insert_id : This is last inserted id
+     */
     function addAnggota($anggotaInfo)
     {
         $this->db->trans_start();
@@ -114,6 +158,10 @@ class sidang_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
+    /**
+     * This function is used to add new average total 3 dosen to system
+     * @return number $insert_id : This is last inserted id
+     */
     function addPenilaian($infoPenilaian)
     {
         $this->db->trans_start();
@@ -122,6 +170,10 @@ class sidang_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
+    /**
+     * This function is used to add new 10 list
+     * @return number $insert_id : This is last inserted id
+     */
     function addNewKomponenNilai($id)
     {
         $this->db->trans_start();
@@ -130,6 +182,12 @@ class sidang_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
+    /**
+     * This function is used to edit status berkas sidang to declined
+     * @param array $sidangInfo : Status where declined
+     * @param array $idSidang : Where is id wanna change to be declined
+     * @return bool true : where affected row increase
+     */
     function editStatus($sidangInfo, $idSidang)
     {
         $this->db->where('id_sidang', $idSidang);
@@ -141,6 +199,12 @@ class sidang_model extends CI_Model
             return false;
         }
     }
+    /**
+     * This function is used to edit jadwal sidang and status sidang become accepted
+     * @param array $jadwalInfo : jadwal where plotting
+     * @param array $idValidSidang : Where is id wanna change to be declined
+     * @return bool true : where affected row increase
+     */
     function editJadwal($jadwalInfo, $idSidang)
     {
         $this->db->where('id_sidang', $idSidang);
@@ -152,6 +216,12 @@ class sidang_model extends CI_Model
             return false;
         }
     }
+    /**
+     * This function is used to edit anggota sidang
+     * @param array $anggotaInfo : info anggota sidang
+     * @param array $idRole : Where is role wanna change to be declined
+     * @return bool true : where affected row increase
+     */
     function editAnggota($anggotaInfo, $idRole)
     {
         $this->db->where('role', $idRole);
@@ -163,6 +233,12 @@ class sidang_model extends CI_Model
             return false;
         }
     }
+    /**
+     * This function is used to edit ketua sidang
+     * @param array $anggotaInfo : info ketua sidang
+     * @param array $idRole : Where is role wanna change to be declined
+     * @return bool true : where affected row increase
+     */
     function editKetua($ketuaInfo, $idRole)
     {
         $this->db->where('role', $idRole);
@@ -174,6 +250,12 @@ class sidang_model extends CI_Model
             return false;
         }
     }
+    /**
+     * This function is used to edit sekretaris sidang
+     * @param array $anggotaInfo : info sekretaris sidang
+     * @param array $idRole : Where is role wanna change to be declined
+     * @return bool true : where affected row increase
+     */
     function editSekre($sekreInfo, $idRole)
     {
         $this->db->where('role', $idRole);

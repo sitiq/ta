@@ -3,8 +3,8 @@
 class Profil_model extends CI_Model
 {
     /**
-     * This function is used to get the mahasiswa listing count
-     * @param string $searchText : This is optional search text
+     * This function is used to get the mahasiswa list
+     * @param number $userId : This is get from user who is logged in
      * @return array $result : This is result
      */
     function getMahasiswa($userId)
@@ -17,10 +17,10 @@ class Profil_model extends CI_Model
         $result = $query->result();
         return $result;
     }
-	
-	/**
-     * This function is used to get the nim mahasiswa count
-     * @param string $searchText : This is optional search text
+
+    /**
+     * This function is used to get mahasiswa
+     * @param number $id : This is get from user who is logged in
      * @return array $result : This is result
      */
     function cekNim($id)
@@ -36,7 +36,7 @@ class Profil_model extends CI_Model
     
 	/**
      * This function used to get mahasiswa information by id
-     * @param number $nim : This is mahasiswa id
+     * @param number $id : This is mahasiswa id
      * @return array $result : This is mahasiswa information
      */
     function getProfilInfo($id)
@@ -51,9 +51,10 @@ class Profil_model extends CI_Model
     }
     
     /**
-     * This function is used to update the mahasiswa information
+     * This function is used to edit the mahasiswa information
      * @param array $mahasiswaInfo : This is mahasiswas updated information
-     * @param number $nim : This is mahasiswa id
+     * @param number $id_mahasiswa : This is mahasiswa id
+     * @return true if row in table increase
      */
     function editProfil($mahasiswaInfo, $id_mahasiswa)
     {
