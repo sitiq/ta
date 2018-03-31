@@ -89,14 +89,14 @@
                                     </td>
                                     <?php if($data->status_pengambilan == 'terplotting') { ?>
                                         <td align="center" style="vertical-align:middle">
-                                            <a data-toggle="tooltip" title="Edit" href="<?php echo base_url(); ?>akademik/tugas_akhir/detail/<?php echo $data->id_ta; ?>"
+                                            <a data-toggle="tooltip" title="Lihat" href="<?php echo base_url(); ?>akademik/tugas_akhir/detail/<?php echo $data->id_ta; ?>"
                                                 class="btn btn-primary">
-                                                <i class="fa fa-pencil"></i>
+                                                <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
                                     <?php } elseif($data->status_pengambilan == 'proses') { ?>
                                         <td align="center" style="vertical-align:middle">
-                                            <a data-toggle="tooltip" title="Edit" href="<?php echo base_url(); ?>akademik/tugas_akhir/plotting/<?php echo $data->id_ta; ?>"
+                                            <a data-toggle="tooltip" title="Detail" href="<?php echo base_url(); ?>akademik/tugas_akhir/plotting/<?php echo $data->id_ta; ?>"
                                                 class="btn btn-primary">
                                                 <i class="fa fa-pencil"></i>
                                             </a>

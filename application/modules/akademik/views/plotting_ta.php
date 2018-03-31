@@ -12,6 +12,7 @@
             <br>
             <br>
             <?php //var_dump($dataPengajuanTA)?>
+            <?php //var_dump($dataProyek)?>
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
@@ -43,8 +44,8 @@
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                         <?php echo $this->session->flashdata('error'); ?>
                                     </div>
-                                <?php } ?>
-                                <?php  
+                                    <?php } ?>
+                                    <?php  
                                         $success = $this->session->flashdata('success');
                                         if($success)
                                         {
@@ -53,9 +54,9 @@
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                         <?php echo $this->session->flashdata('success'); ?>
                                     </div>
-                                <?php } ?>
+                                    <?php } ?>
                             </div>
-                            
+
                             <div class="x_content">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <p>
@@ -122,7 +123,6 @@
                                                         <th>Pilihan</th>
                                                         <th>Judul</th>
                                                         <th>Dosen Pembimbing</th>
-                                                        <th>Detail</th>
                                                         <th>Terima</th>
                                                     </tr>
                                                     <?php
@@ -138,75 +138,15 @@
                                                             <td>
                                                                 <?php echo ($data['jenis'] == 'proyek'? $data['nama_dosen'] : '' ); ?>
                                                             </td>
+                                                            
                                                             <?php if($data['jenis'] == 'usul') { ?>
                                                             <td>
-                                                                <a class="btn btn-sm btn-default" data-toggle='modal' id="see_modal" data-target=".seeModalUsulan">
-                                                                    Lihat
-                                                                </a>
-                                                            </td>
-                                                            <div class="modal fade seeModalUsulan" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                <div class="modal-dialog modal-lg">
-                                                                    <div class="modal-content">
-
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h4 class="modal-title">Lihat Detail Usulan</h4>
-                                                                        </div>
-                                                                        <div class="modal-body" style="overflow-x: auto;">
-                                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                    <span class="badge">Usulan Judul</span>
-                                                                                </div>
-                                                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                    <p>
-                                                                                        <?php echo $data['judul']; ?>
-                                                                                    </p>
-                                                                                </div>
-                                                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                    <span class="badge">Deskripsi Proyek</span>
-                                                                                </div>
-                                                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                    <p>
-                                                                                        <?php echo $data['deskripsi']; ?>
-                                                                                    </p>
-                                                                                </div>
-                                                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                    <span class="badge">Business Rule</span>
-                                                                                </div>
-                                                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                    <p>
-                                                                                        <?php echo $data['bisnis_rule']; ?>
-                                                                                    </p>
-                                                                                </div>
-                                                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                    <span class="badge">Persetujuan Institusi</span>
-                                                                                </div>
-                                                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                    <p>
-                                                                                        <?php echo $data['file']; ?>
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <?php } else { ?>
-                                                            <td>
-
-                                                            </td>
-                                                            <?php } ?>
-                                                            <?php if($data['jenis'] == 'usul') { ?>
-                                                            <td>
-                                                                <input type="radio" class="flat" name="terima" id="terima<?php echo $i; ?>" value="<?php echo $data['id_pengajuan_ta'] . ' ' .'usulan'?>"
+                                                                <input type="radio" class="flat" name="terima" id="terima_usulan" value="<?php echo $data['id_pengajuan_ta'] . ' ' .'usulan'?>"
                                                                 />
                                                             </td>
                                                             <?php } else { ?>
                                                             <td>
-                                                                <input type="radio" class="flat" name="terima" id="terima<?php echo $i; ?>" value="<?php echo $data['id_pengajuan_ta'] . ' ' . $data['id_proyek'] ?>"
+                                                                <input type="radio" class="flat" name="terima" id="terima_proyek" value="<?php echo $data['id_pengajuan_ta'] . ' ' . $data['id_proyek'] ?>"
                                                                 />
                                                             </td>
                                                             <?php } ?>
@@ -224,13 +164,73 @@
                                                             <td>
                                                             </td>
                                                             <td>
-                                                            </td>
-                                                            <td>
-                                                                <input type="radio" class="flat" name="terima" id="terima" value="manual" />
+                                                                <input type="radio" class="flat" name="terima" id="terima_dipilihkan" value="manual" />
                                                             </td>
                                                         </tr>
                                                 </tbody>
                                             </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tampilan pilih usulan -->
+                                    <div style="display:none" id="usulan" class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <span class="badge">Usulan Judul</span>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p>
+                                                <?php echo $dataPengajuanTA[0]['judul']; ?>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <span class="badge">Deskripsi Proyek</span>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p>
+                                                <?php echo $dataPengajuanTA[0]['deskripsi']; ?>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <span class="badge">Business Rule</span>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p>
+                                                <?php echo $dataPengajuanTA[0]['bisnis_rule']; ?>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <span class="badge">Persetujuan Institusi</span>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p>
+                                                <?php echo $dataPengajuanTA[0]['file']; ?>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            Tentukan dosen pembimbing
+                                            <select name="dosen" id="dosen" class="form-control">
+                                                <option value="">Pilih Dosen pembimbing..</option>
+                                                <?php foreach ($dataDosen as $data) { ?>
+                                                <option value="<?php echo $data->id_dosen?>">
+                                                    <?php echo $data->nama; ?>
+                                                </option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tampilan dipilihkan -->
+                                    <div style="display:none" id="dipilihkan" class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-md-6">
+                                            Tentukan Proyek
+                                            <select name="proyek" id="proyek" class="form-control">
+                                                <option value="">Pilih Proyek..</option>
+                                                <?php foreach ($dataProyek as $data) { ?>
+                                                <option value="<?php echo $data->id_proyek?>">
+                                                    <?php echo $data->nama_proyek; ?>
+                                                </option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <input type="hidden" name="id_ta" value="<?php echo $dataTA[0]->id_ta; ?>">
@@ -247,3 +247,20 @@
         </div>
     </div>
 </div>
+<script>
+    // $('input').iCheck('check', function(){
+    //   alert('Well done, Sir');
+    // });
+    $('input#terima_usulan').on('ifChecked', function (event) {
+        $("#usulan").show();
+        $("#dipilihkan").hide();
+    });
+    $('input#terima_proyek').on('ifChecked', function (event) {
+        $("#usulan").hide();
+        $("#dipilihkan").hide();
+    });
+    $('input#terima_dipilihkan').on('ifChecked', function (event) {
+        $("#usulan").hide();
+        $("#dipilihkan").show();
+    });
+</script>
