@@ -23,15 +23,29 @@ class Profil_model extends CI_Model
      * @param number $id : This is get from user who is logged in
      * @return array $result : This is result
      */
-    function cekNim($id)
-    {
-        $this->db->select('nim, nama');
-        $this->db->from('mahasiswa');
-        $this->db->where('id_mahasiswa', $id);
+    function checkNim($nim,$idMhs = 0){
+        $this->db->select("nim");
+        $this->db->from("mahasiswa");
+        $this->db->where("nim", $nim);
+        $this->db->where("isDeleted", 0);
+        if($idMhs != 0){
+            $this->db->where("id_user !=", $idMhs);
+        }
         $query = $this->db->get();
-        
-        $result = $query->result();
-        return count($result);
+
+        if( $query->num_rows() > 0 ){ return TRUE; } else { return FALSE; }
+    }
+    function checkEmail($email,$idMhs = 0){
+        $this->db->select("email");
+        $this->db->from("user");
+        $this->db->where("email", $email);
+        $this->db->where("isDeleted", 0);
+        if($idMhs != 0){
+            $this->db->where("id_user !=", $idMhs);
+        }
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ){ return TRUE; } else { return FALSE; }
     }
     
 	/**

@@ -5,9 +5,6 @@
  * Time: 21:14
  * Description:
  */
-//var_dump($sidangInfo);
-//var_dump($sekreInfo);
-//var_dump($dosenInfo);
 ?>
 <div class="">
     <div class="page-title">
@@ -243,19 +240,19 @@
                                                                 </label>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="col-md-7 col-sm-7 col-xs-12">
-                                                                        <div class='input-group date' id='myDatepicker2'>
-                                                                            <input value="<?php echo date_format(date_create_from_format('Y-m-d',$record->tanggal), 'd/m/Y'); ?>" name="tanggal" id="tanggal" type='text' class="form-control"/>
+                                                                        <div class='input-group date' id='myDatepicker4'>
+                                                                            <input value="<?php echo date_format(date_create_from_format('Y-m-d',$record->tanggal), 'd/m/Y'); ?>" name="tanggal" id="tanggal-edit" type='text' class="form-control"/>
                                                                             <span class="input-group-addon">
-                                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                                        </span>
+                                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                                            </span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-5 col-sm-5 col-xs-12">
-                                                                        <div class='input-group date' id='myDatepicker3'>
-                                                                            <input value="<?php echo $record->waktu?>" name="waktu" id="waktu" type='text' class="form-control"/>
+                                                                        <div class='input-group date' id='myDatepicker5'>
+                                                                            <input value="<?php echo substr($record->waktu,0,5)?>" name="waktu" id="waktu-edit" type='text' class="form-control"/>
                                                                             <span class="input-group-addon">
-                                                                            <span class="glyphicon glyphicon-time"></span>
-                                                                        </span>
+                                                                                <span class="glyphicon glyphicon-time"></span>
+                                                                            </span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -350,6 +347,12 @@
         format: 'DD/MM/YYYY'
     });
     $('#myDatepicker3').datetimepicker({
+        format: 'HH:mm'
+    });
+    $('#myDatepicker4').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+    $('#myDatepicker5').datetimepicker({
         format: 'HH:mm'
     });
 </script>

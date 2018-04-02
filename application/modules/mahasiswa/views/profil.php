@@ -182,7 +182,7 @@ if(!empty($profilInfo))
                             </div>
                             <div class="x_content">
                                 <!-- form start update profile -->
-                                <form role="form" action="<?php echo base_url() ?>mahasiswa/profil/editProfil" method="post" id="editProfil" enctype="multipart/form-data">
+                                <form role="form" action="<?php echo base_url() ?>mahasiswa/profil/editProfil" method="post" id="editProfilForm" enctype="multipart/form-data">
                                     <input type="hidden" class="form-control required" id="id_mahasiswa" name="id_mahasiswa" value="<?php echo $id_mahasiswa ?>" >
                                     <div class="row">
                                         <div class="col-md-6">
@@ -191,26 +191,28 @@ if(!empty($profilInfo))
                                         </div>
                                         <div class="col-md-2">
                                             <label for="ipk">IPK</label>
-                                            <input type="text" id="ipk" class="form-control" name="ipk" value="<?php echo $ipk ?>">
+                                            <input type="text" id="ipk" class="form-control" name="ipk" placeholder="0.00" value="<?php echo $ipk ?>">
                                         </div>
                                         <div class="clearfix"></div>
                                         <div class="col-md-6">
                                             <label for="hp">No. HP</label>
-                                            <input type="number" id="hp" class="form-control" name="mobile" value="<?php echo $mobile ?>">
+                                            <input type="number" id="mobile" class="form-control" name="mobile" placeholder="contoh : 0857xxx" value="<?php echo $mobile ?>">
                                         </div>
                                         <div class="col-md-2" style="margin-bottom: 3%">
                                             <label for="sks">SKS</label>
-                                            <input type="number" id="sks" class="form-control" name="jumlah_sks" value="<?php echo $jumlah_sks ?>">
+                                            <input type="number" id="jumlah_sks" class="form-control" maxlength="3" min="100" name="jumlah_sks" value="<?php echo $jumlah_sks ?>">
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
+                                    <label for="nim">NIM</label>
+                                    <input type="text" id="nim" class="form-control col-md-6" name="nim" value="<?php echo $nim ?>"><br>
                                     <label for="fullname">Nama Lengkap</label>
-                                    <input type="text" id="fullname" class="form-control" name="nama" value="<?php echo $nama ?>"><br>
+                                    <input type="text" id="nama" class="form-control" name="nama" value="<?php echo $nama ?>"><br>
                                     <label for="skill">Keahlian <small>(pisahkan dengan 'koma')</small></label>
                                     <input class="form-control" id="skill" name="skill" value="<?php echo $skill ?>">
                                     <br/>
                                     <label for="experience">Pengalaman <small>(deskripsikan)</small></label>
-                                    <textarea class="form-control" id="experience" name="pengalaman" rows="3"><?php echo $pengalaman ?></textarea>
+                                    <textarea class="form-control" id="pengalaman" name="pengalaman" rows="3"><?php echo $pengalaman ?></textarea>
                                     <br/>
                                     <a href="#profil" class="btn btn-danger" role="tab" id="home-tab" data-toggle="tab" aria-expanded="true">Cancel</a>
                                     <input type="submit" class="btn btn-primary" value="Save">
@@ -225,3 +227,4 @@ if(!empty($profilInfo))
         <!--tab panel-->
     </div>
 </div>
+<script src="<?php echo base_url()?>elusistatic/js/editProfil.js"></script>
