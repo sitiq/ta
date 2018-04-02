@@ -47,50 +47,38 @@ class Profil extends BaseController
         }
         else
         {
-            $this->load->library('form_validation');
+            $id_mahasiswa = $this->input->post('id_mahasiswa');
+            $nim = $this->input->post('nim');
+            $nama = $this->input->post('nama');
+            $jumlah_sks = $this->input->post('jumlah_sks');
+            $ipk = $this->input->post('ipk');
+            $email = $this->input->post('email');
+            $mobile = $this->input->post('mobile');
+            $skill = $this->input->post('skill');
+            $pengalaman = $this->input->post('pengalaman');
 
-            $this->form_validation->set_rules('nama','Nama Mahasiswa','trim|required|xss_clean');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|xss_clean|max_length[128]');
-            $this->form_validation->set_rules('mobile','Mobile','trim|required|xss_clean');
+            $mahasiswaInfo = array(
+                'nim'=>$nim,
+                'nama'=>$nama,
+                'jumlah_sks'=>$jumlah_sks,
+                'ipk'=>$ipk,
+                'email'=>$email,
+                'mobile'=>$mobile,
+                'skill'=>$skill,
+                'pengalaman'=>$pengalaman);
 
-            if($this->form_validation->run() != FALSE)
+            $result = $this->profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
+
+            if($result > 0)
             {
-                $this->session->set_flashdata('success', 'lele');
-                redirect('mahasiswa/profil');
+                $this->session->set_flashdata('success', 'Profil berhasil diubah!');
             }
             else
             {
-                $id_mahasiswa = $this->input->post('id_mahasiswa');
-                $nama = $this->input->post('nama');
-                $jumlah_sks = $this->input->post('jumlah_sks');
-                $ipk = $this->input->post('ipk');
-                $email = $this->input->post('email');
-                $mobile = $this->input->post('mobile');
-                $skill = $this->input->post('skill');
-                $pengalaman = $this->input->post('pengalaman');
-
-                $mahasiswaInfo = array(
-                    'nama'=>$nama,
-                    'jumlah_sks'=>$jumlah_sks,
-                    'ipk'=>$ipk,
-                    'email'=>$email,
-                    'mobile'=>$mobile,
-                    'skill'=>$skill,
-                    'pengalaman'=>$pengalaman,
-                    'createdDtm'=>date('Y-m-d H:i:s'));
-
-                $result = $this->profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
-
-                if($result > 0)
-                {
-                    $this->session->set_flashdata('success', 'Ubah profil berhasil!');
-                }
-                else
-                {
-                    $this->session->set_flashdata('error', 'Ubah profil gagal!');
-                }
-                redirect('mahasiswa/profil');
+                $this->session->set_flashdata('error', 'Profil gagal diubah!');
             }
+
+            redirect('mahasiswa/profil');
         }
     }
     /**
@@ -139,6 +127,41 @@ class Profil extends BaseController
                 }
             }
             redirect('mahasiswa/profil');
+        }
+    }
+    function checkEmailExists(){
+        //if (array_key_exists('email', $_POST)) {
+        $idMhs = $this->input->post("id_mahasiswa");
+        $email = $this->input->post("email");
+
+        if(empty($idMhs)){
+            $result = $this->user_model->checkEmail($email);
+        } else {
+            $result = $this->user_model->checkEmail($email, $idMhs);
+        }
+
+        if ($result) {
+            echo json_encode(FALSE);
+        } else {
+            echo json_encode(TRUE);
+        }
+    }
+
+    function checkNimExists(){
+        //if (array_key_exists('email', $_POST)) {
+        $idMhs = $this->input->post("id_mahasiswa");
+        $nim = $this->input->post("nim");
+
+        if(empty($idMhs)){
+            $result = $this->profil_model->checkNim($nim);
+        } else {
+            $result = $this->profil_model->checkNim($nim, $idMhs);
+        }
+
+        if ($result) {
+            echo json_encode(FALSE);
+        } else {
+            echo json_encode(TRUE);
         }
     }
     /**

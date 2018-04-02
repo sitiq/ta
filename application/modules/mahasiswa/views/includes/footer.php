@@ -21,6 +21,7 @@
 </div>
 
 <!-- jQuery -->
+<script src="<?php echo base_url()?>elusistatic/js/jquery.validate.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="<?php echo base_url()?>elusistatic/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
