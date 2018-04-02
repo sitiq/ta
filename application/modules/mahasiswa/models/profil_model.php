@@ -19,9 +19,10 @@ class Profil_model extends CI_Model
     }
 
     /**
-     * This function is used to get mahasiswa
-     * @param number $id : This is get from user who is logged in
-     * @return array $result : This is result
+     * This function is used to check existance nim
+     * @param number $nim : This is get nim from mahasiswa who is logged in
+     * @param number $idMhs : This is get id_mahasiswa from mahasiswa who is logged in
+     * @return bool : true if exist
      */
     function checkNim($nim,$idMhs = 0){
         $this->db->select("nim");
@@ -29,23 +30,37 @@ class Profil_model extends CI_Model
         $this->db->where("nim", $nim);
         $this->db->where("isDeleted", 0);
         if($idMhs != 0){
-            $this->db->where("id_user !=", $idMhs);
+            $this->db->where("id_mahasiswa !=", $idMhs);
         }
         $query = $this->db->get();
 
-        if( $query->num_rows() > 0 ){ return TRUE; } else { return FALSE; }
+        if( $query->num_rows() > 0 ){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
+    /**
+     * This function is used to check existance email
+     * @param number $email : This is get email from mahasiswa who is logged in
+     * @param number $idMhs : This is get id_mahasiswa from mahasiswa who is logged in
+     * @return bool : true if exist
+     */
     function checkEmail($email,$idMhs = 0){
         $this->db->select("email");
-        $this->db->from("user");
+        $this->db->from("mahasiswa");
         $this->db->where("email", $email);
         $this->db->where("isDeleted", 0);
         if($idMhs != 0){
-            $this->db->where("id_user !=", $idMhs);
+            $this->db->where("id_mahasiswa !=", $idMhs);
         }
         $query = $this->db->get();
 
-        if( $query->num_rows() > 0 ){ return TRUE; } else { return FALSE; }
+        if( $query->num_rows() > 0 ){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
     
 	/**
