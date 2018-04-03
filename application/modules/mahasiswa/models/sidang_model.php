@@ -28,6 +28,25 @@ class sidang_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    function getCountBerkas()
+    {
+        $this->db->select('b.id_berkas_sidang, b.nama_berkas, b.isDeleted');
+        $this->db->from('berkas_sidang b');
+        $this->db->where('b.isDeleted', 0);
+
+        $query = $this->db->get();
+        return count($query->result());
+    }
+    function getIdBerkas()
+    {
+        $this->db->select('b.id_berkas_sidang');
+        $this->db->from('berkas_sidang b');
+        $this->db->where('b.isDeleted', 0);
+
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
     /**
      * This function is used to get the nim mahasiswa who is login
      * @param string $id : This is got from who is logged in

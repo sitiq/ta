@@ -22,8 +22,6 @@
 
 <!-- basic scripts -->
 
-<!--[if !IE]> -->
-<script src="<?php echo base_url()?>elusistatic/vendors/jquery/dist/jquery.min.js"></script>
 <!-- <![endif]-->
 <script src="<?php echo base_url()?>elusistatic/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- bootstrap-daterangepicker -->

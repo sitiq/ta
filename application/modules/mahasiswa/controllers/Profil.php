@@ -50,7 +50,7 @@ class Profil extends BaseController
             $id_mahasiswa = $this->input->post('id_mahasiswa');
             $nim = $this->input->post('nim');
             $nama = $this->input->post('nama');
-            $jumlah_sks = $this->input->post('jumlah_sks');
+            $jumlah_SKS = $this->input->post('jumlah_SKS');
             $ipk = $this->input->post('ipk');
             $email = $this->input->post('email');
             $mobile = $this->input->post('mobile');
@@ -60,7 +60,7 @@ class Profil extends BaseController
             $mahasiswaInfo = array(
                 'nim'=>$nim,
                 'nama'=>$nama,
-                'jumlah_sks'=>$jumlah_sks,
+                'jumlah_SKS'=>$jumlah_SKS,
                 'ipk'=>$ipk,
                 'email'=>$email,
                 'mobile'=>$mobile,
@@ -135,9 +135,9 @@ class Profil extends BaseController
         $email = $this->input->post("email");
 
         if(empty($idMhs)){
-            $result = $this->user_model->checkEmail($email);
+            $result = $this->profil_model->checkEmail($email);
         } else {
-            $result = $this->user_model->checkEmail($email, $idMhs);
+            $result = $this->profil_model->checkEmail($email, $idMhs);
         }
 
         if ($result) {

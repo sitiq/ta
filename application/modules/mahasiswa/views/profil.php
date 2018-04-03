@@ -186,27 +186,29 @@ if(!empty($profilInfo))
                                     <input type="hidden" class="form-control required" id="id_mahasiswa" name="id_mahasiswa" value="<?php echo $id_mahasiswa ?>" >
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="email">Email</label>
+                                            <label for="email">Email <span>*</span></label>
                                             <input type="email" id="email" name="email" class="form-control" value="<?php echo $email ?>">
                                         </div>
                                         <div class="col-md-2">
-                                            <label for="ipk">IPK</label>
-                                            <input type="text" id="ipk" class="form-control" name="ipk" placeholder="0.00" value="<?php echo $ipk ?>">
+                                            <label for="ipk">IPK <span>*</span></label>
+                                            <input type="number" min="0.00" max="4" step="0.01" id="ipk" class="form-control" name="ipk" placeholder="0.00" value="<?php echo $ipk ?>">
                                         </div>
                                         <div class="clearfix"></div>
                                         <div class="col-md-6">
-                                            <label for="hp">No. HP</label>
+                                            <label for="hp">No. HP  <span>*</span></label>
                                             <input type="number" id="mobile" class="form-control" name="mobile" placeholder="contoh : 0857xxx" value="<?php echo $mobile ?>">
                                         </div>
                                         <div class="col-md-2" style="margin-bottom: 3%">
-                                            <label for="sks">SKS</label>
-                                            <input type="number" id="jumlah_sks" class="form-control" maxlength="3" min="100" name="jumlah_sks" value="<?php echo $jumlah_sks ?>">
+                                            <label for="sks">SKS <span>*</span></label>
+                                            <input type="number" id="jumlah_SKS" class="form-control" maxlength="3" max="120" min="100" name="jumlah_SKS" value="<?php echo $jumlah_sks ?>">
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <label for="nim">NIM</label>
-                                    <input type="text" id="nim" class="form-control col-md-6" name="nim" value="<?php echo $nim ?>"><br>
-                                    <label for="fullname">Nama Lengkap</label>
+                                    <label for="nim">NIM <span>*</span></label>
+                                    <input type="text" id="nim" class="form-control col-md-6" name="nim" value="<?php echo $nim ?>">
+                                    <div class="clearfix"></div>
+                                    <br>
+                                    <label for="fullname">Nama Lengkap <span>*</span></label>
                                     <input type="text" id="nama" class="form-control" name="nama" value="<?php echo $nama ?>"><br>
                                     <label for="skill">Keahlian <small>(pisahkan dengan 'koma')</small></label>
                                     <input class="form-control" id="skill" name="skill" value="<?php echo $skill ?>">

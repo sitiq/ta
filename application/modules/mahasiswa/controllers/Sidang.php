@@ -30,6 +30,8 @@ class Sidang extends BaseController
         {
             $userId = $this->vendorId;
             $data['berkasInfo'] = $this->sidang_model->getBerkasInfo($userId);
+            $data['idBerkas'] = $this->sidang_model->getIdBerkas();
+            $data['totalSyarat'] = $this->sidang_model->getCountBerkas();
             $data['idMahasiswa'] = $this->sidang_model->cekMahasiswa($userId);
 
             $this->global['pageTitle'] = "Elusi : Sidang";
@@ -43,6 +45,10 @@ class Sidang extends BaseController
     function daftar(){
             //get id user who is logged in
             $id_user = $this->vendorId;
+            //get total syarat where active
+            $total_syarat = $this->input->post('total_syarat');
+//            get first id syarat berkas
+            $id_syarat = $this->input->post('id_syarat');
 //            get id_mahasiswa based on who is logged in
             $cek = $this->sidang_model->cekMahasiswa($id_user);
             $id_mahasiswa = $cek[0]->id_mahasiswa;
@@ -53,14 +59,13 @@ class Sidang extends BaseController
             $idSidang = $this->sidang_model->addNewSidang($infoSidang);
 
 //            insert to validasi_berkas_sidang table, make 10 files important to Sidang
-            $idBerkas = 1;
-            for ($i=1;$i<=10;$i++){
+            for ($i=1;$i<=$total_syarat;$i++){
                 $daftarId = array(
                     "id_sidang"=>$idSidang,
-                    "id_berkas_sidang"=>$idBerkas
+                    "id_berkas_sidang"=>$id_syarat
                 );
                 $result = $this->sidang_model->addNewValidasi($daftarId);
-                $idBerkas++;
+                $id_syarat++;
             }
 
 //            lebih dari 0 berarti ada data yg masuk
@@ -76,7 +81,7 @@ class Sidang extends BaseController
         redirect('mahasiswa/sidang');
     }
     /**
-     * This function is used to edit files upload 10 files
+     * This function is used to edit files upload requirement files
      */
     function editBerkas () {
         if($this->isMahasiswa() == TRUE)
@@ -85,7 +90,7 @@ class Sidang extends BaseController
         }
         else
         {
-//            get id berkas where to edit
+//            get id berkas where to edit by folder
             $id_folder = $this->input->post('id_berkas_sidang');
             $nim = $this->input->post('id_mahasiswa');
             $cekMhs = $this->sidang_model->cekMahasiswa($nim);
@@ -94,50 +99,13 @@ class Sidang extends BaseController
             $this->load->library('form_validation');
             $this->form_validation->set_rules('id_valid_sidang','ID','required');
             $id_berkas = $this->input->post('id_valid_sidang');
+//            get total syarat
+            $total_syarat = $this->input->post('total_syarat');
 //          upload based on each folders
-            if ($id_folder==1){
-                $config['upload_path'] = 'uploads/sidang/usulan-sidang';
-                $new_name = "usulan-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==2){
-                $config['upload_path'] = 'uploads/sidang/krs';
-                $new_name = "krs-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==3){
-                $config['upload_path'] = 'uploads/sidang/rekap-nilai';
-                $new_name = "rekap-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==4){
-                $config['upload_path'] = 'uploads/sidang/kartu-hasil-studi';
-                $new_name = "khs-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==5){
-                $config['upload_path'] = 'uploads/sidang/kartu-bimbingan';
-                $new_name = "bimbingan-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==6){
-                $config['upload_path'] = 'uploads/sidang/ktm';
-                $new_name = "ktm-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==7){
-                $config['upload_path'] = 'uploads/sidang/riwayat-registrasi';
-                $new_name = "riwayat-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==8){
-                $config['upload_path'] = 'uploads/sidang/proposal';
-                $new_name = "proposal-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==9){
-                $config['upload_path'] = 'uploads/sidang/laporan';
-                $new_name = "laporan-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==10){
-                $config['upload_path'] = 'uploads/sidang/cover';
-                $new_name = "cover-".time();
-                $config['file_name'] = $new_name;
-            }else{
-                $config['upload_path'] = 'uploads/sidang/tambahan-syarat';
-                $new_name = "tambahan-".time();
+            for ($i=1;$i<=$total_syarat;$i++)
+            {
+                $config['upload_path'] = 'uploads/sidang/'.$id_folder;
+                $new_name = "sidang-".$id_folder."-".time();
                 $config['file_name'] = $new_name;
             }
             $config['allowed_types'] = 'pdf';

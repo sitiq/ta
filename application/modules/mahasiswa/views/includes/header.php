@@ -33,6 +33,13 @@
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url()?>elusistatic/build/css/custom.min.css" rel="stylesheet">
     <link href="<?php echo base_url()?>elusistatic/build/css/customm.css" rel="stylesheet">
+
+    <script src="<?php echo base_url()?>elusistatic/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo base_url()?>elusistatic/js/jquery.validate.js"></script>
+
+    <script type="text/javascript">
+        var baseURL = "<?php echo base_url(); ?>";
+    </script>
 </head>
 
 <body class="nav-md">

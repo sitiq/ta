@@ -25,8 +25,8 @@ $(document).ready(function () {
                     url: baseURL + 'mahasiswa/profil/checkNimExists',
                     type: 'post',
                     data : {
-                        nim : function(){
-                            return $("#nim").val();
+                        id_mahasiswa : function(){
+                            return $("#id_mahasiswa").val();
                         }
                     }
                 }
@@ -38,8 +38,8 @@ $(document).ready(function () {
             		url: baseURL + 'mahasiswa/profil/checkEmailExists',
             		type: 'post',
             		data: {
-            			email: function() {
-            			  return $("#email").val();
+            			id_mahasiswa: function() {
+            			  return $("#id_mahasiswa").val();
             			}
             		}
             	}
@@ -49,10 +49,16 @@ $(document).ready(function () {
                 noSpace: true,
                 minlength: 4
             },
-            jumlah_sks: {
+            jumlah_SKS: {
                 required: true,
                 noSpace: true,
                 minlength: 3
+            },
+            mobile: {
+                required: true,
+                noSpace: true,
+                minlength: 10,
+                maxlength: 13
             }
         },
         messages: {
@@ -76,15 +82,18 @@ $(document).ready(function () {
                 noSpace: "IPK tidak boleh kosong",
                 minlength: "Contoh : 3.95",
             },
-            jumlah_sks: {
-                required: "Jumlah harus diisi",
+            jumlah_SKS: {
+                required: "sks harus diisi",
                 noSpace: "IPK tidak boleh kosong",
-                minlength: "Minimal telah menempuh 100 SKS"
+                min: "Minimal telah menempuh 100 SKS",
+                max: "Maksimal telah menempuh 120 SKS"
+            },
+            mobile: {
+            	required: "Nomor Handphone harus diisi",
+                minlength: "Masukkan valid nomor handphone",
+                maxlength: "Masukkan valid nomor handphone",
+            	digits: "Hanya boleh memasukkan nomor"
             }
-            // mobile: {
-            // 	required: "Nomor Handphone harus diisi",
-            // 	digits: "Hanya boleh memasukkan nomor"
-            // }
         }
 
     });

@@ -13,9 +13,8 @@ class yudisium_model extends CI_Model
      * @return array $result : This is result
      */
     function getPeriode(){
-        $this->db->select('p.tanggal_awal_regis, p.tanggal_akhir_regis');
-        $this->db->from('periode p');
-        $this->db->join('yudisium y','y.id_periode = p.id_periode');
+        $this->db->select('tanggal_awal_regis, tanggal_akhir_regis');
+        $this->db->from('periode');
         $this->db->where('jenis','yudisium');
         $query = $this->db->get();
 
@@ -40,6 +39,25 @@ class yudisium_model extends CI_Model
         $this->db->where('mahasiswa.id_user', $userId);
         $query = $this->db->get();
 
+        $result = $query->result();
+        return $result;
+    }
+    function getCountBerkas()
+    {
+        $this->db->select('b.id_berkas_yudisium, b.nama_berkas, b.isDeleted');
+        $this->db->from('berkas_yudisium b');
+        $this->db->where('b.isDeleted', 0);
+
+        $query = $this->db->get();
+        return count($query->result());
+    }
+    function getIdBerkas()
+    {
+        $this->db->select('b.id_berkas_yudisium');
+        $this->db->from('berkas_yudisium b');
+        $this->db->where('b.isDeleted', 0);
+
+        $query = $this->db->get();
         $result = $query->result();
         return $result;
     }
