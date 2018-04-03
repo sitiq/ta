@@ -8,13 +8,18 @@
 
 class Yudisium extends BaseController
 {
+    /**
+     * This is default constructor of the class
+     */
     public function __construct()
     {
         parent::__construct();
         $this->load->model('yudisium_model');
         $this->isLoggedIn();
     }
-
+    /**
+     * This function is used to load main page
+     */
     function index()
     {
         if($this->isMahasiswa() == TRUE)
@@ -28,33 +33,42 @@ class Yudisium extends BaseController
 
             $data['berkasInfo'] = $this->yudisium_model->getBerkasInfo($userId);
             $data['periodeInfo'] = $this->yudisium_model->getPeriode();
+            $data['idBerkas'] = $this->yudisium_model->getIdBerkas();
+            $data['totalSyarat'] = $this->yudisium_model->getCountBerkas();
+            $data['idMahasiswa'] = $this->yudisium_model->cekMahasiswa($userId);
+
             $this->loadViews("yudisium", $this->global, $data, NULL);
         }
     }
+    /**
+     * This function is used to registration Yudisium
+     */
     function daftar(){
-
+        //get id user who is logged in
         $id_user = $this->vendorId;
+        //get total syarat where active
+        $total_syarat = $this->input->post('total_syarat');
+//            get first id syarat berkas
+        $id_syarat = $this->input->post('id_syarat');
+//            get id_mahasiswa based on who is logged in
         $cek = $this->yudisium_model->cekMahasiswa($id_user);
-//        $cekPeriode = $this->yudisium_model->cekPeriode();
-
         $id_mahasiswa = $cek[0]->id_mahasiswa;
 
         $infoYudisium = array(
             "id_mahasiswa"=>$id_mahasiswa,
             "id_periode"=>15
         );
+        //            insert to table yudisium / registration yudisium new
         $idYudisium = $this->yudisium_model->addNewYudisium($infoYudisium);
 
-        $idBerkas = 1;
-
-//            insert to validasi yudisium table
-        for ($i=1;$i<=7;$i++){
+//            insert to validasi yudisium table, 7 files important to yudisium
+        for ($i=1;$i<=$total_syarat;$i++){
             $daftarId = array(
                 "id_yudisium"=>$idYudisium,
-                "id_berkas_yudisium"=>$idBerkas
+                "id_berkas_yudisium"=>$id_syarat
             );
             $result = $this->yudisium_model->addNewValidasi($daftarId);
-            $idBerkas++;
+            $id_syarat++;
         }
 //            lebih dari 0 berarti ada data yg masuk
         if ($result>0)
@@ -69,7 +83,7 @@ class Yudisium extends BaseController
         redirect('mahasiswa/yudisium');
     }
     /**
-     * This function is used to edit the photo information
+     * This function is used to edit files upload requirement files
      */
     function editBerkas () {
         if($this->isMahasiswa() == TRUE)
@@ -86,38 +100,13 @@ class Yudisium extends BaseController
                 $this->load->library('form_validation');
             $this->form_validation->set_rules('id_valid_yudisium','ID','required');
             $id_berkas = $this->input->post('id_valid_yudisium');
-
-            if ($id_folder==1){
-                $config['upload_path'] = 'uploads/yudisium/permohonan';
-                $new_name = "permohonan-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==2){
-                $config['upload_path'] = 'uploads/yudisium/berita-acara';
-                $new_name = "beritaacara-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==3){
-                $config['upload_path'] = 'uploads/yudisium/surat-tanda-terima';
-                $new_name = "suratterima-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==4){
-                $config['upload_path'] = 'uploads/yudisium/poster';
-                $new_name = "poster-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==5){
-                $config['upload_path'] = 'uploads/yudisium/laporan-final';
-                $new_name = "laporanfinal-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==6){
-                $config['upload_path'] = 'uploads/yudisium/ijazah';
-                $new_name = "ijazah-".time();
-                $config['file_name'] = $new_name;
-            }elseif ($id_folder==7){
-                $config['upload_path'] = 'uploads/yudisium/sertifikat';
-                $new_name = "sertifikat-".time();
-                $config['file_name'] = $new_name;
-            }else{
-                $config['upload_path'] = 'uploads/yudisium/tambahan-syarat';
-                $new_name = "tambahan-".time();
+            //            get total syarat
+            $total_syarat = $this->input->post('total_syarat');
+// upload files based on each folder in uploads folder
+            for ($i=1;$i<=$total_syarat;$i++)
+            {
+                $config['upload_path'] = 'uploads/sidang/'.$id_folder;
+                $new_name = "sidang-".$id_folder."-".time();
                 $config['file_name'] = $new_name;
             }
             $config['allowed_types'] = 'pdf';
@@ -128,14 +117,17 @@ class Yudisium extends BaseController
             $this->load->library('upload', $config);
 
             if ( ! $this->upload->do_upload('path')){
-                // bila uplod path error
+                // if upload path error
                 $error = array('error' => $this->upload->display_errors());
                 // echo $error['error'];
                 $this->session->set_flashdata('error', 'Upload file failed');
             }else{
-                // bila upload path berhasil
+                // if upload path success
                 $terupload = $this->upload->data();
-                $berkasInfo = array('path'=>$terupload['file_name'], 'isValid'=>1);
+                $berkasInfo = array(
+                    'path'=>$terupload['file_name'],
+                    'isValid'=>1
+                );
 
                 $result = $this->yudisium_model->editBerkas($berkasInfo, $id_berkas);
 
@@ -151,6 +143,9 @@ class Yudisium extends BaseController
             redirect('mahasiswa/yudisium');
         }
     }
+    /**
+     * This function is used to load the 404 page not found
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';

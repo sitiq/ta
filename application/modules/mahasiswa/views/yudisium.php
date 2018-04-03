@@ -85,6 +85,8 @@ $waktu_akhir = substr($periode_akhir,10,6);
                     <div class="col-md-6">
                         <?php if ($id_yudisium == null){?>
                             <form action="<?php echo base_url() ?>mahasiswa/yudisium/daftar" method="post" enctype="multipart/form-data" role="form">
+                                <input type="hidden" name="total_syarat" value="<?php echo $totalSyarat?>">
+                                <input type="hidden" name="id_syarat" value="<?php echo $idBerkas[0]->id_berkas_yudisium?>">
                                 <input type="submit" class="btn btn-primary pull-right" value="Daftar">
                             </form>
                         <?php }?>
@@ -146,6 +148,7 @@ $waktu_akhir = substr($periode_akhir,10,6);
                                                     <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 2mb</th>
                                                     <th>
                                                         <input type="hidden" value="<?php echo $record->id_mahasiswa?>">
+                                                        <input type="hidden" name="total_syarat" value="<?php echo $totalSyarat?>">
                                                         <input value="<?php echo $record->id_berkas_yudisium ?>" type="number" name="id_berkas_yudisium" hidden>
                                                         <input value="<?php echo $record->id_valid_yudisium ?>" type="number" name="id_valid_yudisium" hidden>
                                                         <input type="text" name="nama_berkas" value="<?php echo $record->nama_berkas ?>" hidden>
@@ -177,7 +180,6 @@ $waktu_akhir = substr($periode_akhir,10,6);
                         </tr>
                         <tr bgcolor="#59BD96" style="color: white">
                             <th>Aksi</th>
-                            <th>No</th>
                             <th>Berkas</th>
                             <th>Status</th>
                         </tr>
@@ -194,44 +196,13 @@ $waktu_akhir = substr($periode_akhir,10,6);
                                         <a href="#tab_content_<?php echo $record->id_valid_yudisium ?>" id="usulan" role="tab" data-toggle="tab" aria-expanded="true" class="btn btn-sm btn-warning">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <?php if($record->id_berkas_yudisium == '1' && $record->path !=''){?>
-                                            <a href="<?php echo base_url()?>uploads/yudisium/permohonan/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                        <?php if ($record->path !=''){?>
+                                            <a href="<?php echo base_url()?>uploads/yudisium/<?php echo $record->id_berkas_yudisium?>/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                        <?php }elseif($record->id_berkas_yudisium == '2' && $record->path !=''){?>
-                                            <a href="<?php echo base_url()?>uploads/yudisium/berita-acara/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                        <?php }elseif($record->id_berkas_yudisium == '3' && $record->path !=''){?>
-                                            <a href="<?php echo base_url()?>uploads/yudisium/surat-tanda-terima/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                        <?php }elseif($record->id_berkas_yudisium == '4' && $record->path !=''){?>
-                                            <a href="<?php echo base_url()?>uploads/yudisium/poster/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                        <?php }elseif($record->id_berkas_yudisium == '5' && $record->path !=''){?>
-                                            <a href="<?php echo base_url()?>uploads/yudisium/laporan-final/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                        <?php }elseif($record->id_berkas_yudisium == '6' && $record->path !=''){?>
-                                            <a href="<?php echo base_url()?>uploads/yudisium/ijazah/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                        <?php }elseif($record->id_berkas_yudisium == '7' && $record->path !=''){?>
-                                            <a href="<?php echo base_url()?>uploads/yudisium/sertifikat/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                            <i class="fa fa-eye"></i>
-                                            </a>
-                                        <?php }else{?>
-                                            <?php if ($record->path!=null){?>
-                                                <a href="<?php echo base_url()?>uploads/yudisium/tambahan-syarat/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                <i class="fa fa-eye"></i>
-                                                </a>
-                                            <?php }?>
                                         <?php }?>
                                         <input type="hidden" value="<?php echo $record->id_valid_yudisium ?>">
                                     </td>
-                                    <td><?php echo $record->id_berkas_yudisium ?></td>
                                     <td><?php echo $record->nama_berkas ?></td>
                                     <?php if ($record->isValid == '3') {
                                         echo "<td><span class=\"label label-danger\">" . "Ditolak" . "</span></td>";

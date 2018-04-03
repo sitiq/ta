@@ -3,8 +3,8 @@
 class Profil_model extends CI_Model
 {
     /**
-     * This function is used to get the mahasiswa listing count
-     * @param string $searchText : This is optional search text
+     * This function is used to get the mahasiswa list
+     * @param number $userId : This is get from user who is logged in
      * @return array $result : This is result
      */
     function getMahasiswa($userId)
@@ -17,26 +17,55 @@ class Profil_model extends CI_Model
         $result = $query->result();
         return $result;
     }
-	
-	/**
-     * This function is used to get the nim mahasiswa count
-     * @param string $searchText : This is optional search text
-     * @return array $result : This is result
+
+    /**
+     * This function is used to check existance nim
+     * @param number $nim : This is get nim from mahasiswa who is logged in
+     * @param number $idMhs : This is get id_mahasiswa from mahasiswa who is logged in
+     * @return bool : true if exist
      */
-    function cekNim($id)
-    {
-        $this->db->select('nim, nama');
-        $this->db->from('mahasiswa');
-        $this->db->where('id_mahasiswa', $id);
+    function checkNim($nim,$idMhs = 0){
+        $this->db->select("nim");
+        $this->db->from("mahasiswa");
+        $this->db->where("nim", $nim);
+        $this->db->where("isDeleted", 0);
+        if($idMhs != 0){
+            $this->db->where("id_mahasiswa !=", $idMhs);
+        }
         $query = $this->db->get();
-        
-        $result = $query->result();
-        return count($result);
+
+        if( $query->num_rows() > 0 ){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    /**
+     * This function is used to check existance email
+     * @param number $email : This is get email from mahasiswa who is logged in
+     * @param number $idMhs : This is get id_mahasiswa from mahasiswa who is logged in
+     * @return bool : true if exist
+     */
+    function checkEmail($email,$idMhs = 0){
+        $this->db->select("email");
+        $this->db->from("mahasiswa");
+        $this->db->where("email", $email);
+        $this->db->where("isDeleted", 0);
+        if($idMhs != 0){
+            $this->db->where("id_mahasiswa !=", $idMhs);
+        }
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
     
 	/**
      * This function used to get mahasiswa information by id
-     * @param number $nim : This is mahasiswa id
+     * @param number $id : This is mahasiswa id
      * @return array $result : This is mahasiswa information
      */
     function getProfilInfo($id)
@@ -51,9 +80,10 @@ class Profil_model extends CI_Model
     }
     
     /**
-     * This function is used to update the mahasiswa information
+     * This function is used to edit the mahasiswa information
      * @param array $mahasiswaInfo : This is mahasiswas updated information
-     * @param number $nim : This is mahasiswa id
+     * @param number $id_mahasiswa : This is mahasiswa id
+     * @return true if row in table increase
      */
     function editProfil($mahasiswaInfo, $id_mahasiswa)
     {

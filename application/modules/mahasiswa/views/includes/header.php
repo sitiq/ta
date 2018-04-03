@@ -27,11 +27,19 @@
     <link href="<?php echo base_url()?>elusistatic/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
     <link href="<?php echo base_url()?>elusistatic/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- validation css -->
+    <link href="<?php echo base_url()?>elusistatic/css/validation.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url()?>elusistatic/build/css/custom.min.css" rel="stylesheet">
     <link href="<?php echo base_url()?>elusistatic/build/css/customm.css" rel="stylesheet">
 
+    <script src="<?php echo base_url()?>elusistatic/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo base_url()?>elusistatic/js/jquery.validate.js"></script>
+
+    <script type="text/javascript">
+        var baseURL = "<?php echo base_url(); ?>";
+    </script>
 </head>
 
 <body class="nav-md">

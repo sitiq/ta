@@ -8,16 +8,24 @@
 
 class yudisium_model extends CI_Model
 {
+    /**
+     * This function is used to get the periode to access page
+     * @return array $result : This is result
+     */
     function getPeriode(){
-        $this->db->select('p.tanggal_awal_regis, p.tanggal_akhir_regis');
-        $this->db->from('periode p');
-        // $this->db->join('yudisium y','y.id_periode = p.id_periode');
+        $this->db->select('tanggal_awal_regis, tanggal_akhir_regis');
+        $this->db->from('periode');
         $this->db->where('jenis','yudisium');
         $query = $this->db->get();
 
         $result = $query->result();
         return $result;
     }
+    /**
+     * This function used to get berkas list by id
+     * @param number $userId : This is user who is logged in
+     * @return array $result : This is berkas information
+     */
     function getBerkasInfo($userId)
     {
         $this->db->select('berkas.id_berkas_yudisium, berkas.nama_berkas, val.id_valid_yudisium,
@@ -34,7 +42,30 @@ class yudisium_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    function getCountBerkas()
+    {
+        $this->db->select('b.id_berkas_yudisium, b.nama_berkas, b.isDeleted');
+        $this->db->from('berkas_yudisium b');
+        $this->db->where('b.isDeleted', 0);
 
+        $query = $this->db->get();
+        return count($query->result());
+    }
+    function getIdBerkas()
+    {
+        $this->db->select('b.id_berkas_yudisium');
+        $this->db->from('berkas_yudisium b');
+        $this->db->where('b.isDeleted', 0);
+
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
+    /**
+     * This function is used to get the nim mahasiswa who is login
+     * @param number $userId : This is got from who is logged in
+     * @return array $result : This is result
+     */
     function cekMahasiswa($userId)
     {
         $this->db->select('mahasiswa.id_mahasiswa');
@@ -47,7 +78,8 @@ class yudisium_model extends CI_Model
         return $result;
     }
     /**
-     * This function is used to add new project to system
+     * This function is used to add new yudisium to system
+     * @param array $infoYudisium : This is list of detail sent to field
      * @return number $insert_id : This is last inserted id
      */
     function addNewYudisium($infoYudisium)
@@ -62,7 +94,8 @@ class yudisium_model extends CI_Model
         return $insert_id;
     }
     /**
-     * This function is used to add new project to system
+     * This function is used to add new validasi_berkas_yudisium to system
+     * @param array $infoYudisium : This is list of detail sent to field
      * @return number $insert_id : This is last inserted id
      */
     function addNewValidasi($id)
@@ -77,9 +110,9 @@ class yudisium_model extends CI_Model
         return $insert_id;
     }
     /**
-     * This function is used to update the mahasiswa information
-     * @param array $berkasInfo : This is mahasiswas updated information
-     * @param number $nim : This is mahasiswa id
+     * This function is used to edit the files in validasi_berkas_yudisium table
+     * @param array $berkasInfo : This is array files wanna insert to validasi_berkas_yudisium field
+     * @param number $id_berkas : This is berkas id
      */
     function editBerkas($berkasInfo, $id_berkas)
     {

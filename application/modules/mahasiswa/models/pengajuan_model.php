@@ -9,8 +9,7 @@
 class pengajuan_model extends CI_Model
 {
     /**
-     * This function is used to get the mahasiswa listing count
-     * @param string $searchText : This is optional search text
+     * This function is used to get the periode to access page
      * @return array $result : This is result
      */
     function getPeriode(){
@@ -23,6 +22,10 @@ class pengajuan_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    /**
+     * This function is used to get the proyek list
+     * @return array $result : This is result
+     */
     function getProyek()
     {
         $this->db->select('id_proyek, id_dosen, nama');
@@ -33,6 +36,10 @@ class pengajuan_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    /**
+     * This function is used to get the tugas_akhir by id_mahasiswa
+     * @return array $result : This is result
+     */
     function getTa($id_mahasiswa)
     {
         $this->db->select('ta.id_ta, pt.id_pengajuan_ta, pt.pilihan, pt.jenis, p.id_proyek, p.nama, u.id_usulan, u.judul, u.deskripsi, u.bisnis_rule, u.file');
@@ -48,7 +55,11 @@ class pengajuan_model extends CI_Model
         $result = $query->result();
         return $result;
     }
-
+    /**
+     * This function is used to get id_mahasiswa who is logged in
+     * @param $userId : This is input id_user
+     * @return array $result : This is result
+     */
     function getIdMahasiswa($userId)
     {
         $this->db->select('id_mahasiswa');
@@ -75,7 +86,11 @@ class pengajuan_model extends CI_Model
 
         return $insert_id;
     }
-
+    /**
+     * This function is used to add data to pengajuan_ta table
+     * @param $pengajuan_ta : This is input pengajuan_ta
+     * @return array $insert_id : This is get new id_pengajuan_ta
+     */
     function addNewPengajuanTa($pengajuan_ta) {
         $this->db->trans_start();
         $this->db->insert('pengajuan_ta', $pengajuan_ta);
@@ -86,7 +101,11 @@ class pengajuan_model extends CI_Model
 
         return $insert_id;
     }
-
+    /**
+     * This function is used to add data to usulan table
+     * @param $usulan : This is input usulan
+     * @return array $insert_id : This is get new usulan
+     */
     function addNewUsulan($usulan) {
         $this->db->trans_start();
         $this->db->insert('usulan', $usulan);
@@ -97,7 +116,12 @@ class pengajuan_model extends CI_Model
 
         return $insert_id;
     }
-
+    /**
+     * This function is used to edit data to pengajuan_ta table
+     * @param $pengajuan_ta : This is input pengajuan array
+     * @param $id_pengajuan_ta : This is input id_pengajuan_ta where to update
+     * @return : true
+     */
     function editPengajuanTa($pengajuan_ta, $id_pengajuan_ta) {
 
         $this->db->where('id_pengajuan_ta', $id_pengajuan_ta);
@@ -105,15 +129,12 @@ class pengajuan_model extends CI_Model
 
         return TRUE;
     }
-
-    function editPengajuanTaProyek($pengajuan_ta_proyek, $id_pengajuan_ta_proyek) {
-
-        $this->db->where('id_pengajuan_ta_proyek', $id_pengajuan_ta_proyek);
-        $this->db->update('pengajuan_ta_proyek', $pengajuan_ta_proyek);
-
-        return TRUE;
-    }
-
+    /**
+     * This function is used to edit data to usulan table
+     * @param $usulan : This is input usulan array
+     * @param $id_usulan : This is input id_usulan where to update
+     * @return : true
+     */
     function editUsulan($usulan, $id_usulan) {
 
         $this->db->where('id_usulan', $id_usulan);

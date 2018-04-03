@@ -21,7 +21,7 @@ class Pengajuan extends BaseController
     }
 
     /**
-     * This function is used to load the profil list
+     * This function is used to load the main page
      */
     function tugasakhir() {
         if($this->isMahasiswa() == TRUE)
@@ -47,7 +47,7 @@ class Pengajuan extends BaseController
     }
 
     /**
-     * This function is used to daftar TA
+     * This function is used to Tugas Akhir Registration
      */
     function daftar_ta() {
         if($this->isMahasiswa() == TRUE)
@@ -164,7 +164,7 @@ class Pengajuan extends BaseController
     }
 
     /**
-     * This function is used to edit TA
+     * This function is used to edit Tugas Akhir
      */
     function edit_ta() {
         if($this->isMahasiswa() == TRUE)
@@ -238,7 +238,6 @@ class Pengajuan extends BaseController
                                 $usulan = array (
                                     'isDeleted'=>1
                                 );
-
                                 // edit data tabel usulan
                                 $resultUsulan = $this->pengajuan_model->editUsulan($usulan, $id_usulan);
                             }
@@ -256,7 +255,7 @@ class Pengajuan extends BaseController
                             // cek apakah jenis pilihan yang sebelumnya adalah usulan
                             if ($jenis_pilihan3 == "usul") {
                                 // jenis pengajuan ta = usulan
-                                // sebelumnya pilihannya = usulan
+                                // before choosen = usulan
                                 $config['upload_path'] = 'uploads/persetujuan';
                                 $config['allowed_types'] = 'pdf';
                                 $config['max_size'] = 8000;
@@ -268,7 +267,7 @@ class Pengajuan extends BaseController
                                 $this->load->library('upload', $config);
 
                                 if (!$this->upload->do_upload('file')) {
-                                    // if upload revisi tidak sesuai
+                                    // if upload revisi not match
                                     $error = array('error' => $this->upload->display_errors());
                                     $this->session->set_flashdata('error', 'Unggah file gagal!');
                                 } else {
@@ -280,11 +279,11 @@ class Pengajuan extends BaseController
                                         'file' => $terupload['file_name'],
                                     );
                                 }
-                                // edit data tabel usulan
+                                // edit data usulan table
                                 $resultUsulan = $this->pengajuan_model->editUsulan($usulan, $id_usulan);
                             } else {
                                 // jenis pengajuan ta = usulan
-                                // sebelumnya pilihannya = proyek
+                                // if before choosen = proyek
                                 $config['upload_path'] = 'uploads/persetujuan';
                                 $config['allowed_types'] = 'pdf';
                                 $config['max_size'] = 8000;
@@ -296,7 +295,7 @@ class Pengajuan extends BaseController
                                 $this->load->library('upload', $config);
 
                                 if (!$this->upload->do_upload('file')) {
-                                    // if upload revisi tidak sesuai
+                                    // if upload revisi not match
                                     $error = array('error' => $this->upload->display_errors());
                                     $this->session->set_flashdata('error', 'Unggah file gagal!');
                                 } else {
@@ -309,7 +308,7 @@ class Pengajuan extends BaseController
                                         'file' => $terupload['file_name'],
                                     );
                                 }
-                                // insert data ke tabel usulan
+                                // insert data to usulan table
                                 $resultUsulan = $this->pengajuan_model->addNewUsulan($usulan);
                             }
 
@@ -320,7 +319,7 @@ class Pengajuan extends BaseController
                                 'jenis'=>$jenis[$i]
                             );
 
-                            // edit data pengajuan ta dengan id_pengajuan_ta masing-masing
+                            // edit data pengajuan_ta by id_pengajuan_ta
                             $resultPengajuanTA = $this->pengajuan_model->editPengajuanTa($pengajuan_ta, $id_pengajuan_ta[$i]);
                         }
                     }
@@ -338,6 +337,9 @@ class Pengajuan extends BaseController
             }
         }
     }
+    /**
+     * This function is used to load the 404 page not found
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
