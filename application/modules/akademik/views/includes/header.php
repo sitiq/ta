@@ -80,7 +80,7 @@
                                     <li><a href="<?php echo base_url()?>akademik/akun_kaprodi/">Kaprodi</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-file-archive-o"></i> Berkas <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-file-archive-o"></i> Berkas Syarat <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="<?php echo base_url()?>akademik/berkas_sidang/">Sidang</a></li>
                                     <li><a href="<?php echo base_url()?>akademik/berkas_yudisium/">Yudisium</a></li>

@@ -51,7 +51,7 @@
                             </label>
                             <div class="col-md-12 col-sm-6 col-xs-12">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <input type="text" id="nama_berkas" name="nama_berkas" class="form-control">
+                                    <input type="text" id="nama_berkas" name="nama_berkas" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -68,36 +68,3 @@
         </div>
     </div>
 </div>
-<script src="<?php echo base_url() . 'elusistatic/js/addEditPeriode.js'?>"></script>
-
-<!-- moment -->
-<script src="<?php echo base_url(); ?>elusistatic/vendors/moment/min/moment.min.js"></script>
-<!-- bootstrap-datetimepicker -->
-<script src="<?php echo base_url(); ?>elusistatic/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-<script>
-    $('#myDatepicker2').datetimepicker({
-        format: 'DD/MM/YYYY'
-    });
-    $('#myDatepicker3').datetimepicker({
-        format: 'HH:mm'
-    });
-    $('#myDatepicker4').datetimepicker({
-        format: 'DD/MM/YYYY'
-    });
-    $('#myDatepicker5').datetimepicker({
-        format: 'HH:mm'
-    });
-</script>
-<script>
-    $.validator.addMethod( "greaterThan", function( value, element, param ) {
-        var target = $( param );
-
-        if ( this.settings.onfocusout && target.not( ".validate-greaterThan-blur" ).length ) {
-            target.addClass( "validate-greaterThan-blur" ).on( "blur.validate-greaterThan", function() {
-                $( element ).valid();
-            } );
-        }
-
-        return value > target.val();
-    }, "Please enter a greater value." );
-</script>
