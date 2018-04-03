@@ -36,7 +36,7 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" id="addEditPeriodeForm" action="<?php echo base_url() . 'akademik/periode/add'?>"
+                    <form class="form-horizontal form-label-left" id="addEditPeriodeForm" action="<?php echo base_url() . 'akademik/periode/change'?>"
                         method="post">
                         <div class="form-group">
                             <label class="control-label col-md-4 col-sm-4 col-xs-12">Semester
@@ -59,73 +59,13 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="col-md-4 col-sm-4 col-xs-4">
-                                    <input id="thn1" type="text" name="thn1" required="required" class="form-control">
+                                    <input id="thn1" type="number" name="thn1" required="required" class="form-control">
                                 </div>
                                 <center>
                                     <h4 class="col-md-4 col-sm-4 col-xs-4">/</h4>
                                 </center>
                                 <div class="col-md-4 col-sm-4 col-xs-4">
-                                    <input id="thn2" type="text" name="thn2" required="required" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4 col-sm-4 col-xs-12">Jenis Periode
-                                <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="col-md-7 col-sm-7 col-xs-12">
-                                    <select name="jenis" id="jenis" class="form-control">
-                                        <option value="">Pilih jenis periode ...</option>
-                                        <option value="ta">Tugas Akhir</option>
-                                        <option value="yudisium">Yudisium</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal dan waktu registrasi dimulai
-                                <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="col-md-7 col-sm-7 col-xs-12">
-                                    <div class='input-group date' id='myDatepicker2'>
-                                        <input name="tanggal_awal" id="tanggal_awal" type='text' class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-5 col-sm-5 col-xs-12">
-                                    <div class='input-group date' id='myDatepicker3'>
-                                        <input name="waktu_awal" id="waktu_awal" type='text' class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal dan waktu registrasi berakhir
-                                <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="col-md-7 col-sm-7 col-xs-12">
-                                    <div class='input-group date' id='myDatepicker4'>
-                                        <input name="tanggal_akhir" id="tanggal_akhir" type='text' class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-5 col-sm-5 col-xs-12">
-                                    <div class='input-group date' id='myDatepicker5'>
-                                        <input name="waktu_akhir" id="waktu_akhir" type='text' class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
+                                    <input readonly id="thn2" type="number" name="thn2" required="required" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -151,18 +91,23 @@
 <!-- bootstrap-datetimepicker -->
 <script src="<?php echo base_url(); ?>elusistatic/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <script>
-    $('#myDatepicker2').datetimepicker({
-        format: 'DD/MM/YYYY'
+    // $('#myDatepicker2').datetimepicker({
+    //     format: 'DD/MM/YYYY'
+    // });
+    // $('#myDatepicker3').datetimepicker({
+    //     format: 'HH:mm'
+    // });
+    // $('#myDatepicker4').datetimepicker({
+    //     format: 'DD/MM/YYYY'
+    // });
+    // $('#myDatepicker5').datetimepicker({
+    //     format: 'HH:mm'
+    // });
+
+    $("#thn1").on('change keyup',function(){
+        $("#thn2").val(parseInt($(this).val()) + 1);
     });
-    $('#myDatepicker3').datetimepicker({
-        format: 'HH:mm'
-    });
-    $('#myDatepicker4').datetimepicker({
-        format: 'DD/MM/YYYY'
-    });
-    $('#myDatepicker5').datetimepicker({
-        format: 'HH:mm'
-    });
+
 </script>
 <script>
     $.validator.addMethod( "greaterThan", function( value, element, param ) {

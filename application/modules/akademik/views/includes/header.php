@@ -72,7 +72,13 @@
                         <ul class="nav side-menu">
                             <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li><a href="<?php echo base_url()?>akademik/pengumuman/"><i class="fa fa-cloud-upload"></i> Pengumuman</a></li>
-                            <li><a><i class="fa fa-user"></i> Akun User <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-user"></i> Daftar User <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="<?php echo base_url(); ?>akademik/daftar_mahasiswa">Mahasiswa</a></li>
+                                    <li><a href="status_dosen.html">Dosen</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-group"></i> Akun User <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="<?php echo base_url()?>akademik/akun_mahasiswa/">Mahasiswa</a></li>
                                     <li><a href="<?php echo base_url()?>akademik/akun_dosen/">Dosen</a></li>
@@ -89,7 +95,7 @@
                             </li>
                             <li><a><i class="fa fa-check"></i> Persetujuan <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="proposal.html">Tugas Akhir</a></li>
+                                    <li><a href="<?php echo base_url()?>akademik/tugas_akhir">Tugas Akhir</a></li>
                                     <li><a href="<?php echo base_url()?>akademik/sidang">Sidang</a></li>
                                     <li><a href="<?php echo base_url()?>akademik/yudisium">Yudisium</a></li>
                                 </ul>

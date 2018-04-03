@@ -16,7 +16,7 @@
                     </h2>
                     <div class="clearfix"></div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <?php
                         $this->load->helper('form');
                         $error = $this->session->flashdata('error');
@@ -102,7 +102,7 @@
                                             class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <a class="btn btn-sm btn-danger" data-toggle='modal' id="delete_modal" data-target='#deleteModal<?php echo $data->id_proyek;?>'>
+                                        <a title="Delete" class="btn btn-danger" data-toggle='modal' id="delete_modal" data-target='#deleteModal<?php echo $data->id_proyek;?>'>
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>

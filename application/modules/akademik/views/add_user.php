@@ -100,10 +100,10 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                         <ul>
                             <li>
-                                <strong>Pastikan judul kolom yang ada di file (.xlsx) berada di baris paling atas / pertama</strong>
+                                <strong>Pastikan <u>judul kolom</u> yang ada di file (.xlsx) berada di baris paling atas / pertama</strong>
                             </li>
                             <li>
-                                <strong>Pastikan data user yang ada di file (.xlsx) berada di baris kedua</strong>
+                                <strong>Pastikan <u>data user</u> yang ada di file (.xlsx) berada di baris kedua</strong>
                             </li>
                             <li>
                                 <strong>Judul kolom tidak perlu sama persis dengan contoh diatas, data pada kolom mana saja yang

@@ -56,7 +56,7 @@ class Yudisium extends BaseController
 
         $infoYudisium = array(
             "id_mahasiswa"=>$id_mahasiswa,
-            "id_periode"=>2
+            "id_periode"=>15
         );
         //            insert to table yudisium / registration yudisium new
         $idYudisium = $this->yudisium_model->addNewYudisium($infoYudisium);

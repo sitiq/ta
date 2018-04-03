@@ -152,25 +152,7 @@ class Proyek extends BaseController
 
         redirect('akademik/proyek');
     }
-
-    public function decline_multiple(){
-        $array_data = $this->input->post('table_records');
-        $submit = $this->input->post('submit_form');
-        if(!empty($array_data) && $submit == 0){
-            for ($i=0; $i < count($array_data); $i++) { 
-                $result = $this->proyek_model->change_status($array_data[$i],0);
-            }
-            if($result){
-                $this->session->set_flashdata('success', count($array_data) . ' Proyek telah ditolak');
-            } else {
-                $this->session->set_flashdata('error', 'Proyek gagal ditolak. Masalah di database');
-            };
-        }
-        else {
-            $this->session->set_flashdata('error', 'Pilih salah satu proyek terlebih dahulu');
-        }
-        redirect('akademik/proyek');
-    }
+    
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';
