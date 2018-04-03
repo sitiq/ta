@@ -11,7 +11,7 @@ class yudisium_model extends CI_Model
     function getPeriode(){
         $this->db->select('p.tanggal_awal_regis, p.tanggal_akhir_regis');
         $this->db->from('periode p');
-        $this->db->join('yudisium y','y.id_periode = p.id_periode');
+        // $this->db->join('yudisium y','y.id_periode = p.id_periode');
         $this->db->where('jenis','yudisium');
         $query = $this->db->get();
 

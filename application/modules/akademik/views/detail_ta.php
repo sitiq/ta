@@ -19,7 +19,8 @@
                         <h3>
                             <a href="<?php echo base_url() ;?>akademik/tugas_akhir">
                                 <i class="fa fa-chevron-left"></i>
-                            </a> &nbsp;Detail Hasil Plottingan Tugas Akhir</h3>
+                            </a> &nbsp;Detail Hasil Plottingan Tugas Akhir
+                        </h3>
                     </div>
                 </div>
             </div>
