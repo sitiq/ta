@@ -81,7 +81,7 @@ class Sidang extends BaseController
         redirect('mahasiswa/sidang');
     }
     /**
-     * This function is used to edit files upload 10 files
+     * This function is used to edit files upload requirement files
      */
     function editBerkas () {
         if($this->isMahasiswa() == TRUE)
