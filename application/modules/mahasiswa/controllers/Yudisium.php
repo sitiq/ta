@@ -53,10 +53,12 @@ class Yudisium extends BaseController
 //            get id_mahasiswa based on who is logged in
         $cek = $this->yudisium_model->cekMahasiswa($id_user);
         $id_mahasiswa = $cek[0]->id_mahasiswa;
+//        get id_periode
+        $id_periode = $this->input->post('id_periode');
 
         $infoYudisium = array(
             "id_mahasiswa"=>$id_mahasiswa,
-            "id_periode"=>15
+            "id_periode"=>$id_periode
         );
         //            insert to table yudisium / registration yudisium new
         $idYudisium = $this->yudisium_model->addNewYudisium($infoYudisium);
