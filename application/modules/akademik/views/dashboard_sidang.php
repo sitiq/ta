@@ -170,7 +170,11 @@
                                                                         foreach ($dosenInfo as $dosen)
                                                                         {
                                                                             ?>
-                                                                            <option value="<?php echo $dosen->id_dosen ?>"><?php echo $dosen->nama ?></option>
+                                                                            <?php if ($dosen->id_dosen!=$record->id_dosen){?>
+                                                                                <option value="<?php echo $dosen->id_dosen ?>"><?php echo $dosen->nama ?></option>
+                                                                            <?php }else{?>
+                                                                                <option hidden></option>
+                                                                            <?php }?>
                                                                             <?php
                                                                         }
                                                                     }
@@ -188,7 +192,11 @@
                                                                         foreach ($dosenInfo as $dosen)
                                                                         {
                                                                             ?>
-                                                                            <option value="<?php echo $dosen->id_dosen ?>"><?php echo $dosen->nama ?></option>
+                                                                            <?php if ($dosen->id_dosen!=$record->id_dosen){?>
+                                                                                <option value="<?php echo $dosen->id_dosen ?>"><?php echo $dosen->nama ?></option>
+                                                                            <?php }else{?>
+                                                                                <option hidden></option>
+                                                                            <?php }?>
                                                                             <?php
                                                                         }
                                                                     }
@@ -283,7 +291,13 @@
                                                                         foreach ($dosenInfo as $dosen)
                                                                         {
                                                                             ?>
-                                                                            <option value="<?php echo $dosen->id_dosen?>" <?php echo ($dosen->id_dosen == $ketuaInfo[0]->id_dosen) ? "selected=\"selected\"" : ""; ?>><?php echo $dosen->nama ?></option>
+                                                                            <?php if ($dosen->id_dosen!=$record->id_dosen){?>
+                                                                            <option value="<?php echo $dosen->id_dosen?>" <?php echo ($dosen->id_dosen == $ketuaInfo[0]->id_dosen) ? "selected=\"selected\"" : ""; ?>>
+                                                                                <?php echo $dosen->nama ?>
+                                                                            </option>
+                                                                            <?php }else{?>
+                                                                                <option hidden></option>
+                                                                            <?php }?>
                                                                             <?php
                                                                         }
                                                                     }
@@ -300,7 +314,13 @@
                                                                         foreach ($dosenInfo as $dosen)
                                                                         {
                                                                             ?>
-                                                                            <option value="<?php echo $dosen->id_dosen?>" <?php echo ($dosen->id_dosen == $sekreInfo[0]->id_dosen) ? "selected=\"selected\"" : ""; ?>><?php echo $dosen->nama ?></option>
+                                                                            <?php if ($dosen->id_dosen!=$record->id_dosen){?>
+                                                                                <option value="<?php echo $dosen->id_dosen?>" <?php echo ($dosen->id_dosen == $sekreInfo[0]->id_dosen) ? "selected=\"selected\"" : ""; ?>>
+                                                                                    <?php echo $dosen->nama ?>
+                                                                                </option>
+                                                                            <?php }else{?>
+                                                                                <option hidden></option>
+                                                                            <?php }?>
                                                                             <?php
                                                                         }
                                                                     }

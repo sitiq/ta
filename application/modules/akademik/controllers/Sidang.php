@@ -27,8 +27,9 @@ class Sidang extends BaseController
         }
         else
         {
+            $id_dosbing = $this->input->post('id_dosbing');
             $data['sidangInfo'] = $this->sidang_model->getSidangInfo();
-            $data['dosenInfo'] = $this->sidang_model->getDosen();
+            $data['dosenInfo'] = $this->sidang_model->getDosen($id_dosbing);
             $data['ketuaInfo'] = $this->sidang_model->getPengujiKetua();
             $data['sekreInfo'] = $this->sidang_model->getPengujiSekre();
             $this->loadViews("dashboard_sidang", $this->global, $data, NULL);
