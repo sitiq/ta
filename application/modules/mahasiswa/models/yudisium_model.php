@@ -13,7 +13,7 @@ class yudisium_model extends CI_Model
      * @return array $result : This is result
      */
     function getPeriode(){
-        $this->db->select('status_periode, status_regis');
+        $this->db->select('id_periode,status_periode, status_regis');
         $this->db->from('periode');
         $this->db->where('jenis','yudisium');
         $this->db->where('isDeleted',0);

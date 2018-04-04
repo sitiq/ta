@@ -23,6 +23,7 @@ $jenis = '';
 // get periode
 $periode = '';
 $regis = '';
+$id_periode = '';
 
 // active pane saat edit form
 $active_proyek = 0;
@@ -34,6 +35,7 @@ if(!empty($periodeInfo))
     {
         $regis = $uf->status_regis;
         $periode = $uf->status_periode;
+        $id_periode = $uf->id_periode;
     }
 }
 
@@ -165,7 +167,7 @@ if (!empty($taInfo)) {
                                                             <div class="clearfix" style="margin-bottom: 2%"></div>
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Persetujuan Instansi</label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <a href=""><?php echo $record->file ?></a>
+                                                                <a href=""><?php echo $record->file_persetujuan ?></a>
                                                             </div>
                                                             <div class="clearfix" style="margin-bottom: 2%"></div>
                                                         </div>
@@ -183,6 +185,7 @@ if (!empty($taInfo)) {
                                     <a href="#content" data-toggle="tab" class="btn btn-primary" >Kembali</a>
                                     <div class="x_content">
                                         <form role="form" id="daftar" action="<?php echo base_url()?>mahasiswa/pengajuan/edit_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" >
+                                            <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan <font color="red">*</font></label>
                                                 <input style="display: inline; width: 55px; padding: 6px 12px;" type="number" min="1" max="3" class="col-md-3 col-sm-3 col-xs-12 form-control distinctemails" name="satu" value="<?php echo $pilihan[0]; ?>" >
@@ -275,7 +278,7 @@ if (!empty($taInfo)) {
                                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" >Persetujuan Institusi
                                                                     </label><small>Bagi yang mengajukan project dari institusi (jika ada)</small>
                                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <input type="file" name="file" class="form-control col-md-7 col-xs-12">
+                                                                        <input type="file" name="file_persetujuan" class="form-control col-md-7 col-xs-12">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-9">
@@ -324,6 +327,7 @@ if (!empty($taInfo)) {
                                     <a href="#content" data-toggle="tab" class="btn btn-primary" >Kembali</a>
                                     <div class="x_content">
                                         <form role="form" id="daftar" action="<?php echo base_url() ?>mahasiswa/pengajuan/edit_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" >
+                                            <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan <font color="red">*</font></label>
                                                 <input style="display: inline; width: 55px; padding: 6px 12px;" type="number" min="1" max="3" class="col-md-3 col-sm-3 col-xs-12 form-control distinctemails" name="satu" value="<?php echo $pilihan[0]; ?>" >
@@ -416,7 +420,7 @@ if (!empty($taInfo)) {
                                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" >Persetujuan Institusi
                                                                     </label><small>Bagi yang mengajukan project dari institusi (jika ada)</small>
                                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <input type="file" name="file" class="form-control col-md-7 col-xs-12">
+                                                                        <input type="file" name="file_persetujuan" class="form-control col-md-7 col-xs-12">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-9">
@@ -473,6 +477,7 @@ if (!empty($taInfo)) {
                             <div class="x_content">
                                 <br>
                                 <form role="form" id="daftar" action="<?php echo base_url() ?>mahasiswa/pengajuan/daftar_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" >
+                                    <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan <font color="red">*</font></label>
                                         <input style="display: inline; width: 55px; padding: 6px 12px;" type="number" min="1" max="3" class="col-md-3 col-sm-3 col-xs-12 form-control distinctemails" name="satu" value="1" >
@@ -556,7 +561,7 @@ if (!empty($taInfo)) {
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" >Persetujuan Institusi
                                                             </label><small>Bagi yang mengajukan project dari institusi (jika ada)</small>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="file" name="file" class="form-control col-md-7 col-xs-12">
+                                                                <input type="file" name="file_persetujuan" class="form-control col-md-7 col-xs-12">
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-md-9">
@@ -671,7 +676,7 @@ if (!empty($taInfo)) {
             $('input[name=judul]').val('');
             $('#deskripsi').val('');
             $('#bisnis').val('');
-            $('input[name=file]').val('');
+            $('input[name=file_persetujuan]').val('');
         });
 
         // kembalikan pilihan saat klik button ide

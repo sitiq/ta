@@ -5,7 +5,7 @@
  * Time: 07:28
  * Description:
  */
-echo var_dump($periodeInfo);
+//echo var_dump($periodeInfo);
 ?>
 <?php
 $id_berkas_yudisium = '';
@@ -17,11 +17,13 @@ $id_yudisium = '';
 $id_mahasiswa = '';
 $regis = '';
 $periode = '';
+$id_periode = '';
 
 if(!empty($periodeInfo))
 {
     foreach ($periodeInfo as $uf)
     {
+        $id_periode = $uf->id_periode;
         $regis = $uf->status_regis;
         $periode = $uf->status_periode;
     }
@@ -65,6 +67,7 @@ if(!empty($berkasInfo))
                         <div class="col-md-6">
                             <?php if ($id_yudisium == null){?>
                                 <form action="<?php echo base_url() ?>mahasiswa/yudisium/daftar" method="post" enctype="multipart/form-data" role="form">
+                                    <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">
                                     <input type="hidden" name="total_syarat" value="<?php echo $totalSyarat?>">
                                     <input type="hidden" name="id_syarat" value="<?php echo $idBerkas[0]->id_berkas_yudisium?>">
                                     <input type="submit" class="btn btn-primary pull-right" value="Daftar">
