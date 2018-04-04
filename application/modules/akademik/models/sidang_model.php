@@ -34,12 +34,12 @@ class sidang_model extends CI_Model
      * This function is used to get the dosen info
      * @return array $result : This is result
      */
-    function getDosen($id_dosbing)
+    function getDosen()
     {
         $this->db->select('id_dosen, nama');
         $this->db->from('dosen');
         $this->db->where('isDeleted', 0);
-        $this->db->where_not_in('id_dosen', $id_dosbing);
+        $this->db->where_not_in('id_dosen');
         $query = $this->db->get();
         return $query->result();
     }
