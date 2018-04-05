@@ -39,6 +39,7 @@ class sidang_model extends CI_Model
         $this->db->select('id_dosen, nama');
         $this->db->from('dosen');
         $this->db->where('isDeleted', 0);
+        $this->db->where_not_in('id_dosen');
         $query = $this->db->get();
         return $query->result();
     }

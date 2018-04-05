@@ -13,10 +13,10 @@ class pengajuan_model extends CI_Model
      * @return array $result : This is result
      */
     function getPeriode(){
-        $this->db->select('p.tanggal_awal_regis, p.tanggal_akhir_regis');
-        $this->db->from('periode p');
-        $this->db->join('tugas_akhir t','t.id_periode = p.id_periode');
+        $this->db->select('id_periode,status_periode, status_regis');
+        $this->db->from('periode');
         $this->db->where('jenis','ta');
+        $this->db->where('isDeleted',0);
         $query = $this->db->get();
 
         $result = $query->result();
@@ -42,7 +42,7 @@ class pengajuan_model extends CI_Model
      */
     function getTa($id_mahasiswa)
     {
-        $this->db->select('ta.id_ta, pt.id_pengajuan_ta, pt.pilihan, pt.jenis, p.id_proyek, p.nama, u.id_usulan, u.judul, u.deskripsi, u.bisnis_rule, u.file');
+        $this->db->select('ta.id_ta, pt.id_pengajuan_ta, pt.pilihan, pt.jenis, p.id_proyek, p.nama, u.id_usulan, u.judul, u.deskripsi, u.bisnis_rule, u.file_persetujuan');
         $this->db->from('tugas_akhir as ta');
         $this->db->join('pengajuan_ta as pt', 'pt.id_ta=ta.id_ta');
         $this->db->join('proyek as p', 'pt.id_proyek=p.id_proyek', 'left');
