@@ -26,7 +26,7 @@ class Yudisium extends BaseController
             $this->loadViews("dashboard_yudisium", $this->global, $data, NULL);
         }
     }
-    function editOld($yudisiumId = NULL)
+    function detail($yudisiumId = NULL)
     {
         if($this->isAkademik() == TRUE)
         {
@@ -63,9 +63,9 @@ class Yudisium extends BaseController
                 } else {
                     $this->session->set_flashdata('error', 'File accept failed');
                 }
-                redirect('akademik/yudisium/editOld/'.$idYudisium);
-//                $this->editOld($idMhs);
-            }else{echo "asda";}
+                redirect('akademik/yudisium/detail/'.$idYudisium);
+//                $this->detail($idMhs);
+            }
         }
     }
     /**
@@ -88,7 +88,7 @@ class Yudisium extends BaseController
 
             if($this->form_validation->run() == FALSE)
             {
-                $this->editOld($idMhs);
+                $this->detail($idYudisium);
             }
             else
             {
@@ -97,7 +97,6 @@ class Yudisium extends BaseController
                         'id_valid_yudisium' => $idValidYudisium,
                         'isValid' => 3,
                     );
-
                     $result = $this->yudisium_model->decBerkas($berkasInfo, $idValidYudisium);
 
                     if ($result == true) {
@@ -105,8 +104,8 @@ class Yudisium extends BaseController
                     } else {
                         $this->session->set_flashdata('error', 'Berkas gagal ditolak!');
                     }
-//                    $this->editOld($idValidYudisium);
-                    redirect('akademik/yudisium/editOld/'.$idYudisium);
+//                    $this->detail($idValidYudisium);
+                    redirect('akademik/yudisium/detail/'.$idYudisium);
                 }
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
@@ -123,7 +122,7 @@ class Yudisium extends BaseController
                 {
                     $this->session->set_flashdata('error', 'Revisi gagal dikirim!');
                 }
-                redirect('akademik/yudisium/editOld/'.$idYudisium);
+                redirect('akademik/yudisium/detail/'.$idYudisium);
             }
         }
     }
@@ -157,8 +156,8 @@ class Yudisium extends BaseController
                 } else {
                     $this->session->set_flashdata('error', 'Yudisium gagal diterima!');
                 }
-                redirect('akademik/yudisium/editOld/'.$idYudisium);
-//                $this->editOld($idMhs);
+                redirect('akademik/yudisium/detail/'.$idYudisium);
+//                $this->detail($idMhs);
             }else{echo "asda";}
         }
     }

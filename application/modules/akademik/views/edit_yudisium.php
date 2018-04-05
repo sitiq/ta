@@ -112,7 +112,6 @@ if(!empty($yudisiumInfo))
                                     <th colspan="4"><h4><strong>Data Berkas Yudisium</strong></h4></th>
                                 </tr>
                                 <tr bgcolor="#59BD96" style="color: white">
-                                    <th>No</th>
                                     <th>Berkas</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
@@ -126,7 +125,6 @@ if(!empty($yudisiumInfo))
                                     {
                                         ?>
                                         <tr>
-                                            <td><?php echo $record->id_berkas_yudisium ?></td>
                                             <td><?php echo $record->nama_berkas ?></td>
                                             <?php if ($record->isValid == '3') {
                                                 echo "<td><span class=\"label label-danger\">" . "Ditolak" . "</span></td>";
@@ -139,40 +137,10 @@ if(!empty($yudisiumInfo))
                                             }
                                             ?>
                                             <td>
-                                                <?php if($record->id_berkas_yudisium == '1' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/yudisium/permohonan/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                <?php if ($record->path !=''){?>
+                                                    <a href="<?php echo base_url()?>uploads/yudisium/<?php echo $record->id_berkas_yudisium?>/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
-                                                <?php }elseif($record->id_berkas_yudisium == '2' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/yudisium/berita-acara/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                <?php }elseif($record->id_berkas_yudisium == '3' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/yudisium/surat-tanda-terima/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                <?php }elseif($record->id_berkas_yudisium == '4' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/yudisium/poster/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                <?php }elseif($record->id_berkas_yudisium == '5' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/yudisium/laporan-final/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                <?php }elseif($record->id_berkas_yudisium == '6' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/yudisium/ijazah/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                <?php }elseif($record->id_berkas_yudisium == '7' && $record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/yudisium/sertifikat/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                <?php }else{?>
-                                                    <?php if ($record->path!=null){?>
-                                                        <a href="<?php echo base_url()?>uploads/yudisium/tambahan-syarat/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
-                                                            <i class="fa fa-eye"></i>
-                                                        </a>
-                                                    <?php }?>
                                                 <?php }?>
                                                 <?php if ($record->path != null){?>
                                                     <a href="<?php echo base_url()?>akademik/yudisium/accept/<?php echo $record->id_valid_yudisium?>/<?php echo $yudisiumInfo[0]->id_yudisium?>" class="btn btn-success"><i class="fa fa-check"></i></a>
