@@ -66,10 +66,12 @@
                                     <?php echo $data->createdDtm; ?>
                                 </td>
                                 <td>
-                                    <?php echo (isset($data->lampiran) ?  explode('-', $data->lampiran)[1] : "Tidak ada lampiran");?>
+                                    <a href="<?php echo base_url()?>uploads/data_pengumuman/<?php echo $data->lampiran?>" target="_blank">
+                                        <?php echo (isset($data->lampiran) ?  explode('-', $data->lampiran)[1] : "Tidak ada lampiran");?>
+                                    </a>
                                 </td>
                                 <td align="center">
-                                    <a class="btn btn-sm btn-info" title="Download" data-toggle='modal' id="see_modal" data-target='#seeModal<?php echo $data->id_pengumuman; ?>'>
+                                    <a class="btn btn-sm btn-info" title="Lihat" data-toggle='modal' id="see_modal" data-target='#seeModal<?php echo $data->id_pengumuman; ?>'>
                                         <i class="fa fa-eye"></i>
                                     </a>
                                 </td>

@@ -200,10 +200,11 @@ if(!empty($sidangInfo))
                                                         </div>
                                                         <div class="modal-body">
                                                             <div id="testmodal" style="padding: 5px 20px;">
-                                                                <form id="tambah-pesan" action="<?php echo base_url()?>akademik/sidang/pesan/<?php echo $record->id_valid_sidang?>" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                                                                <form id="tambah-pesan" action="<?php echo base_url()?>akademik/sidang/pesan/<?php echo $sidangInfo[0]->id_sidang?>" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                                                     <div class="modal-body">
                                                                         <div id="testmodal" style="padding: 5px 20px;">
                                                                             <div class="form-group">
+                                                                                <input type="hidden" class="form-control" name="id_sidang" value="<?php echo $sidangInfo[0]->id_sidang?>">
                                                                                 <input type="hidden" class="form-control" name="id_mahasiswa" value="<?php echo $sidangInfo[0]->id_mahasiswa?>">
                                                                                 <label class="col-sm-3 col-md-12 control-label">Judul</label>
                                                                                 <input type="text" class="form-control" name="nama" value="<?php echo $record->nama_berkas?>">

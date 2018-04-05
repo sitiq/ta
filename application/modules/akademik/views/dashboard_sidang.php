@@ -91,7 +91,7 @@
                                     }
                                     ?>
                                     <td>
-                                        <a href="<?php echo base_url() ?>akademik/sidang/editOld/<?php echo $record->id_sidang?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                        <a href="<?php echo base_url() ?>akademik/sidang/detail/<?php echo $record->id_sidang?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                                     </td>
                                     <td>
                                         <?php if ($record->tanggal == null){?>

@@ -9,7 +9,7 @@
     <?php if(isset($pageTitle)){
             echo '<title>' . $pageTitle . '</title>';
         } else {
-            echo '<title>e-Lusi</title>';  
+            echo '<title>TA</title>';
         }?>
     
         <!-- jQuery -->
@@ -60,7 +60,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="<?php echo base_url()?>akademik" class="site_title"><i class="fa fa-graduation-cap"></i> <span>e-Lusi</span></a>
+                    <a href="<?php echo base_url()?>akademik" class="site_title"><i class="fa fa-graduation-cap"></i> <span>KOMSI-TA</span></a>
                 </div>
                 <div class="clearfix"></div>
                 <br />

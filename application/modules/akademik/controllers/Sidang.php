@@ -37,7 +37,7 @@ class Sidang extends BaseController
     /**
      * This function is used to load form accepting files sidang from mahasiswa
      */
-    function editOld($sidangId = NULL)
+    function detail($sidangId = NULL)
     {
         if($this->isAkademik() == TRUE)
         {
@@ -77,9 +77,9 @@ class Sidang extends BaseController
                 } else {
                     $this->session->set_flashdata('error', 'Berkas gagal diterima!');
                 }
-//                $this->editOld($idMhs);
-                redirect('akademik/sidang/editOld/'.$idMhs);
-            }else{echo "asda";}
+//                $this->detail($idMhs);
+                redirect('akademik/sidang/detail/'.$idMhs);
+            }
         }
     }
     /**
@@ -96,13 +96,14 @@ class Sidang extends BaseController
             $this->load->library('form_validation');
 
             $idMhs = $this->input->post('id_mahasiswa');
+            $idSidang = $this->input->post('id_sidang');
 
             $this->form_validation->set_rules('nama','Judul','trim|required|max_length[128]');
             $this->form_validation->set_rules('deskripsi','Pesan','trim|required|max_length[128]');
 
             if($this->form_validation->run() == FALSE)
             {
-                $this->editOld($idMhs);
+                $this->detail($idMhs);
             }
             else
             {
@@ -119,7 +120,7 @@ class Sidang extends BaseController
                     } else {
                         $this->session->set_flashdata('error', 'Berkas gagal ditolak!');
                     }
-                    $this->editOld($idMhs);
+                    $this->detail($idMhs);
                 }
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
@@ -136,8 +137,8 @@ class Sidang extends BaseController
                 {
                     $this->session->set_flashdata('error', 'Revisi gagal dikirim!');
                 }
-                redirect('akademik/sidang/editOld/'.$idMhs);
-//                $this->editOld($idMhs);
+                redirect('akademik/sidang/detail/'.$idSidang);
+//                $this->detail($idMhs);
             }
         }
     }
