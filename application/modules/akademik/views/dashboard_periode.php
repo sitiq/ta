@@ -1,11 +1,13 @@
 <?php 
-foreach ($dataPeriode as $data) {
-    if($data->jenis == 'ta'){
-        $id_periode_ta = $data->id_periode;
-        $status_ta = $data->status_regis;
-    } else {
-        $id_periode_yudisium = $data->id_periode;
-        $status_yudisium = $data->status_regis;
+if($dataPeriode != FALSE) {
+    foreach ($dataPeriode as $data) {
+        if($data->jenis == 'ta'){
+            $id_periode_ta = $data->id_periode;
+            $status_ta = $data->status_regis;
+        } else {
+            $id_periode_yudisium = $data->id_periode;
+            $status_yudisium = $data->status_regis;
+        }
     }
 }
 
@@ -46,9 +48,8 @@ foreach ($dataPeriode as $data) {
                     <?php } ?>
             </div>
 
+            <?php if($dataPeriode != FALSE) {?>
             <div class="x_content">
-
-
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <center>
                         <p>
@@ -71,8 +72,28 @@ foreach ($dataPeriode as $data) {
                     </a>
                 </div>
             </div>
+            <?php }  else { ?>
+            <div class="x_content">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <center>
+                        <p>
+                            <h3>Belum ada data periode</h3>
+                        </p>
+                        <p>
+                            <i>
+                                <?php echo DateTime::createFromFormat('Y-m-d', date('Y-m-d'))->format('j F Y'); ?>
+                            </i>
+                        </p>
+                    </center>
+                    <a href="<?php echo base_url() ?>akademik/periode/ubah_periode" class="btn btn-default pull-right">
+                        <i class="fa fa-clock-o"></i> Mulai Periode</button>
+                    </a>
+                </div>
+            </div>
+            <?php } ?>
 
 
+            <?php if($dataPeriode != FALSE) {?>
             <div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_content">
@@ -93,7 +114,7 @@ foreach ($dataPeriode as $data) {
                                 <span class="label label-default">Tidak aktif</span>
                             </h1>
                             <?php } ?>
-                            <h4 style="margin-top:20%" >Ubah Status Registrasi :</h4>
+                            <h4 style="margin-top:20%">Ubah Status Registrasi :</h4>
                             <?php if($status_ta == 0 ) { ?>
                             <a href="<?php echo base_url() . 'akademik/periode/change_status/'. $id_periode_ta .'/1'?>" class="btn btn-success btn-sm">
                                 <i class="fa fa-check"></i> Aktifkan</button>
@@ -144,6 +165,7 @@ foreach ($dataPeriode as $data) {
                     </div>
                 </div>
             </div>
+            <?php } ?>
         </div>
     </div>
 </div>

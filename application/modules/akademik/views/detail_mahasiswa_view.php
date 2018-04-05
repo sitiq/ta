@@ -8,7 +8,11 @@
                     </a> &nbsp;Daftar Mahasiswa
                 </h4>
             </div>
-            <?php // var_dump($dataBerkasSidang) ?>
+            <?php //var_dump($dataBerkasSidang) ?>
+            <br>
+            <br>
+            <?php //var_dump($dataNilaiSidang) ?>
+            <?php //var_dump($count) ?>
             <div class="clearfix"></div>
 
             <div class="col-md-4">
@@ -52,10 +56,14 @@
                                         <div class="profile_img">
                                             <div id="crop-photo">
                                                 <!-- Current avatar -->
-                                                <img class="img-responsive avatar-view img-circle" style="height: 200px; width: 200px"  onerror="this.src='<?php echo base_url(); ?>elusistatic/build/images/default.jpg'" src="<?php echo base_url() . 'uploads/foto/mahasiswa/' . $dataMahasiswa[0]->foto ?>" alt="Avatar" title="Change the avatar">
+                                                <img class="img-responsive avatar-view img-circle" style="height: 200px; width: 200px" onerror="this.src='<?php echo base_url(); ?>elusistatic/build/images/default.jpg'"
+                                                    src="<?php echo base_url() . 'uploads/foto/mahasiswa/' . $dataMahasiswa[0]->foto ?>"
+                                                    alt="Avatar" title="Change the avatar">
                                             </div>
                                         </div>
-                                        <h3><?php echo $dataMahasiswa[0]->nama; ?></h3>
+                                        <h3>
+                                            <?php echo $dataMahasiswa[0]->nama; ?>
+                                        </h3>
 
                                         <ul class="list-unstyled user_data">
                                             <li class="m-top-xs">
@@ -102,19 +110,27 @@
                                                 <div class="x_content">
                                                     <div class="col-md-2">
                                                         <label>IPK</label>
-                                                        <h5><?php echo $dataMahasiswa[0]->ipk; ?></h5>
+                                                        <h5>
+                                                            <?php echo $dataMahasiswa[0]->ipk; ?>
+                                                        </h5>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <label>SKS</label>
-                                                        <h5><?php echo $dataMahasiswa[0]->jumlah_SKS; ?></h5>
+                                                        <h5>
+                                                            <?php echo $dataMahasiswa[0]->jumlah_SKS; ?>
+                                                        </h5>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Email</label>
-                                                        <h5><?php echo $dataMahasiswa[0]->email; ?></h5>
+                                                        <h5>
+                                                            <?php echo $dataMahasiswa[0]->email; ?>
+                                                        </h5>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>HP</label>
-                                                        <h5><?php echo $dataMahasiswa[0]->mobile; ?></h5>
+                                                        <h5>
+                                                            <?php echo $dataMahasiswa[0]->mobile; ?>
+                                                        </h5>
                                                     </div>
                                                     <div class="profile_left">
                                                         <label>
@@ -123,14 +139,18 @@
                                                                 <strong>Nama Lengkap</strong>
                                                             </h5>
                                                         </label>
-                                                        <h5><?php echo $dataMahasiswa[0]->nama; ?></h5>
+                                                        <h5>
+                                                            <?php echo $dataMahasiswa[0]->nama; ?>
+                                                        </h5>
                                                         <hr>
                                                         <label>
                                                             <h5>
                                                                 <strong>NIM</strong>
                                                             </h5>
                                                         </label>
-                                                        <h5><?php echo $dataMahasiswa[0]->nim; ?></h5>
+                                                        <h5>
+                                                            <?php echo $dataMahasiswa[0]->nim; ?>
+                                                        </h5>
                                                         <hr>
                                                         <label>
                                                             <h5>
@@ -147,7 +167,9 @@
                                                             </h5>
                                                         </label>
                                                         <h5>
-                                                            <span><?php echo $dataMahasiswa[0]->pengalaman; ?></span>
+                                                            <span>
+                                                                <?php echo $dataMahasiswa[0]->pengalaman; ?>
+                                                            </span>
                                                         </h5>
                                                         <br>
                                                     </div>
@@ -155,10 +177,10 @@
                                                 <!-- end detail profile -->
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                                                <!-- start detail profile-->
                                                 <div class="x_title">
                                                     <h3>Tugas Akhir</h3>
                                                 </div>
+                                                <?php if($dataJudulTA != FALSE) {?>
                                                 <div class="x_content">
                                                     <div class="profile_left">
                                                         <label>
@@ -167,22 +189,31 @@
                                                                 <strong>Dosen Pembimbing</strong>
                                                             </h5>
                                                         </label>
-                                                        <h5><?php echo ($dataDosbing != NULL ? $dataDosbing[0]->nama : '<i>Belum ada dosen pembimbing</i>')?></h5>
+                                                        <h5>
+                                                            <?php echo ($dataDosbing != NULL ? $dataDosbing[0]->nama : '<i>Belum ada dosen pembimbing</i>')?>
+                                                        </h5>
                                                         <hr>
                                                         <label>
                                                             <h5>
                                                                 <strong>Judul Proyek</strong>
                                                             </h5>
                                                         </label>
-                                                        <h5><?php echo $dataJudulTA[0]->judul_ta ?></h5>
+                                                        <h5>
+                                                            <?php echo $dataJudulTA[0]->judul_ta ?>
+                                                        </h5>
                                                         <hr>
                                                     </div>
                                                 </div>
-                                                <!-- end detail profile -->
+                                                <?php } else {?>
+                                                <center>
+                                                    <i>(Belum mengambil tugas akhir)</i>
+                                                </center>
+                                                <?php } ?>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <!--table nilai-->
+                                                    <?php if($dataBerkasSidang != FALSE) { ?>
                                                     <table class="table table-bordered">
                                                         <thead>
                                                             <tr bgcolor="#67CEA6" style="color: white">
@@ -206,8 +237,12 @@
                                                             ?>
 
                                                             <tr>
-                                                                <td><?php echo $i ?></td>
-                                                                <th><?php echo $data->nama_berkas ?></th>
+                                                                <td>
+                                                                    <?php echo $i ?>
+                                                                </td>
+                                                                <th>
+                                                                    <?php echo $data->nama_berkas ?>
+                                                                </th>
                                                                 <td>
                                                                     <?php   
                                                                         if($data->isValid == 0) {
@@ -222,15 +257,24 @@
                                                                     ?>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="<?php echo base_url()?>uploads/sidang/<?php echo $data->id_berkas_sidang . '/' . $data->path ?>" class="btn btn-sm btn-info" target="_blank">
+                                                                    <a href="<?php echo base_url()?>uploads/sidang/<?php echo $data->id_berkas_sidang . '/' . $data->path ?>" class="btn btn-sm btn-info"
+                                                                        target="_blank">
                                                                         <i class="fa fa-eye"></i>
                                                                     </a>
                                                                 </td>
                                                             </tr>
                                                             <?php $i++; } ?>
-                                                            
+
                                                         </tbody>
                                                     </table>
+                                                    <?php } else { ?>
+                                                    <div class="x_title">
+                                                        <h3>Berkas Sidang</h3>
+                                                    </div>
+                                                    <center>
+                                                        <i>(Belum mendaftar sidang)</i>
+                                                    </center>
+                                                    <?php } ?>
                                                     <!--end table nilai-->
                                                 </div>
                                             </div>
@@ -253,56 +297,16 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                        <?php 
+                                                        $i=1;
+                                                        foreach ($dataPenilaian as $data) { ?>
                                                             <tr>
-                                                                <td>1</td>
-                                                                <th>Tata Tulis</th>
-                                                                <td>3.45</td>
+                                                                <td><?php echo $i; ?></td>
+                                                                <td><?php echo $data['nama_komponen']; ?></td>
+                                                                <td><?php echo round($data['nilai'], 2); ?></td>
+
                                                             </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <th>Bahasa</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>3</td>
-                                                                <th>Kesesuaian Naskah dengan Rancangan</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>4</td>
-                                                                <th>Rancangan Masalah</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>5</td>
-                                                                <th>Tujuan</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>6</td>
-                                                                <th>Inovasi</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>7</td>
-                                                                <th>Penguasaan Metode</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>8</td>
-                                                                <th>Penguasaan Analisis</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>9</td>
-                                                                <th>Presentasi</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>10</td>
-                                                                <th>Kesimpulan</th>
-                                                                <td>3.45</td>
-                                                            </tr>
+                                                        <?php $i++; } ?>
                                                         </tbody>
                                                     </table>
                                                     <!--end table nilai-->
@@ -311,7 +315,7 @@
                                                     <div class="col-md-6">
                                                         <h5>Nilai Akhir</h5>
                                                         <h1>
-                                                            <strong>A / B</strong>
+                                                            <strong><?php echo $dataNilaiSidang ?></strong>
                                                         </h1>
                                                     </div>
                                                 </center>
