@@ -85,7 +85,7 @@ class Sidang extends BaseController
     /**
      * This function is used to add new message to the system
      */
-    function pesan($idValidSidang=null)
+    function pesan($idValidSidang=null, $idSidang)
     {
         if($this->isAkademik() == TRUE)
         {
@@ -96,14 +96,13 @@ class Sidang extends BaseController
             $this->load->library('form_validation');
 
             $idMhs = $this->input->post('id_mahasiswa');
-            $idSidang = $this->input->post('id_sidang');
 
             $this->form_validation->set_rules('nama','Judul','trim|required|max_length[128]');
             $this->form_validation->set_rules('deskripsi','Pesan','trim|required|max_length[128]');
 
             if($this->form_validation->run() == FALSE)
             {
-                $this->detail($idMhs);
+                $this->detail($idSidang);
             }
             else
             {
@@ -112,15 +111,15 @@ class Sidang extends BaseController
                         'id_valid_sidang' => $idValidSidang,
                         'isValid' => 3,
                     );
-
                     $result = $this->sidang_model->decBerkas($berkasInfo, $idValidSidang);
 
                     if ($result == true) {
-                        $this->session->set_flashdata('success', 'Berkas ditolak!');
+                        $this->session->set_flashdata('success', 'Berkas berhasil ditolak!');
                     } else {
                         $this->session->set_flashdata('error', 'Berkas gagal ditolak!');
                     }
-                    $this->detail($idMhs);
+//                    $this->detail($idValidSidang);
+                    redirect('akademik/sidang/detail/'.$idSidang);
                 }
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
@@ -131,14 +130,13 @@ class Sidang extends BaseController
 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'Revisi berhasil dikirim!');
+                    $this->session->set_flashdata('success', 'Revisi berhasill dikirim!');
                 }
                 else
                 {
                     $this->session->set_flashdata('error', 'Revisi gagal dikirim!');
                 }
                 redirect('akademik/sidang/detail/'.$idSidang);
-//                $this->detail($idMhs);
             }
         }
     }

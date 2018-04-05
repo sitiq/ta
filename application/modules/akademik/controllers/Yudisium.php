@@ -65,7 +65,7 @@ class Yudisium extends BaseController
                 }
                 redirect('akademik/yudisium/detail/'.$idYudisium);
 //                $this->detail($idMhs);
-            }else{echo "asda";}
+            }
         }
     }
     /**
@@ -88,7 +88,7 @@ class Yudisium extends BaseController
 
             if($this->form_validation->run() == FALSE)
             {
-                $this->detail($idMhs);
+                $this->detail($idYudisium);
             }
             else
             {
@@ -97,7 +97,6 @@ class Yudisium extends BaseController
                         'id_valid_yudisium' => $idValidYudisium,
                         'isValid' => 3,
                     );
-
                     $result = $this->yudisium_model->decBerkas($berkasInfo, $idValidYudisium);
 
                     if ($result == true) {
