@@ -28,6 +28,17 @@ class sidang_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    function getIdPeriode()
+    {
+        $this->db->select('p.id_periode');
+        $this->db->from('periode p');
+        $this->db->where('p.status_periode', 1);
+        $this->db->where('p.jenis', 'ta');
+
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
     function getCountBerkas()
     {
         $this->db->select('b.id_berkas_sidang, b.nama_berkas, b.isDeleted');

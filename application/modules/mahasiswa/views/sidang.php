@@ -5,7 +5,8 @@
  * Time: 07:28
  * Description:
  */
-//var_dump($idMahasiswa);?>
+//var_dump($idPeriode);
+?>
 <?php
 $id_berkas_sidang = '';
 $nama_berkas = '';
@@ -53,6 +54,7 @@ if(!empty($berkasInfo))
                         <form action="<?php echo base_url() ?>mahasiswa/sidang/daftar" method="post" enctype="multipart/form-data" role="form">
                             <input type="hidden" name="total_syarat" value="<?php echo $totalSyarat?>">
                             <input type="hidden" name="id_syarat" value="<?php echo $idBerkas[0]->id_berkas_sidang?>">
+                            <input type="hidden" name="id_periode" value="<?php echo $idPeriode[0]->id_periode?>">
                             <input type="submit" class="btn btn-primary pull-right" value="Daftar">
                         </form>
                         <?php }?>
