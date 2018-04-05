@@ -31,6 +31,7 @@ class Sidang extends BaseController
             $userId = $this->vendorId;
             $data['berkasInfo'] = $this->sidang_model->getBerkasInfo($userId);
             $data['idBerkas'] = $this->sidang_model->getIdBerkas();
+            $data['idPeriode'] = $this->sidang_model->getIdPeriode();
             $data['totalSyarat'] = $this->sidang_model->getCountBerkas();
             $data['idMahasiswa'] = $this->sidang_model->cekMahasiswa($userId);
 
@@ -47,6 +48,8 @@ class Sidang extends BaseController
             $id_user = $this->vendorId;
             //get total syarat where active
             $total_syarat = $this->input->post('total_syarat');
+//            get id_periode
+            $id_periode = $this->input->post('id_periode');
 //            get first id syarat berkas
             $id_syarat = $this->input->post('id_syarat');
 //            get id_mahasiswa based on who is logged in
@@ -54,6 +57,7 @@ class Sidang extends BaseController
             $id_mahasiswa = $cek[0]->id_mahasiswa;
             $infoSidang = array(
               "id_mahasiswa"=>$id_mahasiswa,
+              "id_periode"=>$id_periode,
             );
 //            insert to table sidang / registration sidang new
             $idSidang = $this->sidang_model->addNewSidang($infoSidang);
