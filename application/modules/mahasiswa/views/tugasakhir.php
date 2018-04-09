@@ -22,7 +22,7 @@ $arr_jenis[2] = '';
 $jenis = '';
 // get periode
 $periode = '';
-$regis = '';
+$ta = '';
 $id_periode = '';
 
 // active pane saat edit form
@@ -33,7 +33,7 @@ if(!empty($periodeInfo))
 {
     foreach ($periodeInfo as $uf)
     {
-        $regis = $uf->status_regis;
+        $ta = $uf->status_ta;
         $periode = $uf->status_periode;
         $id_periode = $uf->id_periode;
     }
@@ -81,7 +81,7 @@ if (!empty($taInfo)) {
     </div>
     <div class="clearfix"></div>
 <!--    validasi berdasarkan periode-->
-    <?php if ($regis == 1 && $periode == 1){?>
+    <?php if ($ta == 1 && $periode == 1){?>
         <div class="row">
             <div class="col-md-12">
                 <?php
@@ -471,7 +471,9 @@ if (!empty($taInfo)) {
                         ?>
                         <div class="x_panel">
                             <div class="x_title">
-                                <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada Profil Anda</h5>
+                                <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada
+                                    <a href="<?php base_url()?>../profil" style="color: white"><u>PROFIL</u></a>
+                                    Anda</h5>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
