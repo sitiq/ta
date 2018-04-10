@@ -83,19 +83,27 @@ class Daftar_mahasiswa extends BaseController
         $dataKomponen = $this->daftar_mahasiswa_model->getKomponen();
 
         $dataPenilaian = array();
-        foreach ($dataKomponen as $record_komponen) {
-            $data_nilai = $this->daftar_mahasiswa_model->getPenilaian($id_mahasiswa,$record_komponen->id_komponen);
-            $nilai = 0;
-            foreach ($data_nilai as $record_nilai) {
-                $nilai = $nilai + $record_nilai->nilai;
+        if($dataKomponen != FALSE){
+            foreach ($dataKomponen as $record_komponen) {
+                $data_nilai = $this->daftar_mahasiswa_model->getPenilaian($id_mahasiswa,$record_komponen->id_komponen);
+                
+                if($data_nilai != NULL){
+                    $nilai = 0;
+                    foreach ($data_nilai as $record_nilai) {
+                        $nilai = $nilai + $record_nilai->nilai;
+                    }
+                    $array_nilai = array(
+                        'id_komponen' => $record_komponen->id_komponen,
+                        'nama_komponen' => $record_komponen->nama,
+                        'nilai' => $nilai / 3
+                    );
+                    array_push($dataPenilaian,$array_nilai);
+                } else {
+                    break;
+                }
             }
-            $array_nilai = array(
-                'id_komponen' => $record_komponen->id_komponen,
-                'nama_komponen' => $record_komponen->nama,
-                'nilai' => $nilai / 3
-            );
-            array_push($dataPenilaian,$array_nilai);
         }
+
         $data['dataPenilaian'] = $dataPenilaian;
 
 

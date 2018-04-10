@@ -45,6 +45,8 @@
 <script src="<?php echo base_url()?>elusistatic/vendors/switchery/dist/switchery.min.js"></script>
 <!-- Select2 -->
 <script src="<?php echo base_url()?>elusistatic/vendors/select2/dist/js/select2.full.min.js"></script>
+<!-- Ion.RangeSlider -->
+<script src="<?php echo base_url()?>elusistatic/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
 <!-- Parsley -->
 <script src="<?php echo base_url()?>elusistatic/vendors/parsleyjs/dist/parsley.min.js"></script>
 <!-- Autosize -->

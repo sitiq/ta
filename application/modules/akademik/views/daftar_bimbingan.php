@@ -2,11 +2,14 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Daftar User Mahasiswa
-                </h2>
+                <h4>
+                    <a href="<?php echo base_url() ;?>akademik/daftar_dosen">
+                        <i class="fa fa-chevron-left"></i>
+                    </a> &nbsp;Daftar Bimbingan
+                </h4>
                 <div class="clearfix"></div>
             </div>
-            <?php //var_dump($dataTable)?><br><br>
+            <?php //var_dump($dataMahasiswa)?><br><br>
             <?php //var_dump($nilai)?>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <?php
@@ -36,7 +39,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Data Mahasiswa</h2>
+                                <h2>Data Mahasiswa yang Dibimbing</h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
@@ -45,22 +48,21 @@
                                         <tr>
                                             <th>NIM</th>
                                             <th>Nama</th>
-                                            <th>No. HP</th>
+                                            <th>Project/Judul</th>
                                             <th>Judul</th>
                                             <th>Sidang</th>
                                             <th>Nilai Akhir</th>
                                             <th>Yudisium</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($dataTable as $data) { ?>
+                                        <?php foreach ($dataMahasiswa as $data) { ?>
                                             <tr>
                                                 <td style="vertical-align:middle"><?php echo $data['nim']?></td>
                                                 <td style="vertical-align:middle"><?php echo $data['nama']?></td>
-                                                <td style="vertical-align:middle"><?php echo $data['no_hp']?></td>
+                                                <td style="vertical-align:middle"><?php echo $data['judul']?></td>
                                                 <td align="center" style="vertical-align:middle">
-                                                    <?php if($data['judul']) {?>
+                                                    <?php if($data['isJudul']) {?>
                                                         <span class="badge bg-green">
                                                             <i class="fa fa-check"></i>
                                                         </span>
@@ -71,7 +73,7 @@
                                                     <?php } ?>
                                                 </td>
                                                 <td align="center" style="vertical-align:middle">
-                                                    <?php if($data['sidang']) {?>
+                                                    <?php if($data['isSidang']) {?>
                                                         <span class="badge bg-green">
                                                             <i class="fa fa-check"></i>
                                                         </span>
@@ -90,7 +92,7 @@
                                                     ?>
                                                 </td>
                                                 <td align="center" style="vertical-align:middle">
-                                                    <?php if($data['yudisium']) {?>
+                                                    <?php if($data['isYudisium']) {?>
                                                         <span class="badge bg-green">
                                                             <i class="fa fa-check"></i>
                                                         </span>
@@ -99,11 +101,6 @@
                                                             <i class="fa fa-minus"></i>
                                                         </span>
                                                     <?php } ?>
-                                                </td>
-                                                <td>
-                                                    <a href="<?php echo base_url(); ?>akademik/daftar_mahasiswa/detail_mahasiswa/<?php echo $data['id_mahasiswa']?>" class="btn btn-primary btn-sm">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

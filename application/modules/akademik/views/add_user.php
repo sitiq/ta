@@ -11,7 +11,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <?php //var_dump($dataThead);?>
             <div class="x_panel">
-                <div class="col-md-4">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <?php
                         $this->load->helper('form');
                         $error = $this->session->flashdata('error');
@@ -74,13 +74,14 @@
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 
-                                <a href="<?php echo base_url() ?>akademik/akun_mahasiswa/" class="btn btn-danger" type="button">Cancel</a>
+                                <a href="<?php echo base_url() ?>akademik/akun_mahasiswa/" class="btn btn-danger">Cancel</a>
                                 <button class="btn btn-primary" type="reset">Reset</button>
                                 <button class="btn btn-success" type="submit">Submit</button>
                             </div>
 
                         </div>
                     </form>
+                    <?php if($role != ROLE_KAPRODI) {?>
                     <center>
                         <h5>- - ATAU - -</h5>
                     </center>
@@ -109,6 +110,17 @@
                                 <strong>Judul kolom tidak perlu sama persis dengan contoh diatas, data pada kolom mana saja yang
                                     akan diinputkan dari file (.xlsx) akan disesuaikan pada langkah selanjutnya </strong>
                             </li>
+                            <?php if($role == ROLE_MAHASISWA) { ?>
+                                <li>
+                                    <strong><u>Password</u> untuk user <u>mahasiswa</u> akan secara otomatis diambilkan dari NIU</strong>
+                                </li>
+
+                            <?php } elseif($role == ROLE_DOSEN) { ?>
+                                <li>
+                                    <strong><u>Password</u> untuk user <u>dosen</u> akan secara otomatis diambilkan dari NID</strong>
+                                </li>
+
+                            <?php }  ?>
                         </ul>
                         </div>
 
@@ -129,6 +141,7 @@
                         </div>
                         </form>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

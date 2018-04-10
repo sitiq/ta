@@ -1,20 +1,27 @@
 <?php 
 if($dataPeriode != FALSE) {
-    foreach ($dataPeriode as $data) {
-        if($data->jenis == 'ta'){
-            $id_periode_ta = $data->id_periode;
-            $status_ta = $data->status_regis;
-        } else {
-            $id_periode_yudisium = $data->id_periode;
-            $status_yudisium = $data->status_regis;
-        }
+    $id_periode = $dataPeriode[0]->id_periode;
+    $status_yudisium = $dataPeriode[0]->status_yudisium;
+    $status_ta = $dataPeriode[0]->status_ta;
+    $tahun_ajaran = $dataPeriode[0]->tahun_ajaran;
+    
+    $thn1 = explode('/',$tahun_ajaran)[0];
+    $thn2 = explode('/',$tahun_ajaran)[1];
+
+    $semester = $dataPeriode[0]->semester;
+
+
+    if($semester == 'ganjil'){
+        $next_semester = 'genap';
+        $next_tahun_ajaran = $tahun_ajaran;
+    } else {
+        $next_semester = 'ganjil';
+        $thn1 = $thn2;
+        $thn2 = $thn2 + 1;
+        $next_tahun_ajaran = $thn1 . '/' . $thn2;
     }
 }
-
-
 ?>
-
-
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -23,7 +30,7 @@ if($dataPeriode != FALSE) {
                 </h2>
                 <div class="clearfix"></div>
             </div>
-            <?php var_dump($dataPeriode) ?>
+            <?php //var_dump($dataPeriode) ?>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <?php
                     $this->load->helper('form');
@@ -67,9 +74,14 @@ if($dataPeriode != FALSE) {
                             </i>
                         </p>
                     </center>
-                    <a href="<?php echo base_url() ?>akademik/periode/ubah_periode" class="btn btn-default pull-right">
+                    <!-- <a href="<?php //echo base_url() ?>akademik/periode/ubah_periode" class="btn btn-default pull-right">
+                        <i class="fa fa-clock-o"></i> Ganti Periode</button>
+                    </a> -->
+                    <a  data-toggle='modal' data-target="#modalGanti" class="btn btn-default pull-right">
                         <i class="fa fa-clock-o"></i> Ganti Periode</button>
                     </a>
+
+                   
                 </div>
             </div>
             <?php }  else { ?>
@@ -116,11 +128,11 @@ if($dataPeriode != FALSE) {
                             <?php } ?>
                             <h4 style="margin-top:20%">Ubah Status Registrasi :</h4>
                             <?php if($status_ta == 0 ) { ?>
-                            <a href="<?php echo base_url() . 'akademik/periode/change_status/'. $id_periode_ta .'/1'?>" class="btn btn-success btn-sm">
+                            <a href="<?php echo base_url() . 'akademik/periode/change_status/'. $id_periode .'/ta/1'?>" class="btn btn-success btn-sm">
                                 <i class="fa fa-check"></i> Aktifkan</button>
                             </a>
                             <?php } else { ?>
-                            <a href="<?php echo base_url() . 'akademik/periode/change_status/'. $id_periode_ta .'/0'?>" class="btn btn-danger btn-sm">
+                            <a href="<?php echo base_url() . 'akademik/periode/change_status/'. $id_periode .'/ta/0'?>" class="btn btn-danger btn-sm">
                                 <i class="fa fa-close"></i> Nonaktifkan</button>
                             </a>
                             <?php } ?>
@@ -150,17 +162,14 @@ if($dataPeriode != FALSE) {
                             <?php } ?>
                             <h4 style="margin-top:20%">Ubah Status Registrasi :</h4>
                             <?php if($status_yudisium == 0 ) { ?>
-                            <a href="<?php echo base_url() . 'akademik/periode/change_status/'. $id_periode_yudisium .'/1'?>" class="btn btn-success btn-sm">
+                            <a href="<?php echo base_url() . 'akademik/periode/change_status/'. $id_periode .'/yudisium/1'?>" class="btn btn-success btn-sm">
                                 <i class="fa fa-check"></i> Aktifkan</button>
                             </a>
                             <?php } else { ?>
-                            <a href="<?php echo base_url() . 'akademik/periode/change_status/'. $id_periode_yudisium .'/0'?>" class="btn btn-danger btn-sm">
+                            <a href="<?php echo base_url() . 'akademik/periode/change_status/'. $id_periode .'/yudisium/0'?>" class="btn btn-danger btn-sm">
                                 <i class="fa fa-close"></i> Nonaktifkan</button>
                             </a>
                             <?php } ?>
-
-
-
                         </center>
                     </div>
                 </div>
@@ -171,34 +180,29 @@ if($dataPeriode != FALSE) {
 </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="deleteModal" role="dialog">
+<div class="modal fade" id="modalGanti" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Delete Periode</h4>
+                <h4 class="modal-title">Ganti Periode</h4>
             </div>
             <div class="modal-body">
-                <p>Anda yakin ingin menghapus data?</p>
+                <p><h5>Apakah anda yakin ingin merubah periode menjadi <br><br><strong><?php echo 'Tahun Ajaran ' . $next_tahun_ajaran . " Semester " . ucfirst($next_semester); ?>?</strong><h5></p>
             </div>
             <div class="modal-footer">
-                <form action="<?php echo base_url() . 'akademik/periode/delete' ?>" method="post">
-                    <input type="hidden" name="id_periode" id="id_periode" value="">
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                <form action="<?php echo base_url() . 'akademik/periode/add_edit_period' ?>" method="post">
+                    <input type="hidden" name="semester" id="semester" value="<?php echo $next_semester; ?>">
+                    <input type="hidden" name="tahun_ajaran" id="tahun_ajaran" value="<?php echo $next_tahun_ajaran; ?>">
+                    <button type="submit" class="btn btn-primary">Ganti</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script>
-    $(document).on("click", "#delete_modal", function () {
-        var id_periode = $(this).data('id');
-        $(".modal-footer #id_periode").val(id_periode);
-    });
-</script>
 </div>
 
 <!-- /page content -->

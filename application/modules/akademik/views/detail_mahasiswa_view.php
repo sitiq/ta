@@ -11,11 +11,11 @@
             <?php //var_dump($dataBerkasSidang) ?>
             <br>
             <br>
-            <?php //var_dump($dataNilaiSidang) ?>
+            <?php //var_dump($dataBerkasYudisium) ?>
             <?php //var_dump($count) ?>
             <div class="clearfix"></div>
 
-            <div class="col-md-4">
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <?php
                         $this->load->helper('form');
                         $error = $this->session->flashdata('error');
@@ -257,10 +257,12 @@
                                                                     ?>
                                                                 </td>
                                                                 <td>
+                                                                    <?php if($data->isValid != 0 ) { ?>
                                                                     <a href="<?php echo base_url()?>uploads/sidang/<?php echo $data->id_berkas_sidang . '/' . $data->path ?>" class="btn btn-sm btn-info"
                                                                         target="_blank">
                                                                         <i class="fa fa-eye"></i>
                                                                     </a>
+                                                                    <?php } ?>
                                                                 </td>
                                                             </tr>
                                                             <?php $i++; } ?>
@@ -279,6 +281,7 @@
                                                 </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
+                                                <?php if($dataPenilaian != FALSE) {?>
                                                 <div class="col-md-6">
                                                     <!--table nilai-->
                                                     <table class="table table-bordered">
@@ -297,16 +300,22 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php 
+                                                            <?php 
                                                         $i=1;
                                                         foreach ($dataPenilaian as $data) { ?>
                                                             <tr>
-                                                                <td><?php echo $i; ?></td>
-                                                                <td><?php echo $data['nama_komponen']; ?></td>
-                                                                <td><?php echo round($data['nilai'], 2); ?></td>
+                                                                <td>
+                                                                    <?php echo $i; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $data['nama_komponen']; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo round($data['nilai'], 2); ?>
+                                                                </td>
 
                                                             </tr>
-                                                        <?php $i++; } ?>
+                                                            <?php $i++; } ?>
                                                         </tbody>
                                                     </table>
                                                     <!--end table nilai-->
@@ -315,20 +324,33 @@
                                                     <div class="col-md-6">
                                                         <h5>Nilai Akhir</h5>
                                                         <h1>
-                                                            <strong><?php echo $dataNilaiSidang ?></strong>
+                                                            <strong>
+                                                                <?php echo $dataNilaiSidang ?>
+                                                            </strong>
                                                         </h1>
                                                     </div>
                                                 </center>
+                                                <?php } else { ?>
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <div class="x_title">
+                                                        <h3>Penilaian</h3>
+                                                    </div>
+                                                    <center>
+                                                        <i>(Belum ada data penilaian)</i>
+                                                    </center>
+                                                    <?php } ?>
+                                                </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab">
-                                                <div class="col-md-6">
+                                                <?php if($dataBerkasYudisium != FALSE) {?>
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <!--table nilai-->
                                                     <table class="table table-bordered">
                                                         <thead>
                                                             <tr bgcolor="#67CEA6" style="color: white">
                                                                 <th colspan="4">
                                                                     <h4>
-                                                                        <strong>Data Penilaian</strong>
+                                                                        <strong>Berkas Yudisium</strong>
                                                                     </h4>
                                                                 </th>
                                                             </tr>
@@ -336,71 +358,52 @@
                                                                 <th>No</th>
                                                                 <th>Subject</th>
                                                                 <th>Nilai</th>
+                                                                <th>Lihat</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <?php $i=1; foreach ($dataBerkasYudisium as $data) { ?>
                                                             <tr>
-                                                                <td>1</td>
-                                                                <th>Tata Tulis</th>
-                                                                <td>3.45</td>
+                                                                <td>
+                                                                    <?php echo $i; ?>
+                                                                </td>
+                                                                <th>
+                                                                    <?php echo $data->nama_berkas; ?>
+                                                                </th>
+                                                                <td>
+                                                                    <?php if($data->isValid == 0) {
+                                                                            echo 'Belum diupload'; 
+                                                                        } elseif($data->isValid == 1) {
+                                                                            echo 'Proses';
+                                                                        } elseif($data->isValid == 2) {
+                                                                            echo 'Disetujui';
+                                                                        } elseif($data->isValid == 3) {
+                                                                            echo 'Ditolak';
+                                                                        } ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php if($data->isValid != 0 ) { ?>
+                                                                    <a href="<?php echo base_url()?>uploads/yudisium/<?php echo $data->id_berkas_sidang . '/' . $data->path ?>" class="btn btn-sm btn-info"
+                                                                        target="_blank">
+                                                                        <i class="fa fa-eye"></i>
+                                                                    </a>
+                                                                    <?php } ?>
+                                                                </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <th>Bahasa</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>3</td>
-                                                                <th>Kesesuaian Naskah dengan Rancangan</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>4</td>
-                                                                <th>Rancangan Masalah</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>5</td>
-                                                                <th>Tujuan</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>6</td>
-                                                                <th>Inovasi</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>7</td>
-                                                                <th>Penguasaan Metode</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>8</td>
-                                                                <th>Penguasaan Analisis</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>9</td>
-                                                                <th>Presentasi</th>
-                                                                <td>3.45</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>10</td>
-                                                                <th>Kesimpulan</th>
-                                                                <td>3.45</td>
-                                                            </tr>
+                                                            <?php $i++;}
+                                                                } else {
+                                                            ?>
+                                                            <div class="x_title">
+                                                                <h3>Berkas Yudisium</h3>
+                                                            </div>
+                                                            <center>
+                                                                <i>(Belum mendaftar yudisium)</i>
+                                                            </center>
+                                                            <?php } ?>
                                                         </tbody>
                                                     </table>
                                                     <!--end table nilai-->
                                                 </div>
-                                                <center>
-                                                    <div class="col-md-6">
-                                                        <h5>Nilai Akhir</h5>
-                                                        <h1>
-                                                            <strong>A / B</strong>
-                                                        </h1>
-                                                    </div>
-                                                </center>
                                             </div>
                                         </div>
                                     </div>

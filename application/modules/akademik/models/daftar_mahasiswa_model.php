@@ -24,8 +24,9 @@ class Daftar_mahasiswa_model extends CI_Model{
 
     public function isSidang($id_mahasiswa){
         $this->db->select("*");
-        $this->db->from('sidang s');
+        $this->db->from('sidang');
         $this->db->where('status','disetujui');
+        $this->db->where('id_mahasiswa',$id_mahasiswa);
         $query = $this->db->get();
 
         if( $query->num_rows() > 0 ){ return TRUE; } else { return FALSE; }

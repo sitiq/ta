@@ -72,7 +72,7 @@ if(!empty($yudisiumInfo))
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <?php
                             $this->load->helper('form');
                             $error = $this->session->flashdata('error');
@@ -243,7 +243,7 @@ if(!empty($yudisiumInfo))
                                                         <h4>Yakin telah menerima seluruh berkas yudisium?</h4>
                                                         <div id="testmodal" style="padding: 5px 20px;">
                                                             <form action="<?php echo base_url()?>akademik/yudisium/status/<?php echo $yudisiumInfo[0]->id_yudisium?>/<?php echo $yudisiumInfo[0]->id_mahasiswa?>" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
-                                                                <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                                                <input class="btn btn-danger" data-dismiss="modal" value="Cancel">
                                                                 <input type="submit" class="btn btn-success" value="Yes" style="width: 14%">
                                                             </form>
                                                         </div>

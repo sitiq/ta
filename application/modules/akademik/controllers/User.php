@@ -17,9 +17,9 @@ class User extends BaseController
         );
         $result = $this->user_model->insert($data);
         if($result){
-            $this->session->set_flashdata('success', 'New User created successfully');
+            $this->session->set_flashdata('success', 'User baru telah dibuat');
         } else {
-            $this->session->set_flashdata('error', 'User creation failed');
+            $this->session->set_flashdata('error', 'User gagal dibuat. Masalah database');
         };
         if($role == ROLE_MAHASISWA){
             redirect('akademik/akun_mahasiswa/');
@@ -74,7 +74,6 @@ class User extends BaseController
             TRUE         // Should the array be indexed by cell row and cell column
             );
 
-
             $this->loadViews("upload_user",$this->global,$data);
         }    
     }
@@ -116,9 +115,9 @@ class User extends BaseController
         } else {
             $result = $this->user_model->insert_multiple($data);
             if($result){
-                $this->session->set_flashdata('success', 'New User created successfully');
+                $this->session->set_flashdata('success', 'User telah berhasil dibuat');
             } else {
-                $this->session->set_flashdata('error', 'User creation failed');
+                $this->session->set_flashdata('error', 'User gagal dibuat');
             };
         }
 
@@ -162,9 +161,9 @@ class User extends BaseController
         $user_id = $this->input->post('userId');
         $result = $this->user_model->update($data,$user_id,$this->input->post('role'));
         if($result){
-            $this->session->set_flashdata('success', 'User Updated successfully');
+            $this->session->set_flashdata('success', 'User telah berhasil diubah');
         } else {
-            $this->session->set_flashdata('error', 'Update User failed');
+            $this->session->set_flashdata('error', 'User gagal diubah');
         };
 
         $role = $this->input->post('role');
@@ -220,9 +219,9 @@ class User extends BaseController
         $role = $this->input->post('role');
         $result = $this->user_model->delete($user_id);
         if($result){
-            $this->session->set_flashdata('success', 'User Deleted successfully');
+            $this->session->set_flashdata('success', 'User telah dihapus');
         } else {
-            $this->session->set_flashdata('error', 'Delete User failed');
+            $this->session->set_flashdata('error', 'User gagal dihapus');
         };
         $role = $this->input->post('role');
         if($role == ROLE_MAHASISWA){
@@ -236,17 +235,6 @@ class User extends BaseController
         } 
 
         redirect('akademik/akun_mahasiswa/');
-    }
-
-    public function get_random_pass($length)
-    {
-        $char= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789';
-        $string = '';
-        for ($i = 0; $i < $length; $i++) {
-            $pos = rand(0, strlen($char)-1);
-            $string .= $char{$pos};
-        }
-        return $string;
     }
     function pageNotFound()
     {

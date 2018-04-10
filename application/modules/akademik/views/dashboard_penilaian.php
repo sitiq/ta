@@ -15,7 +15,7 @@
                 </h2>
                 <div class="clearfix"></div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <?php
                 $this->load->helper('form');
                 $error = $this->session->flashdata('error');

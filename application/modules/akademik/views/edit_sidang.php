@@ -70,7 +70,7 @@ if(!empty($sidangInfo))
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <?php
                             $this->load->helper('form');
                             $error = $this->session->flashdata('error');

@@ -16,7 +16,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <?php
                         $this->load->helper('form');
                         $error = $this->session->flashdata('error');
@@ -162,7 +162,7 @@
                         </label>
                         <input id="lampiran" name="lampiran" type="file">
                     </div>
-                    <a href="<?php echo base_url() ?>akademik/pengumuman/" class="btn btn-danger pull-right" type="button">Cancel</a>
+                    <a href="<?php echo base_url() ?>akademik/pengumuman/" class="btn btn-danger pull-right" >Cancel</a>
                     <button type="submit" class="btn btn-primary pull-right">Save</button>
                     </form>
                 </div>

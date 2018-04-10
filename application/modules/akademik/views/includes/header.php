@@ -38,6 +38,10 @@
     <link href="<?php echo base_url()?>elusistatic/css/validation.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url()?>elusistatic/build/css/custom.min.css" rel="stylesheet">
+    <!-- Ion.RangeSlider -->
+    <link href="<?php echo base_url()?>elusistatic/vendors/normalize-css/normalize.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>elusistatic/vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>elusistatic/vendors/ion.rangeSlider/css/ion.rangeSlider.skinModern.css" rel="stylesheet">
     <!-- Datatables -->
     <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
@@ -70,12 +74,12 @@
                     <div class="menu_section">
                         <h3>Akademik</h3>
                         <ul class="nav side-menu">
-                            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                            <li><a href="<?php echo base_url()?>akademik/dashboard/"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li><a href="<?php echo base_url()?>akademik/pengumuman/"><i class="fa fa-cloud-upload"></i> Pengumuman</a></li>
                             <li><a><i class="fa fa-user"></i> Daftar User <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="<?php echo base_url(); ?>akademik/daftar_mahasiswa">Mahasiswa</a></li>
-                                    <li><a href="status_dosen.html">Dosen</a></li>
+                                    <li><a href="<?php echo base_url(); ?>akademik/daftar_dosen">Dosen</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-group"></i> Akun User <span class="fa fa-chevron-down"></span></a>
