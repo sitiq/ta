@@ -52,7 +52,7 @@
                             }
                             ?>
                             <td>
-                                <a href="<?php echo base_url() ?>akademik/yudisium/editOld/<?php echo $record->id_yudisium?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                <a href="<?php echo base_url() ?>akademik/yudisium/detail/<?php echo $record->id_yudisium?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                             </td>
                         </tr>
                                 <?php

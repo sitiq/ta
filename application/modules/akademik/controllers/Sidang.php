@@ -37,7 +37,7 @@ class Sidang extends BaseController
     /**
      * This function is used to load form accepting files sidang from mahasiswa
      */
-    function editOld($sidangId = NULL)
+    function detail($sidangId = NULL)
     {
         if($this->isAkademik() == TRUE)
         {
@@ -77,15 +77,15 @@ class Sidang extends BaseController
                 } else {
                     $this->session->set_flashdata('error', 'Berkas gagal diterima!');
                 }
-//                $this->editOld($idMhs);
-                redirect('akademik/sidang/editOld/'.$idMhs);
-            }else{echo "asda";}
+//                $this->detail($idMhs);
+                redirect('akademik/sidang/detail/'.$idMhs);
+            }
         }
     }
     /**
      * This function is used to add new message to the system
      */
-    function pesan($idValidSidang=null)
+    function pesan($idValidSidang=null, $idSidang)
     {
         if($this->isAkademik() == TRUE)
         {
@@ -102,7 +102,7 @@ class Sidang extends BaseController
 
             if($this->form_validation->run() == FALSE)
             {
-                $this->editOld($idMhs);
+                $this->detail($idSidang);
             }
             else
             {
@@ -111,15 +111,15 @@ class Sidang extends BaseController
                         'id_valid_sidang' => $idValidSidang,
                         'isValid' => 3,
                     );
-
                     $result = $this->sidang_model->decBerkas($berkasInfo, $idValidSidang);
 
                     if ($result == true) {
-                        $this->session->set_flashdata('success', 'Berkas ditolak!');
+                        $this->session->set_flashdata('success', 'Berkas berhasil ditolak!');
                     } else {
                         $this->session->set_flashdata('error', 'Berkas gagal ditolak!');
                     }
-                    $this->editOld($idMhs);
+//                    $this->detail($idValidSidang);
+                    redirect('akademik/sidang/detail/'.$idSidang);
                 }
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
@@ -130,14 +130,13 @@ class Sidang extends BaseController
 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'Revisi berhasil dikirim!');
+                    $this->session->set_flashdata('success', 'Revisi berhasill dikirim!');
                 }
                 else
                 {
                     $this->session->set_flashdata('error', 'Revisi gagal dikirim!');
                 }
-                redirect('akademik/sidang/editOld/'.$idMhs);
-//                $this->editOld($idMhs);
+                redirect('akademik/sidang/detail/'.$idSidang);
             }
         }
     }

@@ -12,7 +12,7 @@
 <!-- footer content -->
 <footer>
     <div class="pull-right">
-        eLusi - Kelulusan Komsi
+        KOMSI - Tugas Akhir
     </div>
     <div class="clearfix"></div>
 </footer>
