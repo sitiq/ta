@@ -1,14 +1,4 @@
 <?php
-/**
- * Created by nad.
- * Date: 20/03/2018
- * Time: 10:28
- * Description:
- */
-//echo $userId + ' ';
-//echo $userRole;
-//?>
-<?php
 $id_mahasiswa = '';
 $nim = '';
 $nama = '';

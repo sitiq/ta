@@ -16,27 +16,17 @@ class Periode extends BaseController
 
     public function ubah_periode(){
         $this->global['pageTitle'] = "Elusi :  Periode "; 
-        $this->loadViews("ganti_periode",$this->global);
+        $this->loadViews("add_periode",$this->global);
     }
 
-    public function edit_form($id){
-        $this->global['pageTitle'] = "Elusi : Edit Periode"; 
-        $data['dataPeriode'] = $this->periode_model->getPeriode($id);
-        $data['tanggal_awal'] = date_format(date_create_from_format('Y-m-d', explode(' ',$data['dataPeriode'][0]->tanggal_awal_regis)[0]), 'd/m/Y');
-        $data['tanggal_akhir'] = date_format(date_create_from_format('Y-m-d', explode(' ',$data['dataPeriode'][0]->tanggal_akhir_regis)[0]), 'd/m/Y');
-        //$data['lol'] = $data['dataPeriode'][0]->tanggal_awal_regis;
-        $data['waktu_awal'] = explode(' ',$data['dataPeriode'][0]->tanggal_awal_regis)[1];
-        $data['waktu_akhir'] = explode(' ',$data['dataPeriode'][0]->tanggal_akhir_regis)[1];
-
-
-        $this->loadViews("edit_periode",$this->global,$data);
-    }
-
-    public function change(){
+    public function add_edit_period(){
         $semester = trim($this->input->post('semester'));
-        $thn_ajaran1 = trim($this->input->post('thn1'));
-        $thn_ajaran2 = trim($this->input->post('thn2'));
-        $tahun_ajaran = $thn_ajaran1 . "/" . $thn_ajaran2;
+        $tahun_ajaran = trim($this->input->post('tahun_ajaran'));
+        if($tahun_ajaran == NULL){
+            $thn_ajaran1 = trim($this->input->post('thn1'));
+            $thn_ajaran2 = trim($this->input->post('thn2'));
+            $tahun_ajaran = $thn_ajaran1 . "/" . $thn_ajaran2;
+        }
 
         // $tanggal_awal = date_format(date_create_from_format('d/m/Y', $this->input->post('tanggal_awal')), 'Y-m-d');
         // $tanggal_akhir = date_format(date_create_from_format('d/m/Y', $this->input->post('tanggal_akhir')), 'Y-m-d');
@@ -44,23 +34,14 @@ class Periode extends BaseController
         // $tanggal_awal_regis = $tanggal_awal . " " .  $this->input->post('waktu_awal') . ":00";
         // $tanggal_akhir_regis = $tanggal_akhir . " " . $this->input->post('waktu_akhir') . ":00";
         $data_periode = array(
-            array(
-                'semester' => $semester,
-                'tahun_ajaran' => $tahun_ajaran,
-                'jenis' => 'ta',
-                'status_regis' => 0,
-                'status_periode' => 1
-            ),
-            array(
-                'semester' => $semester,
-                'tahun_ajaran' => $tahun_ajaran,
-                'jenis' => 'yudisium',
-                'status_regis' => 0,
-                'status_periode' => 1
-            )
+            'semester' => $semester,
+            'tahun_ajaran' => $tahun_ajaran,
+            'status_ta' => 0,
+            'status_yudisium' => 0,
+            'status_periode' => 1
         );
 
-        $result = $this->periode_model->insert_multiple($data_periode);
+        $result = $this->periode_model->insert($data_periode);
         if($result){
             $this->session->set_flashdata('success', 'Periode berhasil diganti');
         } else {
@@ -70,22 +51,20 @@ class Periode extends BaseController
         redirect('akademik/periode');
     }
 
-    public function change_status($id_periode,$status){
-        if($status == 1){
-            $result = $this->periode_model->edit_status($id_periode,$status);
-            if($result){
-                $this->session->set_flashdata('success', 'Periode registrasi berhasil diaktifkan');
-            } else {
-                $this->session->set_flashdata('error', 'Gagal mengaktifkan periode');
-            };
+
+    public function change_status($id_periode,$jenis,$status){
+        if($jenis == 'ta'){
+            $result = $this->periode_model->edit_status($id_periode,'ta',$status);
         } else {
-            $result = $this->periode_model->edit_status($id_periode,$status);
-            if($result){
-                $this->session->set_flashdata('success', 'Periode registrasi berhasil di-nonaktifkan');
-            } else {
-                $this->session->set_flashdata('error', 'Gagal menonaktifkan periode');
-            };
-        };
+            $result = $this->periode_model->edit_status($id_periode,'yudisium',$status);
+        }
+            
+        if($result){
+            $this->session->set_flashdata('success', 'Periode registrasi berhasil di-nonaktifkan');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menonaktifkan periode');
+        }
+
         redirect('akademik/periode');
     }
 

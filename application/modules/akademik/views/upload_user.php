@@ -11,7 +11,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <?php //var_dump($dataThead);?>
             <div class="x_panel">
-                <div class="col-md-4">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <?php
                         $this->load->helper('form');
                         $error = $this->session->flashdata('error');
@@ -40,15 +40,24 @@
                         <h4>
                             <strong>Cocokkan nama kolom yang ada di file .xlsx dengan data yang akan dimasukkan</strong>
                         </h4>
+                        <h5>NB:</h5>
                     </center>
 
                     <center>
-                        <h5>
-                            
-                            <ul>
-                                <li>NB: Apabila username berupa NIM lengkap, maka yang akan diambil adalah NIU</li>
-                            </ul>
-                        </h5>
+                        <table>
+                            <tr>
+                                <td> - </td>
+                                <td>Apabila username berupa NIM lengkap, maka username secara otomatis berupa NIU</td>
+                            </tr>
+                            <tr>
+                                <td> - </td>
+                                <td>Username selain NIM semisal NID akan diambil keseluruhannya</td>
+                            </tr>
+                            <tr>
+                                <td> - </td>
+                                <td>Password akan secara otomatis sama dengan username</td>
+                            </tr>
+                        </table>
                     </center>
                     <br />
                     <form class="form-horizontal form-label-left" id="uploadUserForm" action="<?php echo base_url() . 'akademik/user/upload_submit/'?>"

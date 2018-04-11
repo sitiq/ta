@@ -180,14 +180,14 @@ class Ta_model extends CI_Model{
             'deskripsi' => 'Tugas akhir anda telah terplotting dengan judul dan dosbing sebagai berikut<br>
                             <table>
                             <tr>
-                            <td>Judul</td>
-                            <td>:</td>
-                            <td><strong>'. $judul_ta .'</strong></td>
-                            <tr>
-                            <tr>
-                            <td>Dosen Pembimbing</td>
-                            <td>:</td>
-                            <td><strong>'. $nama_dosen .'</strong></td>
+                            <td style="padding: 5px;" ><h4>Judul</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $judul_ta .'</strong></h4></td>
+                            </tr>
+                            </tr>
+                            <td style="padding: 5px;" ><h4>Dosen Pembimbing</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $nama_dosen .'</strong></h4></td>
                             <tr>
                             </table> '
         );

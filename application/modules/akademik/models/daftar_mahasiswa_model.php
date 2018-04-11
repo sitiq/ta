@@ -24,8 +24,9 @@ class Daftar_mahasiswa_model extends CI_Model{
 
     public function isSidang($id_mahasiswa){
         $this->db->select("*");
-        $this->db->from('sidang s');
+        $this->db->from('sidang');
         $this->db->where('status','disetujui');
+        $this->db->where('id_mahasiswa',$id_mahasiswa);
         $query = $this->db->get();
 
         if( $query->num_rows() > 0 ){ return TRUE; } else { return FALSE; }
@@ -105,11 +106,49 @@ class Daftar_mahasiswa_model extends CI_Model{
         $this->db->join('validasi_berkas_sidang v','s.id_sidang=v.id_sidang','inner');
         $this->db->join('berkas_sidang b','v.id_berkas_sidang=b.id_berkas_sidang','inner');
         $this->db->where('s.id_mahasiswa',$id_mahasiswa);
-
         $query = $this->db->get();
 
         if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
     }
 
+    public function getPenilaian($id_mahasiswa,$id_komponen){
+        $this->db->select("*");
+        $this->db->from('sidang s');
+        $this->db->join('penilaian p','s.id_sidang=p.id_sidang','inner');
+        $this->db->join('komponen_nilai kn','p.id_penilaian=kn.id_penilaian','inner');
+        $this->db->join('komponen k','k.id_komponen=kn.id_komponen','inner');
+        $this->db->where('s.id_mahasiswa',$id_mahasiswa);
+        $this->db->where('k.id_komponen',$id_komponen);
+        $query = $this->db->get();
 
+        if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
+    }
+
+    public function getKomponen(){
+        $this->db->select("*");
+        $this->db->from('komponen');
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
+    }
+
+    public function getNilaiSidang($id_mahasiswa){
+        $this->db->select("*");
+        $this->db->from('sidang');
+        $this->db->where('id_mahasiswa',$id_mahasiswa);
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
+    }
+
+    public function getBerkasYudisium($id_mahasiswa){
+        $this->db->select("*");
+        $this->db->from('yudisium y');
+        $this->db->join('validasi_berkas_yudisium v','y.id_yudisium=v.id_yudisium','inner');
+        $this->db->join('berkas_yudisium b','v.id_berkas_yudisium=b.id_berkas_yudisium','inner');
+        $this->db->where('y.id_mahasiswa',$id_mahasiswa);
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
+    }
 }
