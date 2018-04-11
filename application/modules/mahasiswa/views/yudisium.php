@@ -15,7 +15,7 @@ $isValid = '';
 $path = '';
 $id_yudisium = '';
 $id_mahasiswa = '';
-$regis = '';
+$yudisium = '';
 $periode = '';
 $id_periode = '';
 
@@ -24,7 +24,7 @@ if(!empty($periodeInfo))
     foreach ($periodeInfo as $uf)
     {
         $id_periode = $uf->id_periode;
-        $regis = $uf->status_regis;
+        $yudisium = $uf->status_yudisium;
         $periode = $uf->status_periode;
     }
 }
@@ -51,7 +51,7 @@ if(!empty($berkasInfo))
     </div>
     <div class="clearfix"></div>
     <!--    validasi berdasarkan periode-->
-    <?php if ($regis == 1 && $periode == 1){?>
+    <?php if ($yudisium == 1 && $periode == 1){?>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -61,7 +61,9 @@ if(!empty($berkasInfo))
                                     <ul>
                                         <li>Diwajibkan untuk membaca tata cara pada PENGUMUMAN.</li>
                                     </ul>
-                                    <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada Profil Anda</h5>
+                                    <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada
+                                        <a href="<?php base_url()?>../mahasiswa/profil" style="color: white"><u>PROFIL</u></a>
+                                        Anda</h5>
                                 </small></h2>
                         </div>
                         <div class="col-md-6">

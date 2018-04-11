@@ -47,6 +47,7 @@ class Profil extends BaseController
         }
         else
         {
+            $id_user = $this->input->post('id_user');
             $id_mahasiswa = $this->input->post('id_mahasiswa');
             $nim = $this->input->post('nim');
             $nama = $this->input->post('nama');
@@ -67,6 +68,10 @@ class Profil extends BaseController
                 'skill'=>$skill,
                 'pengalaman'=>$pengalaman);
 
+            $userInfo = array(
+                'nama'=>$nama
+            );
+            $resultUser = $this->profil_model->editUser($userInfo,$id_user);
             $result = $this->profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
 
             if($result > 0)

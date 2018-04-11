@@ -30,12 +30,12 @@ class sidang_model extends CI_Model
     }
     function getIdPeriode()
     {
-        $this->db->select('p.id_periode');
-        $this->db->from('periode p');
-        $this->db->where('p.status_periode', 1);
-        $this->db->where('p.jenis', 'ta');
-
+        $this->db->select('id_periode, status_periode');
+        $this->db->from('periode');
+        $this->db->where('status_periode',1);
+        $this->db->where('isDeleted',0);
         $query = $this->db->get();
+
         $result = $query->result();
         return $result;
     }

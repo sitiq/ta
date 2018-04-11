@@ -13,9 +13,8 @@ class pengajuan_model extends CI_Model
      * @return array $result : This is result
      */
     function getPeriode(){
-        $this->db->select('id_periode,status_periode, status_regis');
+        $this->db->select('id_periode, status_periode, status_ta');
         $this->db->from('periode');
-        $this->db->where('jenis','ta');
         $this->db->where('isDeleted',0);
         $query = $this->db->get();
 
