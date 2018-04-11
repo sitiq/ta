@@ -33,20 +33,14 @@ class Proyek extends BaseController
         $nama_proyek = trim($this->input->post('nama_proyek'));
         $instansi = trim($this->input->post('instansi'));
 
-        if(empty($instansi)){
-            $data = array(
-                'id_dosen' => $id_dosen,
-                'nama'=> $nama_proyek,
-                'status'=> 'pending'
-            );
-        } else {
-            $data = array(
-                'id_dosen' => $id_dosen,
-                'nama'=> $nama_proyek,
-                'klien'=> $instansi,
-                'status'=> 'pending'
-            );
-        }
+        
+        $data = array(
+            'id_dosen' => $id_dosen,
+            'nama'=> $nama_proyek,
+            'klien'=> $instansi,
+            'status'=> 'pending'
+        );
+
         $result = $this->proyek_model->insert($data);
         if($result){
             $this->session->set_flashdata('success', 'Proyek baru telah ditambahkan');
@@ -64,20 +58,13 @@ class Proyek extends BaseController
         $instansi = trim($this->input->post('instansi'));
         $status = trim($this->input->post('status'));
 
-        if(empty($instansi)){
-            $data = array(
-                'id_dosen' => $id_dosen,
-                'nama'=> $nama_proyek,
-                'status'=> $status
-            );
-        } else {
-            $data = array(
-                'id_dosen' => $id_dosen,
-                'nama'=> $nama_proyek,
-                'klien' => $instansi,
-                'status'=> $status
-            );
-        }
+        $data = array(
+            'id_dosen' => $id_dosen,
+            'nama'=> $nama_proyek,
+            'klien' => $instansi,
+            'status'=> $status
+        );
+        
         $result = $this->proyek_model->update($data,$id_proyek);
         if($result){
             $this->session->set_flashdata('success', 'Proyek telah diubah');

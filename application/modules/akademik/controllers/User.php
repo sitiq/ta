@@ -103,7 +103,7 @@ class User extends BaseController
                 $dataUser = array(
                     'nama' => $worksheet->getCell($column_fname . $row)->getValue(),
                     'username' => $username,
-                    'password' => $username,
+                    'password' => getHashedPassword(trim($username)),
                     'id_user_role' => $role
                 );
                 array_push($data,$dataUser);
