@@ -8,8 +8,7 @@ class Kaprodi extends BaseController
     }
 
     public function index(){
-        $this->global['pageTitle'] = "Elusi : Pilih Role";
-        $this->loadViews("kaprodi_view", $this->global, NULL, NULL);
+        $this->load->view('kaprodi_view');
     }
 
     public function switch_akademik(){

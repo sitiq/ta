@@ -182,7 +182,7 @@ if (!empty($taInfo)) {
                                 </div>
                                 <!--                        end tab pane-->
                                 <div class="tab-pane fade in" id="edit">
-                                    <a href="#content" data-toggle="tab" class="btn btn-primary" >Kembali</a>
+                                    <a href="#content" data-toggle="tab" class="btn btn-primary" ><i class="fa fa-angle-double-left"></i> Back</a>
                                     <div class="x_content">
                                         <form role="form" id="daftar" action="<?php echo base_url()?>mahasiswa/pengajuan/edit_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" >
                                             <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">
@@ -324,7 +324,7 @@ if (!empty($taInfo)) {
                                 <!--                        end tab pane-->
                                 <!--                        form edit-->
                                 <div class="tab-pane fade in" id="edit">
-                                    <a href="#content" data-toggle="tab" class="btn btn-primary" >Kembali</a>
+                                    <a href="#content" data-toggle="tab" class="btn btn-primary" ><i class="fa fa-angle-double-left"></i> Back</a>
                                     <div class="x_content">
                                         <form role="form" id="daftar" action="<?php echo base_url() ?>mahasiswa/pengajuan/edit_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" >
                                             <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">

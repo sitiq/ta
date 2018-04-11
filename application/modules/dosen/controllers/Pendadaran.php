@@ -41,7 +41,7 @@ class Pendadaran extends BaseController
     /**
      * This function is used to get nilai detail information list
      */
-    function nilai()
+    function nilai($idNilai)
     {
         if($this->isDosen() == TRUE)
         {
@@ -50,9 +50,9 @@ class Pendadaran extends BaseController
         else
         {
             $userId = $this->vendorId;
-            $data['nilaiInfo'] = $this->pendadaran_model->getNilaiInfo($userId);
+            $data['nilaiInfo'] = $this->pendadaran_model->getNilaiInfo($userId, $idNilai);
             $data['revisiInfo'] = $this->pendadaran_model->getRevisiInfo($userId);
-            $data['mahasiswaInfo'] = $this->pendadaran_model->getMahasiswaInfo();
+//            $data['mahasiswaInfo'] = $this->pendadaran_model->getMahasiswaInfo($idMhs);
             $this->global['pageTitle'] = "Elusi : Sidang";
             $this->loadViews("nilai", $this->global, $data, NULL);
         }
@@ -131,7 +131,7 @@ class Pendadaran extends BaseController
             else {
                 $id_anggota_sidang = $this->input->post('id_anggota_sidang');
 //                upload file revision
-                $config['upload_path'] = 'uploads/sidang/revisi';
+                $config['upload_path'] = 'uploads/revisi_sidang';
                 $config['allowed_types'] = 'pdf';
                 $config['max_size'] = 8000;
                 $config['max_width'] = 1024;

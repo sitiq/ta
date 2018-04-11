@@ -7,7 +7,6 @@
  */
 //var_dump($nilaiInfo);
 //var_dump($revisiInfo);
-var_dump($mahasiswaInfo);
 ?>
 <?php
 $path = '';
@@ -187,11 +186,11 @@ if(!empty($revisiInfo))
                                 <td colspan="3">
                                     <form id="nilai-satu" action="<?php echo base_url()?>dosen/pendadaran/submitrevisi" enctype="multipart/form-data" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                         <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
-                                        <input type="hidden" name="id_mahasiswa" value="<?php echo $mahasiswaInfo[0]->id_mahasiswa?>">
+                                        <input type="hidden" name="id_mahasiswa" value="<?php echo $record->id_mahasiswa?>">
                                         <input type="hidden" name="id_anggota_sidang" value="<?php echo $record->id_anggota_sidang?>">
                                         <input type="file" class="form-control" name="path">
                                         <?php if ($path != ""){?>
-                                        <a href="<?php echo base_url()?>uploads/sidang/revisi/<?php echo $path?>" class="btn btn-info" style="margin-top: 3%" download>
+                                        <a href="<?php echo base_url()?>uploads/revisi_sidang/<?php echo $path?>" class="btn btn-info" style="margin-top: 3%" download>
                                             <i class="fa fa-save"></i>
                                         </a>
                                         <?php }?>
