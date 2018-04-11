@@ -143,9 +143,16 @@ class Pengajuan extends BaseController
 
                             $this->load->library('upload', $config);
                             if (!$this->upload->do_upload('file_persetujuan')) {
+                                $usulan = array(
+                                    'id_pengajuan_ta' => $id_pengajuan_ta,
+                                    'judul' => $judul,
+                                    'deskripsi' => $deskripsi,
+                                    'bisnis_rule' => $bisnis_rule,
+                                    'file_persetujuan' => $terupload['file_name']
+                                );
                                 // if upload revisi not match
                                 $error = array('error' => $this->upload->display_errors());
-                                $this->session->set_flashdata('error', 'Unggah file gagal!');
+//                                $this->session->set_flashdata('error', 'Unggah file gagal!');
                             } else {
                                 $terupload = $this->upload->data();
                                 $usulan = array(
