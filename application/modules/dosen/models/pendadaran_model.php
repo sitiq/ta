@@ -16,7 +16,7 @@ class pendadaran_model extends CI_Model
     function getSidang($userId)
     {
         $this->db->select('j.tanggal, j.waktu, j.ruang, m.nim, m.nama, v.path, 
-        p.id_penilaian, s.nilai_akhir_sidang, p.nilai_akhir_dosen');
+        p.id_penilaian, s.nilai_akhir_sidang, p.nilai_akhir_dosen, a.id_sidang');
         $this->db->from('sidang s');
         $this->db->join('mahasiswa m', 'm.id_mahasiswa = s.id_mahasiswa');
         $this->db->join('jadwal_sidang j', 'j.id_sidang = s.id_sidang');
@@ -36,11 +36,12 @@ class pendadaran_model extends CI_Model
      * This function is used to get the mahasiswa info
      * @return array $result : This is result
      */
-    function getMahasiswaInfo()
+    function getMahasiswaInfo($idMhs)
     {
         $this->db->select('s.id_sidang, m.id_mahasiswa');
         $this->db->from('sidang s');
         $this->db->join('mahasiswa m','m.id_mahasiswa = s.id_mahasiswa');
+        $this->db->where('m.id_mahasiswa', $idMhs);
 
         $query = $this->db->get();
         $result = $query->result();
@@ -51,22 +52,28 @@ class pendadaran_model extends CI_Model
      * @param $userId : This is get from user who is logged in
      * @return array $result : This is result
      */
-    function getNilaiInfo($userId)
+    function getNilaiInfo($userId, $nilaiId)
     {
         $this->db->select('p.id_sidang, p.id_penilaian, p.nilai_akhir_dosen, k.id_komponen, k.nama nama_nilai,
-         kn.id_komponen_nilai, kn.nilai, a.id_anggota_sidang');
+         kn.id_komponen_nilai, kn.nilai, a.id_anggota_sidang, m.id_mahasiswa');
         $this->db->from('penilaian p');
         $this->db->join('anggota_sidang a', 'a.id_anggota_sidang = p.id_anggota_sidang');
         $this->db->join('dosen d', 'd.id_dosen = a.id_dosen');
         $this->db->join('user u', 'u.id_user = d.id_user');
         $this->db->join('komponen_nilai kn', 'kn.id_penilaian = p.id_penilaian');
         $this->db->join('komponen k', 'k.id_komponen = kn.id_komponen');
+        $this->db->join('sidang s', 's.id_sidang = a.id_sidang');
+        $this->db->join('mahasiswa m', 'm.id_mahasiswa = s.id_mahasiswa');
         $this->db->where('u.id_user',$userId);
+        $this->db->where('p.id_penilaian',$nilaiId);
         $this->db->where('k.isDeleted',0);
         $query = $this->db->get();
 
-        $result = $query->result();
-        return $result;
+        if ($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return false;
+        }
     }
     /**
      * This function is used to get the revisi info mahasiswa

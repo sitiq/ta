@@ -23,7 +23,11 @@ class dashboard_model extends CI_Model
         $this->db->order_by('l.createdDtm','desc');
         $query = $this->db->get();
 
-        return $query->result();
+        if ($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return false;
+        }
     }
     /**
      * This function is used to  get revisi from Sidang related to mahasiswa
@@ -40,8 +44,12 @@ class dashboard_model extends CI_Model
         $this->db->join('revisi_sidang r','r.id_anggota_sidang = a.id_anggota_sidang','left');
 
         $this->db->where('u.id_user',$userId);
+        $this->db->where('r.path !=',null);
         $query = $this->db->get();
-
-        return $query->result();
+        if ($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return false;
+        }
     }
 }

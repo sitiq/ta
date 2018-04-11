@@ -55,6 +55,7 @@ class Login_admin extends CI_Controller
      */
     public function loginMe()
     {
+//        $this->output->enable_profiler(TRUE);
         $this->load->library('form_validation');
 		
         $this->form_validation->set_rules('username', 'Username');
