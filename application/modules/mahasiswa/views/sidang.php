@@ -5,7 +5,6 @@
  * Time: 07:28
  * Description:
  */
-//var_dump($idPeriode);
 ?>
 <?php
 $id_berkas_sidang = '';
@@ -46,7 +45,9 @@ if(!empty($berkasInfo))
                                 <ul>
                                     <li>Diwajibkan untuk membaca tata cara pada PENGUMUMAN.</li>
                                 </ul>
-                                <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada Profil Anda</h5>
+                                <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada
+                                    <a href="<?php base_url()?>../mahasiswa/profil" style="color: white"><u>PROFIL</u></a>
+                                    Anda</h5>
                             </small></h2>
                     </div>
                     <div class="col-md-6">

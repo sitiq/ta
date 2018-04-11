@@ -174,6 +174,7 @@ if(!empty($profilInfo))
                                 <!-- form start update profile -->
                                 <form role="form" action="<?php echo base_url() ?>mahasiswa/profil/editProfil" method="post" id="editProfilForm" enctype="multipart/form-data">
                                     <input type="hidden" class="form-control required" id="id_mahasiswa" name="id_mahasiswa" value="<?php echo $id_mahasiswa ?>" >
+                                    <input type="hidden" class="form-control required" id="id_user" name="id_user" value="<?php echo $userId ?>" >
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="email">Email <span>*</span></label>
