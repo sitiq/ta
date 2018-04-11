@@ -47,6 +47,65 @@ class Daftar_mahasiswa extends BaseController
         $data['dataDosbing'] = $this->daftar_mahasiswa_model->getDosbing($id_mahasiswa);
         $data['dataJudulTA'] = $this->daftar_mahasiswa_model->getJudulTA($id_mahasiswa);
         $data['dataBerkasSidang'] = $this->daftar_mahasiswa_model->getBerkasSidang($id_mahasiswa);
+        $data['dataBerkasYudisium'] = $this->daftar_mahasiswa_model->getBerkasYudisium($id_mahasiswa);
+        $dataSidang = $this->daftar_mahasiswa_model->getNilaiSidang($id_mahasiswa);
+        
+        if(!$dataSidang){
+            $data['dataNilaiSidang'] = FALSE;
+        } else {
+            $nilai_akhir_sidang = $dataSidang[0]->nilai_akhir_sidang;
+            if($nilai_akhir_sidang >= 3.75){
+                $data['dataNilaiSidang'] = 'A';
+            } elseif($nilai_akhir_sidang < 3.75 && $nilai_akhir_sidang >= 3.50){
+                $data['dataNilaiSidang'] = 'A-';
+            } elseif($nilai_akhir_sidang < 3.50 && $nilai_akhir_sidang >= 3.25){
+                $data['dataNilaiSidang'] = 'A/B';
+            } elseif($nilai_akhir_sidang < 3.25 && $nilai_akhir_sidang >= 3.00){
+                $data['dataNilaiSidang'] = 'B+';
+            } elseif($nilai_akhir_sidang < 3.00 && $nilai_akhir_sidang >= 2.75){
+                $data['dataNilaiSidang'] = 'B';
+            } elseif($nilai_akhir_sidang < 2.75 && $nilai_akhir_sidang >= 2.50){
+                $data['dataNilaiSidang'] = 'B-';
+            } elseif($nilai_akhir_sidang < 2.50 && $nilai_akhir_sidang >= 2.25){
+                $data['dataNilaiSidang'] = 'B/C';
+            } elseif($nilai_akhir_sidang < 2.25 && $nilai_akhir_sidang >= 2.00){
+                $data['dataNilaiSidang'] = 'C+';
+            } elseif($nilai_akhir_sidang < 2.00 && $nilai_akhir_sidang >= 1.75){
+                $data['dataNilaiSidang'] = 'C';
+            } elseif($nilai_akhir_sidang < 1.75 && $nilai_akhir_sidang >= 1.50){
+                $data['dataNilaiSidang'] = 'C-';
+            } else {
+                $data['dataNilaiSidang'] = 'Tidak Lulus';
+            }
+        }
+
+        /* Mendapatkan nilai rata-rata dari masing-masing komponen nilai*/
+        $dataKomponen = $this->daftar_mahasiswa_model->getKomponen();
+
+        $dataPenilaian = array();
+        if($dataKomponen != FALSE){
+            foreach ($dataKomponen as $record_komponen) {
+                $data_nilai = $this->daftar_mahasiswa_model->getPenilaian($id_mahasiswa,$record_komponen->id_komponen);
+                
+                if($data_nilai != NULL){
+                    $nilai = 0;
+                    foreach ($data_nilai as $record_nilai) {
+                        $nilai = $nilai + $record_nilai->nilai;
+                    }
+                    $array_nilai = array(
+                        'id_komponen' => $record_komponen->id_komponen,
+                        'nama_komponen' => $record_komponen->nama,
+                        'nilai' => $nilai / 3
+                    );
+                    array_push($dataPenilaian,$array_nilai);
+                } else {
+                    break;
+                }
+            }
+        }
+
+        $data['dataPenilaian'] = $dataPenilaian;
+
 
         $this->loadViews("detail_mahasiswa_view",$this->global,$data);
     }

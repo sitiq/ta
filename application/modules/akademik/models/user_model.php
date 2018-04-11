@@ -16,7 +16,21 @@ class User_model extends CI_Model{
         } elseif($data['id_user_role'] == ROLE_AKADEMIK){
             $this->db->insert('akademik', $data_another_table);
         } elseif($data['id_user_role'] == ROLE_KAPRODI){
-            $this->db->insert('kaprodi', $data_another_table);
+            $this->db->insert('akademik', $data_another_table);
+            $id_akademik = $this->db->insert_id();
+
+            $this->db->insert('dosen', $data_another_table);
+            $id_dosen = $this->db->insert_id();
+
+            $data_kaprodi = array(
+                'id_dosen' => $id_dosen,
+                'id_akademik' => $id_akademik,
+                'id_user' => $insert_id,
+                'nama' => $data['nama']
+            );
+
+
+            $this->db->insert('kaprodi', $data_kaprodi);
         }
         $this->db->trans_complete();
         $result = $this->db->trans_status();
@@ -46,9 +60,7 @@ class User_model extends CI_Model{
             $this->db->insert_batch('dosen', $data_another_table);
         } elseif($data[0]['id_user_role'] == ROLE_AKADEMIK){    
             $this->db->insert_batch('akademik', $data_another_table);
-        } elseif($data[0]['id_user_role'] == ROLE_KAPRODI){    
-            $this->db->insert_batch('kaprodi', $data_another_table);
-        } 
+        }
         
         $this->db->trans_complete();
         $result = $this->db->trans_status();
@@ -89,6 +101,12 @@ class User_model extends CI_Model{
             );
             $this->db->where('id_user',$id);
             $this->db->update('kaprodi', $data_another_table);
+
+            $this->db->where('id_user',$id);
+            $this->db->update('dosen', $data_another_table);
+
+            $this->db->where('id_user',$id);
+            $this->db->update('akademik', $data_another_table);
         }
 
         $this->db->trans_complete();
@@ -187,6 +205,12 @@ class User_model extends CI_Model{
             );
             $this->db->where('id_user',$id);
             $this->db->update('kaprodi', $data_another_table);
+
+            $this->db->where('id_user',$id);
+            $this->db->update('akademik', $data_another_table);
+
+            $this->db->where('id_user',$id);
+            $this->db->update('dosen', $data_another_table);
         }
 
         $this->db->trans_complete();

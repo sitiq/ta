@@ -1530,12 +1530,9 @@ if (typeof NProgress != 'undefined') {
 			  grid: true
 			});
 			$("#range_26").ionRangeSlider({
-			  type: "double",
-			  min: 0,
-			  max: 10000,
-			  step: 500,
-			  grid: true,
-			  grid_snap: true
+				type: "double",
+				values: ['2018/2019 Ganjil','2018/2019 Genap','2020/2021 Ganjil','2020/2021 Genap'],
+				grid: true,
 			});
 			$("#range_31").ionRangeSlider({
 			  type: "double",

@@ -10,23 +10,31 @@ class Periode_model extends CI_Model{
         if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
     }
 
-    public function insert_multiple($data){
+    public function insert($data){
         $this->db->trans_start();
-        $this->db->set('status_periode','0');
+        $this->db->set('status_periode', 0);
+        $this->db->set('status_ta', 0);
+        $this->db->set('status_yudisium', 0);
         $this->db->update('periode');
 
-        $this->db->insert_batch('periode', $data);
+
+        $this->db->insert('periode', $data);
         $this->db->trans_complete();
         $result = $this->db->trans_status();
         
         return $result;
     }
 
-    public function edit_status($id_periode,$status){
+    public function edit_status($id_periode,$jenis,$status){
         $this->db->trans_start();
         
         $this->db->where('id_periode',$id_periode);
-        $this->db->set('status_regis',$status);
+        if($jenis == 'ta') {
+            $this->db->set('status_ta',$status);
+        } else {
+            $this->db->set('status_yudisium',$status);
+            
+        }
         $this->db->update('periode');
         
         $this->db->trans_complete();
