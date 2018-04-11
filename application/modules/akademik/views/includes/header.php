@@ -106,6 +106,9 @@
                             </li>
                             <li><a href="<?php echo base_url()?>akademik/periode/"><i class="fa fa-clock-o"></i> Periode Registrasi</a></li>
                             <li><a href="<?php echo base_url()?>akademik/proyek/"><i class="fa fa-files-o"></i> Proyek</a></li>
+                            <?php if($this->session->userdata('isKaprodi')){ ?>
+                                <li><a href="<?php echo base_url()?>kaprodi/"><i class="fa fa-arrow-circle-right"></i> Ganti ke Kaprodi</a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
