@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <label for="instansi" class="control-label col-md-4 col-sm-4 col-xs-12">Instansi / Klien
-                            <span class="required"><i>(optional)</i></span>
+                            <span class="required"><i>*</i></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="instansi" class="form-control col-md-7 col-xs-12" type="text" name="instansi">
