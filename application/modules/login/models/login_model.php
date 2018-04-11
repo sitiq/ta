@@ -14,8 +14,8 @@ class Login_model extends CI_Model
         $this->db->join('user_role as Roles','Roles.id_user_role = BaseTbl.id_user_role');
         $this->db->where('BaseTbl.username', $username);
         $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.id_user_role !=', 1); // Login kcuali kaprodi,
-        $this->db->where('BaseTbl.id_user_role !=', 2); // Login kcuali akademik,
+        // $this->db->where('BaseTbl.id_user_role !=', 1); // Login kcuali kaprodi,
+        // $this->db->where('BaseTbl.id_user_role !=', 2); // Login kcuali akademik,
         $query = $this->db->get();
         
         $user = $query->result();
@@ -39,13 +39,14 @@ class Login_model extends CI_Model
      */
     function loginMe($username, $password)
     {
+        
         $this->db->select('BaseTbl.id_user, BaseTbl.password, BaseTbl.nama, BaseTbl.id_user_role, Roles.id_user_role');
         $this->db->from('user as BaseTbl');
         $this->db->join('user_role as Roles','Roles.id_user_role = BaseTbl.id_user_role');
-        $this->db->where('BaseTbl.username', $username);
         $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.id_user_role', 1); // Login khusus Akademik, yang bisa login hanya akun Akademik
-        $this->db->or_where('BaseTbl.id_user_role', 2); // Login khusus Kaprodi, yang bisa login hanya akun Kaprodi
+        // $this->db->where('BaseTbl.id_user_role', 2); // Login khusus Kaprodi, yang bisa login hanya akun Kaprodi
+        // $this->db->or_where('BaseTbl.id_user_role', 1); // Login khusus Akademik, yang bisa login hanya akun Akademik
+        $this->db->where('BaseTbl.username', $username);
         $query = $this->db->get();
         
         $user = $query->result();
