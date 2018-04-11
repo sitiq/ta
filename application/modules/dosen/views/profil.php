@@ -7,7 +7,6 @@ $email = '';
 $mobile = '';
 $skill = '';
 
-
 if(!empty($profilInfo))
 {
     foreach ($profilInfo as $uf)
@@ -155,6 +154,7 @@ if(!empty($profilInfo))
                                 <!-- start update profile -->
                                 <form role="form" action="<?php echo base_url() ?>dosen/profil/editProfil" method="post"  id="editProfilForm" enctype="multipart/form-data">
                                     <input type="hidden" class="form-control required" id="id_dosen" name="id_dosen" value="<?php echo $id_dosen ?>" >
+                                    <input type="hidden" class="form-control required" id="id_user" name="id_user" value="<?php echo $userId ?>" >
                                     <div class="col-md-6">
                                         <label for="mobile">No. Hp</label>
                                         <input type="number" id="mobile" class="form-control" name="mobile" value="<?php echo $mobile?>"/><br>

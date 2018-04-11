@@ -66,4 +66,20 @@ class Profil_model extends CI_Model
             return false;
         }
     }
+    /**
+     * This function is used to update the user information
+     * @param array $userInfo : This is user updated information
+     * @return array $result : This is result
+     */
+    function editUser($userInfo, $id_user)
+    {
+        $this->db->where('id_user', $id_user);
+        $this->db->update('user', $userInfo);
+
+        if($this->db->affected_rows() >= 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

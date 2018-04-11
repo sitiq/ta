@@ -60,6 +60,7 @@ class Profil extends BaseController
             }
             else
             {
+                $id_user = $this->input->post('id_user');
                 $id_dosen = $this->input->post('id_dosen');
                 $nid = $this->input->post('nid');
                 $nama = $this->input->post('nama');
@@ -75,6 +76,10 @@ class Profil extends BaseController
                         'mobile'=>$mobile,
                         'skill'=>$skill);
 
+                    $userInfo = array(
+                        'nama'=>$nama
+                    );
+                    $resultUser = $this->profil_model->editUser($userInfo, $id_user);
                     $result = $this->profil_model->editProfil($dosenInfo, $id_dosen);
 
                     if($result > 0)
