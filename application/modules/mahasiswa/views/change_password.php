@@ -24,16 +24,16 @@
                     <div class="x_content">
                         <div class="row">
                             <label>Password Lama</label>
-                            <input name="oldPassword" id="inputOldPassword" type="password" placeholder="Password Lama" class="form-control" maxlength="10" required><br>
+                            <input name="oldPassword" id="inputOldPassword" type="password" placeholder="Password Lama" class="form-control" required><br>
                         </div>
                         <hr>
                         <div class="row">
                             <label>Password Baru</label>
-                            <input name="newPassword" id="inputOldPassword2" type="password" placeholder="Password Baru" class="form-control" maxlength="10" required><br>
+                            <input name="newPassword" id="inputOldPassword2" type="password" placeholder="Password Baru" class="form-control" required><br>
                         </div>
                         <div class="row">
                             <label>Konfirmasi Password Baru</label>
-                            <input name="cNewPassword" id="inputOldPassword3" type="password" placeholder="Konfirmasi Password Baru" class="form-control" maxlength="10" required><br>
+                            <input name="cNewPassword" id="inputOldPassword3" type="password" placeholder="Konfirmasi Password Baru" class="form-control" required><br>
                         </div>
 
                         <input type="submit" class="btn btn-primary pull-right" value="Submit">
