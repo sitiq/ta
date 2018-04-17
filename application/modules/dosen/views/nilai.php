@@ -5,8 +5,6 @@
  * Time: 07:31
  * Description:
  */
-//var_dump($nilaiInfo);
-//var_dump($revisiInfo);
 ?>
 <?php
 $path = '';

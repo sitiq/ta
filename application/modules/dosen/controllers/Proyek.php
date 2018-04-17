@@ -152,7 +152,7 @@ class Proyek extends BaseController
                         $this->session->set_flashdata('error', 'Project updation failed');
                     }
                     redirect('dosen/proyek');
-                }else{echo "asda";}
+                }else{echo "Alhamdulillah";}
             }
         }
     }

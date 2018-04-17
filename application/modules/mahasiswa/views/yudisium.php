@@ -5,7 +5,6 @@
  * Time: 07:28
  * Description:
  */
-//echo var_dump($periodeInfo);
 ?>
 <?php
 $id_berkas_yudisium = '';
@@ -50,8 +49,9 @@ if(!empty($berkasInfo))
         </div>
     </div>
     <div class="clearfix"></div>
+    <?php if ($sidang!=false){?>
     <!--    validasi berdasarkan periode-->
-    <?php if ($yudisium == 1 && $periode == 1){?>
+    <?php if ($yudisium == 1 && $periode == 1 && $sidang[0]->id_mahasiswa != null){?>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -212,6 +212,7 @@ if(!empty($berkasInfo))
                 </div>
             </div>
         </div>
+        <?php }?>
     <?php } else {?>
         <!--    end validasi berdasarkan periode-->
         <div class="row">

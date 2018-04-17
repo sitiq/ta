@@ -16,16 +16,71 @@ class sidang_model extends CI_Model
     function getSidangInfo($sidangId=NULL)
     {
         $this->db->select('s.id_sidang, s.status, m.nim, m.nama, m.id_mahasiswa, j.tanggal, j.ruang, j.waktu,
-        ds.id_dosen, d.nama nama_dosbing');
+        ds.id_dosen id_dosbing, d.nama nama_dosbing');
         $this->db->from('sidang s');
         $this->db->join('mahasiswa m', 'm.id_mahasiswa = s.id_mahasiswa','left');
         $this->db->join('dosbing ds', 'ds.id_mahasiswa = m.id_mahasiswa','left');
         $this->db->join('dosen d', 'd.id_dosen = ds.id_dosen','left');
+//        $this->db->join('anggota_sidang a', 'a.id_sidang = s.id_sidang','left');
         $this->db->join('jadwal_sidang j', 'j.id_sidang = s.id_sidang','left');
-        $this->db->join('anggota_sidang a', 'a.id_sidang = s.id_sidang','left');
-        $this->db->group_by('m.nim');
         if ($sidangId!=null){
             $this->db->where('s.id_sidang', $sidangId);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function getDetailSidang($sidangId=NULL)
+    {
+        $this->db->select('s.id_sidang, m.id_mahasiswa, j.tanggal, j.ruang, j.waktu, ds.id_dosen id_dosbing, d.nama nama_dosbing');
+        $this->db->from('sidang s');
+        $this->db->join('mahasiswa m', 'm.id_mahasiswa = s.id_mahasiswa','left');
+        $this->db->join('dosbing ds', 'ds.id_mahasiswa = m.id_mahasiswa','left');
+        $this->db->join('dosen d', 'd.id_dosen = ds.id_dosen','left');
+//        $this->db->join('anggota_sidang a', 'a.id_sidang = s.id_sidang','left');
+        $this->db->join('jadwal_sidang j', 'j.id_sidang = s.id_sidang','left');
+//        $this->db->group_by('m.nim');
+        if ($sidangId!=null){
+            $this->db->where('s.id_sidang', $sidangId);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function getKetuaInfo($sidangId=NULL)
+    {
+        $this->db->select('a.id_sidang, a.id_anggota_sidang, d.nama nama_dosen, d.id_dosen');
+        $this->db->from('anggota_sidang a');
+        $this->db->join('dosen d','d.id_dosen = a.id_dosen','left');
+        $this->db->where('role','ketua');
+        if ($sidangId!=null){
+            $this->db->where('a.id_sidang', $sidangId);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function getSekreInfo($sidangId=NULL)
+    {
+        $this->db->select('a.id_sidang, a.id_anggota_sidang, d.nama nama_dosen, d.id_dosen');
+        $this->db->from('anggota_sidang a');
+        $this->db->join('dosen d','d.id_dosen = a.id_dosen','left');
+        $this->db->where('role','sekretaris');
+        if ($sidangId!=null){
+            $this->db->where('a.id_sidang', $sidangId);
+        }
+        $query = $this->db->get();
+        if ($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return false;
+        }
+    }
+    function getAnggotaInfo($sidangId=NULL)
+    {
+        $this->db->select('a.id_sidang, a.id_anggota_sidang, d.nama nama_dosen, d.id_dosen');
+        $this->db->from('anggota_sidang a');
+        $this->db->join('dosen d','d.id_dosen = a.id_dosen','left');
+        $this->db->where('role','anggota');
+        if ($sidangId!=null){
+            $this->db->where('a.id_sidang', $sidangId);
         }
         $query = $this->db->get();
         return $query->result();
@@ -36,10 +91,11 @@ class sidang_model extends CI_Model
      */
     function getDosen()
     {
-        $this->db->select('id_dosen, nama');
+        $this->db->select('id_dosen, nama nama_dosen');
         $this->db->from('dosen');
         $this->db->where('isDeleted', 0);
         $this->db->where_not_in('id_dosen');
+
         $query = $this->db->get();
         return $query->result();
     }
@@ -84,6 +140,33 @@ class sidang_model extends CI_Model
         $this->db->from('validasi_berkas_sidang v');
         $this->db->join('berkas_sidang b','b.id_berkas_sidang = v.id_berkas_sidang');
         $this->db->where('id_sidang',$idMhs);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function getCountKomponen()
+    {
+        $this->db->select('k.id_komponen, k.isDeleted');
+        $this->db->from('komponen k');
+        $this->db->where('k.isDeleted', 0);
+
+        $query = $this->db->get();
+        return count($query->result());
+    }
+    function getPenilaian($idSidang)
+    {
+        $this->db->select('p.id_penilaian, p.id_sidang');
+        $this->db->from('penilaian p');
+        $this->db->where('p.id_sidang', $idSidang);
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function getKomponen()
+    {
+        $this->db->select('k.id_komponen');
+        $this->db->from('komponen k');
+        $this->db->where('k.isDeleted', 0);
+
         $query = $this->db->get();
         return $query->result();
     }
@@ -218,32 +301,15 @@ class sidang_model extends CI_Model
         }
     }
     /**
-     * This function is used to edit anggota sidang
-     * @param array $anggotaInfo : info anggota sidang
-     * @param array $idRole : Where is role wanna change to be declined
-     * @return bool true : where affected row increase
-     */
-    function editAnggota($anggotaInfo, $idRole)
-    {
-        $this->db->where('role', $idRole);
-        $this->db->update('anggota_sidang', $anggotaInfo);
-
-        if($this->db->affected_rows() >= 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    /**
      * This function is used to edit ketua sidang
      * @param array $anggotaInfo : info ketua sidang
      * @param array $idRole : Where is role wanna change to be declined
      * @return bool true : where affected row increase
      */
-    function editKetua($ketuaInfo, $idRole)
+    function editAnggotaSidang($asidangInfo, $anggotaId)
     {
-        $this->db->where('role', $idRole);
-        $this->db->update('anggota_sidang', $ketuaInfo);
+        $this->db->where('id_anggota_sidang', $anggotaId);
+        $this->db->update('anggota_sidang', $asidangInfo);
 
         if($this->db->affected_rows() >= 0){
             return true;
@@ -252,20 +318,22 @@ class sidang_model extends CI_Model
         }
     }
     /**
-     * This function is used to edit sekretaris sidang
-     * @param array $anggotaInfo : info sekretaris sidang
-     * @param array $idRole : Where is role wanna change to be declined
+     * GA KEPAKE ALHAMDULILLAH
+     * @param array $idAnggota : info id anggota sidang
      * @return bool true : where affected row increase
      */
-    function editSekre($sekreInfo, $idRole)
-    {
-        $this->db->where('role', $idRole);
-        $this->db->update('anggota_sidang', $sekreInfo);
+    function checkAnggota($idAnggota = null){
+        $this->db->select("id_anggota_sidang");
+        $this->db->from("anggota_sidang");
+        if($idAnggota != null){
+            $this->db->where("id_anggota_sidang !=", $idAnggota);
+        }
+        $query = $this->db->get();
 
-        if($this->db->affected_rows() >= 0){
-            return true;
-        }else{
-            return false;
+        if( $query->num_rows() > 0 ){
+            return TRUE;
+        } else {
+            return FALSE;
         }
     }
 }

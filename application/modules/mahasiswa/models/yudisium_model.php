@@ -21,6 +21,22 @@ class yudisium_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    function getSidang($userId)
+    {
+        $this->db->select('s.id_mahasiswa');
+        $this->db->from('sidang s');
+        $this->db->join('mahasiswa m','m.id_mahasiswa = s.id_mahasiswa');
+        $this->db->join('user u','u.id_user = m.id_user');
+        $this->db->where('s.status','disetujui');
+        $this->db->where('u.id_user', $userId);
+
+        $query = $this->db->get();
+        if ($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return false;
+        }
+    }
     /**
      * This function used to get berkas list by id
      * @param number $userId : This is user who is logged in
