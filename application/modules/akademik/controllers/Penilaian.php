@@ -25,16 +25,6 @@ class Penilaian extends BaseController
             $this->loadViews("dashboard_penilaian", $this->global, $data);
         }
     }
-    public function add_form(){
-        if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
-        else {
-            $this->global['pageTitle'] = "Elusi : Tambah Penilaian ";
-            $this->loadViews("add_penilaian", $this->global);
-        }
-    }
     public function add(){
         if($this->isAkademik() == TRUE)
         {
@@ -57,27 +47,14 @@ class Penilaian extends BaseController
             redirect('akademik/penilaian');
         }
     }
-    public function edit_form($id){
-        if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
-        else {
-            $this->global['pageTitle'] = "Elusi : Edit Penilaian";
-
-            $data['dataPenilaian'] = $this->penilaian_model->getKomponen($id);
-            $this->loadViews("edit_penilaian", $this->global, $data);
-        }
-    }
     public function edit(){
         if($this->isAkademik() == TRUE)
         {
             $this->loadThis();
         }
         else {
-            $id_komponen = $this->input->post('id_komponen');
-
-            $nama = trim($this->input->post('nama'));
+            $id_komponen = $this->input->post('id_komponen_edit');
+            $nama = trim($this->input->post('nama_komponen_edit'));
 
             $data = array(
                 'nama' => $nama,

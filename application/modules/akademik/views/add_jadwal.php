@@ -118,7 +118,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label for="ketua">Sekretaris</label><small></small>
                                 <select class="form-control col-md-7 col-xs-12" id="dataSekretaris" name="dataSekretaris">
-                                    <option value="" disabled selected>Pilih ..</option>
+                                    <option value="" selected>Pilih ..</option>
                                     <?php
                                     if(!empty($dosenInfo))
                                     {

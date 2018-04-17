@@ -87,9 +87,9 @@ class Berkas_yudisium extends BaseController
             $this->loadThis();
         }
         else {
-            $id_berkas_yudisium = $this->input->post('id_berkas_yudisium');
+            $id_berkas_yudisium = $this->input->post('id_berkas_yudisium_edit');
 
-            $nama_berkas = trim($this->input->post('nama_berkas'));
+            $nama_berkas = trim($this->input->post('nama_berkas_edit'));
 
             $data = array(
                 'nama_berkas' => $nama_berkas,
