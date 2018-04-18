@@ -6,7 +6,7 @@
  * Description:
  */
 //var_dump($userId);
-//var_dump($pendadaranInfo);
+var_dump($pendadaranInfo);
 ?>
 <?php
 $tanggal = '';

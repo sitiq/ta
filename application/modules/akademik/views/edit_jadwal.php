@@ -5,7 +5,7 @@
  * Time: 19:48
  * Description:
  */
-var_dump($dosenInfo)
+//var_dump($dosenInfo)
 //var_dump($sidangInfo)
 ?>
 <div class="">

@@ -5,6 +5,7 @@
  * Time: 07:31
  * Description:
  */
+var_dump($nilaiInfo)
 ?>
 <?php
 $path = '';
@@ -85,12 +86,12 @@ if(!empty($revisiInfo))
                             </tr>
                             <tr bgcolor="#59BD96" style="color: white">
                                 <th>No</th>
-                                <th>Subject</th>
+                                <th class="col-md-8">Subject</th>
                                 <th>Nilai</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <form id="nilai-satu" action="<?php echo base_url()?>dosen/pendadaran/submitnilai" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                            <form id="formNilai" action="<?php echo base_url()?>dosen/pendadaran/submitnilai" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                 <?php
                                 if(!empty($nilaiInfo))
                                 {
@@ -103,18 +104,12 @@ if(!empty($revisiInfo))
                                             <th><?php echo $record->nama_nilai ?></th>
                                             <td>
                                                 <?php if ($record->nilai == 0){?>
-                                                    <label>
-                                                        1 <input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'1'?>" required><span class="label-text"></span>
-                                                    </label>
-                                                    <label>
-                                                        2 <input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'2'?>"><span class="label-text"></span>
-                                                    </label>
-                                                    <label>
-                                                        3 <input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'3'?>"><span class="label-text"></span>
-                                                    </label>
-                                                    <label>
-                                                        4 <input type="radio" name="radio_<?php echo $i?>" value="<?php echo $record->id_komponen_nilai . ' ' .'4'?>"><span class="label-text"></span>
-                                                    </label>
+                                                    <input type="hidden" value="<?php echo $record->id_komponen_nilai?>" name="id_komponen_nilai_<?php echo $i?>" id="id_komponen_nilai_<?php echo $i?>">
+<!--                                                    <input type="number" step="0.01" placeholder="0.00" min="0.00" max="4.00" class="form-control" name="nilai_--><?php //echo $i?><!--" id="nilai_--><?php //echo $i?><!--" required>-->
+                                                    <input type="text" class="form-control"
+                                                           data-val="true"
+                                                           data-inputmask="'mask': '9.99'"
+                                                           name="nilai_<?php echo $i?>" id="nilai_<?php echo $i?>">
                                                 <?php }else{?>
                                                     <center><?php echo $record->nilai?></center>
                                                 <?php }?>
@@ -182,7 +177,7 @@ if(!empty($revisiInfo))
                             <tbody>
                             <tr>
                                 <td colspan="3">
-                                    <form id="nilai-satu" action="<?php echo base_url()?>dosen/pendadaran/submitrevisi" enctype="multipart/form-data" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                                    <form id="formRevisi" action="<?php echo base_url()?>dosen/pendadaran/submitrevisi" enctype="multipart/form-data" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                         <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
                                         <input type="hidden" name="id_mahasiswa" value="<?php echo $record->id_mahasiswa?>">
                                         <input type="hidden" name="id_anggota_sidang" value="<?php echo $record->id_anggota_sidang?>">
@@ -205,3 +200,42 @@ if(!empty($revisiInfo))
         </div>
     </div>
 </div>
+
+<!-- jquery.inputmask -->
+<script src="<?php echo base_url()?>elusistatic/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+<!--<script src="--><?php //echo base_url()?><!--elusistatic/js/addNilai.js"></script>-->
+<script type="text/javascript">
+    // $('.nilai').each(function() {
+    //     $(this).rules("add", {
+    //         required: true
+    //     });
+    // });
+    // $("#formNilai").validate({
+    //     rules: {
+    //         tanggalJadwal: {
+    //             required: true
+    //         }
+    //     },
+    //     messages: {
+    //         tanggalJadwal: {
+    //             required: 'Wajib diisi'
+    //         }
+    //     }
+    // });
+    // jQuery.validator.addClassRules("nilai", {
+    //     required: true
+    // });
+    // jQuery.validator.addClassRules({
+    //     nilai: {
+    //         required: true
+    //     }
+    // });
+    // $(".form-control").rules("add", {
+    //     required:true
+    // });
+    // $(document).ready(function () {
+    //     $.validator.addClassRules('form-control', {
+    //         required: true
+    //     });
+    // });
+</script>

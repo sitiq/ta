@@ -39,10 +39,6 @@
                 <?php } ?>
             </div>
             <div class="x_content">
-<!--                    <a href="--><?php //echo base_url() ?><!--akademik/penilaian/add_form" class="btn btn-success pull-right" style="margin-bottom: 2%">-->
-<!--                        <i class="fa fa-plus"></i>-->
-<!--                        Add New</button>-->
-<!--                    </a>-->
                 <a id="tambah" class="btn btn-success pull-right" data-toggle="modal" data-target="#tambahModal"><i class="fa fa-plus"></i>
                     Add New
                 </a>
