@@ -46,9 +46,6 @@
 <script src="<?php echo base_url()?>elusistatic/vendors/pdfmake/build/pdfmake.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/pdfmake/build/vfs_fonts.js"></script>
 
-<script src="<?php echo base_url(); ?>elusistatic/assets/js/jquery.validate.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>elusistatic/assets/js/validation.js" type="text/javascript"></script>
-
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
     jQuery(function($) {

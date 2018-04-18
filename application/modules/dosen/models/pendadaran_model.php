@@ -93,6 +93,16 @@ class pendadaran_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    function getCountAnggota($idSidang)
+    {
+        $this->db->select('a.id_anggota_sidang');
+        $this->db->from('anggota_sidang a');
+        $this->db->where('a.id_sidang', $idSidang);
+        $this->db->where('a.role !=', null);
+
+        $query = $this->db->get();
+        return count($query->result());
+    }
     /**
      * This function is used to edit komponen_nilai mahasiswa
      * @param array $data : This is array data include nilai

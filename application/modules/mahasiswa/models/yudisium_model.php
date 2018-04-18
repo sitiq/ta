@@ -13,13 +13,29 @@ class yudisium_model extends CI_Model
      * @return array $result : This is result
      */
     function getPeriode(){
-        $this->db->select('id_periode, status_periode, status_yudisium');
+        $this->db->select('id_periode, status_periode, tgl_awal_regis_yudisium, tgl_akhir_regis_yudisium');
         $this->db->from('periode');
         $this->db->where('isDeleted',0);
         $query = $this->db->get();
 
         $result = $query->result();
         return $result;
+    }
+    function getSidang($userId)
+    {
+        $this->db->select('s.id_mahasiswa');
+        $this->db->from('sidang s');
+        $this->db->join('mahasiswa m','m.id_mahasiswa = s.id_mahasiswa');
+        $this->db->join('user u','u.id_user = m.id_user');
+        $this->db->where('s.status','disetujui');
+        $this->db->where('u.id_user', $userId);
+
+        $query = $this->db->get();
+        if ($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return false;
+        }
     }
     /**
      * This function used to get berkas list by id

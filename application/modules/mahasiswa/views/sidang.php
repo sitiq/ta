@@ -36,6 +36,7 @@ if(!empty($berkasInfo))
         </div>
     </div>
     <div class="clearfix"></div>
+    <?php if ($ta != false){?>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -196,4 +197,21 @@ if(!empty($berkasInfo))
             </div>
         </div>
     </div>
+    <?php }else{?>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <center>
+                        <h4>
+                            <strong>BELUM </strong>DAPAT DAFTAR SIDANG
+                        </h4>
+                        <br>
+                        <h5>Silahkan tunggu informasi selanjutnya</h5>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php }?>
 </div>

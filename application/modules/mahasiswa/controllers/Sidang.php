@@ -33,6 +33,8 @@ class Sidang extends BaseController
             $data['idBerkas'] = $this->sidang_model->getIdBerkas();
             $data['idPeriode'] = $this->sidang_model->getIdPeriode();
             $data['totalSyarat'] = $this->sidang_model->getCountBerkas();
+            $data['ta'] = $this->sidang_model->getTa($userId);
+
             $data['idMahasiswa'] = $this->sidang_model->cekMahasiswa($userId);
 
             $this->global['pageTitle'] = "Elusi : Sidang";

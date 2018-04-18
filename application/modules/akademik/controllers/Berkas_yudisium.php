@@ -25,16 +25,6 @@ class Berkas_yudisium extends BaseController
             $this->loadViews("dashboard_berkas_yudisium", $this->global, $data);
         }
     }
-    public function add_form(){
-        if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
-        else {
-            $this->global['pageTitle'] = "Elusi : Tambah Berkas Yudisium ";
-            $this->loadViews("add_berkas_yudisium", $this->global);
-        }
-    }
     public function add(){
         if($this->isAkademik() == TRUE)
         {
@@ -69,27 +59,15 @@ class Berkas_yudisium extends BaseController
             redirect('akademik/berkas_yudisium');
         }
     }
-    public function edit_form($id){
-        if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
-        else {
-            $this->global['pageTitle'] = "Elusi : Edit Berkas Yudisium";
-            $data['dataBerkas'] = $this->berkas_model->getBerkasYudisium($id);
-
-            $this->loadViews("edit_berkas_yudisium", $this->global, $data);
-        }
-    }
     public function edit(){
         if($this->isAkademik() == TRUE)
         {
             $this->loadThis();
         }
         else {
-            $id_berkas_yudisium = $this->input->post('id_berkas_yudisium');
+            $id_berkas_yudisium = $this->input->post('id_berkas_yudisium_edit');
 
-            $nama_berkas = trim($this->input->post('nama_berkas'));
+            $nama_berkas = trim($this->input->post('nama_berkas_edit'));
 
             $data = array(
                 'nama_berkas' => $nama_berkas,
