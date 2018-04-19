@@ -39,6 +39,38 @@ class sidang_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+    function getTa($userId)
+    {
+        $this->db->select('ta.id_mahasiswa');
+        $this->db->from('tugas_akhir ta');
+        $this->db->join('mahasiswa m','m.id_mahasiswa = ta.id_mahasiswa','left');
+        $this->db->join('user u','u.id_user = m.id_user');
+        $this->db->where('ta.status_pengambilan','terplotting');
+        $this->db->where('u.id_user', $userId);
+
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ) {
+            return $query->result();
+        } else {
+            return FALSE;
+        }
+    }
+//    function getTa($userId)
+//    {
+//        $this->db->select('ta.id_mahasiswa');
+//        $this->db->from('mahasiswa m');
+//        $this->db->join('tugas_akhir ta','ta.id_mahasiswa = m.id_mahasiswa','left');
+//        $this->db->join('user u','u.id_user = m.id_user');
+//        $this->db->where('ta.status_pengambilan','terplotting');
+////        $this->db->where('u.id_user', $userId);
+//        $this->db->where('u.id_user', $userId);
+//
+//        $query = $this->db->get();
+//        $result = $query->result();
+//
+//        return $result;
+//    }
     function getCountBerkas()
     {
         $this->db->select('b.id_berkas_sidang, b.nama_berkas, b.isDeleted');

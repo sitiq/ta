@@ -35,6 +35,7 @@ class Yudisium extends BaseController
             $data['periodeInfo'] = $this->yudisium_model->getPeriode();
             $data['idBerkas'] = $this->yudisium_model->getIdBerkas();
             $data['totalSyarat'] = $this->yudisium_model->getCountBerkas();
+            $data['sidang'] = $this->yudisium_model->getSidang($userId);
             $data['idMahasiswa'] = $this->yudisium_model->cekMahasiswa($userId);
 
             $this->loadViews("yudisium", $this->global, $data, NULL);

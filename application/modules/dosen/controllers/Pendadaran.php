@@ -33,7 +33,7 @@ class Pendadaran extends BaseController
             $data['pendadaranInfo'] = $this->pendadaran_model->getSidang($userId);
             $data['userId'] = $userId;
             $data['userRole'] = $userRole;
-            $this->global['pageTitle'] = "Elusi : Pendadaran";
+            $this->global['pageTitle'] = "KOMSI-TA : Pendadaran";
 
             $this->loadViews("uji", $this->global, $data, NULL);
         }
@@ -41,7 +41,7 @@ class Pendadaran extends BaseController
     /**
      * This function is used to get nilai detail information list
      */
-    function nilai()
+    function nilai($idNilai)
     {
         if($this->isDosen() == TRUE)
         {
@@ -50,9 +50,9 @@ class Pendadaran extends BaseController
         else
         {
             $userId = $this->vendorId;
-            $data['nilaiInfo'] = $this->pendadaran_model->getNilaiInfo($userId);
+            $data['nilaiInfo'] = $this->pendadaran_model->getNilaiInfo($userId, $idNilai);
             $data['revisiInfo'] = $this->pendadaran_model->getRevisiInfo($userId);
-            $data['mahasiswaInfo'] = $this->pendadaran_model->getMahasiswaInfo();
+//            $data['mahasiswaInfo'] = $this->pendadaran_model->getMahasiswaInfo($idMhs);
             $this->global['pageTitle'] = "Elusi : Sidang";
             $this->loadViews("nilai", $this->global, $data, NULL);
         }
@@ -61,6 +61,70 @@ class Pendadaran extends BaseController
      * This function is used to submit nilai form
      */
     function submitNilai()
+    {
+        if ($this->isDosen() == true)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            $this->load->library('form_validation');
+            $last_index = $this->input->post('last_index');
+            $id_penilaian = $this->input->post('id_penilaian');
+
+            for ( $i = 1; $i < $last_index; $i++ ) {
+                $this->form_validation->set_rules('nilai_'.$i, 'Nilai', 'trim|required|less_than_equal_to[4]');
+                $nilai = $this->input->post('nilai_'.$i);
+            }
+            if($this->form_validation->run() == FALSE)
+            {
+                $this->session->set_flashdata('error', 'Wajib memasukkan semua nilai dan nilai tidak lebih dari 4 !');
+                redirect("dosen/pendadaran/nilai/$id_penilaian");
+            }
+            else
+            {
+                $nilai_akhir_dosen = $this->input->post('nilai_akhir_dosen');
+                $id_sidang = $this->input->post('id_sidang');
+                echo $last_index;
+                $total = 0;
+                for ( $i = 1; $i < $last_index; $i++ )
+                {
+                    $id_komponen_nilai = $this->input->post('id_komponen_nilai_'.$i);
+                    $nilai = $this->input->post('nilai_'.$i);
+//                $radio_value = $this->input->post('radio_'.$i);
+//                $array_explode = explode(' ',$radio_value);
+//                $id_komponen_nilai_value = $array_explode[0];
+//                $id_nilai_value = $array_explode[1];
+                    $data = array(
+                        'nilai' => $nilai
+                    );
+//                update nilai to table komponen_nilai
+                    $result1 = $this->pendadaran_model->editKomponenNilai($data, $id_komponen_nilai);
+//                total avg nilai dosen
+                    $total = $total+($nilai/($last_index-1));
+//                $total = $total+($id_nilai_value/($last_index-1));
+                }
+//            update penilaian average to penilaian table
+                $result2 = $this->pendadaran_model->editPenilaian($total, $id_penilaian);
+//            get count anggota yang menjadi penguji
+                $totalAnggota = $this->pendadaran_model->getCountAnggota($id_sidang);
+//            update nilai_akhir_sidang to table sidang
+                $nilai_akhir_sidang = $total/$totalAnggota;
+                $result = $this->pendadaran_model->editSidang($nilai_akhir_sidang ,$id_sidang);
+
+                if($result > 0)
+                {
+                    $this->session->set_flashdata('success', 'Sidang berhasil dinilai!');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Sidang gagal dinilai!');
+                }
+                redirect("dosen/pendadaran/nilai/$id_penilaian");
+            }
+        }
+    }
+    function submitNilaiLama()
     {
         if ($this->isDosen() == true)
         {
@@ -131,7 +195,7 @@ class Pendadaran extends BaseController
             else {
                 $id_anggota_sidang = $this->input->post('id_anggota_sidang');
 //                upload file revision
-                $config['upload_path'] = 'uploads/sidang/revisi';
+                $config['upload_path'] = 'uploads/revisi_sidang';
                 $config['allowed_types'] = 'pdf';
                 $config['max_size'] = 8000;
                 $config['max_width'] = 1024;

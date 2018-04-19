@@ -5,6 +5,7 @@
  * Time: 12:48
  * Description:
  */
+//var_dump($periodeInfo)
 ?>
 <?php
 $pilihan = array();
@@ -22,18 +23,23 @@ $arr_jenis[2] = '';
 $jenis = '';
 // get periode
 $periode = '';
-$ta = '';
+$awal = '';
+$akhir = '';
 $id_periode = '';
 
 // active pane saat edit form
 $active_proyek = 0;
 $active_usulan = 0;
 
+//get date_now
+$date_now = date("Y-m-d");
+
 if(!empty($periodeInfo))
 {
     foreach ($periodeInfo as $uf)
     {
-        $ta = $uf->status_ta;
+        $awal = $uf->tgl_awal_regis_ta;
+        $akhir = $uf->tgl_akhir_regis_ta;
         $periode = $uf->status_periode;
         $id_periode = $uf->id_periode;
     }
@@ -81,7 +87,7 @@ if (!empty($taInfo)) {
     </div>
     <div class="clearfix"></div>
 <!--    validasi berdasarkan periode-->
-    <?php if ($ta == 1 && $periode == 1){?>
+    <?php if ($periode == 1 && $date_now >= $awal && $date_now <= $akhir){?>
         <div class="row">
             <div class="col-md-12">
                 <?php
@@ -182,7 +188,7 @@ if (!empty($taInfo)) {
                                 </div>
                                 <!--                        end tab pane-->
                                 <div class="tab-pane fade in" id="edit">
-                                    <a href="#content" data-toggle="tab" class="btn btn-primary" >Kembali</a>
+                                    <a href="#content" data-toggle="tab" class="btn btn-primary" ><i class="fa fa-angle-double-left"></i> Back</a>
                                     <div class="x_content">
                                         <form role="form" id="daftar" action="<?php echo base_url()?>mahasiswa/pengajuan/edit_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" >
                                             <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">
@@ -324,7 +330,7 @@ if (!empty($taInfo)) {
                                 <!--                        end tab pane-->
                                 <!--                        form edit-->
                                 <div class="tab-pane fade in" id="edit">
-                                    <a href="#content" data-toggle="tab" class="btn btn-primary" >Kembali</a>
+                                    <a href="#content" data-toggle="tab" class="btn btn-primary" ><i class="fa fa-angle-double-left"></i> Back</a>
                                     <div class="x_content">
                                         <form role="form" id="daftar" action="<?php echo base_url() ?>mahasiswa/pengajuan/edit_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" >
                                             <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">

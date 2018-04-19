@@ -25,16 +25,6 @@ class Berkas_sidang extends BaseController
             $this->loadViews("dashboard_berkas_sidang", $this->global, $data);
         }
     }
-    public function add_form(){
-        if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
-        else {
-            $this->global['pageTitle'] = "Elusi : Tambah Berkas Sidang ";
-            $this->loadViews("add_berkas", $this->global);
-        }
-    }
     public function add(){
         if($this->isAkademik() == TRUE)
         {
@@ -69,27 +59,14 @@ class Berkas_sidang extends BaseController
             redirect('akademik/berkas_sidang');
         }
     }
-    public function edit_form($id){
-        if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
-        else {
-            $this->global['pageTitle'] = "Elusi : Edit Berkas Sidang";
-            $data['dataBerkas'] = $this->berkas_model->getBerkas($id);
-
-            $this->loadViews("edit_berkas", $this->global, $data);
-        }
-    }
     public function edit(){
         if($this->isAkademik() == TRUE)
         {
             $this->loadThis();
         }
         else {
-            $id_berkas_sidang = $this->input->post('id_berkas_sidang');
-
-            $nama_berkas = trim($this->input->post('nama_berkas'));
+            $id_berkas_sidang = $this->input->post('id_berkas_sidang_edit');
+            $nama_berkas = trim($this->input->post('nama_berkas_edit'));
 
             $data = array(
                 'nama_berkas' => $nama_berkas,

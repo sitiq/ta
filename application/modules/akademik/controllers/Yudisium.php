@@ -158,7 +158,7 @@ class Yudisium extends BaseController
                 }
                 redirect('akademik/yudisium/detail/'.$idYudisium);
 //                $this->detail($idMhs);
-            }else{echo "asda";}
+            }else{echo "Alhamdulillah";}
         }
     }
     /**

@@ -38,7 +38,7 @@
                             <h1 class="error-number">404</h1>
                             <h2>Sorry but we couldn't find this page</h2>
                             <p>This page you are looking for does not exist <br>
-                                <a href="<?php echo base_url();?>mahasiswa">Back to home?</a></p>
+                                <a href="<?php echo base_url();?>dosen">Back to home?</a></p>
                         </div>
                     </div>
                 </div>

@@ -29,8 +29,10 @@ class Sidang extends BaseController
         {
             $data['sidangInfo'] = $this->sidang_model->getSidangInfo();
             $data['dosenInfo'] = $this->sidang_model->getDosen();
-            $data['ketuaInfo'] = $this->sidang_model->getPengujiKetua();
-            $data['sekreInfo'] = $this->sidang_model->getPengujiSekre();
+            $data['komponenInfo'] = $this->sidang_model->getCountKomponen();
+//            $data['ketuaInfo'] = $this->sidang_model->getKetuaInfo();
+//            $data['sekreInfo'] = $this->sidang_model->getSekreInfo();
+//            $data['anggotaInfo'] = $this->sidang_model->getAnggotaInfo();
             $this->loadViews("dashboard_sidang", $this->global, $data, NULL);
         }
     }
@@ -118,8 +120,6 @@ class Sidang extends BaseController
                     } else {
                         $this->session->set_flashdata('error', 'Berkas gagal ditolak!');
                     }
-//                    $this->detail($idValidSidang);
-                    redirect('akademik/sidang/detail/'.$idSidang);
                 }
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
@@ -141,9 +141,54 @@ class Sidang extends BaseController
         }
     }
     /**
+     * This function is used to load form create jadwal sidang mahasiswa
+     */
+    function plot($sidangId = NULL)
+    {
+        if($this->isAkademik() == TRUE)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            if($sidangId == null)
+            {
+                redirect('akademik/sidang');
+            }
+            $data['sidangInfo'] = $this->sidang_model->getSidangInfo($sidangId);
+            $data['dosenInfo'] = $this->sidang_model->getDosen();
+
+            $this->loadViews("add_jadwal", $this->global, $data, NULL);
+        }
+    }
+    /**
+     * This function is used to load form update jadwal sidang mahasiswa
+     */
+    function editPlot($sidangId = NULL)
+    {
+        if($this->isAkademik() == TRUE)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            if($sidangId == null)
+            {
+                redirect('akademik/sidang');
+            }
+            $data['sidangInfo'] = $this->sidang_model->getDetailSidang($sidangId);
+            $data['ketuaInfo'] = $this->sidang_model->getKetuaInfo($sidangId);
+            $data['sekreInfo'] = $this->sidang_model->getSekreInfo($sidangId);
+            $data['anggotaInfo'] = $this->sidang_model->getAnggotaInfo($sidangId);
+            $data['dosenInfo'] = $this->sidang_model->getDosen();
+            $data['komponenInfo'] = $this->sidang_model->getCountKomponen();
+            $this->loadViews("edit_jadwal", $this->global, $data, NULL);
+        }
+    }
+    /**
      * This function is used to plotting dosen who is scheduled to sidang
      */
-    function plot($idSidang=null, $idMhs)
+    function jadwal($idSidang=null, $idMhs)
     {
         if($this->isAkademik() == TRUE)
         {
@@ -153,24 +198,17 @@ class Sidang extends BaseController
         {
             $this->load->library('form_validation');
 
-            $tanggal = date_format(date_create_from_format('d/m/Y', $this->input->post('tanggal')), 'Y-m-d');
-            $waktu = $this->input->post('waktu');
-            $ruang = $this->input->post('ruang');
-            $idKetua = $this->input->post('id_dosen_ketua');
-            $idSekre = $this->input->post('id_dosen_sekre');
-            $idAnggota = $this->input->post('id_nama_dosbing');
-            $anggota = $this->input->post('anggota');
-            $sekre = $this->input->post('sekre');
-            $ketua = $this->input->post('ketua');
+            $tanggalUji = $this->input->post('tanggalJadwal');
+            $waktu = $this->input->post('waktuJadwal');
+            $ruang = $this->input->post('ruangJadwal');
+//            get id dan nama
+            $dataKetua = $this->input->post('dataKetua');
+            $dataSekre = $this->input->post('dataSekretaris');
+            $dataAnggota = $this->input->post('dataAnggota');
 
-
-            $this->form_validation->set_rules('tanggal','Tanggal','trim|required|max_length[128]');
-            $this->form_validation->set_rules('waktu','Waktu','trim|required|max_length[128]');
-            $this->form_validation->set_rules('ruang','Ruang','trim|required|max_length[128]');
-            $this->form_validation->set_rules('id_dosen_ketua','Ketua','trim|required|max_length[128]');
-            $this->form_validation->set_rules('id_dosen_sekre','Sekretaris','trim|required|max_length[128]');
-            $this->form_validation->set_rules('id_nama_dosbing','Anggota','trim|required|max_length[128]');
-
+            $this->form_validation->set_rules('tanggalJadwal','Tanggal','trim|required|max_length[128]');
+            $this->form_validation->set_rules('waktuJadwal','Waktu','trim|required|max_length[128]');
+            $this->form_validation->set_rules('ruangJadwal','Ruang','trim|required|max_length[128]');
 
             if($this->form_validation->run() == FALSE)
             {
@@ -178,19 +216,100 @@ class Sidang extends BaseController
             }
             else
             {
+                $tanggal = date_format(date_create_from_format('d/m/Y', $this->input->post('tanggalJadwal')), 'Y-m-d');
                 if (!empty($idSidang)) {
+//                    get id dan nama ketua penguji
+                    $array_explode = explode(' ',$dataKetua);
+                    $sizeArray = sizeof($array_explode);
+                    $id_ketua = $array_explode[0];
+                    $nama_ketua='';
+                    for ($i=1;$i<$sizeArray;$i++)
+                    {
+                        $nama_ketua = $nama_ketua. ' ' .$array_explode[$i];
+                    }
+//                    get id dan nama sekretaris penguji
+                    if ($dataSekre != null)
+                    {
+                        $array_explode_sekre = explode(' ',$dataSekre);
+                        $sizeArraySekre = sizeof($array_explode_sekre);
+                        $id_sekre = $array_explode_sekre[0];
+                        $nama_sekre='';
+                        for ($i=1;$i<$sizeArraySekre;$i++)
+                        {
+                            $nama_sekre = $nama_sekre. ' ' .$array_explode_sekre[$i];
+                        }
+                    }
+//                    get id dan nama anggota penguji
+                    $array_explode_anggota = explode(' ',$dataAnggota);
+                    $sizeArrayAnggota = sizeof($array_explode_anggota);
+                    $id_anggota = $array_explode_anggota[0];
+                    $nama_anggota='';
+                    for ($i=1;$i<$sizeArrayAnggota;$i++)
+                    {
+                        $nama_anggota = $nama_anggota. ' ' .$array_explode_anggota[$i];
+                    }
+
                     $statusInfo = array(
                         'id_sidang' => $idSidang,
                         'status' => 'disetujui',
                     );
                     $status = $this->sidang_model->editStatus($statusInfo, $idSidang);
 
-                    $pesanInfo = array(
-                        'id_mahasiswa'=>$idMhs,
-                        'nama'=>'Pendaftaran sidang diterima.',
-                        'deskripsi'=>'Sidang akan dilaksanakan pada '.$tanggal.' , pukul : '.$waktu.' , di ruang : '.$ruang
-                    );
-                    $result = $this->sidang_model->addPesan($pesanInfo);
+                    if ($dataSekre != null){
+                        $pesanInfo = array(
+                            'id_mahasiswa'=>$idMhs,
+                            'nama'=>'Jadwal sidang terplotting.',
+                            'deskripsi' =>
+                                'Sidang akan dilaksanakan pada : <br>
+                            <table>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Tanggal</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $tanggalUji .' pukul '. $waktu .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Ruang</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $ruang .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Ketua Penguji</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $nama_ketua .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Sekretaris Penguji</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $nama_sekre .'</strong></h4></td>
+                            </tr>
+                            </table> '
+                        );
+                    }else{
+                        $pesanInfo = array(
+                            'id_mahasiswa'=>$idMhs,
+                            'nama'=>'Jadwal sidang terplotting.',
+                            'deskripsi' =>
+                                'Sidang akan dilaksanakan pada : <br>
+                            <table>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Tanggal</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $tanggalUji .' pukul '. $waktu .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Ruang</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $ruang .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Ketua Penguji</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $nama_ketua .'</strong></h4></td>
+                            </tr>
+                            </table> '
+                        );
+                    }
+                    $resultPesan = $this->sidang_model->addPesan($pesanInfo);
 
                     $jadwalInfo = array(
                         'id_sidang' => $idSidang,
@@ -200,68 +319,62 @@ class Sidang extends BaseController
                     );
                     $jadwal = $this->sidang_model->addJadwal($jadwalInfo);
 
+//                    dipisah 3x karena berbeda role pada tbl anggota_sidang
                     $ketuaInfo = array(
                         'id_sidang' => $idSidang,
-                        'id_dosen' => $idKetua,
-                        'role' => $ketua
-                    );
-                    $sekreInfo = array(
-                        'id_sidang' => $idSidang,
-                        'id_dosen' => $idSekre,
-                        'role' => $sekre
-                    );
-                    $anggotaInfo = array(
-                        'id_sidang' => $idSidang,
-                        'id_dosen' => $idAnggota,
-                        'role' => $anggota
+                        'id_dosen' => $id_ketua,
+                        'role' => 'ketua'
                     );
                     $dosen1 = $this->sidang_model->addAnggota($ketuaInfo);
-                    $dosen2 = $this->sidang_model->addAnggota($sekreInfo);
+                    if ($dataSekre!=null)
+                    {
+                        $sekreInfo = array(
+                            'id_sidang' => $idSidang,
+                            'id_dosen' => $id_sekre,
+                            'role' => 'sekretaris'
+                        );
+                        $dosen2 = $this->sidang_model->addAnggota($sekreInfo);
+                    }
+                    $anggotaInfo = array(
+                        'id_sidang' => $idSidang,
+                        'id_dosen' => $id_anggota,
+                        'role' => 'anggota'
+                    );
                     $dosen3 = $this->sidang_model->addAnggota($anggotaInfo);
 
                     $penilaianInfo = array(
                         "id_sidang"=>$idSidang,
                         "id_anggota_sidang"=>$dosen1
                     );
-                    $penilaianInfo2 = array(
-                        "id_sidang"=>$idSidang,
-                        "id_anggota_sidang"=>$dosen2
-                    );
+                    $idPenilaian = $this->sidang_model->addPenilaian($penilaianInfo);
+                    if ($dataSekre != null)
+                    {
+                        $penilaianInfo2 = array(
+                            "id_sidang"=>$idSidang,
+                            "id_anggota_sidang"=>$dosen2
+                        );
+                        $idPenilaian2 = $this->sidang_model->addPenilaian($penilaianInfo2);
+                    }
                     $penilaianInfo3 = array(
                         "id_sidang"=>$idSidang,
                         "id_anggota_sidang"=>$dosen3
                     );
-                    $idPenilaian = $this->sidang_model->addPenilaian($penilaianInfo);
-                    $idPenilaian2 = $this->sidang_model->addPenilaian($penilaianInfo2);
                     $idPenilaian3 = $this->sidang_model->addPenilaian($penilaianInfo3);
 
                     //insert to komponen nilai table
-                    $idKomponen = 1;
-                    for ($i=1;$i<=10;$i++){
-                        $daftarNilaiId = array(
-                            "id_penilaian"=>$idPenilaian,
-                            "id_komponen"=>$idKomponen
-                        );
-                        $result1 = $this->sidang_model->addNewKomponenNilai($daftarNilaiId);
-                        $idKomponen++;
-                    }
-                    $idKomponen2 = 1;
-                    for ($i=1;$i<=10;$i++){
-                        $daftarNilaiId2 = array(
-                            "id_penilaian"=>$idPenilaian2,
-                            "id_komponen"=>$idKomponen2
-                        );
-                        $result2 = $this->sidang_model->addNewKomponenNilai($daftarNilaiId2);
-                        $idKomponen2++;
-                    }
-                    $idKomponen3 = 1;
-                    for ($i=1;$i<=10;$i++){
-                        $daftarNilaiId3 = array(
-                            "id_penilaian"=>$idPenilaian3,
-                            "id_komponen"=>$idKomponen3
-                        );
-                        $result = $this->sidang_model->addNewKomponenNilai($daftarNilaiId3);
-                        $idKomponen3++;
+
+                    $dataPenilaian = $this->sidang_model->getPenilaian($idSidang);
+                    $dataKomponen = $this->sidang_model->getKomponen();
+
+//                    insert to komponen_nilai table by anggota_sidang
+                    foreach ($dataPenilaian AS $record_penilaian){
+                        foreach ($dataKomponen AS $record_komponen){
+                            $data_table_komponen_nilai = array(
+                                'id_penilaian' => $record_penilaian->id_penilaian,
+                                'id_komponen' => $record_komponen->id_komponen,
+                            );
+                            $result = $this->sidang_model->addNewKomponenNilai($data_table_komponen_nilai);
+                        }
                     }
                     if ($result == true) {
                         $this->session->set_flashdata('success', 'Jadwal berhasil dibuat!');
@@ -276,7 +389,7 @@ class Sidang extends BaseController
     /**
      * This function is used to udpate plotting dosen who is scheduled to sidang
      */
-    function editPlot($idSidang=null, $idMhs)
+    function editJadwal($idSidang=null, $idMhs)
     {
         if($this->isAkademik() == TRUE)
         {
@@ -284,35 +397,121 @@ class Sidang extends BaseController
         }
         else {
             $this->load->library('form_validation');
-            $tanggal = date_format(date_create_from_format('d/m/Y', $this->input->post('tanggal')), 'Y-m-d');
-            $waktu = $this->input->post('waktu');
-            $ruang = $this->input->post('ruang');
-            $idKetua = $this->input->post('id_dosen_ketua');
-            $idSekre = $this->input->post('id_dosen_sekre');
-            $idAnggota = $this->input->post('id_nama_dosbing');
-            $anggota = $this->input->post('anggota');
-            $sekre = $this->input->post('sekre');
-            $ketua = $this->input->post('ketua');
 
+            $tanggalUji = $this->input->post('editTanggalJadwal');
+            $waktu = $this->input->post('editWaktuJadwal');
+            $ruang = $this->input->post('editRuangJadwal');
+            //            get id dan nama dosen
+            $dataKetua = $this->input->post('editDataKetua');
+            $dataSekre = $this->input->post('editDataSekre');
+            $dataAnggota = $this->input->post('editDataAnggota');
+            // get id anggota_sidang
+            $idKetuaAnggota = $this->input->post('editIdKetua');
+            $idSekreAnggota = $this->input->post('editIdSekre');
 
-            $this->form_validation->set_rules('tanggal','Tanggal','trim|required|max_length[128]');
-            $this->form_validation->set_rules('waktu','Waktu','trim|required|max_length[128]');
-            $this->form_validation->set_rules('ruang','Ruang','trim|required|max_length[128]');
-            $this->form_validation->set_rules('id_dosen_ketua','Ketua','trim|required|max_length[128]');
-            $this->form_validation->set_rules('id_dosen_sekre','Sekretaris','trim|required|max_length[128]');
-            $this->form_validation->set_rules('id_nama_dosbing','Anggota','trim|required|max_length[128]');
+            $this->form_validation->set_rules('editTanggalJadwal','Tanggal','trim|required|max_length[128]');
+            $this->form_validation->set_rules('editWaktuJadwal','Waktu','trim|required|max_length[128]');
+            $this->form_validation->set_rules('editRuangJadwal','Ruang','trim|required|max_length[128]');
 
             if ($this->form_validation->run() == FALSE) {
                 $this->index();
             } else {
                 if (!empty($idSidang)) {
+                    $tanggal = date_format(date_create_from_format('d/m/Y', $this->input->post('editTanggalJadwal')), 'Y-m-d');
+//                    get id dan nama ketua penguji
+                    $array_explode = explode(' ',$dataKetua);
+                    $sizeArray = sizeof($array_explode);
+                    $id_ketua = $array_explode[0];
+                    $nama_ketua='';
+                    for ($i=1;$i<$sizeArray;$i++)
+                    {
+                        $nama_ketua = $nama_ketua. ' ' .$array_explode[$i];
+                    }
+                    if ($dataSekre != null){
+//                    get id dan nama sekretaris penguji
+                        $array_explode_sekre = explode(' ',$dataSekre);
+                        $sizeArraySekre = sizeof($array_explode_sekre);
+                        $id_sekre = $array_explode_sekre[0];
+                        $nama_sekre='';
+                        for ($i=1;$i<$sizeArraySekre;$i++)
+                        {
+                            $nama_sekre = $nama_sekre. ' ' .$array_explode_sekre[$i];
+                        }
+                    }
+//                    get id dan nama anggota penguji
+                    $array_explode_anggota = explode(' ',$dataAnggota);
+                    $sizeArrayAnggota = sizeof($array_explode_anggota);
+                    $id_anggota = $array_explode_anggota[0];
+                    $nama_anggota='';
+                    for ($i=1;$i<$sizeArrayAnggota;$i++)
+                    {
+                        $nama_anggota = $nama_anggota. ' ' .$array_explode_anggota[$i];
+                    }
 
-                    $pesanInfo = array(
-                        'id_mahasiswa'=>$idMhs,
-                        'nama'=>'Pelaksanaan sidang telah diubah.',
-                        'deskripsi'=>'Sidang akan dilaksanakan pada '.$tanggal.' , pukul : '.$waktu.' , di ruang : '.$ruang
-                    );
-                    $result = $this->sidang_model->addPesan($pesanInfo);
+                    if ($dataSekre != null){
+                        $pesanInfo = array(
+                            'id_mahasiswa'=>$idMhs,
+                            'nama'=>'Jadwal sidang diubah.',
+                            'deskripsi' => 'Sidang akan dilaksanakan pada : <br>
+                            <table>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Tanggal</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $tanggalUji .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Pukul</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $waktu .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Ruang</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $ruang .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Ketua Penguji</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $nama_ketua .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Sekretaris Penguji</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $nama_sekre .'</strong></h4></td>
+                            </tr>
+                            </table> '
+                        );
+                        $resultPesan1 = $this->sidang_model->addPesan($pesanInfo);
+                    }else{
+                        $pesanInfo = array(
+                            'id_mahasiswa'=>$idMhs,
+                            'nama'=>'Jadwal sidang diubah.',
+                            'deskripsi' => 'Sidang akan dilaksanakan pada : <br>
+                            <table>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Tanggal</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $tanggalUji .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Pukul</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $waktu .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Ruang</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $ruang .'</strong></h4></td>
+                            </tr>
+                            <tr>
+                            <td style="padding: 5px;" ><h4>Ketua Penguji</h4></td>
+                            <td style="padding: 5px;" ><h4>:</h4></td>
+                            <td style="padding: 5px;" ><h4><strong>'. $nama_ketua .'</strong></h4></td>
+                            </tr>
+                            </table> '
+                        );
+                        $resultPesan2 = $this->sidang_model->addPesan($pesanInfo);
+                    }
 
                     $jadwalInfo = array(
                         'id_sidang' => $idSidang,
@@ -324,22 +523,32 @@ class Sidang extends BaseController
 
                     $ketuaInfo = array(
                         'id_sidang' => $idSidang,
-                        'id_dosen' => $idKetua,
-                        'role' => $ketua
+                        'id_dosen' => $id_ketua
                     );
-                    $sekreInfo = array(
-                        'id_sidang' => $idSidang,
-                        'id_dosen' => $idSekre,
-                        'role' => $sekre
-                    );
-                    $anggotaInfo = array(
-                        'id_sidang' => $idSidang,
-                        'id_dosen' => $idAnggota,
-                        'role' => $anggota
-                    );
-                    $dosen1 = $this->sidang_model->editKetua($ketuaInfo, $idKetua);
-                    $dosen2 = $this->sidang_model->editSekre($sekreInfo, $idSekre);
-                    $result = $this->sidang_model->editAnggota($anggotaInfo, $idAnggota);
+                    if ($dataSekre != null){
+                        if ($idSekreAnggota!=null){
+                            $sekreInfo = array(
+                                'id_sidang' => $idSidang,
+                                'id_dosen' => $id_sekre
+                            );
+                            $dosenSekre1 = $this->sidang_model->editAnggotaSidang($sekreInfo, $idSekreAnggota);
+                        }else{
+                            $sekreInfo = array(
+                                'id_sidang' => $idSidang,
+                                'id_dosen' => $id_sekre,
+                                'role' => 'sekretaris'
+                            );
+                            $dosenSekre = $this->sidang_model->addAnggota($sekreInfo);
+                        }
+                    }else{
+                        $sekreInfo = array(
+                            'id_sidang' => $idSidang,
+                            'id_dosen' => null
+                        );
+                        $dosenSekre2 = $this->sidang_model->editAnggotaSidang($sekreInfo, $idSekreAnggota);
+                    }
+
+                    $result = $this->sidang_model->editAnggotaSidang($ketuaInfo, $idKetuaAnggota);
 
                     if ($result == true) {
                         $this->session->set_flashdata('success', 'Jadwal berhasil diubah!');
@@ -347,7 +556,7 @@ class Sidang extends BaseController
                         $this->session->set_flashdata('error', 'Jadwal gagal diubah!');
                     }
                     redirect('akademik/sidang');
-                }else{echo "asda";}
+                }else{echo "Alhamdulillah";}
             }
         }
     }

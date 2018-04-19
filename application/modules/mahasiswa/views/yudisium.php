@@ -5,7 +5,6 @@
  * Time: 07:28
  * Description:
  */
-//echo var_dump($periodeInfo);
 ?>
 <?php
 $id_berkas_yudisium = '';
@@ -16,16 +15,23 @@ $path = '';
 $id_yudisium = '';
 $id_mahasiswa = '';
 $yudisium = '';
+// get periode yudisium
 $periode = '';
+$awal = '';
+$akhir = '';
 $id_periode = '';
+
+//get date_now
+$date_now = date("Y-m-d");
 
 if(!empty($periodeInfo))
 {
     foreach ($periodeInfo as $uf)
     {
-        $id_periode = $uf->id_periode;
-        $yudisium = $uf->status_yudisium;
+        $awal = $uf->tgl_awal_regis_yudisium;
+        $akhir = $uf->tgl_akhir_regis_yudisium;
         $periode = $uf->status_periode;
+        $id_periode = $uf->id_periode;
     }
 }
 
@@ -50,8 +56,9 @@ if(!empty($berkasInfo))
         </div>
     </div>
     <div class="clearfix"></div>
+    <?php if ($sidang!=false){?>
     <!--    validasi berdasarkan periode-->
-    <?php if ($yudisium == 1 && $periode == 1){?>
+        <?php if ($periode == 1 && $date_now >= $awal && $date_now <= $akhir && $sidang[0]->id_mahasiswa != null){?>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -212,6 +219,7 @@ if(!empty($berkasInfo))
                 </div>
             </div>
         </div>
+        <?php }?>
     <?php } else {?>
         <!--    end validasi berdasarkan periode-->
         <div class="row">

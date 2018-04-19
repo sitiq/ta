@@ -39,11 +39,9 @@
                 <?php } ?>
             </div>
             <div class="x_content">
-                <a href="adduser.html">
-                    <a href="<?php echo base_url() ?>akademik/berkas_yudisium/add_form" class="btn btn-success pull-right" style="margin-bottom: 2%">
-                        <i class="fa fa-plus"></i>
-                        Add New</button>
-                    </a>
+                <a id="tambah" class="btn btn-success pull-right" data-toggle="modal" data-target="#tambahModal"><i class="fa fa-plus"></i>
+                    Add New
+                </a>
                     <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap bulk_action" cellspacing="0"
                            width="100%">
                         <thead>
@@ -66,8 +64,10 @@
                                     <?php echo ($data->isDeleted == '0') ?  'Aktif' : 'Tidak Aktif'; ?>
                                 </td>
                                 <td>
-                                    <a href="<?php echo base_url()?>akademik/berkas_yudisium/edit_form/<?php echo $data->id_berkas_yudisium; ?>" class="btn btn-sm btn-primary">
-                                        <i class="fa fa-edit"></i>
+                                    <a id="edit" class="btn btn-sm btn-primary"
+                                       data-id="<?php echo $data->id_berkas_yudisium;?>"
+                                       data-nama="<?php echo $data->nama_berkas;?>"
+                                       data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i>
                                     </a>
                                     <?php if($data->isDeleted == '0'){?>
                                         <a class="btn btn-sm btn-danger" data-id="<?php echo $data->id_berkas_yudisium; ?>" data-toggle='modal' id="delete_modal" data-target='#offModal'>
@@ -138,6 +138,84 @@
         });
     </script>
 </div>
-
-<!-- /page content -->
-
+<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                </button>
+                <h3>Penilaian <small>Add</small></h3>
+            </div>
+            <div class="modal-body">
+                <div class="x_panel">
+                    <form class="form-horizontal form-label-left" id="addEditBerkasForm" action="<?php echo base_url() . 'akademik/berkas_yudisium/add'?>"
+                          method="post">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Berkas
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-6 col-xs-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="text" id="nama_berkas" name="nama_berkas" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-5">
+                                <a href="<?php echo base_url() ?>akademik/berkas_yudisium/" class="btn btn-danger">Cancel</a>
+                                <button class="btn btn-primary" type="reset">Reset</button>
+                                <button class="btn btn-success" name="submit" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--edit modal-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                </button>
+                <h3>Penilaian <small>Edit</small></h3>
+            </div>
+            <div class="modal-body">
+                <div class="x_panel">
+                    <form class="form-horizontal form-label-left" id="addEditBerkasForm" action="<?php echo base_url() . 'akademik/berkas_yudisium/edit'?>"
+                          method="post">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Berkas
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-6 col-xs-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="hidden" value="" name="id_berkas_yudisium_edit" id="id_berkas_yudisium_edit" />
+                                    <input type="text" value="" id="nama_berkas_edit" name="nama_berkas_edit" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-5">
+                                <a href="<?php echo base_url() ?>akademik/berkas_yudisium/" class="btn btn-danger">Cancel</a>
+                                <button class="btn btn-primary" type="reset">Reset</button>
+                                <button class="btn btn-success" name="submit" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /script -->
+<script>
+    $(document).on("click","#edit", function () {
+        var id_berkas_yudisium_edit = $(this).data('id');
+        $("#id_berkas_yudisium_edit").val(id_berkas_yudisium_edit);
+        var nama_berkas_edit = $(this).data('nama');
+        $("#nama_berkas_edit").val(nama_berkas_edit);
+    });
+</script>
