@@ -13,8 +13,6 @@ class Periode_model extends CI_Model{
     public function insert($data){
         $this->db->trans_start();
         $this->db->set('status_periode', 0);
-        $this->db->set('status_ta', 0);
-        $this->db->set('status_yudisium', 0);
         $this->db->update('periode');
 
 

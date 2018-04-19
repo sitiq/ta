@@ -25,26 +25,26 @@ $(document).ready(function () {
 					url: baseURL + 'akademik/user/checkUsernameExists',
 					type: 'post',
 					data : { userId : function(){ return $("#userId").val(); } }
-					// data: {
-					// 	username: function () {
-					// 		return $("#username").val();
-					// 	}
-					// }
 				}
 			},
-			// email: {
-			// 	required: true,
-			// 	email: true,
-			// 	remote: {
-			// 		url: baseURL + 'akademik/user/checkEmailExists',
-			// 		type: 'post',
-			// 		data: {
-			// 			email: function() {
-			// 			  return $("#email").val();
-			// 			}
-			// 		}
-			// 	}
-			// },
+			nim:{
+				required: true,
+				noSpace: true,
+				remote: {
+					url: baseURL + 'akademik/user/checkNIMExists',
+					type: 'post',
+					data : { userId : function(){ return $("#userId").val(); } }
+				}
+			},
+			nid:{
+				required: true,
+				noSpace: true,
+				remote: {
+					url: baseURL + 'akademik/user/checkNIDExists',
+					type: 'post',
+					data : { userId : function(){ return $("#userId").val(); } }
+				}
+			},
 			password: {
 				required: true,
 				noSpace: true,
@@ -65,6 +65,16 @@ $(document).ready(function () {
 				minlength: "Masukkan username minimal 2 karakter",
 				remote: "Username sudah ada",
 				noSpace: "Username tidak boleh kosong"
+			},
+			nim: {
+				required: "NIM harus diisi",
+				noSpace: "NIM tidak boleh kosong",
+				remote: "NIM sudah ada"
+			},
+			nid: {
+				required: "NID harus diisi",
+				noSpace: "NID tidak boleh kosong",
+				remote: "NID sudah ada"
 			},
 			// email: {
 			// 	required: "Alamat email harus diisi",

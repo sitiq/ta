@@ -200,7 +200,7 @@
             </div>
             <div class="modal-footer">
                 <form action="<?php echo base_url() . 'akademik/proyek/accept' ?>" method="post">
-                    <input type="hidden" name="id_proyek" id="id_proyek" value="">
+                    <input type="text" name="id_proyek" id="id_proyek" value="">
                     <button type="submit" class="btn btn-success">Setujui</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </form>

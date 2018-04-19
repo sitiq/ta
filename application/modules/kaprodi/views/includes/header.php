@@ -44,7 +44,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="<?php echo base_url()?>dosen" class="site_title"><i class="fa fa-graduation-cap"></i> <span>KOMSI-TA</span></a>
+                    <a href="<?php echo base_url()?>kaprodi" class="site_title"><i class="fa fa-graduation-cap"></i> <span>KOMSI-TA</span></a>
                 </div>
                 <div class="clearfix"></div>
                 <br />
@@ -65,8 +65,8 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="<?php echo base_url(); ?>dosen/changepassword"><i class="fa fa-key pull-right"></i> Ubah Password</a></li>
-                                <li><a href="<?php echo base_url();?>dosen/logout"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
+                                <li><a href="<?php echo base_url(); ?>kaprodi/changepassword"><i class="fa fa-key pull-right"></i> Ubah Password</a></li>
+                                <li><a href="<?php echo base_url();?>kaprodi/logout"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
                             </ul>
                         </li>
                     </ul>

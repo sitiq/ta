@@ -8,14 +8,16 @@ class Dashboard extends BaseController {
         $this->isLoggedIn();
     }
 
+    function coba(){
+        $this->loadViews("coba");
+    }
+
     function index(){
         $data['dataPeriode'] = $this->dashboard_model->getPeriodeAktif();
         $data['countProyek'] = $this->dashboard_model->getProyekCount();
         $data['countSidang'] = $this->dashboard_model->getSidangCount($data['dataPeriode'][0]->id_periode);
         $data['countYudisium'] = $this->dashboard_model->getYudisiumCount($data['dataPeriode'][0]->id_periode);
         
-        
-
         $this->global['pageTitle'] = "Elusi : Dashboard";
         $this->loadViews("dashboard",$this->global,$data);
     }
@@ -34,12 +36,30 @@ class Dashboard extends BaseController {
             array_push($arrayNilai,$komponen->nama);
             foreach ($arrayPeriodeId as $id_periode) {
                 $id_komponen = $komponen->id_komponen;
+                
                 $record = $this->dashboard_model->getPenilaian($id_periode,$id_komponen);
-                $arrayNilai[$komponen] = array(
-                    'nama_periode' => $record[0]->tahun_ajaran . ' ' . $record[0]->semester,
-                    
-                );
+                $count = 1;
+                $total_nilai = 0;
+                if($record != FALSE) {
+                    foreach ($record as $result_nilai) {
+                        $total_nilai = $total_nilai + $result_nilai->nilai;
+                        $count++;
+                    }
+                    $rata2 = $total_nilai/$count;
+                    $array = array(
+                        'nama_periode' => $record[0]->tahun_ajaran . ' ' . $record[0]->semester,
+                        'rata2' => $rata2
+                    );
+                } else {
+                    $array = array(
+                        'nama_periode' => $record[0]->tahun_ajaran . ' ' . $record[0]->semester,
+                        'rata2' => 0
+                    );
+                }
+                array_push($arrayNilai[$komponen->nama],$array);
             }
         }
+
+
     }
 }

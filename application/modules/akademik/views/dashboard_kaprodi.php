@@ -33,7 +33,7 @@
             </div>
             <div class="x_content">
                 <a href="adduser.html">
-                    <a href="<?php echo base_url() ?>akademik/akun_kaprodi/add_form" class="btn btn-success pull-right" style="margin-bottom: 2%">Add New User</button>
+                    <a href="<?php echo base_url() ?>akademik/akun_kaprodi/add_form" class="btn btn-success pull-right" style="margin-bottom: 2%"><i class="fa fa-plus"></i> Tambah User Kaprodi</button>
                     </a>
                     <table id="datatable-checkbox" class="table table-striped table-bordered dt-responsive nowrap bulk_action" cellspacing="0"
                         width="100%">

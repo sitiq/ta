@@ -56,10 +56,8 @@ class Dashboard_model extends CI_Model{
         $this->db->select("*");
         $this->db->from('periode');
         $this->db->where('status_periode','1');
-        $this->db->where('jenis','ta');
 
         $query = $this->db->get();
-
         
         if($query->num_rows() > 0) { $periode = $query->result(); } else { return FALSE; }
         $semester = $periode[0]->semester;
@@ -78,14 +76,14 @@ class Dashboard_model extends CI_Model{
                 $tahun_ajaran = $thn1 . '/' . $thn2;
                 $id_periode = $this->getPeriodeId('genap',$tahun_ajaran);
                 if($id_periode != FALSE) {
-                    array_push($array_id_periode,getPeriodeId('genap',$tahun_ajaran));
+                    array_push($array_id_periode,$id_periode);
                 } else {
                     break;
                 }
             } else {
-                $id_periode = $this->getPeriodeId('genap',$tahun_ajaran);
+                $id_periode = $this->getPeriodeId('ganjil',$tahun_ajaran);
                 if($id_periode != FALSE) {
-                    array_push($array_id_periode,getPeriodeId('ganjil',$tahun_ajaran));
+                    array_push($array_id_periode,$id_periode);
                 } else {
                     break;
                 }
@@ -99,10 +97,12 @@ class Dashboard_model extends CI_Model{
         $this->db->from('periode p');
         $this->db->join('sidang s','p.id_periode=s.id_periode','inner');
         $this->db->join('penilaian pn','pn.id_sidang=s.sidang','inner');
-        $this->db->join('komponen_nilai k','k.id_penilaian=pn.id_penilaian','inner');
+        $this->db->join('komponen_nilai kn','k.id_penilaian=pn.id_penilaian','inner');
+        $this->db->join('komponen k','k.id_komponen=kn.id_komponen','inner');
         $this->db->where('p.id_periode',$id_periode);
-        $this->db->where('jenis','ta');
+        $this->db->where('k.id_komponen',$id_komponen);
+        $query = $this->db->get();
 
-
+        if($query->num_rows > 0){ return $query->result(); } else { return FALSE; }
     }
 }

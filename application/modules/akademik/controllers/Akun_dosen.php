@@ -23,7 +23,7 @@ class Akun_dosen extends BaseController
 
     public function edit_form($id){
         $data['role'] = ROLE_DOSEN;
-        $data['dataUser'] = $this->user_model->getUser($id);
+        $data['dataUser'] = $this->user_model->getUser($id,ROLE_DOSEN);
         $this->global['pageTitle'] = "Elusi : Edit User"; 
         $this->loadViews("edit_user",$this->global,$data);
     }

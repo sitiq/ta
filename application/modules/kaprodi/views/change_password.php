@@ -15,7 +15,7 @@
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <form role="form" action="<?php echo base_url() ?>akademik/changepassword/changePassword" method="post">
+            <form role="form" action="<?php echo base_url() ?>kaprodi/changepassword/changePassword" method="post">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Detail Password</h2>

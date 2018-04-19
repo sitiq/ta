@@ -14,7 +14,6 @@ class Proyek_model extends CI_Model{
         return $query->result();
     }
 
-
     public function getDosen(){
         $this->db->select("*");
         $this->db->from('dosen');
