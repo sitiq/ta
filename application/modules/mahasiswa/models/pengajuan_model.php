@@ -25,11 +25,27 @@ class pengajuan_model extends CI_Model
      * This function is used to get the proyek list
      * @return array $result : This is result
      */
+//    function getProyek()
+//    {
+//        $this->db->select('p.id_proyek, p.id_dosen, p.nama');
+//        $this->db->from('proyek p');
+//        $this->db->where('p.status', 'disetujui');
+//        $this->db->group_by('p.id_proyek');
+//        $query = $this->db->get();
+//
+//        $result = $query->result();
+//        return $result;
+//    }
     function getProyek()
     {
-        $this->db->select('id_proyek, id_dosen, nama');
-        $this->db->from('proyek');
-        $this->db->where('status', 'disetujui');
+        $this->db->select('p.id_proyek, p.id_dosen, p.nama');
+        $this->db->from('tugas_akhir ta');
+        $this->db->join('pengajuan_ta pa','pa.id_ta = ta.id_ta');
+        $this->db->join('proyek p','p.id_proyek = pa.id_proyek','left');
+        $this->db->where('p.status', 'disetujui');
+        $this->db->where('pa.status !=', 'diterima');
+        $this->db->where('ta.status_pengambilan !=', 'terplotting');
+        $this->db->group_by('p.id_proyek');
         $query = $this->db->get();
 
         $result = $query->result();
