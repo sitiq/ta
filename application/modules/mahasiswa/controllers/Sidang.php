@@ -86,6 +86,39 @@ class Sidang extends BaseController
 
         redirect('mahasiswa/sidang');
     }
+    function daftarUlang(){
+        //get id user who is logged in
+        $id_user = $this->vendorId;
+//        get id_sidang_lama
+        $id_sidang_lama = $this->input->post('id_sidang_lama');
+//            get id_periode
+        $id_periode = $this->input->post('id_periode');
+//            get id_mahasiswa based on who is logged in
+        $cek = $this->sidang_model->cekMahasiswa($id_user);
+        $id_mahasiswa = $cek[0]->id_mahasiswa;
+        $infoSidang = array(
+            "id_mahasiswa"=>$id_mahasiswa,
+            "id_periode"=>$id_periode,
+        );
+//            insert to table sidang / registration sidang new
+        $idSidang = $this->sidang_model->addNewSidang($infoSidang);
+        $berkasInfo = array(
+            "id_sidang"=>$idSidang
+        );
+        $result = $this->sidang_model->editBerkasSidang($berkasInfo, $id_sidang_lama);
+
+//            lebih dari 0 berarti ada data yg masuk
+        if ($result>0)
+        {
+            $this->session->set_flashdata('success','Daftar ulang sidang berhasil!');
+        }
+        else
+        {
+            $this->session->set_flashdata('error','Daftar ulang sidang gagal!');
+        }
+
+        redirect('mahasiswa/sidang');
+    }
     /**
      * This function is used to edit files upload requirement files
      */

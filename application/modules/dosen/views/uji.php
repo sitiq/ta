@@ -5,33 +5,6 @@
  * Time: 07:30
  * Description:
  */
-//var_dump($userId);
-var_dump($pendadaranInfo);
-?>
-<?php
-$tanggal = '';
-$waktu = '';
-$ruang = '';
-$nim = '';
-$nama = '';
-$path = '';
-$id_penilaian = '';
-$nilai_akhir_sidang = '';
-
-if(!empty($pendadaranInfo))
-{
-    foreach ($pendadaranInfo as $uf)
-    {
-        $tanggal = $uf->tanggal;
-        $waktu = $uf->waktu;
-        $ruang = $uf->ruang;
-        $nim = $uf->nim;
-        $nama = $uf->nama;
-        $path = $uf->path;
-        $id_penilaian = $uf->id_penilaian;
-        $nilai_akhir_sidang = $uf->nilai_akhir_sidang;
-    }
-}
 ?>
 <div class="">
     <div class="page-title">
@@ -74,8 +47,10 @@ if(!empty($pendadaranInfo))
                             {
                         ?>
                         <tr>
-                            <td><?php echo $record->tanggal ?></td>
-                            <td><?php echo $record->waktu ?></td>
+                            <td>
+                                <?php echo date_format(date_create_from_format('Y-m-d',$record->tanggal), 'd/m/Y'); ?>
+                            </td>
+                            <td><?php echo substr($record->waktu,0,5) ?></td>
                             <td><?php echo $record->ruang ?></td>
                             <td><?php echo $record->nim ?></td>
                             <td><?php echo $record->nama ?></td>
@@ -85,10 +60,10 @@ if(!empty($pendadaranInfo))
                                         <i class="fa fa-download"></i>
                                     </a>
                                 <?php }else{?>
-                                    <button class="btn btn-sm btn-danger" title="tidak ada"><i class="fa fa-times"></i></button>
+                                    Belum unggah
                                 <?php }?>
                             </td>
-                            <td><a href="<?php echo base_url()?>dosen/pendadaran/nilai/<?php echo $record->id_penilaian?>" class="btn btn-success btn-sm"><i class="fa fa-tasks"></i></a></td>
+                            <td><a href="<?php echo base_url()?>dosen/pendadaran/nilai/<?php echo $record->id_sidang?>/<?php echo $record->id_penilaian?>" class="btn btn-success btn-sm"><i class="fa fa-tasks"></i></a></td>
                             <td><?php echo $record->nilai_akhir_sidang ?></td>
                         </tr>
                         </tbody>

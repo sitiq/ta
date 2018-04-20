@@ -13,7 +13,7 @@
                 <a href="<?php echo base_url() ?>akademik/sidang">
                     <i class="fa fa-chevron-left"></i>
                 </a>
-                Penilaian
+                Jadwal Sidang
                 <small>Add</small>
             </h3>
         </div>
