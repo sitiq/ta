@@ -6,7 +6,6 @@
  * Description:
  */
 //var_dump($penilaianRataInfo)
-//var_dump($nilaiInfo)
 ?>
 <?php
 $path = '';
@@ -197,6 +196,7 @@ if(!empty($revisiInfo))
                             <tr>
                                 <td colspan="3">
                                     <form id="formRevisi" action="<?php echo base_url()?>dosen/pendadaran/submitrevisi" enctype="multipart/form-data" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                                        <input type="text" name="nama_dosen_revisi" value="<?php echo $ketuaInfo[0]->nama?>">
                                         <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
                                         <input type="hidden" name="id_mahasiswa" value="<?php echo $record->id_mahasiswa?>">
                                         <input type="hidden" name="id_sidang" value="<?php echo $record->id_sidang?>">
@@ -388,6 +388,7 @@ if(!empty($revisiInfo))
                             <div id="testmodal" style="padding: 5px 20px;">
                                 <form action="<?php echo base_url() ?>dosen/pendadaran/submitPenentuanLulus" method="post" enctype="multipart/form-data" role="form">
                                     <input type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+                                    <input type="hidden" name="id_mahasiswa" value="<?php echo $nilaiInfo[0]->id_mahasiswa?>">
                                     <input type="hidden" name="nilai" value="<?php echo $penilaianRataInfo[0]->avg_nilai?>">
                                     <input type="hidden" name="id_penilaian" value="<?php echo $nilaiInfo[0]->id_penilaian?>">
                                     <input type="hidden" name="id_sidang" value="<?php echo $nilaiInfo[0]->id_sidang?>">
@@ -422,6 +423,7 @@ if(!empty($revisiInfo))
                             <div id="testmodal" style="padding: 5px 20px;">
                                 <form action="<?php echo base_url() ?>dosen/pendadaran/submitPenentuanLulusRevisi" method="post" enctype="multipart/form-data" role="form">
                                     <input type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+                                    <input type="hidden" name="id_mahasiswa" value="<?php echo $nilaiInfo[0]->id_mahasiswa?>">
                                     <input type="hidden" name="nilai" value="<?php echo $penilaianRataInfo[0]->avg_nilai?>">
                                     <input type="hidden" name="id_penilaian" value="<?php echo $nilaiInfo[0]->id_penilaian?>">
                                     <input type="hidden" name="id_sidang" value="<?php echo $nilaiInfo[0]->id_sidang?>">
@@ -456,6 +458,7 @@ if(!empty($revisiInfo))
                             <div id="testmodal" style="padding: 5px 20px;">
                                 <form action="<?php echo base_url() ?>dosen/pendadaran/submitPenentuanUlang" method="post" enctype="multipart/form-data" role="form">
                                     <input type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+                                    <input type="hidden" name="id_mahasiswa" value="<?php echo $nilaiInfo[0]->id_mahasiswa?>">
                                     <input type="hidden" name="nilai" value="<?php echo $penilaianRataInfo[0]->avg_nilai?>">
                                     <input type="hidden" name="id_penilaian" value="<?php echo $nilaiInfo[0]->id_penilaian?>">
                                     <input type="hidden" name="id_sidang" value="<?php echo $nilaiInfo[0]->id_sidang?>">

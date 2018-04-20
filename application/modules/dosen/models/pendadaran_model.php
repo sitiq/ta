@@ -128,7 +128,7 @@ class pendadaran_model extends CI_Model
     }
     function getKetua($userId)
     {
-        $this->db->select('a.role');
+        $this->db->select('a.role, d.nama');
         $this->db->from('anggota_sidang a');
         $this->db->join('dosen d','d.id_dosen=a.id_dosen');
         $this->db->join('user u','u.id_user=d.id_user');

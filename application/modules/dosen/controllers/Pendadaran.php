@@ -134,12 +134,17 @@ class Pendadaran extends BaseController
         }
         else
         {
+            $idMhs = $this->input->post('id_mahasiswa');
             $id_penilaian = $this->input->post('id_penilaian');
             $id_sidang = $this->input->post('id_sidang');
             $nilai = $this->input->post('nilai');
 
-//            update nilai_akhir_sidang to table sidang
-//            $nilai = $this->pendadaran_model->getPenilaianRata($id_sidang);
+            $pesanInfo = array(
+                'id_mahasiswa'=>$idMhs,
+                'nama'=>'Lulus sidang',
+                'deskripsi' =>'Selamat anda telah lulus sidang.'
+            );
+            $resultPesan = $this->pendadaran_model->addPesan($pesanInfo);
 
             $sidangInfo = array(
                 'id_sidang' => $id_sidang,
@@ -168,12 +173,17 @@ class Pendadaran extends BaseController
         }
         else
         {
+            $idMhs = $this->input->post('id_mahasiswa');
             $id_penilaian = $this->input->post('id_penilaian');
             $id_sidang = $this->input->post('id_sidang');
             $nilai = $this->input->post('nilai');
 
-//            update nilai_akhir_sidang to table sidang
-//            $nilai = $this->pendadaran_model->getPenilaianRata($id_sidang);
+            $pesanInfo = array(
+                'id_mahasiswa'=>$idMhs,
+                'nama'=>'Lulus sidang dengan revisi.',
+                'deskripsi' =>'Selamat anda telah lulus sidang dengan revisi yang telah diberikan oleh dosen penguji.'
+            );
+            $resultPesan = $this->pendadaran_model->addPesan($pesanInfo);
 
             $sidangInfo = array(
                 'id_sidang' => $id_sidang,
@@ -202,12 +212,17 @@ class Pendadaran extends BaseController
         }
         else
         {
+            $idMhs = $this->input->post('id_mahasiswa');
             $id_penilaian = $this->input->post('id_penilaian');
             $id_sidang = $this->input->post('id_sidang');
             $nilai = $this->input->post('nilai');
 
-//            update nilai_akhir_sidang to table sidang
-//            $nilai = $this->pendadaran_model->getPenilaianRata($id_sidang);
+            $pesanInfo = array(
+                'id_mahasiswa'=>$idMhs,
+                'nama'=>'Daftar ulang sidang.',
+                'deskripsi' =>'Silahkan mendaftar ulang sidang.'
+            );
+            $resultPesan = $this->pendadaran_model->addPesan($pesanInfo);
 
             $sidangInfo = array(
                 'id_sidang' => $id_sidang,
@@ -240,6 +255,7 @@ class Pendadaran extends BaseController
         {
             $this->load->library('form_validation');
 //            get id needed
+            $nama_dosen_revisi = $this->input->post('nama_dosen_revisi');
             $id_penilaian = $this->input->post('id_penilaian');
             $id_sidang = $this->input->post('id_sidang');
 //            $idMhs = $this->input->post('id_mahasiswa');
@@ -259,7 +275,7 @@ class Pendadaran extends BaseController
                 $config['max_size'] = 8000;
                 $config['max_width'] = 1024;
                 $config['max_height'] = 1024;
-                $new_name = "revisi-" . time();
+                $new_name = "revisi-" . time() . "-" . $nama_dosen_revisi;
                 $config['file_name'] = $new_name;
 
                 $this->load->library('upload', $config);
