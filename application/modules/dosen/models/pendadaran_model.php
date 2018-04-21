@@ -52,7 +52,7 @@ class pendadaran_model extends CI_Model
      * @param $userId : This is get from user who is logged in
      * @return array $result : This is result
      */
-//    get komponen nilai tiap dosen
+//    get komponen nilai tiap dosen untuk insert
     function getNilaiInfo($userId, $nilaiId)
     {
         $this->db->select('p.id_sidang, p.id_penilaian, p.nilai_akhir_dosen, k.id_komponen, k.nama nama_nilai,
@@ -68,6 +68,30 @@ class pendadaran_model extends CI_Model
         $this->db->where('u.id_user',$userId);
         $this->db->where('p.id_penilaian',$nilaiId);
         $this->db->where('k.isDeleted',0);
+        $query = $this->db->get();
+
+        if ($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return false;
+        }
+    }
+//    get komponen nilai tiap dosen untuk update
+    function getNilaiInfoEdit($userId, $nilaiId)
+    {
+        $this->db->select('p.id_sidang, p.id_penilaian, p.nilai_akhir_dosen, k.id_komponen, k.nama nama_nilai,
+         kn.id_komponen_nilai, kn.nilai, a.id_anggota_sidang, m.id_mahasiswa, s.status');
+        $this->db->from('penilaian p');
+        $this->db->join('anggota_sidang a', 'a.id_anggota_sidang = p.id_anggota_sidang');
+        $this->db->join('dosen d', 'd.id_dosen = a.id_dosen');
+        $this->db->join('user u', 'u.id_user = d.id_user');
+        $this->db->join('komponen_nilai kn', 'kn.id_penilaian = p.id_penilaian');
+        $this->db->join('komponen k', 'k.id_komponen = kn.id_komponen');
+        $this->db->join('sidang s', 's.id_sidang = a.id_sidang');
+        $this->db->join('mahasiswa m', 'm.id_mahasiswa = s.id_mahasiswa');
+        $this->db->where('u.id_user',$userId);
+        $this->db->where('p.id_penilaian',$nilaiId);
+        $this->db->where('kn.nilai !=',null);
         $query = $this->db->get();
 
         if ($query->num_rows()>0){
@@ -125,6 +149,30 @@ class pendadaran_model extends CI_Model
 
         $query = $this->db->get();
         return count($query->result());
+    }
+    function getSekre($userId)
+    {
+        $this->db->select('a.role, d.nama');
+        $this->db->from('anggota_sidang a');
+        $this->db->join('dosen d','d.id_dosen=a.id_dosen');
+        $this->db->join('user u','u.id_user=d.id_user');
+        $this->db->where('u.id_user',$userId);
+        $this->db->where('a.role','sekretaris');
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
+    }
+    function getAnggota($userId)
+    {
+        $this->db->select('a.role, d.nama');
+        $this->db->from('anggota_sidang a');
+        $this->db->join('dosen d','d.id_dosen=a.id_dosen');
+        $this->db->join('user u','u.id_user=d.id_user');
+        $this->db->where('u.id_user',$userId);
+        $this->db->where('a.role','anggota');
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
     }
     function getKetua($userId)
     {

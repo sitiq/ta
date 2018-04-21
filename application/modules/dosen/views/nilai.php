@@ -6,6 +6,7 @@
  * Description:
  */
 //var_dump($penilaianRataInfo)
+//var_dump($nilaiInfo)
 ?>
 <?php
 $path = '';
@@ -33,10 +34,21 @@ if(!empty($revisiInfo))
                 <div class="x_title">
                     <h2>Form Penilaian</h2>
                     <div class="clearfix" style="margin-top: -5%"></div>
-                    <div class="well">
-                        <ul>
-                            <li>Simpan Laporan Tugas Akhir(.pdf) yang telah diberi pesan revisi, lalu unggah</li>
-                        </ul>
+                    <div class="row well">
+                        <div class="col-md-6">
+                            <strong>PENILAIAN</strong>
+                            <ul>
+                                <li>Nilai harus 3 digit</li>
+                                <li>Nilai tidak boleh lebih dari 4.00</li>
+                                <li>Nilai wajib diisi semua</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>REVISI</strong>
+                            <ul>
+                                <li>Simpan Laporan Tugas Akhir(.pdf) yang telah diberi pesan revisi, lalu unggah</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="x_content">
@@ -91,6 +103,8 @@ if(!empty($revisiInfo))
                             </tr>
                             </thead>
                             <tbody>
+<!--                            form insert nilai when nilai_akhir_sidang-->
+                            <?php if ($nilaiInfo[0]->nilai==0.00){?>
                             <form id="formNilai" action="<?php echo base_url()?>dosen/pendadaran/submitnilai" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
                                 <?php
                                 if(!empty($nilaiInfo))
@@ -100,31 +114,15 @@ if(!empty($revisiInfo))
                                     {
                                         ?>
                                         <tr>
-                                            <td><?php echo $record->id_komponen ?></td>
+                                            <td><?php echo $i ?></td>
                                             <th><?php echo $record->nama_nilai ?></th>
-                                            <?php if ($record->status=='disetujui'){?>
                                             <td>
-                                                <?php if ($record->nilai == 0){?>
-                                                    <input type="hidden" value="<?php echo $record->id_komponen_nilai?>" name="id_komponen_nilai_<?php echo $i?>" id="id_komponen_nilai_<?php echo $i?>">
-                                                    <input type="text" class="form-control"
-                                                           data-val="true"
-                                                           data-inputmask="'mask': '9.99'"
-                                                           name="nilai_<?php echo $i?>" id="nilai_<?php echo $i?>">
-<!--                                                --><?php //}?>
-                                                <?php }else{?>
-                                                    <input type="hidden" value="<?php echo $record->id_komponen_nilai?>" name="id_komponen_nilai_<?php echo $i?>" id="id_komponen_nilai_<?php echo $i?>">
-                                                    <input type="text" class="form-control"
-                                                           data-val="true"
-                                                           data-inputmask="'mask': '9.99'"
-                                                           value="<?php echo $record->nilai?>"
-                                                           name="nilai_<?php echo $i?>" id="nilai_<?php echo $i?>">
-                                                <?php }?>
+                                                <input type="hidden" value="<?php echo $record->id_komponen_nilai?>" name="id_komponen_nilai_<?php echo $i?>" id="id_komponen_nilai_<?php echo $i?>">
+                                                <input type="text" class="form-control"
+                                                       data-val="true"
+                                                       data-inputmask="'mask': '9.99'"
+                                                       name="nilai_<?php echo $i?>" id="nilai_<?php echo $i?>">
                                             </td>
-                                            <?php }else{?>
-                                            <td>
-                                                <center><?php echo $record->nilai?></center>
-                                            </td>
-                                            <?php }?>
                                         </tr>
                                         <?php
                                         $i++;
@@ -134,11 +132,85 @@ if(!empty($revisiInfo))
                                 }?>
                                 <tr>
                                     <td colspan="3">
+                                        <a class="btn btn-warning pull-right" data-toggle="modal" data-target="#submit-nilai">Submit</a>
+                                    </td>
+                                </tr>
+                                <input type="hidden" name="nilai_akhir_dosen" value="<?php echo $record->nilai_akhir_dosen?>">
+                                <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
+                                <input type="hidden" name="id_sidang" value="<?php echo $record->id_sidang?>">
+                                <!--modal submit nilai-->
+                                <div id="submit-nilai" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">Penilaian</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="testmodal" style="padding: 5px 20px;">
+                                                    <div class="modal-body">
+                                                        <center>
+                                                            <h4>Apakah yakin nilai yang dimasukkan benar?</h4>
+                                                            <h6>
+                                                                <strong>
+                                                                    Nilai wajib 3 digit dan tidak lebih besar dari 4.00
+                                                                </strong>
+                                                            </h6>
+                                                            <div id="testmodal" style="padding: 5px 20px;">
+                                                                <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                                                <input type="submit" class="btn btn-success" value="Submit">
+                                                            </div>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <?php }else{?>
+                            <form id="formNilai" action="<?php echo base_url()?>dosen/pendadaran/submitnilai" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
+                                <?php
+                                if(!empty($nilaiInfoEdit))
+                                {
+                                    $i=1;
+                                    foreach($nilaiInfoEdit as $record)
+                                    {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $i ?></td>
+                                            <th><?php echo $record->nama_nilai ?></th>
+                                            <?php if ($record->status=='disetujui'){?>
+                                                <td>
+                                                    <input type="hidden" value="<?php echo $record->id_komponen_nilai?>" name="id_komponen_nilai_<?php echo $i?>" id="id_komponen_nilai_<?php echo $i?>">
+                                                    <input type="text" class="form-control"
+                                                           data-val="true"
+                                                           data-inputmask="'mask': '9.99'"
+                                                           value="<?php echo $record->nilai?>"
+                                                           name="nilai_<?php echo $i?>" id="nilai_<?php echo $i?>">
+                                                </td>
+                                            <?php }else{?>
+                                                <td>
+                                                    <center><?php echo $record->nilai?></center>
+                                                </td>
+                                            <?php }?>
+                                        </tr>
+                                        <?php
+                                        $i++;
+                                    }?>
+                                    <input type="hidden" name="last_index" value="<?php echo $i?>">
+                                    <?php
+                                }?>
+                                <tr>
+                                    <td colspan="3">
                                         <?php if ($record->nilai_akhir_dosen == 0){?>
                                             <a class="btn btn-warning pull-right" data-toggle="modal" data-target="#submit-nilai">Submit</a>
                                         <?php }else{?>
                                             <?php if ($record->status=='disetujui'){?>
-                                            <a class="btn btn-warning pull-right" data-toggle="modal" data-target="#submit-nilai"><i class="fa fa-edit"></i> Edit</a>
+                                                <a class="btn btn-warning pull-right" data-toggle="modal" data-target="#submit-nilai"><i class="fa fa-edit"></i> Edit</a>
                                             <?php }?>
                                             <center><h4><strong>Total : </strong><?php echo $totalNilaiInfo[0]->total_nilai?></h4></center>
                                         <?php }?>
@@ -180,6 +252,7 @@ if(!empty($revisiInfo))
                                     </div>
                                 </div>
                             </form>
+                            <?php }?>
                             </tbody>
                         </table>
                         <!--end table nilai-->
@@ -196,7 +269,13 @@ if(!empty($revisiInfo))
                             <tr>
                                 <td colspan="3">
                                     <form id="formRevisi" action="<?php echo base_url()?>dosen/pendadaran/submitrevisi" enctype="multipart/form-data" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
-                                        <input type="text" name="nama_dosen_revisi" value="<?php echo $ketuaInfo[0]->nama?>">
+                                        <?php if ($ketuaInfo!=null){?>
+                                        <input type="hidden" name="nama_dosen_revisi" value="<?php echo $ketuaInfo[0]->nama?>">
+                                        <?php }elseif ($sekreInfo!=null){?>
+                                        <input type="hidden" name="nama_dosen_revisi" value="<?php echo $sekreInfo[0]->nama?>">
+                                        <?php }elseif ($anggotaInfo!=null){?>
+                                        <input type="hidden" name="nama_dosen_revisi" value="<?php echo $anggotaInfo[0]->nama?>">
+                                        <?php }?>
                                         <input type="hidden" name="id_penilaian" value="<?php echo $record->id_penilaian?>">
                                         <input type="hidden" name="id_mahasiswa" value="<?php echo $record->id_mahasiswa?>">
                                         <input type="hidden" name="id_sidang" value="<?php echo $record->id_sidang?>">
@@ -207,7 +286,8 @@ if(!empty($revisiInfo))
                                             <i class="fa fa-save"></i>
                                         </a>
                                         <?php }?>
-                                        <input class="btn btn-warning pull-right" style="margin-top: 3%" type="submit">
+                                        <button class="btn btn-warning pull-right" style="margin-top: 3%" type="submit">Submit</button>
+<!--                                        <input class="btn btn-warning pull-right" style="margin-top: 3%" type="submit">-->
                                     </form>
                                 </td>
                             </tr>

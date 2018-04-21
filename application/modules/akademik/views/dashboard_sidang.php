@@ -82,9 +82,11 @@
                                         <?php }?>
                                     </td>
                                     <?php if ($record->status == 'disetujui') {
-                                        echo "<td><span class=\"label label-success\">" . $record->status . "</span></td>";
+                                        echo "<td><span class=\"label label-info\">" . $record->status . "</span></td>";
                                     } elseif ($record->status == 'pending') {
                                         echo "<td><span class=\"label label-warning\">" . $record->status . "</span></td>";
+                                    } elseif ($record->status == 'lulus' || $record->status == 'lulus_revisi') {
+                                        echo "<td><span class=\"label label-success\">" . $record->status . "</span></td>";
                                     } else {
                                         echo "<td><span class=\"label label-danger\">" . $record->status . "</span></td>";
                                     }

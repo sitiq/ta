@@ -51,9 +51,12 @@ class Pendadaran extends BaseController
         {
             $userId = $this->vendorId;
             $data['nilaiInfo'] = $this->pendadaran_model->getNilaiInfo($userId, $idNilai);
+            $data['nilaiInfoEdit'] = $this->pendadaran_model->getNilaiInfoEdit($userId, $idNilai);
             $data['totalNilaiInfo'] = $this->pendadaran_model->getTotalNilaiInfo($userId, $idNilai);
             $data['revisiInfo'] = $this->pendadaran_model->getRevisiInfo($userId);
             $data['ketuaInfo'] = $this->pendadaran_model->getKetua($userId);
+            $data['sekreInfo'] = $this->pendadaran_model->getSekre($userId);
+            $data['anggotaInfo'] = $this->pendadaran_model->getAnggota($userId);
             $data['penilaianInfo'] = $this->pendadaran_model->getPenilaian($idSidang);
             $data['penilaianRataInfo'] = $this->pendadaran_model->getPenilaianRata($idSidang);
 
