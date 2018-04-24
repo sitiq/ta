@@ -16,7 +16,7 @@ class sidang_model extends CI_Model
     function getBerkasInfo($userId)
     {
         $this->db->select('berkas.id_berkas_sidang, berkas.nama_berkas, val.id_valid_sidang,
-         val.isValid, val.path, sidang.id_sidang, mahasiswa.id_mahasiswa');
+         val.isValid, val.path, sidang.id_sidang, mahasiswa.id_mahasiswa, sidang.status');
         $this->db->from('berkas_sidang berkas');
         $this->db->join('validasi_berkas_sidang val','val.id_berkas_sidang = berkas.id_berkas_sidang');
         $this->db->join('sidang','sidang.id_sidang = val.id_sidang');
@@ -144,6 +144,18 @@ class sidang_model extends CI_Model
     function editBerkas($berkasInfo, $id_berkas)
     {
         $this->db->where('id_valid_sidang', $id_berkas);
+        $this->db->update('validasi_berkas_sidang', $berkasInfo);
+
+        if($this->db->affected_rows() >= 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+//    edit berkas berdasarkan id_sidang jika daftar ulang sidang
+    function editBerkasSidang($berkasInfo, $id_sidang_lama)
+    {
+        $this->db->where('id_sidang', $id_sidang_lama);
         $this->db->update('validasi_berkas_sidang', $berkasInfo);
 
         if($this->db->affected_rows() >= 0){

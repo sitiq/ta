@@ -24,13 +24,21 @@ class pengajuan_model extends CI_Model
     /**
      * This function is used to get the proyek list
      * @return array $result : This is result
+     * where proyek = disetujui AND status pengajuan_ta != diterima AND sidang status_pengambilan != 'terplotting'
      */
     function getProyek()
     {
-        $this->db->select('id_proyek, id_dosen, nama');
-        $this->db->from('proyek');
-        $this->db->where('status', 'disetujui');
-        $query = $this->db->get();
+        $query = $this->db->query
+        (
+            'SELECT * FROM proyek 
+                WHERE id_proyek IN 
+                (SELECT a.id_proyek FROM pengajuan_ta a WHERE a.id_proyek 
+                NOT IN 
+                (SELECT id_proyek FROM pengajuan_ta b WHERE b.status = \'diterima\')) 
+                OR id_proyek NOT IN 
+                (SELECT id_proyek FROM pengajuan_ta)
+                AND proyek.status = \'disetujui\''
+        );
 
         $result = $query->result();
         return $result;

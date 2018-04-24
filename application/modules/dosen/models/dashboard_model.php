@@ -18,6 +18,10 @@ class dashboard_model extends CI_Model
         $this->db->select('d.*, ds.id_user');
         $this->db->from('dosbing d');
         $this->db->join('dosen ds', 'ds.id_dosen = d.id_dosen');
+        $this->db->join('mahasiswa m', 'm.id_mahasiswa = d.id_mahasiswa');
+        $this->db->join('tugas_akhir ta', 'ta.id_mahasiswa = m.id_mahasiswa');
+        $this->db->join('periode p', 'p.id_periode = ta.id_periode');
+        $this->db->where('p.status_periode', 1);
         $this->db->where('ds.isDeleted', 0);
         $this->db->where('ds.id_user', $userId);
 
@@ -34,6 +38,9 @@ class dashboard_model extends CI_Model
         $this->db->select('a.id_dosen');
         $this->db->from('anggota_sidang a');
         $this->db->join('dosen ds', 'ds.id_dosen = a.id_dosen');
+        $this->db->join('sidang s', 's.id_sidang = a.id_sidang');
+        $this->db->join('periode p', 'p.id_periode = s.id_periode');
+        $this->db->where('p.status_periode', 1);
         $this->db->where('ds.isDeleted', 0);
         $this->db->where('ds.id_user', $userId);
 

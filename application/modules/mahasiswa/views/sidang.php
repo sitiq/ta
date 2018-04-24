@@ -5,6 +5,7 @@
  * Time: 07:28
  * Description:
  */
+//var_dump($berkasInfo)
 ?>
 <?php
 $id_berkas_sidang = '';
@@ -14,6 +15,7 @@ $isValid = '';
 $path = '';
 $id_sidang = '';
 $id_mahasiswa = '';
+$status = '';
 
 if(!empty($berkasInfo))
 {
@@ -26,6 +28,7 @@ if(!empty($berkasInfo))
         $path = $uf->path;
         $id_sidang = $uf->id_sidang;
         $id_mahasiswa = $uf->id_mahasiswa;
+        $status = $uf->status;
     }
 }
 ?>
@@ -59,6 +62,13 @@ if(!empty($berkasInfo))
                             <input type="hidden" name="id_periode" value="<?php echo $idPeriode[0]->id_periode?>">
                             <input type="submit" class="btn btn-primary pull-right" value="Daftar">
                         </form>
+                        <?php }?>
+                        <?php if ($status == 'mengulang'){?>
+                            <form action="<?php echo base_url() ?>mahasiswa/sidang/daftarUlang" method="post" enctype="multipart/form-data" role="form">
+                                <input type="hidden" name="id_periode" value="<?php echo $idPeriode[0]->id_periode?>">
+                                <input type="hidden" name="id_sidang_lama" value="<?php echo $berkasInfo[0]->id_sidang?>">
+                                <input type="submit" class="btn btn-primary pull-right" value="Daftar Ulang">
+                            </form>
                         <?php }?>
                     </div>
                     <div class="clearfix"></div>
@@ -143,6 +153,7 @@ if(!empty($berkasInfo))
                         </div>
                     </div>
                     <!--end pane upload-->
+                    <?php if ($status!='mengulang'){?>
                     <table class="table table-bordered">
                         <thead>
                         <tr bgcolor="#67CEA6" style="color: white">
@@ -191,6 +202,7 @@ if(!empty($berkasInfo))
                         ?>
                         </tbody>
                     </table>
+                    <?php }?>
                     <!--end upload berkas-->
                 </div>
                 <!--<div class="ln_solid"></div>-->
