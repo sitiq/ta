@@ -18,7 +18,6 @@ class Tugas_akhir extends BaseController
     public function detail($id){
         $data['dataMahasiswa'] = $this->ta_model->getTA($id);
         $result = $this->ta_model->getPengajuanTA($id,'diterima');
-        
 
         if($result[0]->jenis == 'proyek'){
             $detail_proyek = $this->ta_model->getProyek($result[0]->id_proyek);
@@ -58,6 +57,7 @@ class Tugas_akhir extends BaseController
         $data['dataTA'] = $this->ta_model->getTA($id);
         $data['dataDosen'] = $this->ta_model->getDosen();
         $data['dataProyek'] = $this->ta_model->getProyek();
+        $data['isMasaRegis'] = $this->ta_model->isMasaRegisTA();
         /* Mendapatkan informasi tentang pilihan tugas akhir yang diambil */
         $data_pengajuan = $this->ta_model->getPengajuanTA($id);
         $i=1;

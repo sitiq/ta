@@ -38,7 +38,7 @@
 
                     <center>
                         <h4>
-                            <strong>Cocokkan nama kolom yang ada di file .xlsx dengan data yang akan dimasukkan</strong>
+                            <strong>Cocokkan nama kolom yang ada di file (.xlsx)/(.xls) dengan data yang akan dimasukkan</strong>
                         </h4>
                         <h5>NB:</h5>
                     </center>
@@ -114,6 +114,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <input id="role" type="hidden" name="role" class="form-control col-md-7 col-xs-12" value="<?php echo $role?>">
                             <input id="file_name" type="hidden" name="file_name" class="form-control col-md-7 col-xs-12" value="<?php echo $file_name?>">
+                            <input id="file_extension" type="hidden" name="file_extension" class="form-control col-md-7 col-xs-12" value="<?php echo $file_extension?>">
                             <button class="btn btn-success" type="submit">Submit</button>
                         </div>
                     </form>

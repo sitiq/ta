@@ -1,10 +1,4 @@
 <div class="row">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>Manajemen Proyek</h3>
-        </div>
-    </div>
-    <div class="clearfix"></div>
 
     <!--berkas mahasiswa-->
     <div class="row">
@@ -12,7 +6,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Daftar Seluruh Proyek
+                    <h2>Manajemen Proyek
                     </h2>
                     <div class="clearfix"></div>
                 </div>
@@ -40,9 +34,9 @@
                         <?php } ?>
                 </div>
                 <div class="x_content">
-                    <a href="<?php echo base_url();?>akademik/proyek/add_form" class="btn btn-success pull-right">Tambah Proyek Baru</a>
+                    <a href="<?php echo base_url();?>akademik/proyek/add_form" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Tambah Proyek Baru</a>
                     <form action="<?php echo base_url(); ?>akademik/proyek/multiple_action" method="post">
-                        <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action dt-responsive">
+                        <table id="tabel" class="table table-striped table-bordered bulk_action dt-responsive">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -217,4 +211,14 @@
         var id_proyek = $(this).data('id');
         $(".modal-footer #id_proyek").val(id_proyek);
     });
+    $(function () {
+        $('#tabel').DataTable({
+            'paging' : true,
+            'lengthChange' : true,
+            'searching' : true,
+            'ordering' : false,
+            'info' : true,
+            'autoWidth' :true
+        })
+    })
 </script>

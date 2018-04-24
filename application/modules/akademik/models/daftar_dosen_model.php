@@ -89,7 +89,11 @@ class Daftar_dosen_model extends CI_Model{
     public function isSidang($id_mahasiswa){
         $this->db->select("*");
         $this->db->from('sidang');
+        $this->db->group_start();
         $this->db->where('status','disetujui');
+        $this->db->or_where('status','lulus_revisi');
+        $this->db->or_where('status','lulus');
+        $this->db->group_end();
         $this->db->where('id_mahasiswa',$id_mahasiswa);
         $query = $this->db->get();
 

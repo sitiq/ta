@@ -8,16 +8,20 @@ class Dashboard extends BaseController {
         $this->isLoggedIn();
     }
 
-    function coba(){
-        $this->loadViews("coba");
-    }
-
     function index(){
         $data['dataPeriode'] = $this->dashboard_model->getPeriodeAktif();
         $data['countProyek'] = $this->dashboard_model->getProyekCount();
-        $data['countSidang'] = $this->dashboard_model->getSidangCount($data['dataPeriode'][0]->id_periode);
-        $data['countYudisium'] = $this->dashboard_model->getYudisiumCount($data['dataPeriode'][0]->id_periode);
-        
+        if($data['dataPeriode']){
+            $data['countSidang'] = $this->dashboard_model->getSidangCount($data['dataPeriode'][0]->id_periode);
+            $data['countYudisium'] = $this->dashboard_model->getYudisiumCount($data['dataPeriode'][0]->id_periode);
+            $data['dataNilai'] = $this->getNilaiPerPeriode();
+            // $data['dataNilaiAkhirSidang'] = $this->getPenilaianSidang();
+            $data['arrayPeriode'] = $this->dashboard_model->getArrayPeriode(5);
+        } else {
+            $data['countSidang'] = 0;
+            $data['countYudisium'] = 0;
+            $data['dataNilai'] = 0;
+        }
         $this->global['pageTitle'] = "Elusi : Dashboard";
         $this->loadViews("dashboard",$this->global,$data);
     }
@@ -28,17 +32,20 @@ class Dashboard extends BaseController {
     }
 
     function getNilaiPerPeriode(){
-        $arrayPeriodeId = $this->dashboard_model->getArrayIdPeriode(4);
-        $dataKomponen = $this->dashboard_model->getKomponenNilai();
+        $arrayPeriode = $this->dashboard_model->getArrayPeriode(5);
+        $dataKomponen = $this->dashboard_model->getKomponen();
 
         $arrayNilai = array();
-        foreach ($dataKomponen as $komponen) {
-            array_push($arrayNilai,$komponen->nama);
-            foreach ($arrayPeriodeId as $id_periode) {
+        
+        foreach ($arrayPeriode as $data_periode) {
+            $id_periode = $data_periode['id_periode'];
+            $nama_periode = $data_periode['nama_periode'];
+            $data_nilai = [];
+            foreach ($dataKomponen as $komponen) {
                 $id_komponen = $komponen->id_komponen;
-                
+
                 $record = $this->dashboard_model->getPenilaian($id_periode,$id_komponen);
-                $count = 1;
+                $count = 0;
                 $total_nilai = 0;
                 if($record != FALSE) {
                     foreach ($record as $result_nilai) {
@@ -46,20 +53,65 @@ class Dashboard extends BaseController {
                         $count++;
                     }
                     $rata2 = $total_nilai/$count;
-                    $array = array(
-                        'nama_periode' => $record[0]->tahun_ajaran . ' ' . $record[0]->semester,
-                        'rata2' => $rata2
-                    );
+                    $data_nilai[$komponen->nama] = round($rata2,2);
                 } else {
-                    $array = array(
-                        'nama_periode' => $record[0]->tahun_ajaran . ' ' . $record[0]->semester,
-                        'rata2' => 0
-                    );
+                    $data_nilai[$komponen->nama] = 0.00;
                 }
-                array_push($arrayNilai[$komponen->nama],$array);
+            }
+            $array = [
+                'id_periode' => $id_periode,
+                'nama_periode' => $nama_periode,
+                'data_nilai'=> $data_nilai
+            ];
+            array_push($arrayNilai,$array);
+        }
+        return json_encode($arrayNilai);
+    }
+
+    function getPenilaianSidang(){
+        $id_periode = $this->input->get('id_periode');
+        $result = $this->dashboard_model->getNilaiSidang($id_periode);
+        $array_nilai = [
+            'A' => 0,
+            'A-' => 0,
+            'A/B' => 0,
+            'B+' => 0,
+            'B' => 0,
+            'B-' => 0,
+            'B/C' => 0,
+            'C+' => 0,
+            'C' => 0,
+            'C-' => 0,
+            'Tidak Lulus' => 0
+        ];
+        if($result){
+            foreach ($result as $data_sidang) {
+                $nilai_akhir_sidang = $data_sidang->nilai_akhir_sidang;
+                if($nilai_akhir_sidang >= 3.75){
+                    $array_nilai['A'] = $array_nilai['A'] + 1;
+                } elseif($nilai_akhir_sidang < 3.75 && $nilai_akhir_sidang >= 3.50){
+                    $array_nilai['A-'] = $array_nilai['A-'] + 1;
+                } elseif($nilai_akhir_sidang < 3.50 && $nilai_akhir_sidang >= 3.25){
+                    $array_nilai['A/B'] = $array_nilai['A/B'] + 1;
+                } elseif($nilai_akhir_sidang < 3.25 && $nilai_akhir_sidang >= 3.00){
+                    $array_nilai['B+'] = $array_nilai['B+'] + 1;
+                } elseif($nilai_akhir_sidang < 3.00 && $nilai_akhir_sidang >= 2.75){
+                    $array_nilai['B'] = $array_nilai['B'] + 1;
+                } elseif($nilai_akhir_sidang < 2.75 && $nilai_akhir_sidang >= 2.50){
+                    $array_nilai['B-'] = $array_nilai['B-'] + 1;
+                } elseif($nilai_akhir_sidang < 2.50 && $nilai_akhir_sidang >= 2.25){
+                    $array_nilai['B/C'] = $array_nilai['B/C'] + 1;
+                } elseif($nilai_akhir_sidang < 2.25 && $nilai_akhir_sidang >= 2.00){
+                    $array_nilai['C+'] = $array_nilai['C+'] + 1;
+                } elseif($nilai_akhir_sidang < 2.00 && $nilai_akhir_sidang >= 1.75){
+                    $array_nilai['C'] = $array_nilai['C'] + 1;
+                } elseif($nilai_akhir_sidang < 1.75 && $nilai_akhir_sidang >= 1.50){
+                    $array_nilai['C-'] = $array_nilai['C-'] + 1;
+                } else {
+                    $array_nilai['Tidak Lulus'] = $array_nilai['Tidak Lulus'] + 1;
+                }
             }
         }
-
-
+        echo json_encode($array_nilai);
     }
 }

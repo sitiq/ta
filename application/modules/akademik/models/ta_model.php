@@ -8,10 +8,24 @@ class Ta_model extends CI_Model{
         $this->db->join('periode p','p.id_periode = ta.id_periode','inner');
         if($id != NULL){
             $this->db->where('id_ta',$id);
+        } else {
+            $this->db->order_by('ta.createdDtm','DESC');
         }
         $query = $this->db->get();
 
         return $query->result();
+    }
+
+    public function isMasaRegisTA(){
+        $this->db->select("*");
+        $this->db->from("periode");
+        $this->db->where("status_periode",1);
+        $result = $this->db->get()->result();
+        
+        $tanggal_sekarang = date("Y-m-d");
+        $status_regis_ta = $tanggal_sekarang >= $result[0]->tgl_awal_regis_ta && $tanggal_sekarang <= $result[0]->tgl_akhir_regis_ta;
+    
+        return $status_regis_ta;
     }
 
     public function getPengajuanTA($id_ta,$status = NULL){

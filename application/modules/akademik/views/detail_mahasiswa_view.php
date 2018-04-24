@@ -8,11 +8,8 @@
                     </a> &nbsp;Daftar Mahasiswa
                 </h4>
             </div>
-            <?php //var_dump($dataBerkasSidang) ?>
             <br>
             <br>
-            <?php //var_dump($dataBerkasYudisium) ?>
-            <?php //var_dump($count) ?>
             <div class="clearfix"></div>
 
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -86,19 +83,19 @@
                                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                             <li role="presentation" class="active">
-                                                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Identitas Diri</a>
+                                                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Identitas Diri</a>
                                             </li>
                                             <li role="presentation" class="">
-                                                <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Tugas Akhir </a>
+                                                <a href="#tab_content2" role="tab" id="profile-tab1" data-toggle="tab" aria-expanded="false">Tugas Akhir </a>
                                             </li>
                                             <li role="presentation" class="">
                                                 <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Berkas Sidang</a>
                                             </li>
                                             <li role="presentation" class="">
-                                                <a href="#tab_content4" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Penilaian</a>
+                                                <a href="#tab_content4" role="tab" id="profile-tab3" data-toggle="tab" aria-expanded="false">Penilaian</a>
                                             </li>
                                             <li role="presentation" class="">
-                                                <a href="#tab_content5" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Berkas Yudisium</a>
+                                                <a href="#tab_content5" role="tab" id="profile-tab4" data-toggle="tab" aria-expanded="false">Berkas Yudisium</a>
                                             </li>
                                         </ul>
                                         <div id="myTabContent" class="tab-content">
@@ -176,7 +173,7 @@
                                                 </div>
                                                 <!-- end detail profile -->
                                             </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab1">
                                                 <div class="x_title">
                                                     <h3>Tugas Akhir</h3>
                                                 </div>
@@ -210,7 +207,7 @@
                                                 </center>
                                                 <?php } ?>
                                             </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab2">
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <!--table nilai-->
                                                     <?php if($dataBerkasSidang != FALSE) { ?>
@@ -280,9 +277,9 @@
                                                     <!--end table nilai-->
                                                 </div>
                                             </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
+                                            <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab3">
                                                 <?php if($dataPenilaian != FALSE) {?>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <!--table nilai-->
                                                     <table class="table table-bordered">
                                                         <thead>
@@ -338,13 +335,13 @@
                                                     <center>
                                                         <i>(Belum ada data penilaian)</i>
                                                     </center>
-                                                    <?php } ?>
                                                 </div>
+                                                <?php } ?>
                                             </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab">
+                                            <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab4">
                                                 <?php if($dataBerkasYudisium != FALSE) {?>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <!--table nilai-->
+                                                    <!--table berkas yudisium-->
                                                     <table class="table table-bordered">
                                                         <thead>
                                                             <tr bgcolor="#67CEA6" style="color: white">
@@ -390,20 +387,22 @@
                                                                     <?php } ?>
                                                                 </td>
                                                             </tr>
-                                                            <?php $i++;}
-                                                                } else {
-                                                            ?>
-                                                            <div class="x_title">
-                                                                <h3>Berkas Yudisium</h3>
-                                                            </div>
-                                                            <center>
-                                                                <i>(Belum mendaftar yudisium)</i>
-                                                            </center>
-                                                            <?php } ?>
                                                         </tbody>
                                                     </table>
-                                                    <!--end table nilai-->
-                                                </div>
+                                                    </div>
+                                                    <!--end table berkas yudisium-->
+                                                    <?php $i++;}
+                                                        } else {
+                                                    ?>
+                                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                                        <div class="x_title">
+                                                            <h3>Berkas Yudisium</h3>
+                                                        </div>
+                                                        <center>
+                                                            <i>(Belum mendaftar yudisium)</i>
+                                                        </center>
+                                                    </div>
+                                                    <?php } ?>
                                             </div>
                                         </div>
                                     </div>

@@ -72,7 +72,7 @@ class User extends BaseController
 
 
         $config['upload_path']          = './uploads/data_users';
-        $config['allowed_types']        = 'xlsx';
+        $config['allowed_types']        = 'xlsx|xls';
         $config['file_name'] = $new_name;
 
 
@@ -91,9 +91,15 @@ class User extends BaseController
             }
         } else {
             $this->global['pageTitle'] = "Elusi : Add New User"; 
-
+            $file_extension = $this->upload->data('file_ext');
+            $data['file_extension'] = $file_extension;
             $data['dataThead'] = array();
-            $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+            echo $file_extension;
+            if($file_extension == '.xlsx'){
+                $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+            } else {
+                $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xls');
+            }
             $reader->setReadDataOnly(true);
             $spreadsheet = $reader->load("./uploads/data_users/" . $new_name);
             //$spreadsheet = $reader->load("./uploads/data_users/book1.xlsx");
@@ -110,19 +116,23 @@ class User extends BaseController
             );
 
             $this->loadViews("upload_user",$this->global,$data);
-        }    
+        }
     }
 
     public function upload_submit(){
         $filename = $this->input->post('file_name');
+        $file_extension = $this->input->post('file_extension');
         $column_fname = $this->input->post('fname');
         $column_username = $this->input->post('username');
         $prodi = $this->input->post('prodi');
         $data = array();
         $this->load->model('user_model');
         $role = $this->input->post('role');
-
-        $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+        if($file_extension == '.xlsx'){
+            $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+        } else {
+            $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xls');
+        }
         $reader->setReadDataOnly(true);
         $spreadsheet = $reader->load("./uploads/data_users/" . $filename);
 

@@ -235,8 +235,13 @@
                                     </div>
                                     <input type="hidden" name="id_ta" value="<?php echo $dataTA[0]->id_ta; ?>">
                                     <input type="hidden" name="id_mahasiswa" value="<?php echo $dataTA[0]->id_mahasiswa; ?>">
-                                    <input class="btn btn-success pull-right" type="submit">
-                                    <a href="<?php echo base_url() ?>/akademik/tugas_akhir" class="btn btn-danger pull-right">Cancel</a>
+                                    <?php if(!$isMasaRegis) { ?>
+                                        <input class="btn btn-success pull-right" type="submit">
+                                        <a href="<?php echo base_url() ?>akademik/tugas_akhir" class="btn btn-danger pull-right">Cancel</a>
+                                    <?php } else { ?>
+                                        <center><h4><i>(Periode registrasi tugas akhir masih berlangsung, plotting tugas akhir belum bisa dilakukan)</i></h4></center>
+                                    
+                                    <?php }?>
                                 </form>
                             </div>
                         </div>
