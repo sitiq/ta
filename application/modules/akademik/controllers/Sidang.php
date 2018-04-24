@@ -62,24 +62,19 @@ class Sidang extends BaseController
     function accept($idValidSidang=null, $idMhs)
     {
         if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else {
             if (!empty($idValidSidang)) {
                 $berkasInfo = array(
                     'id_valid_sidang' => $idValidSidang,
                     'isValid' => 2,
                 );
-
                 $result = $this->sidang_model->accBerkas($berkasInfo, $idValidSidang);
-
                 if ($result == true) {
                     $this->session->set_flashdata('success', 'Berkas berhasil diterima!');
                 } else {
                     $this->session->set_flashdata('error', 'Berkas gagal diterima!');
                 }
-//                $this->detail($idMhs);
                 redirect('akademik/sidang/detail/'.$idMhs);
             }
         }
@@ -90,22 +85,15 @@ class Sidang extends BaseController
     function pesan($idValidSidang=null, $idSidang)
     {
         if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else
         {
             $this->load->library('form_validation');
-
             $idMhs = $this->input->post('id_mahasiswa');
-
             $this->form_validation->set_rules('nama','Judul','trim|required|max_length[128]');
             $this->form_validation->set_rules('deskripsi','Pesan','trim|required|max_length[128]');
-
             if($this->form_validation->run() == FALSE)
-            {
-                $this->detail($idSidang);
-            }
+            {$this->detail($idSidang);}
             else
             {
                 if (!empty($idValidSidang)) {
@@ -114,7 +102,6 @@ class Sidang extends BaseController
                         'isValid' => 3,
                     );
                     $result = $this->sidang_model->decBerkas($berkasInfo, $idValidSidang);
-
                     if ($result == true) {
                         $this->session->set_flashdata('success', 'Berkas berhasil ditolak!');
                     } else {
@@ -123,19 +110,11 @@ class Sidang extends BaseController
                 }
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
-
                 $pesanInfo = array('id_mahasiswa'=>$idMhs, 'nama'=>$nama, 'deskripsi'=>$deskripsi);
-
                 $result = $this->sidang_model->addPesan($pesanInfo);
-
                 if($result > 0)
-                {
-                    $this->session->set_flashdata('success', 'Revisi berhasill dikirim!');
-                }
-                else
-                {
-                    $this->session->set_flashdata('error', 'Revisi gagal dikirim!');
-                }
+                {$this->session->set_flashdata('success', 'Revisi berhasill dikirim!');}
+                else{$this->session->set_flashdata('error', 'Revisi gagal dikirim!');}
                 redirect('akademik/sidang/detail/'.$idSidang);
             }
         }
@@ -197,7 +176,6 @@ class Sidang extends BaseController
         else
         {
             $this->load->library('form_validation');
-
             $tanggalUji = $this->input->post('tanggalJadwal');
             $waktu = $this->input->post('waktuJadwal');
             $ruang = $this->input->post('ruangJadwal');

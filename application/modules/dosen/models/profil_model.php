@@ -19,19 +19,48 @@ class Profil_model extends CI_Model
     }
 
     /**
-     * This function is used to get the nid dosen
-     * @param number $id : This is to get nid and nama dosen
-     * @return array $result : This is result
+     * This function is used to check existance nim
+     * @param number $nim : This is get nim from dosen who is logged in
+     * @param number $idMhs : This is get id_dosen from dosen who is logged in
+     * @return bool : true if exist
      */
-    function cekNid($id)
-    {
-        $this->db->select('nid, nama');
-        $this->db->from('dosen');
-        $this->db->where('id_dosen', $id);
+    function checkNid($nid,$idDosen = 0){
+        $this->db->select("nid");
+        $this->db->from("dosen");
+        $this->db->where("nid", $nid);
+        $this->db->where("isDeleted", 0);
+        if($idDosen != 0){
+            $this->db->where("id_dosen !=", $idDosen);
+        }
         $query = $this->db->get();
 
-        $result = $query->result();
-        return count($result);
+        if( $query->num_rows() > 0 ){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    /**
+     * This function is used to check existance email
+     * @param number $email : This is get email from dosen who is logged in
+     * @param number $idDosen : This is get id_dosen from dosen who is logged in
+     * @return bool : true if exist
+     */
+    function checkEmail($email,$idDosen = 0){
+        $this->db->select("email");
+        $this->db->from("dosen");
+        $this->db->where("email", $email);
+        $this->db->where("isDeleted", 0);
+        if($idDosen != 0){
+            $this->db->where("id_dosen !=", $idDosen);
+        }
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     /**

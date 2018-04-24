@@ -152,21 +152,21 @@ if(!empty($profilInfo))
                             </div>
                             <div class="x_content">
                                 <!-- start update profile -->
-                                <form role="form" action="<?php echo base_url() ?>dosen/profil/editProfil" method="post"  id="editProfilForm" enctype="multipart/form-data">
+                                <form role="form" action="<?php echo base_url() ?>dosen/profil/editProfil" method="post"  id="editProfilFormDosen" enctype="multipart/form-data">
                                     <input type="hidden" class="form-control required" id="id_dosen" name="id_dosen" value="<?php echo $id_dosen ?>" >
                                     <input type="hidden" class="form-control required" id="id_user" name="id_user" value="<?php echo $userId ?>" >
                                     <div class="col-md-6">
-                                        <label for="mobile">No. Hp</label>
+                                        <label for="mobile">No. Hp <span>*</span></label>
                                         <input type="number" id="mobile" class="form-control" name="mobile" value="<?php echo $mobile?>"/><br>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="email">Email</label>
+                                        <label for="email">Email <span>*</span></label>
                                         <input type="email" id="email" class="form-control" name="email" value="<?php echo $email?>"/><br>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <label for="nama">Nama Lengkap</label>
+                                    <label for="nama">Nama Lengkap <span>*</span></label>
                                     <input type="text" id="nama" class="form-control" name="nama" value="<?php echo $nama?>"/><br>
-                                    <label for="nid">NID</label>
+                                    <label for="nid">NID <span>*</span></label>
                                     <input type="number" id="nid" class="form-control" name="nid" value="<?php echo $nid?>"/><br>
                                     <label for="skill">Keahlian <small>(pisahkan dengan 'koma')</small></label>
                                     <textarea class="form-control" id="skill" name="skill" id=""rows="3"><?php echo $skill?></textarea>

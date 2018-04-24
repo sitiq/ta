@@ -26,7 +26,8 @@ class pendadaran_model extends CI_Model
         $this->db->join('dosen d', 'd.id_dosen = a.id_dosen');
         $this->db->join('user u', 'u.id_user = d.id_user');
         $this->db->where('u.id_user',$userId);
-        $this->db->where('v.id_berkas_sidang',8);
+        $this->db->where('v.id_berkas_sidang',14);
+        $this->db->where('v.isValid','2');
         $query = $this->db->get();
 
         $result = $query->result();
@@ -101,7 +102,7 @@ class pendadaran_model extends CI_Model
         }
     }
 //    get jumlah total nilai tiap anggota
-    function getTotalNilaiInfo($userId, $nilaiId)
+    function getTotalNilaiInfoKetua($userId, $nilaiId)
     {
         $this->db->select('sum(kn.nilai) total_nilai');
         $this->db->from('penilaian p');
@@ -198,14 +199,17 @@ class pendadaran_model extends CI_Model
 
         if( $query->num_rows() > 0 ){ return count($query->result()); } else { return FALSE; }
     }
-//    get penilaian oleh anggota sidang  > show to ketua sidang
+//    get total penilaian seluruh oleh anggota sidang  > show to ketua sidang
     function getPenilaian($idSidang)
     {
-        $this->db->select('*');
+//        $this->db->select('sum(kn.nilai) total_nilai');
+        $this->db->select('a.role, p.nilai_akhir_dosen, sum(k.nilai) sum_nilai');
         $this->db->from('penilaian p');
+        $this->db->join('komponen_nilai k','k.id_penilaian=p.id_penilaian','left');
         $this->db->join('sidang s','s.id_sidang=p.id_sidang','left');
         $this->db->join('anggota_sidang a','a.id_anggota_sidang=p.id_anggota_sidang','left');
         $this->db->where('p.id_sidang', $idSidang);
+        $this->db->group_by('a.role');
         $query = $this->db->get();
 
         if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }

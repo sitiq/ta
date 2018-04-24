@@ -24,7 +24,6 @@ class dashboard_model extends CI_Model
         $this->db->where('p.status_periode', 1);
         $this->db->where('ds.isDeleted', 0);
         $this->db->where('ds.id_user', $userId);
-
         $query = $this->db->get();
         return count($query->result());
     }

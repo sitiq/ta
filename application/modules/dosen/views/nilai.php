@@ -5,8 +5,6 @@
  * Time: 07:31
  * Description:
  */
-//var_dump($penilaianRataInfo)
-//var_dump($nilaiInfo)
 ?>
 <?php
 $path = '';
@@ -48,6 +46,12 @@ if(!empty($revisiInfo))
                             <ul>
                                 <li>Simpan Laporan Tugas Akhir(.pdf) yang telah diberi pesan revisi, lalu unggah</li>
                             </ul>
+                            <?php if (!empty($ketuaInfo) && $nilaiInfo[0]->nilai_akhir_dosen!=0.00){?>
+                            <strong>HASIL AKHIR</strong>
+                            <ul>
+                                <li>Tentukan hasil akhir setelah semua anggota sidang memberi penilaian</li>
+                            </ul>
+                            <?php }?>
                         </div>
                     </div>
                 </div>
@@ -212,7 +216,7 @@ if(!empty($revisiInfo))
                                             <?php if ($record->status=='disetujui'){?>
                                                 <a class="btn btn-warning pull-right" data-toggle="modal" data-target="#submit-nilai"><i class="fa fa-edit"></i> Edit</a>
                                             <?php }?>
-                                            <center><h4><strong>Total : </strong><?php echo $totalNilaiInfo[0]->total_nilai?></h4></center>
+                                            <center><h4><strong>Total : </strong><?php echo $totalNilaiInfoKetua[0]->total_nilai?></h4></center>
                                         <?php }?>
                                     </td>
                                 </tr>
@@ -303,7 +307,7 @@ if(!empty($revisiInfo))
                                 </tr>
                                 <tr bgcolor="#59BD96" style="color: white">
                                     <th class="col-md-6" colspan="2">Peran</th>
-                                    <th class="col-md-6" colspan="2">Rata-rata</th>
+                                    <th class="col-md-6" colspan="2">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -313,7 +317,7 @@ if(!empty($revisiInfo))
                                         ?>
                                         <tr>
                                             <td colspan="2"><?php echo $record->role?></td>
-                                            <td colspan="2"><?php echo $record->nilai_akhir_dosen?></td>
+                                            <td colspan="2"><?php echo $record->sum_nilai?></td>
                                         </tr>
                                         <?php
                                     }
@@ -464,6 +468,7 @@ if(!empty($revisiInfo))
                     <div class="modal-body">
                         <center>
                             <h4>Mahasiswa LULUS ?</h4>
+                            <h5>Pastikan semua anggota sidang telah mengisi nilai</h5>
                             <h5><strong>Data tidak dapat diubah, jika telah memilih  tombol <i>Yes</i></strong></h5>
                             <div id="testmodal" style="padding: 5px 20px;">
                                 <form action="<?php echo base_url() ?>dosen/pendadaran/submitPenentuanLulus" method="post" enctype="multipart/form-data" role="form">
@@ -499,6 +504,7 @@ if(!empty($revisiInfo))
                     <div class="modal-body">
                         <center>
                             <h4>Mahasiswa LULUS dengan REVISI ?</h4>
+                            <h5>Pastikan semua anggota sidang telah mengisi nilai</h5>
                             <h5><strong>Data tidak dapat diubah, jika telah memilih  tombol <i>Yes</i></strong></h5>
                             <div id="testmodal" style="padding: 5px 20px;">
                                 <form action="<?php echo base_url() ?>dosen/pendadaran/submitPenentuanLulusRevisi" method="post" enctype="multipart/form-data" role="form">
@@ -534,6 +540,7 @@ if(!empty($revisiInfo))
                     <div class="modal-body">
                         <center>
                             <h4>Mahasiswa MENGULANG ?</h4>
+                            <h5>Pastikan semua anggota sidang telah mengisi nilai</h5>
                             <h5><strong>Data tidak dapat diubah, jika telah memilih  tombol <i>Yes</i></strong></h5>
                             <div id="testmodal" style="padding: 5px 20px;">
                                 <form action="<?php echo base_url() ?>dosen/pendadaran/submitPenentuanUlang" method="post" enctype="multipart/form-data" role="form">

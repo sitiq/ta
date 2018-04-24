@@ -56,6 +56,7 @@
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                         <tr>
+                            <th>Tanggal Daftar</th>
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Tanggal Uji</th>
@@ -72,6 +73,7 @@
                             {
                                 ?>
                                 <tr>
+                                    <td><?php echo date_format(date_create_from_format('Y-m-d',substr($record->createdDtm,0,10)), 'd/m/Y') ?></td>
                                     <td><?php echo $record->nim ?></td>
                                     <td><?php echo $record->nama ?></td>
                                     <td>

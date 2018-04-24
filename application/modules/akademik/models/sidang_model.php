@@ -15,13 +15,12 @@ class sidang_model extends CI_Model
      */
     function getSidangInfo($sidangId=NULL)
     {
-        $this->db->select('s.id_sidang, s.status, m.nim, m.nama, m.id_mahasiswa, j.tanggal, j.ruang, j.waktu,
-        ds.id_dosen id_dosbing, d.nama nama_dosbing');
+        $this->db->select('s.id_sidang, s.createdDtm, s.status, m.nim, m.nama, m.id_mahasiswa, 
+        j.tanggal, j.ruang, j.waktu, ds.id_dosen id_dosbing, d.nama nama_dosbing');
         $this->db->from('sidang s');
         $this->db->join('mahasiswa m', 'm.id_mahasiswa = s.id_mahasiswa','left');
         $this->db->join('dosbing ds', 'ds.id_mahasiswa = m.id_mahasiswa','left');
         $this->db->join('dosen d', 'd.id_dosen = ds.id_dosen','left');
-//        $this->db->join('anggota_sidang a', 'a.id_sidang = s.id_sidang','left');
         $this->db->join('jadwal_sidang j', 'j.id_sidang = s.id_sidang','left');
         if ($sidangId!=null){
             $this->db->where('s.id_sidang', $sidangId);

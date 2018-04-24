@@ -65,6 +65,7 @@
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
                                         </div>
+                                        <div id="errordiv"></div>
                                     </div>
                                     <div class="col-md-5 col-sm-5 col-xs-12">
                                         <div class='input-group date myDatepicker3' id='myDatepicker3'>
@@ -73,6 +74,7 @@
                                                 <span class="glyphicon glyphicon-time"></span>
                                             </span>
                                         </div>
+                                        <div id="errordiv-waktu"></div>
                                     </div>
                                 </div>
                             </div>
@@ -83,6 +85,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="col-md-7 col-sm-7 col-xs-12">
                                         <input name="ruangJadwal" id="ruangJadwal" type='text' class="form-control"/>
+                                        <div id="errordiv-ruang"></div>
                                     </div>
                                 </div>
                             </div>
@@ -114,6 +117,7 @@
                                     }
                                     ?>
                                 </select>
+                                <div id="errordiv-ketua"></div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label for="ketua">Sekretaris</label><small></small>
@@ -135,6 +139,7 @@
                                     }
                                     ?>
                                 </select>
+                                <div id="errordiv-sekre"></div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label for="anggota">Dosen Pembimbing</label><small></small>

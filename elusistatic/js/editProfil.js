@@ -97,4 +97,69 @@ $(document).ready(function () {
         }
 
     });
+    $("#editProfilFormDosen").validate({
+        rules: {
+            nama: {
+                required: true,
+                noSpace: true
+            },
+            nid: {
+                required: true,
+                noSpace: true,
+                minlength: 18,
+                remote: {
+                    url: baseURL + 'dosen/profil/checkNidExists',
+                    type: 'post',
+                    data : {
+                        id_dosen : function(){
+                            return $("#id_dosen").val();
+                        }
+                    }
+                }
+            },
+            email: {
+                required: true,
+                email: true,
+                // remote: {
+                //     url: baseURL + 'dosen/profil/checkEmailExists',
+                //     type: 'post',
+                //     data: {
+                //         id_dosen: function() {
+                //             return $("#id_dosen").val();
+                //         }
+                //     }
+                // }
+            },
+            mobile: {
+                required: true,
+                noSpace: true,
+                minlength: 10,
+                maxlength: 13
+            }
+        },
+        messages: {
+            nama: {
+                required: "Nama harus diisi",
+                noSpace: "Nama tidak boleh kosong"
+            },
+            nid: {
+                required: "NID harus diisi",
+                minlength: "Masukkan NIP valid",
+                remote: "NID sudah ada",
+                noSpace: "NID tidak boleh kosong"
+            },
+            email: {
+                required: "Alamat email harus diisi",
+                email: "Masukkan email valid",
+                // remote: "Email sudah ada"
+            },
+            mobile: {
+                required: "Nomor Handphone harus diisi",
+                minlength: "Masukkan valid nomor handphone",
+                maxlength: "Masukkan valid nomor handphone",
+                digits: "Hanya boleh memasukkan nomor"
+            }
+        }
+
+    });
 });

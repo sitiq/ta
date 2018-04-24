@@ -144,7 +144,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                 </button>
-                <h3>Penilaian <small>Add</small></h3>
+                <h3>Berkas Sidang <small>Add</small></h3>
             </div>
             <div class="modal-body">
                 <div class="x_panel">
@@ -180,7 +180,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                 </button>
-                <h3>Penilaian <small>Edit</small></h3>
+                <h3>Berkas Sidang <small>Edit</small></h3>
             </div>
             <div class="modal-body">
                 <div class="x_panel">
