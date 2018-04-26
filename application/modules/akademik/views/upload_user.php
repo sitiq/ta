@@ -35,10 +35,10 @@
                         <?php } ?>
                 </div>
                 <div class="x_content">
-                    
+
                     <center>
                         <h4>
-                            <strong>Cocokkan nama kolom yang ada di file .xlsx dengan data yang akan dimasukkan</strong>
+                            <strong>Cocokkan nama kolom yang ada di file (.xlsx)/(.xls) dengan data yang akan dimasukkan</strong>
                         </h4>
                         <h5>NB:</h5>
                     </center>
@@ -81,10 +81,21 @@
                                 </select>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Username
                                 <span class="required">*</span>
                             </label>
+                            <?php if($role == ROLE_MAHASISWA) { ?>
+                            <small>
+                                <strong>Pilih NIM Mahasiswa</strong>
+                            </small>
+                            <?php } ?>
+                            <?php if($role == ROLE_DOSEN) { ?>
+                            <small>
+                                <strong>Pilih NID Dosen atau kolom yang berisi <i>unique username</i></strong>
+                            </small>
+                            <?php } ?>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="username" id="username" class="form-control col-md-7 col-xs-12">
                                     <option value="">Pilih Kolom untuk username...</option>
@@ -101,9 +112,10 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <input id="role" type="hidden" name="role" class="form-control col-md-7 col-xs-12" value="<?php echo $role?>">
-                        <input id="file_name" type="hidden" name="file_name" class="form-control col-md-7 col-xs-12" value="<?php echo $file_name?>">
-                        <button class="btn btn-success" type="submit">Submit</button>
+                            <input id="role" type="hidden" name="role" class="form-control col-md-7 col-xs-12" value="<?php echo $role?>">
+                            <input id="file_name" type="hidden" name="file_name" class="form-control col-md-7 col-xs-12" value="<?php echo $file_name?>">
+                            <input id="file_extension" type="hidden" name="file_extension" class="form-control col-md-7 col-xs-12" value="<?php echo $file_extension?>">
+                            <button class="btn btn-success" type="submit">Submit</button>
                         </div>
                     </form>
                 </div>

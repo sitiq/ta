@@ -9,7 +9,7 @@
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <?php //var_dump($dataThead);?>
+            <?php //var_dump($role);?>
             <div class="x_panel">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <?php
@@ -47,6 +47,26 @@
                                 <input id="fname" type="text" name="fname" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
+                        <?php if($role == ROLE_MAHASISWA) {?>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">NIM
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="nim" type="text" name="nim" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <?php if($role == ROLE_DOSEN || $role == ROLE_AKADEMIK) {?>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">NID
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="nid" type="text" name="nid" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <?php } ?>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Username
                                 <span class="required">*</span>
@@ -73,8 +93,18 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-
-                                <a href="<?php echo base_url() ?>akademik/akun_mahasiswa/" class="btn btn-danger">Cancel</a>
+                                <?php if($role == ROLE_MAHASISWA) {?>
+                                    <a href="<?php echo base_url() . 'akademik/akun_mahasiswa/'?>" class="btn btn-danger">Cancel</a>
+                                <?php } ?>
+                                <?php if($role == ROLE_DOSEN) {?>
+                                    <a href="<?php echo base_url() . 'akademik/akun_dosen/'?>" class="btn btn-danger">Cancel</a>
+                                <?php } ?>
+                                <?php if($role == ROLE_KAPRODI) {?>
+                                    <a href="<?php echo base_url() . 'akademik/akun_kaprodi/'?>" class="btn btn-danger">Cancel</a>
+                                <?php } ?>
+                                <?php if($role == ROLE_AKADEMIK) {?>
+                                    <a href="<?php echo base_url() . 'akademik/akun_akademik/'?>" class="btn btn-danger">Cancel</a>
+                                <?php } ?>
                                 <button class="btn btn-primary" type="reset">Reset</button>
                                 <button class="btn btn-success" type="submit">Submit</button>
                             </div>
@@ -101,20 +131,19 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                         <ul>
                             <li>
-                                <strong>Pastikan <u>judul kolom</u> yang ada di file (.xlsx) berada di baris paling atas / pertama</strong>
+                                <strong>Pastikan <u>judul kolom</u> yang ada di file (.xlsx)/(.xls) berada di baris paling atas / pertama</strong>
                             </li>
                             <li>
-                                <strong>Pastikan <u>data user</u> yang ada di file (.xlsx) berada di baris kedua</strong>
+                                <strong>Pastikan <u>data user</u> yang ada di file (.xlsx)/(.xls) berada di baris kedua</strong>
                             </li>
                             <li>
                                 <strong>Judul kolom tidak perlu sama persis dengan contoh diatas, data pada kolom mana saja yang
-                                    akan diinputkan dari file (.xlsx) akan disesuaikan pada langkah selanjutnya </strong>
+                                    akan diinputkan dari file (.xlsx)/(.xls) akan disesuaikan pada langkah selanjutnya </strong>
                             </li>
                             <?php if($role == ROLE_MAHASISWA) { ?>
                                 <li>
                                     <strong><u>Password</u> untuk user <u>mahasiswa</u> akan secara otomatis diambilkan dari NIU</strong>
                                 </li>
-
                             <?php } elseif($role == ROLE_DOSEN) { ?>
                                 <li>
                                     <strong><u>Password</u> untuk user <u>dosen</u> akan secara otomatis diambilkan dari NID</strong>
@@ -124,7 +153,7 @@
                         </ul>
                         </div>
 
-                        <?php echo form_open_multipart('akademik/user/upload_data_user'); ?>
+                        <?php echo form_open_multipart('akademik/user/upload_data_user/' . $role); ?>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
                                 <input id="role" type="hidden" name="role" class="form-control col-md-7 col-xs-12" value="<?php echo $role?>">

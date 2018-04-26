@@ -40,7 +40,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <table id="datatable" class="table table-striped table-bordered dt-responsive">
+                        <table id="tabel" class="table table-striped table-bordered dt-responsive">
                             <thead>
                                 <tr style="vertical-align:middle">
                                     <th class="col-md-2" style="vertical-align:middle">
@@ -140,3 +140,15 @@
         </div>
     </div>
 </div>
+<script>
+$(function () {
+    $('#tabel').DataTable({
+        'paging' : true,
+        'lengthChange' : true,
+        'searching' : true,
+        'ordering' : false,
+        'info' : true,
+        'autoWidth' :true
+    })
+})
+</script>

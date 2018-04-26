@@ -1,13 +1,17 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Daftar_mahasiswa_model extends CI_Model{
-    public function getMahasiswa($id_mahasiswa = NULL){
+    public function getMahasiswa($id_mahasiswa = NULL,$angkatan = NULL){
         $this->db->select("*");
         $this->db->from('mahasiswa');
         $this->db->where('isDeleted',0);
         if($id_mahasiswa != NULL){
             $this->db->where('id_mahasiswa',$id_mahasiswa);
         }
+        if($angkatan != NULL){
+            $this->db->where('substring(nim,1,2)',$angkatan);
+        }
+        $this->db->order_by('nim DESC, nama');
         $query = $this->db->get();
 
         return $query->result();
@@ -25,14 +29,18 @@ class Daftar_mahasiswa_model extends CI_Model{
     public function isSidang($id_mahasiswa){
         $this->db->select("*");
         $this->db->from('sidang');
+        $this->db->group_start();
         $this->db->where('status','disetujui');
+        $this->db->or_where('status','lulus_revisi');
+        $this->db->or_where('status','lulus');
+        $this->db->group_end();
         $this->db->where('id_mahasiswa',$id_mahasiswa);
         $query = $this->db->get();
 
         if( $query->num_rows() > 0 ){ return TRUE; } else { return FALSE; }
     }
 
-    public function get_nilai_akhir($id_mahasiswa){
+    public function get_nilai_akhir($id_mahasiswa = NULL){
         $this->db->select("*");
         $this->db->from('sidang');
         if($id_mahasiswa != NULL){
@@ -150,5 +158,15 @@ class Daftar_mahasiswa_model extends CI_Model{
         $query = $this->db->get();
 
         if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
+    }
+
+    public function getAngkatan(){
+        $this->db->select('substring(nim,1,2) as angkatan');
+        $this->db->from('mahasiswa');
+        $this->db->group_by("angkatan");
+        $query = $this->db->get();
+
+        if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
+
     }
 }

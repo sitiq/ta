@@ -8,12 +8,13 @@ class Proyek_model extends CI_Model{
         $this->db->where('p.isDeleted',0);
         if($id != NULL){
             $this->db->where('id_proyek',$id);
+        } else {
+            $this->db->order_by('p.status DESC');
         }
         $query = $this->db->get();
 
         return $query->result();
     }
-
 
     public function getDosen(){
         $this->db->select("*");

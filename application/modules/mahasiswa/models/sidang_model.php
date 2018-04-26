@@ -33,7 +33,6 @@ class sidang_model extends CI_Model
         $this->db->select('id_periode, status_periode');
         $this->db->from('periode');
         $this->db->where('status_periode',1);
-        $this->db->where('isDeleted',0);
         $query = $this->db->get();
 
         $result = $query->result();

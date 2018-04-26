@@ -9,9 +9,18 @@ class Daftar_mahasiswa extends BaseController
     }
 
     public function index(){
-        $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa();
+        if($this->input->get('angkatan')){
+            $angkatan = $this->input->get('angkatan');
+            if($angkatan == "all"){
+                $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa();
+            } else {
+                $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa(NULL,$angkatan);
+            }
+        } else {
+            $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa();
+        }
+        $data['arrayAngkatan'] = $this->daftar_mahasiswa_model->getAngkatan();
         $track_mahasiswa = array();
-
         foreach ($data_mahasiswa as $result) {
             $id_mahasiswa = $result->id_mahasiswa;
             $nilai_result = $this->daftar_mahasiswa_model->get_nilai_akhir($id_mahasiswa);
@@ -39,6 +48,7 @@ class Daftar_mahasiswa extends BaseController
         $this->global['pageTitle'] = "Elusi : Daftar Mahasiswa"; 
         //$data['nilai'] = $this->daftar_mahasiswa_model->get_nilai_akhir(1)->row()->nilai_akhir_sidang;
         $data['dataTable'] = $track_mahasiswa;
+        //echo json_encode($track_mahasiswa);
         $this->loadViews("daftar_mahasiswa",$this->global,$data);
     }
 
@@ -48,6 +58,7 @@ class Daftar_mahasiswa extends BaseController
         $data['dataJudulTA'] = $this->daftar_mahasiswa_model->getJudulTA($id_mahasiswa);
         $data['dataBerkasSidang'] = $this->daftar_mahasiswa_model->getBerkasSidang($id_mahasiswa);
         $data['dataBerkasYudisium'] = $this->daftar_mahasiswa_model->getBerkasYudisium($id_mahasiswa);
+        
         $dataSidang = $this->daftar_mahasiswa_model->getNilaiSidang($id_mahasiswa);
         
         if(!$dataSidang){
@@ -106,9 +117,72 @@ class Daftar_mahasiswa extends BaseController
 
         $data['dataPenilaian'] = $dataPenilaian;
 
-
         $this->loadViews("detail_mahasiswa_view",$this->global,$data);
     }
 
+    public function exportToExcel(){
+        $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa();
+        $track_mahasiswa = array();
+        foreach ($data_mahasiswa as $result) {
+            $id_mahasiswa = $result->id_mahasiswa;
+            $nilai_result = $this->daftar_mahasiswa_model->get_nilai_akhir($id_mahasiswa);
+            
+            if($nilai_result != FALSE){
+                $nilai_akhir = $nilai_result[0]->nilai_akhir_sidang;
+            } else {
+                $nilai_akhir = '0';
+            }
+
+            $array_mahasiswa = array(
+                'nim' => $result->nim,
+                'nama' => $result->nama,
+                'no_hp'=> ($result->mobile == NULL ? '' : $result->mobile),
+                'judul' => ($this->daftar_mahasiswa_model->isJudul($id_mahasiswa) ? 'Terdaftar' : 'Belum Terdaftar'),
+                'sidang' => ($this->daftar_mahasiswa_model->isSidang($id_mahasiswa) ? 'Terdaftar' : 'Belum Terdaftar'),
+                'nilai_akhir' => $nilai_akhir,
+                'yudisium' => ($this->daftar_mahasiswa_model->isYudisium($id_mahasiswa) ? 'Terdaftar' : 'Belum Terdaftar')
+            );
+
+            array_push($track_mahasiswa,$array_mahasiswa);
+        }
+
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        foreach(range('A','H') as $columnID) {
+			$spreadsheet->getActiveSheet()->getColumnDimension($columnID)->setAutoSize(true);
+        }
+        $spreadsheet->setActiveSheetIndex(0)
+                    ->setCellValue("A1","No.")
+                    ->setCellValue("B1",'NIM')
+                    ->setCellValue("C1",'Nama Lengkap')
+                    ->setCellValue("D1",'Nomor HP')
+                    ->setCellValue("E1",'Judul TA')
+                    ->setCellValue("F1",'Sidang')
+                    ->setCellValue("G1",'Nilai Akhir')
+                    ->setCellValue("H1",'Yudisium');
+        $i=2;
+        $no=1;
+        foreach ($track_mahasiswa as $data) {
+            $spreadsheet->setActiveSheetIndex(0)
+                        ->setCellValue("A$i",$no)
+                        ->setCellValue("B$i",$data['nim'])
+                        ->setCellValue("C$i",$data['nama'])
+                        ->setCellValue("D$i",$data['no_hp'])
+                        ->setCellValue("E$i",$data['judul'])
+                        ->setCellValue("F$i",$data['sidang'])
+                        ->setCellValue("G$i",$data['nilai_akhir'])
+                        ->setCellValue("H$i",$data['yudisium']);
+            $i++;
+            $no++;
+        }
+        $spreadsheet->getActiveSheet()->setTitle('Data_Mahasiswa');
+        $spreadsheet->setActiveSheetIndex(0);
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="daftar_mahasiswa.xlsx"');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+        //$writer->save('data_mahasiswa.xlsx');
+    }
     
 }

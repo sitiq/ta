@@ -1,3 +1,8 @@
+<?php
+$array_usulan = [];
+
+?>
+
 <div role="main">
     <div class="">
         <div class="page-title">
@@ -105,17 +110,11 @@
                                         </table>
                                     </div>
                                 </div>
-                                <form action="<?php echo base_url(); ?>akademik/tugas_akhir/plotting_ta" method="post">
+                                <form action="<?php echo base_url(); ?>akademik/tugas_akhir/plotting_ta" method="post" onSubmit="return confirm('Apakah anda yakin dengan pilihan anda? (Aksi yang sudah dilakukan tidak bisa dikembalikan lagi)');">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <p>
                                             <span class="badge">Pengajuan Tugas Akhir</span>
                                         </p>
-                                        <!--alert jika terima proyek berhasil-->
-                                        <!-- <div class="alert alert-success alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
-                                        Pengajuan diterima !
-                                    </div> -->
-                                        <!--end alert jika terima proyek berhasil-->
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <tbody>
@@ -139,7 +138,15 @@
                                                                 <?php echo ($data['jenis'] == 'proyek'? $data['nama_dosen'] : '' ); ?>
                                                             </td>
                                                             
-                                                            <?php if($data['jenis'] == 'usul') { ?>
+                                                            <?php if($data['jenis'] == 'usul') { 
+                                                                $array_usulan = [
+                                                                    'judul' => $data['judul'],
+                                                                    'deskripsi' => $data['deskripsi'],
+                                                                    'bisnis_rule' => $data['bisnis_rule'],
+                                                                    'file' => $data['file']
+                                                                ];
+                                                            ?>
+                                                            
                                                             <td>
                                                                 <input type="radio" class="flat" name="terima" id="terima_usulan" value="<?php echo $data['id_pengajuan_ta'] . ' ' .'usulan'?>"
                                                                 />
@@ -179,7 +186,7 @@
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <p>
-                                                <?php echo $dataPengajuanTA[0]['judul']; ?>
+                                                <?php echo $array_usulan['judul']; ?>
                                             </p>
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -187,7 +194,7 @@
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <p>
-                                                <?php echo $dataPengajuanTA[0]['deskripsi']; ?>
+                                                <?php echo $array_usulan['deskripsi']; ?>
                                             </p>
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -195,7 +202,7 @@
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <p>
-                                                <?php echo $dataPengajuanTA[0]['bisnis_rule']; ?>
+                                                <?php echo $array_usulan['bisnis_rule']; ?>
                                             </p>
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -203,7 +210,7 @@
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <p>
-                                                <?php echo $dataPengajuanTA[0]['file']; ?>
+                                                <?php echo $array_usulan['file']; ?>
                                             </p>
                                         </div>
                                         <div class="col-md-6">
@@ -225,18 +232,22 @@
                                             Tentukan Proyek
                                             <select name="proyek" id="proyek" class="form-control">
                                                 <option value="">Pilih Proyek..</option>
-                                                <?php foreach ($dataProyek as $data) { ?>
+                                                <?php if($dataProyek) { foreach ($dataProyek as $data) { ?>
                                                 <option value="<?php echo $data->id_proyek?>">
                                                     <?php echo $data->nama_proyek; ?>
                                                 </option>
-                                                <?php } ?>
+                                                <?php } } ?>
                                             </select>
                                         </div>
                                     </div>
                                     <input type="hidden" name="id_ta" value="<?php echo $dataTA[0]->id_ta; ?>">
                                     <input type="hidden" name="id_mahasiswa" value="<?php echo $dataTA[0]->id_mahasiswa; ?>">
-                                    <input class="btn btn-success pull-right" type="submit">
-                                    <a href="<?php echo base_url() ?>/akademik/tugas_akhir" class="btn btn-danger pull-right">Cancel</a>
+                                    <?php if(!$isMasaRegis) { ?>
+                                        <input class="btn btn-success pull-right" type="submit">
+                                        <a href="<?php echo base_url() ?>akademik/tugas_akhir" class="btn btn-danger pull-right">Cancel</a>
+                                    <?php } else { ?>
+                                        <center><h4><i>(Periode registrasi tugas akhir masih berlangsung, plotting tugas akhir belum bisa dilakukan)</i></h4></center>
+                                    <?php }?>
                                 </form>
                             </div>
                         </div>

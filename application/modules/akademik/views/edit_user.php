@@ -9,7 +9,7 @@
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <?php //var_dump($role);?>
+            <?php //var_dump($dataUser);?>
             <div class="x_panel">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <?php
@@ -36,7 +36,7 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" id="addEditUserForm" action="<?php echo base_url() ?>akademik/user/edit_user" method="post">
+                    <form class="form-horizontal form-label-left" id="addEditUserForm" action="<?php echo base_url() ?>akademik/user/edit_user/<?php echo $role; ?>" method="post">
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Lengkap
                                 <span class="required">*</span>
@@ -47,6 +47,26 @@
                                 <input id="fname" type="text" name="fname" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $dataUser[0]->nama?>">
                             </div>
                         </div>
+                        <?php if($role == ROLE_MAHASISWA){?>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">NIM
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="nim" type="text" name="nim" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $dataUser[0]->nim?>">
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <?php if($role == ROLE_DOSEN || $role == ROLE_KAPRODI){?>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">NID
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="nid" type="text" name="nid" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $dataUser[0]->nid?>">
+                            </div>
+                        </div>
+                        <?php } ?>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Username
                                 <span class="required">*</span>
@@ -82,13 +102,22 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <a href="<?php echo base_url() ?>akademik/akun_mahasiswa/" class="btn btn-danger" type="button">Cancel</a>
-                                <input id="role" type="hidden" name="role" class="form-control col-md-7 col-xs-12" value="<?php echo $role?>">
+                                <?php if($role == ROLE_MAHASISWA) {?>
+                                    <a href="<?php echo base_url() . 'akademik/akun_mahasiswa/'?>" class="btn btn-danger">Cancel</a>
+                                <?php } ?>
+                                <?php if($role == ROLE_DOSEN) {?>
+                                    <a href="<?php echo base_url() . 'akademik/akun_dosen/'?>" class="btn btn-danger">Cancel</a>
+                                <?php } ?>
+                                <?php if($role == ROLE_KAPRODI) {?>
+                                    <a href="<?php echo base_url() . 'akademik/akun_kaprodi/'?>" class="btn btn-danger">Cancel</a>
+                                <?php } ?>
+                                <?php if($role == ROLE_AKADEMIK) {?>
+                                    <a href="<?php echo base_url() . 'akademik/akun_akademik/'?>" class="btn btn-danger">Cancel</a>
+                                <?php } ?>
                                 <button class="btn btn-primary" type="reset">Reset</button>
                                 <button class="btn btn-success" type="submit">Submit</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>

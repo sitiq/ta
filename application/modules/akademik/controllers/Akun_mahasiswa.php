@@ -17,14 +17,13 @@ class Akun_mahasiswa extends BaseController
 
     public function add_form(){
         $data['role'] = ROLE_MAHASISWA;
-        $this->global['pageTitle'] = "Elusi : Add New User"; 
+        $this->global['pageTitle'] = "Elusi : Add New User";
         $this->loadViews("add_user",$this->global,$data);
-
     }
 
     public function edit_form($id){
         $data['role'] = ROLE_MAHASISWA;
-        $data['dataUser'] = $this->user_model->getUser($id);
+        $data['dataUser'] = $this->user_model->getUser($id,ROLE_MAHASISWA);
         $this->global['pageTitle'] = "Elusi : Edit User"; 
         $this->loadViews("edit_user",$this->global,$data);
     }

@@ -5,18 +5,24 @@
             <div class="title_left">
                 <h3>Dashboard</h3>
             </div>
+            <?php //var_dump($dataNilaiAkhirSidang); ?>
+            <?php //var_dump($dataNilai); ?>
         </div>
         <div class="clearfix"></div>
         <br>
         <center>
             <p>
-                <h3>Periode Semester
-                    <span>
-                        <strong>
-                            <?php echo ucfirst($dataPeriode[0]->semester) . " " . $dataPeriode[0]->tahun_ajaran ?>
-                        </strong>
-                    </span>
-                </h3>
+                <?php if($dataPeriode) { ?>
+                    <h3>Periode Semester
+                        <span>
+                            <strong>
+                                <?php echo ucfirst($dataPeriode[0]->semester) . " " . $dataPeriode[0]->tahun_ajaran; ?>
+                            </strong>
+                        </span>
+                    </h3>
+                <?php } else {
+                    echo "<h3><strong><i>(Belum ada periode yang aktif)</i></strong></h3>";
+                } ?>
             </p>
             <p>
                 <i>
@@ -25,7 +31,7 @@
             </p>
         </center>
         <div class="row top_tiles">
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="animated flipInY col-md-4 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                     <div class="icon">
                         <i class="fa fa-tasks"></i>
@@ -41,7 +47,7 @@
                     </p>
                 </div>
             </div>
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="animated flipInY col-md-4 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                     <div class="icon">
                         <i class="fa fa-users"></i>
@@ -56,10 +62,10 @@
                     </p>
                 </div>
             </div>
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="animated flipInY col-md-4 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                     <div class="icon">
-                        <i class="fa fa-line-chart"></i>
+                        <i class="fa fa-graduation-cap"></i>
                     </div>
                     <div class="count">
                         <?php echo $countYudisium ?>
@@ -71,283 +77,70 @@
                     </p>
                 </div>
             </div>
-            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="">
-                    <!--start of chart-->
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>
-                                <strong>PENILAIAN MAHASISWA (RATA-RATA)</strong>
-                            </h2>
-                            <div class="clearfix"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <h4>
+                                <strong>Diagram Lingkaran Penilaian Sidang per Periode</strong>
+                            </h4>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="x_panel tile fixed_height_320">
-                                <div class="x_title">
-                                    <h3><strong>Tata Bahasa</strong></h3>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <h4>Rata - rata nilai per 4 periode</h4>
-                                    <div class="widget_summary">
-                                        <div class="w_left w_25">
-                                            <span>2018/2019 Ganjil</span>
-                                        </div>
-                                        <div class="w_center w_55">
-                                            <div class="progress">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                                                    <span class="sr-only">100% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w_right w_20">
-                                            <span>3.8</span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-
-                                    <div class="widget_summary">
-                                        <div class="w_left w_25">
-                                            <span>0.1.5.3</span>
-                                        </div>
-                                        <div class="w_center w_55">
-                                            <div class="progress">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w_right w_20">
-                                            <span>53k</span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="widget_summary">
-                                        <div class="w_left w_25">
-                                            <span>0.1.5.4</span>
-                                        </div>
-                                        <div class="w_center w_55">
-                                            <div class="progress">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w_right w_20">
-                                            <span>23k</span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="widget_summary">
-                                        <div class="w_left w_25">
-                                            <span>0.1.5.5</span>
-                                        </div>
-                                        <div class="w_center w_55">
-                                            <div class="progress">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w_right w_20">
-                                            <span>3k</span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="widget_summary">
-                                        <div class="w_left w_25">
-                                            <span>0.1.5.6</span>
-                                        </div>
-                                        <div class="w_center w_55">
-                                            <div class="progress">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w_right w_20">
-                                            <span>1k</span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-
-                                </div>
-                            </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <select name="select_periode" id="select_periode" class="form-control pull-right">
+                                <?php if($arrayPeriode) { ?>
+                                    <?php foreach ($arrayPeriode as $periode) { ?>
+                                        <?php if(end($arrayPeriode) == $periode) { ?>
+                                            <option selected="selected" value="<?php echo $periode['id_periode'];?>"><?php echo $periode['nama_periode']?></option>
+                                        <?php } else { ?>
+                                            <option value="<?php echo $periode['id_periode'];?>"><?php echo $periode['nama_periode']?></option>
+                                        <?php } ?>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <option value="0">No Data</option>
+                                <?php } ?>
+                            </select>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="x_panel tile fixed_height_320">
-                                <div class="x_title">
-                                    <h2>App Versions</h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <h4>App Usage across versions</h4>
-                                    <div class="widget_summary">
-                                        <div class="w_left w_25">
-                                            <span>0.1.5.2</span>
-                                        </div>
-                                        <div class="w_center w_55">
-                                            <div class="progress">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w_right w_20">
-                                            <span>123k</span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-
-                                    <div class="widget_summary">
-                                        <div class="w_left w_25">
-                                            <span>0.1.5.3</span>
-                                        </div>
-                                        <div class="w_center w_55">
-                                            <div class="progress">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w_right w_20">
-                                            <span>53k</span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="widget_summary">
-                                        <div class="w_left w_25">
-                                            <span>0.1.5.4</span>
-                                        </div>
-                                        <div class="w_center w_55">
-                                            <div class="progress">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w_right w_20">
-                                            <span>23k</span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="widget_summary">
-                                        <div class="w_left w_25">
-                                            <span>0.1.5.5</span>
-                                        </div>
-                                        <div class="w_center w_55">
-                                            <div class="progress">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w_right w_20">
-                                            <span>3k</span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="widget_summary">
-                                        <div class="w_left w_25">
-                                            <span>0.1.5.6</span>
-                                        </div>
-                                        <div class="w_center w_55">
-                                            <div class="progress">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w_right w_20">
-                                            <span>1k</span>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="x_content">
-                            <!-- <div class="col-md-6 col-sm-6 col-xs-12">
-                    
-                                <input type="text" id="range_26" value="" name="range" />
-                            </div> -->
-                            <center>
-                                <div class="row">
-                                    <div class="well col-md-2" style="margin-left: 6%">
-                                        Tata Tulis
-                                        <h2>
-                                            <strong>3,45</strong>
-                                        </h2>
-                                    </div>
-                                    <div class="well col-md-2" style="margin-left: 1%">
-                                        Bahasa
-                                        <h2>
-                                            <strong>3,45</strong>
-                                        </h2>
-                                    </div>
-                                    <div class="well col-md-2" style="margin-left: 1%">
-                                        Kesesuaian Naskah
-                                        <h2>
-                                            <strong>3,45</strong>
-                                        </h2>
-                                    </div>
-                                    <div class="well col-md-2" style="margin-left: 1%">
-                                        Rancangan Masalah
-                                        <h2>
-                                            <strong>3,45</strong>
-                                        </h2>
-                                    </div>
-                                    <div class="well col-md-2" style="margin-left: 1%">
-                                        Tujuan
-                                        <h2>
-                                            <strong>3,45</strong>
-                                        </h2>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="well col-md-2" style="margin-left: 6%">
-                                        Inovasi
-                                        <h2>
-                                            <strong>3,45</strong>
-                                        </h2>
-                                    </div>
-                                    <div class="well col-md-2" style="margin-left: 1%">
-                                        Penguasaan Metode
-                                        <h2>
-                                            <strong>3,45</strong>
-                                        </h2>
-                                    </div>
-                                    <div class="well col-md-2" style="margin-left: 1%">
-                                        Penguasaan Analisis
-                                        <h2>
-                                            <strong>3,45</strong>
-                                        </h2>
-                                    </div>
-                                    <div class="well col-md-2" style="margin-left: 1%">
-                                        Presentasi
-                                        <h2>
-                                            <strong>3,45</strong>
-                                        </h2>
-                                    </div>
-                                    <div class="well col-md-2" style="margin-left: 1%">
-                                        Kesimpulan
-                                        <h2>
-                                            <strong>3,45</strong>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </center>
-                        </div>
+                        <div class="clearfix"></div>                                    
                     </div>
-                    <!--end of chart-->
+                    <div class="x_content">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div id="diagram_lingkaran" style="height:400px;width:100%;position:relative;"></div>
+                        </div>        
+                    </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <!--start of chart-->
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h3>
+                                    <strong>Grafik Rata-rata Penilaian Sidang per Periode (maks. 5 Periode)</strong>
+                                </h3>
+                                <div class="clearfix"></div>                                    
+                            </div>
+                            <div class="x_content">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div id="diagram" style="height:600px;width:100%;position:relative;"></div>
+                                </div>
+                            </div>
+                        </div>
+                <!--end of chart-->
             </div>
         </div>
     </div>
 </div>
+</div>
 <!-- /page content -->
-
 <script>
+
+
 </script>
+<script>
+    var dataNilai = <?php echo $dataNilai; ?>;
+    var baseURL = '<?php echo base_url(); ?>';
+</script>
+<script src="<?php echo base_url()?>elusistatic/js/grafikPenilaian.js"></script>

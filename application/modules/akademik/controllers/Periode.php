@@ -19,7 +19,7 @@ class Periode extends BaseController
         $this->loadViews("add_periode",$this->global);
     }
 
-    public function add_edit_period(){
+    public function add_period(){
         $semester = trim($this->input->post('semester'));
         $tahun_ajaran = trim($this->input->post('tahun_ajaran'));
         if($tahun_ajaran == NULL){
@@ -36,8 +36,6 @@ class Periode extends BaseController
         $data_periode = array(
             'semester' => $semester,
             'tahun_ajaran' => $tahun_ajaran,
-            'status_ta' => 0,
-            'status_yudisium' => 0,
             'status_periode' => 1
         );
 
@@ -68,33 +66,41 @@ class Periode extends BaseController
         redirect('akademik/periode');
     }
 
-    public function edit(){
+    public function edit_tanggal_regis($jenis_regis){
         $id_periode = $this->input->post('id_periode');
 
-        $semester = trim($this->input->post('semester'));
-        $thn_ajaran1 = trim($this->input->post('thn1'));
-        $thn_ajaran2 = trim($this->input->post('thn2'));
-        $tahun_ajaran = $thn_ajaran1 . "/" . $thn_ajaran2;
-
-        $tanggal_awal = date_format(date_create_from_format('d/m/Y', $this->input->post('tanggal_awal')), 'Y-m-d');
-        $tanggal_akhir = date_format(date_create_from_format('d/m/Y', $this->input->post('tanggal_akhir')), 'Y-m-d');
-
-        $tanggal_awal_regis = $tanggal_awal . " " .  $this->input->post('waktu_awal') . ":00";
-        $tanggal_akhir_regis = $tanggal_akhir . " " . $this->input->post('waktu_akhir') . ":00";
         
-        $data = array(
-            'semester' => $semester,
-            'tahun_ajaran' => $tahun_ajaran,
-            'jenis' => $this->input->post('jenis'),
-            'tanggal_awal_regis' => $tanggal_awal_regis,
-            'tanggal_akhir_regis' => $tanggal_akhir_regis
-        );
-        $result = $this->periode_model->update($data,$id_periode);
-        if($result){
-            $this->session->set_flashdata('success', 'Periode berhasil diubah');
+        if($jenis_regis == 'ta'){
+            $tanggal_awal_ta = date_format(date_create_from_format('d-m-Y', $this->input->post('tanggal_awal_ta')), 'Y-m-d');
+            $tanggal_akhir_ta = date_format(date_create_from_format('d-m-Y', $this->input->post('tanggal_akhir_ta')), 'Y-m-d');
+        
+            $data = array(
+                'tgl_awal_regis_ta' => $tanggal_awal_ta,
+                'tgl_akhir_regis_ta' => $tanggal_akhir_ta
+            );
+            $result = $this->periode_model->update($data,$id_periode);
+            if($result){
+                $this->session->set_flashdata('success', 'Tanggal registrasi tugas akhir telah terupdate');
+            } else {
+                $this->session->set_flashdata('error', 'Tanggal registrasi tugas akhir gagal terupdate');
+            };
         } else {
-            $this->session->set_flashdata('error', 'Gagal mengupdate periode');
-        };
+            $tanggal_awal_yudisium = date_format(date_create_from_format('d-m-Y', $this->input->post('tanggal_awal_yudisium')), 'Y-m-d');
+            $tanggal_akhir_yudisium = date_format(date_create_from_format('d-m-Y', $this->input->post('tanggal_akhir_yudisium')), 'Y-m-d');
+
+            $data = array(
+                'tgl_awal_regis_yudisium' => $tanggal_awal_yudisium,
+                'tgl_akhir_regis_yudisium' => $tanggal_akhir_yudisium
+            );
+
+            $result = $this->periode_model->update($data,$id_periode);
+            if($result){
+                $this->session->set_flashdata('success', 'Tanggal registrasi yudisium telah terupdate');
+            } else {
+                $this->session->set_flashdata('error', 'Tanggal registrasi yudisium gagal terupdate');
+            };
+        }
+        
 
         redirect('akademik/periode');
     }

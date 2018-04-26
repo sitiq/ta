@@ -23,7 +23,7 @@ class Akun_kaprodi extends BaseController
 
     public function edit_form($id){
         $data['role'] = ROLE_KAPRODI;
-        $data['dataUser'] = $this->user_model->getUser($id);
+        $data['dataUser'] = $this->user_model->getUser($id,ROLE_KAPRODI);
         $this->global['pageTitle'] = "Elusi : Edit User"; 
         $this->loadViews("edit_user",$this->global,$data);
     }
