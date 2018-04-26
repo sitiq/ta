@@ -97,7 +97,17 @@
                                         <a href="<?php echo base_url() ?>akademik/sidang/detail/<?php echo $record->id_sidang?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                                     </td>
                                     <td>
-                                        <?php if ($record->tanggal == null){?>
+                                        <?php if ($record->status == 'disetujui'){?>
+                                            <?php if ($record->tanggal == null){?>
+                                                <a href="<?php echo base_url() ?>akademik/sidang/plot/<?php echo $record->id_sidang?>" class="btn btn-info">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </a>
+                                            <?php }else{?>
+                                                <a href="<?php echo base_url() ?>akademik/sidang/editplot/<?php echo $record->id_sidang?>" class="btn btn-info">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </a>
+                                            <?php }?>
+                                        <?php }elseif ($record->status == 'pending'){?>
                                             <?php if ($record->tanggal == null){?>
                                                 <a href="<?php echo base_url() ?>akademik/sidang/plot/<?php echo $record->id_sidang?>" class="btn btn-info">
                                                     <i class="fa fa-clock-o"></i>
