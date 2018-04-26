@@ -53,9 +53,10 @@
                     </div>
                 </div>
                 <div class="x_content">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                         <tr>
+                            <th>Tanggal Daftar</th>
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Tanggal Uji</th>
@@ -72,6 +73,7 @@
                             {
                                 ?>
                                 <tr>
+                                    <td><?php echo date_format(date_create_from_format('Y-m-d',substr($record->createdDtm,0,10)), 'd/m/Y') ?></td>
                                     <td><?php echo $record->nim ?></td>
                                     <td><?php echo $record->nama ?></td>
                                     <td>
@@ -82,9 +84,11 @@
                                         <?php }?>
                                     </td>
                                     <?php if ($record->status == 'disetujui') {
-                                        echo "<td><span class=\"label label-success\">" . $record->status . "</span></td>";
+                                        echo "<td><span class=\"label label-info\">" . $record->status . "</span></td>";
                                     } elseif ($record->status == 'pending') {
                                         echo "<td><span class=\"label label-warning\">" . $record->status . "</span></td>";
+                                    } elseif ($record->status == 'lulus' || $record->status == 'lulus_revisi') {
+                                        echo "<td><span class=\"label label-success\">" . $record->status . "</span></td>";
                                     } else {
                                         echo "<td><span class=\"label label-danger\">" . $record->status . "</span></td>";
                                     }
@@ -93,14 +97,28 @@
                                         <a href="<?php echo base_url() ?>akademik/sidang/detail/<?php echo $record->id_sidang?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                                     </td>
                                     <td>
-                                        <?php if ($record->tanggal == null){?>
-                                            <a href="<?php echo base_url() ?>akademik/sidang/plot/<?php echo $record->id_sidang?>" class="btn btn-info">
-                                                <i class="fa fa-clock-o"></i>
-                                            </a>
+                                        <?php if ($record->status == 'disetujui'){?>
+                                            <?php if ($record->tanggal == null){?>
+                                                <a href="<?php echo base_url() ?>akademik/sidang/plot/<?php echo $record->id_sidang?>" class="btn btn-info">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </a>
+                                            <?php }else{?>
+                                                <a href="<?php echo base_url() ?>akademik/sidang/editplot/<?php echo $record->id_sidang?>" class="btn btn-info">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </a>
+                                            <?php }?>
+                                        <?php }elseif ($record->status == 'pending'){?>
+                                            <?php if ($record->tanggal == null){?>
+                                                <a href="<?php echo base_url() ?>akademik/sidang/plot/<?php echo $record->id_sidang?>" class="btn btn-info">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </a>
+                                            <?php }else{?>
+                                                <a href="<?php echo base_url() ?>akademik/sidang/editplot/<?php echo $record->id_sidang?>" class="btn btn-info">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </a>
+                                            <?php }?>
                                         <?php }else{?>
-                                            <a href="<?php echo base_url() ?>akademik/sidang/editplot/<?php echo $record->id_sidang?>" class="btn btn-info">
-                                                <i class="fa fa-clock-o"></i>
-                                            </a>
+                                            Sudah sidang
                                         <?php }?>
                                     </td>
                                 </tr>
@@ -115,3 +133,15 @@
         </div>
     </div>
 </div>
+<script>
+$(function () {
+    $('#datatable').DataTable({
+        'paging' : true,
+        'lengthChange' : true,
+        'searching' :true,
+        'ordering' : false,
+        'info' : true,
+        'autoWidth' : true
+    })
+})
+</script>

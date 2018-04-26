@@ -27,59 +27,36 @@ class Berkas_yudisium extends BaseController
     }
     public function add(){
         if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else {
             $nama_berkas = trim($this->input->post('nama_berkas'));
-
-            $data = array(
-                'nama_berkas' => $nama_berkas
-            );
+            $data = array('nama_berkas' => $nama_berkas);
             $id_berkas_yudisium = $this->berkas_model->insertYudisium($data);
-
             //        mkdir
-            $config['upload_path'] = './uploads/yudisium/' . $id_berkas_yudisium;
-            $config['allowed_types'] = 'pdf';
-            $config['max_size'] = '4000';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '1024';
-
-
             if (!is_dir('uploads/yudisium/' . $id_berkas_yudisium)) {
                 mkdir('./uploads/yudisium/' . $id_berkas_yudisium, 0777, TRUE);
             }
-
             if ($id_berkas_yudisium) {
                 $this->session->set_flashdata('success', 'Syarat berkas berhasil dibuat');
             } else {
                 $this->session->set_flashdata('error', 'Syarat berkas gagal dibuat. Masalah database');
             };
-
             redirect('akademik/berkas_yudisium');
         }
     }
     public function edit(){
         if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else {
             $id_berkas_yudisium = $this->input->post('id_berkas_yudisium_edit');
-
             $nama_berkas = trim($this->input->post('nama_berkas_edit'));
-
-            $data = array(
-                'nama_berkas' => $nama_berkas,
-            );
-
+            $data = array('nama_berkas' => $nama_berkas);
             $result = $this->berkas_model->updateYudisium($data, $id_berkas_yudisium);
             if ($result) {
                 $this->session->set_flashdata('success', 'Berkas berhasil diubah');
             } else {
                 $this->session->set_flashdata('error', 'Gagal mengupdate berkas');
             };
-
             redirect('akademik/berkas_yudisium');
         }
     }

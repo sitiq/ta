@@ -66,9 +66,13 @@
                                     <?php echo $data->createdDtm; ?>
                                 </td>
                                 <td>
+                                    <?php if ($data->lampiran!=null){?>
                                     <a href="<?php echo base_url()?>uploads/data_pengumuman/<?php echo $data->lampiran?>" target="_blank">
                                         <?php echo (isset($data->lampiran) ?  explode('-', $data->lampiran)[1] : "Tidak ada lampiran");?>
                                     </a>
+                                    <?php }else{?>
+                                        Tidak ada lampiran
+                                    <?php }?>
                                 </td>
                                 <td align="center">
                                     <a class="btn btn-sm btn-info" title="Lihat" data-toggle='modal' id="see_modal" data-target='#seeModal<?php echo $data->id_pengumuman; ?>'>

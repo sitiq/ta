@@ -63,8 +63,7 @@ class Yudisium extends BaseController
         );
         //            insert to table yudisium / registration yudisium new
         $idYudisium = $this->yudisium_model->addNewYudisium($infoYudisium);
-
-//            insert to validasi yudisium table, 7 files important to yudisium
+//            insert to validasi yudisium table, based on active files important to yudisium
         for ($i=1;$i<=$total_syarat;$i++){
             $daftarId = array(
                 "id_yudisium"=>$idYudisium,
@@ -76,11 +75,11 @@ class Yudisium extends BaseController
 //            lebih dari 0 berarti ada data yg masuk
         if ($result>0)
         {
-            $this->session->set_flashdata('success','Yudisium registered');
+            $this->session->set_flashdata('success','Berhasil daftar yudisium');
         }
         else
         {
-            $this->session->set_flashdata('error','Yudisium register failed');
+            $this->session->set_flashdata('error','Gagal daftar yudisium');
         }
 
         redirect('mahasiswa/yudisium');
@@ -123,7 +122,7 @@ class Yudisium extends BaseController
                 // if upload path error
                 $error = array('error' => $this->upload->display_errors());
                 // echo $error['error'];
-                $this->session->set_flashdata('error', 'Upload file failed');
+                $this->session->set_flashdata('error', 'Berkas tidak sesuai ketentuan');
             }else{
                 // if upload path success
                 $terupload = $this->upload->data();
@@ -136,11 +135,11 @@ class Yudisium extends BaseController
 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'File uploaded');
+                    $this->session->set_flashdata('success', 'Berkas berhasil diunggah');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'File upload failed');
+                    $this->session->set_flashdata('error', 'Berkas gagal diunggah');
                 }
             }
             redirect('mahasiswa/yudisium');

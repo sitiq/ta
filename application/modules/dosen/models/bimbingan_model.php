@@ -15,7 +15,8 @@ class bimbingan_model extends CI_Model
      */
     function getBimbingan($userId)
     {
-        $this->db->select('m.id_mahasiswa, m.nim, m.nama, p.nama nama_proyek, u.judul nama_usulan, s.id_sidang, t.id_ta, y.id_yudisium');
+        $this->db->select('m.id_mahasiswa, m.nim, m.nama, p.nama nama_proyek, u.judul nama_usulan, 
+                           s.id_sidang, t.id_ta, y.id_yudisium');
         $this->db->from('dosbing ds');
         $this->db->join('dosen d','d.id_dosen = ds.id_dosen');
         $this->db->join('proyek p','p.id_dosen = ds.id_dosen');
@@ -29,7 +30,6 @@ class bimbingan_model extends CI_Model
         $this->db->where('d.id_user', $userId);
         $this->db->where('p.status', 'disetujui');
         $query = $this->db->get();
-
         $result = $query->result();
         return $result;
     }

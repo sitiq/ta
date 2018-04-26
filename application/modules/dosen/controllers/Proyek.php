@@ -80,11 +80,11 @@ class Proyek extends BaseController
 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'Project created, status = waiting');
+                    $this->session->set_flashdata('success', 'Berhasil mengajukan, status = waiting');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Project failed to create');
+                    $this->session->set_flashdata('error', 'Gagal mengajukan proyek');
                 }
                 redirect('dosen/proyek/addNew');
             }
@@ -147,9 +147,9 @@ class Proyek extends BaseController
                     $result = $this->proyek_model->editProject($proyekInfo, $proyekId);
 
                     if ($result == true) {
-                        $this->session->set_flashdata('success', 'Project updated successfully');
+                        $this->session->set_flashdata('success', 'Proyek berhasil diperbaharui');
                     } else {
-                        $this->session->set_flashdata('error', 'Project updation failed');
+                        $this->session->set_flashdata('error', 'Proyek gagal diperbaharui');
                     }
                     redirect('dosen/proyek');
                 }else{echo "Alhamdulillah";}

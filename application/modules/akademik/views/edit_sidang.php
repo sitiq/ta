@@ -136,7 +136,8 @@ if(!empty($sidangInfo))
                                             ?>
                                             <td>
                                                 <?php if ($record->path !=''){?>
-                                                    <a href="<?php echo base_url()?>uploads/sidang/<?php echo $record->id_berkas_sidang?>/<?php echo $record->path?>" class="btn btn-sm btn-info" target="_blank">
+                                                    <a href="<?php echo base_url()?>uploads/sidang/<?php echo $record->id_berkas_sidang?>/<?php echo $record->path?>"
+                                                       class="btn btn-sm btn-info" target="_blank">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 <?php }?>

@@ -57,13 +57,9 @@ class Sidang extends BaseController
 //            get id_mahasiswa based on who is logged in
             $cek = $this->sidang_model->cekMahasiswa($id_user);
             $id_mahasiswa = $cek[0]->id_mahasiswa;
-            $infoSidang = array(
-              "id_mahasiswa"=>$id_mahasiswa,
-              "id_periode"=>$id_periode,
-            );
+            $infoSidang = array("id_mahasiswa"=>$id_mahasiswa,"id_periode"=>$id_periode);
 //            insert to table sidang / registration sidang new
             $idSidang = $this->sidang_model->addNewSidang($infoSidang);
-
 //            insert to validasi_berkas_sidang table, make 10 files important to Sidang
             for ($i=1;$i<=$total_syarat;$i++){
                 $daftarId = array(
@@ -73,7 +69,6 @@ class Sidang extends BaseController
                 $result = $this->sidang_model->addNewValidasi($daftarId);
                 $id_syarat++;
             }
-
 //            lebih dari 0 berarti ada data yg masuk
             if ($result>0)
             {
@@ -86,6 +81,7 @@ class Sidang extends BaseController
 
         redirect('mahasiswa/sidang');
     }
+
     function daftarUlang(){
         //get id user who is logged in
         $id_user = $this->vendorId;
@@ -109,14 +105,8 @@ class Sidang extends BaseController
 
 //            lebih dari 0 berarti ada data yg masuk
         if ($result>0)
-        {
-            $this->session->set_flashdata('success','Daftar ulang sidang berhasil!');
-        }
-        else
-        {
-            $this->session->set_flashdata('error','Daftar ulang sidang gagal!');
-        }
-
+        {$this->session->set_flashdata('success','Daftar ulang sidang berhasil!');}
+        else{$this->session->set_flashdata('error','Daftar ulang sidang gagal!');}
         redirect('mahasiswa/sidang');
     }
     /**
@@ -124,16 +114,13 @@ class Sidang extends BaseController
      */
     function editBerkas () {
         if($this->isMahasiswa() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else
         {
 //            get id berkas where to edit by folder
             $id_folder = $this->input->post('id_berkas_sidang');
             $nim = $this->input->post('id_mahasiswa');
             $cekMhs = $this->sidang_model->cekMahasiswa($nim);
-
             if (!$cekMhs)
             $this->load->library('form_validation');
             $this->form_validation->set_rules('id_valid_sidang','ID','required');
@@ -157,8 +144,7 @@ class Sidang extends BaseController
             if ( ! $this->upload->do_upload('path')){
                 // if upload path not match
                 $error = array('error' => $this->upload->display_errors());
-                // echo $error['error'];
-                $this->session->set_flashdata('error', 'Upload file failed');
+                $this->session->set_flashdata('error', 'Berkas tidak sesuai ketentuan');
             }else{
                 // if upload success
                 $terupload = $this->upload->data();
@@ -166,16 +152,11 @@ class Sidang extends BaseController
                     'path'=>$terupload['file_name'],
                     'isValid'=>1
                 );
-
                 $result = $this->sidang_model->editBerkas($berkasInfo, $id_berkas);
-
-                if($result == true)
-                {
+                if($result == true){
                     $this->session->set_flashdata('success', 'Berkas berhasil diunggah');
-                }
-                else
-                {
-                    $this->session->set_flashdata('error', 'File upload failed');
+                }else{
+                    $this->session->set_flashdata('error', 'Berkas gagal diunggah');
                 }
             }
             redirect('mahasiswa/sidang');

@@ -114,7 +114,7 @@ if(!empty($proyekInfo))
                         <div class="form-group">
                             <label for="instansi" class="control-label col-md-3 col-sm-3 col-xs-12">Instansi <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="klien" class="form-control col-md-7 col-xs-12" type="text" name="klien" value="<?php echo $klien?>">
+                                <input required="required" id="klien" class="form-control col-md-7 col-xs-12" type="text" name="klien" value="<?php echo $klien?>">
                             </div>
                         </div>
                         <div class="form-group">

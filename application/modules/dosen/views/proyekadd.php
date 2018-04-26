@@ -70,7 +70,7 @@ if(!empty($dosenInfo))
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama-dosen">Penanggung jawab<span class="required"> *</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control col-md-7 col-xs-12" id="nama-dosen" name="id_dosen">
+                                <select class="form-control col-md-7 col-xs-12" id="nama-dosen" name="id_dosen" required>
                                     <option value="0" disabled selected>Pilih ..</option>
                                     <?php
                                     if(!empty($dosenInfo))
@@ -96,7 +96,7 @@ if(!empty($dosenInfo))
                         <div class="form-group">
                             <label for="instansi" class="control-label col-md-3 col-sm-3 col-xs-12">Instansi <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="klien" class="form-control col-md-7 col-xs-12" type="text" name="klien">
+                                <input id="klien" class="form-control col-md-7 col-xs-12" type="text" name="klien" required="required">
                             </div>
                         </div>
                         <div class="form-group">

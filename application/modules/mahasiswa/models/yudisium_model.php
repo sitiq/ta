@@ -27,7 +27,10 @@ class yudisium_model extends CI_Model
         $this->db->from('sidang s');
         $this->db->join('mahasiswa m','m.id_mahasiswa = s.id_mahasiswa');
         $this->db->join('user u','u.id_user = m.id_user');
-        $this->db->where('s.status','disetujui');
+        $this->db->group_start();
+        $this->db->where('s.status','lulus');
+        $this->db->or_where('s.status','lulus_revisi');
+        $this->db->group_end();
         $this->db->where('u.id_user', $userId);
 
         $query = $this->db->get();
@@ -49,12 +52,21 @@ class yudisium_model extends CI_Model
         $this->db->from('berkas_yudisium berkas');
         $this->db->join('validasi_berkas_yudisium val','val.id_berkas_yudisium = berkas.id_berkas_yudisium');
         $this->db->join('yudisium','yudisium.id_yudisium = val.id_yudisium');
-//        $this->db->join('periode','periode.id_periode = yudisium.id_periode');
         $this->db->join('mahasiswa','mahasiswa.id_mahasiswa = yudisium.id_mahasiswa');
         $this->db->join('user','user.id_user = mahasiswa.id_user');
         $this->db->where('mahasiswa.id_user', $userId);
         $query = $this->db->get();
 
+        $result = $query->result();
+        return $result;
+    }
+    function getIdBerkas()
+    {
+        $this->db->select('b.id_berkas_yudisium');
+        $this->db->from('berkas_yudisium b');
+        $this->db->where('b.isDeleted', 0);
+
+        $query = $this->db->get();
         $result = $query->result();
         return $result;
     }
@@ -66,16 +78,6 @@ class yudisium_model extends CI_Model
 
         $query = $this->db->get();
         return count($query->result());
-    }
-    function getIdBerkas()
-    {
-        $this->db->select('b.id_berkas_yudisium');
-        $this->db->from('berkas_yudisium b');
-        $this->db->where('b.isDeleted', 0);
-
-        $query = $this->db->get();
-        $result = $query->result();
-        return $result;
     }
     /**
      * This function is used to get the nim mahasiswa who is login

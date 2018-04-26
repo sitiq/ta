@@ -14,6 +14,18 @@ $(document).ready(function () {
     }, "This has to be different...");
 
     $("#jadwalForm").validate({
+        errorPlacement: function(error, element) {
+            if (element.attr("name") == "tanggalJadwal" )
+                error.insertAfter("#errordiv");
+            else if (element.attr("name") == "waktuJadwal")
+                error.insertAfter("#errordiv-waktu");
+            else if (element.attr("name") == "ruangJadwal")
+                error.insertAfter("#errordiv-ruang");
+            else if (element.attr("name") == "dataKetua")
+                error.insertAfter("#errordiv-ketua");
+            else
+                error.insertAfter("#errordiv-sekre");
+        },
         rules: {
             tanggalJadwal: {
                 required: true,
@@ -74,6 +86,17 @@ $(document).ready(function () {
     }, "This has to be different...");
 
     $("#jadwalFormEdit").validate({
+        errorPlacement: function(error, element) {
+            if (element.attr("name") == "editTanggalJadwal" )
+                error.insertAfter("#errordiv");
+            else if (element.attr("name") == "editWaktuJadwal")
+                error.insertAfter("#errordiv-waktu");
+            else if (element.attr("name") == "editRuangJadwal")
+                error.insertAfter("#errordiv-ruang");
+            else
+                error.insertAfter("#errordiv-sekre");
+            // error.appendTo('#errordiv');
+        },
         rules: {
             editTanggalJadwal: {
                 required: true,

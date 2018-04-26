@@ -42,9 +42,7 @@ class Profil extends BaseController
     function editProfil()
     {
         if($this->isMahasiswa() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else
         {
             $id_user = $this->input->post('id_user');
@@ -68,21 +66,13 @@ class Profil extends BaseController
                 'skill'=>$skill,
                 'pengalaman'=>$pengalaman);
 
-            $userInfo = array(
-                'nama'=>$nama
-            );
+            $userInfo = array('nama'=>$nama);
             $resultUser = $this->profil_model->editUser($userInfo,$id_user);
             $result = $this->profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
 
             if($result > 0)
-            {
-                $this->session->set_flashdata('success', 'Profil berhasil diubah!');
-            }
-            else
-            {
-                $this->session->set_flashdata('error', 'Profil gagal diubah!');
-            }
-
+            {$this->session->set_flashdata('success', 'Profil berhasil diubah!');}
+            else{$this->session->set_flashdata('error', 'Profil gagal diubah!');}
             redirect('mahasiswa/profil');
         }
     }
@@ -115,7 +105,7 @@ class Profil extends BaseController
             if ( ! $this->upload->do_upload('foto')){
                 // if upload foto tidak sesuai
                 $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', 'Max Size 1024x1024');
+                $this->session->set_flashdata('error', 'Ukuran maksimal 1024x1024');
             }else{
                 // bila upload foto berhasil
                 $terupload = $this->upload->data();
