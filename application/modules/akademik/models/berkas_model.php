@@ -67,50 +67,39 @@ class berkas_model extends CI_Model
 
     public function off($id){
         $this->db->trans_start();
-
         $this->db->set('isDeleted',1);
         $this->db->where('id_berkas_sidang',$id);
         $this->db->update('berkas_sidang');
-
         $this->db->trans_complete();
         $result = $this->db->trans_status();
-
-        return $result;
-    }
-    public function offYudisium($id){
-        $this->db->trans_start();
-
-        $this->db->set('isDeleted',1);
-        $this->db->where('id_berkas_yudisium',$id);
-        $this->db->update('berkas_yudisium');
-
-        $this->db->trans_complete();
-        $result = $this->db->trans_status();
-
         return $result;
     }
     public function on($id){
         $this->db->trans_start();
-
         $this->db->set('isDeleted',0);
         $this->db->where('id_berkas_sidang',$id);
         $this->db->update('berkas_sidang');
-
         $this->db->trans_complete();
         $result = $this->db->trans_status();
+        return $result;
+    }
 
+    public function offYudisium($id){
+        $this->db->trans_start();
+        $this->db->set('isDeleted',1);
+        $this->db->where('id_berkas_yudisium',$id);
+        $this->db->update('berkas_yudisium');
+        $this->db->trans_complete();
+        $result = $this->db->trans_status();
         return $result;
     }
     public function onYudisium($id){
         $this->db->trans_start();
-
         $this->db->set('isDeleted',0);
         $this->db->where('id_berkas_yudisium',$id);
         $this->db->update('berkas_yudisium');
-
         $this->db->trans_complete();
         $result = $this->db->trans_status();
-
         return $result;
     }
 }

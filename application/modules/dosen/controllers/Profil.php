@@ -35,31 +35,57 @@ class Profil extends BaseController
             $this->loadViews("profil", $this->global, $data, NULL);
         }
     }
+    function checkNidExists(){
+        //if (array_key_exists('email', $_POST)) {
+        $idDosen = $this->input->post("id_dosen");
+        $nid = $this->input->post("nid");
+
+        if(empty($idDosen)){
+            $result = $this->profil_model->checkNid($nid);
+        } else {
+            $result = $this->profil_model->checkNid($nid, $idDosen);
+        }
+
+        if ($result) {
+            echo json_encode(FALSE);
+        } else {
+            echo json_encode(TRUE);
+        }
+    }
+    function checkEmailExists(){
+        //if (array_key_exists('email', $_POST)) {
+        $idDosen = $this->input->post("id_dosen");
+        $email = $this->input->post("email");
+
+        if(empty($idDosen)){
+            $result = $this->profil_model->checkEmail($email);
+        } else {
+            $result = $this->profil_model->checkEmail($email, $idDosen);
+        }
+
+        if ($result) {
+            echo json_encode(FALSE);
+        } else {
+            echo json_encode(TRUE);
+        }
+    }
     /**
      * This function is used to edit the profil information
      */
     function editProfil()
     {
-        if($this->isDosen() == TRUE)
-        {
-            $this->loadThis();
-        }
+        if($this->isDosen() == TRUE){$this->loadThis();}
         else
-        {
-            $this->load->library('form_validation');
-
+        {   $this->load->library('form_validation');
             $this->form_validation->set_rules('nid','NID','trim|required|xss_clean');
             $this->form_validation->set_rules('nama','Nama Dosen','trim|required|xss_clean');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|xss_clean|max_length[128]');
             $this->form_validation->set_rules('mobile','Mobile','trim|required|xss_clean');
 
             if($this->form_validation->run() != FALSE)
-            {
-                $this->session->set_flashdata('success', 'lele');
-                redirect('dosen/profil');
-            }
-            else
-            {
+            {$this->session->set_flashdata('success', 'Data yang dimasukkan harus benar');
+                redirect('dosen/profil');}
+            else{
                 $id_user = $this->input->post('id_user');
                 $id_dosen = $this->input->post('id_dosen');
                 $nid = $this->input->post('nid');
@@ -67,7 +93,6 @@ class Profil extends BaseController
                 $email = $this->input->post('email');
                 $mobile = $this->input->post('mobile');
                 $skill = $this->input->post('skill');
-
                 if (empty($cekNid)) {
                     $dosenInfo = array(
                         'nid'=>$nid,
@@ -75,24 +100,12 @@ class Profil extends BaseController
                         'email'=>$email,
                         'mobile'=>$mobile,
                         'skill'=>$skill);
-
-                    $userInfo = array(
-                        'nama'=>$nama
-                    );
+                    $userInfo = array('nama'=>$nama);
                     $resultUser = $this->profil_model->editUser($userInfo, $id_user);
                     $result = $this->profil_model->editProfil($dosenInfo, $id_dosen);
-
-                    if($result > 0)
-                    {
-                        $this->session->set_flashdata('success', 'Profil updated');
-                    }
-                    else
-                    {
-                        $this->session->set_flashdata('error', 'Profil update failed');
-                    }
-                } else {
-                    $this->session->set_flashdata('error', 'NID sudah ada');
-                }
+                    if($result > 0){$this->session->set_flashdata('success', 'Profil berhasil diperbaharui');}
+                    else{$this->session->set_flashdata('error', 'Profil gagal diperbaharui');}
+                } else {$this->session->set_flashdata('error', 'NID sudah ada');}
                 redirect('dosen/profil');
             }
         }

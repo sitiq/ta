@@ -190,7 +190,7 @@ if(!empty($yudisiumInfo))
                             <?php if ($status != 'disetujui'){?>
                             <div class="well">
                                 <center>
-                                        <h4><strong>Silahkan pilih jika semua berkas telah diterima</strong></h4>
+                                        <h4><strong>Beri tahu mahasiswa yudisium diterima</strong></h4>
                                         <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#status"><i class="fa fa-check"></i> Terima</a>
                                 </center>
                             </div>
@@ -202,17 +202,17 @@ if(!empty($yudisiumInfo))
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                                             </button>
-                                            <h4 class="modal-title" id="myModalLabel">Setuju Yudisium</h4>
+                                            <h4 class="modal-title" id="myModalLabel"><strong>Beri tahu mahasiswa yudisium diterima</strong></h4>
                                         </div>
                                         <div class="modal-body">
                                             <div id="testmodal" style="padding: 5px 20px;">
                                                 <div class="modal-body">
                                                     <center>
-                                                        <h4>Yakin telah menerima seluruh berkas yudisium?</h4>
+                                                        <h4>Pastikan semua berkas telah diterima</h4>
                                                         <div id="testmodal" style="padding: 5px 20px;">
                                                             <form action="<?php echo base_url()?>akademik/yudisium/status/<?php echo $yudisiumInfo[0]->id_yudisium?>/<?php echo $yudisiumInfo[0]->id_mahasiswa?>" method="post" role="form" data-parsley-validate class="form-horizontal form-label-left">
-                                                                <input class="btn btn-danger" data-dismiss="modal" value="Cancel">
-                                                                <input type="submit" class="btn btn-success" value="Yes" style="width: 14%">
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                <input type="submit" class="btn btn-success" value="Accept">
                                                             </form>
                                                         </div>
                                                     </center>

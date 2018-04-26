@@ -59,9 +59,9 @@ class Yudisium extends BaseController
                 $result = $this->yudisium_model->accBerkas($berkasInfo, $idValidYudisium);
 
                 if ($result == true) {
-                    $this->session->set_flashdata('success', 'File accepted');
+                    $this->session->set_flashdata('success', 'Berkas diterima');
                 } else {
-                    $this->session->set_flashdata('error', 'File accept failed');
+                    $this->session->set_flashdata('error', 'Gagal menerima berkas');
                 }
                 redirect('akademik/yudisium/detail/'.$idYudisium);
 //                $this->detail($idMhs);
@@ -74,22 +74,15 @@ class Yudisium extends BaseController
     function pesan($idValidYudisium=null , $idYudisium)
     {
         if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else
         {
             $this->load->library('form_validation');
-
             $idMhs = $this->input->post('id_mahasiswa');
-
             $this->form_validation->set_rules('nama','Judul','trim|required|max_length[128]');
             $this->form_validation->set_rules('deskripsi','Pesan','trim|required|max_length[128]');
-
             if($this->form_validation->run() == FALSE)
-            {
-                $this->detail($idYudisium);
-            }
+            {$this->detail($idYudisium);}
             else
             {
                 if (!empty($idValidYudisium)) {
@@ -98,30 +91,20 @@ class Yudisium extends BaseController
                         'isValid' => 3,
                     );
                     $result = $this->yudisium_model->decBerkas($berkasInfo, $idValidYudisium);
-
                     if ($result == true) {
                         $this->session->set_flashdata('success', 'Berkas berhasil ditolak!');
                     } else {
                         $this->session->set_flashdata('error', 'Berkas gagal ditolak!');
                     }
-//                    $this->detail($idValidYudisium);
                     redirect('akademik/yudisium/detail/'.$idYudisium);
                 }
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
-
                 $pesanInfo = array('id_mahasiswa'=>$idMhs, 'nama'=>$nama, 'deskripsi'=>$deskripsi);
-
                 $result = $this->yudisium_model->addPesan($pesanInfo);
-
                 if($result > 0)
-                {
-                    $this->session->set_flashdata('success', 'Revisi berhasill dikirim!');
-                }
-                else
-                {
-                    $this->session->set_flashdata('error', 'Revisi gagal dikirim!');
-                }
+                {$this->session->set_flashdata('success', 'Revisi berhasill dikirim!');}
+                else{$this->session->set_flashdata('error', 'Revisi gagal dikirim!');}
                 redirect('akademik/yudisium/detail/'.$idYudisium);
             }
         }

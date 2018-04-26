@@ -15,9 +15,10 @@ class yudisium_model extends CI_Model
      */
     function getYudisiumInfo($yudisiumId=NULL)
     {
-        $this->db->select('s.id_yudisium, s.status, m.nim, m.nama, m.id_mahasiswa');
+        $this->db->select('s.id_yudisium, s.status, s.createdDtm, m.nim, m.nama, m.id_mahasiswa');
         $this->db->from('yudisium s');
         $this->db->join('mahasiswa as m', 'm.id_mahasiswa = s.id_mahasiswa','left');
+        $this->db->order_by('s.createdDtm DESC');
         if ($yudisiumId!=null){
             $this->db->where('id_yudisium', $yudisiumId);
         }

@@ -15,14 +15,14 @@ class proyek_model extends CI_Model
      */
     function getProyekInfo($proyekId=NULL)
     {
-        $this->db->select('proyek.id_proyek, proyek.nama nama_proyek, proyek.klien, proyek.status, proyek.id_dosen, Dosen.nama nama_dosen');
+        $this->db->select('proyek.id_proyek, proyek.nama nama_proyek, proyek.klien, 
+                           proyek.status, proyek.id_dosen, Dosen.nama nama_dosen');
         $this->db->from('proyek');
         $this->db->join('dosen as Dosen', 'Dosen.id_dosen = proyek.id_dosen','left');
         $this->db->where('proyek.isDeleted', 0);
         if ($proyekId!=null){
             $this->db->where('id_proyek', $proyekId);
         }
-//        $this->db->where('status', 'disetujui');
         $query = $this->db->get();
         return $query->result();
     }

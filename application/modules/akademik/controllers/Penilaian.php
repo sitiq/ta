@@ -27,55 +27,40 @@ class Penilaian extends BaseController
     }
     public function add(){
         if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else {
             $nama = trim($this->input->post('nama'));
-
-            $data = array(
-                'nama' => $nama
-            );
+            $data = array('nama' => $nama);
             $result = $this->penilaian_model->insert($data);
-
             if ($result) {
                 $this->session->set_flashdata('success', 'Penilaian berhasil dibuat');
             } else {
                 $this->session->set_flashdata('error', 'Penilaian gagal dibuat. Masalah database');
             };
-
             redirect('akademik/penilaian');
         }
     }
+
     public function edit(){
         if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else {
             $id_komponen = $this->input->post('id_komponen_edit');
             $nama = trim($this->input->post('nama_komponen_edit'));
-
-            $data = array(
-                'nama' => $nama,
-            );
-
+            $data = array('nama' => $nama,);
             $result = $this->penilaian_model->update($data, $id_komponen);
             if ($result) {
                 $this->session->set_flashdata('success', 'Penilaian berhasil diubah');
             } else {
                 $this->session->set_flashdata('error', 'Gagal mengupdate penilaian');
             };
-
             redirect('akademik/penilaian');
         }
     }
 //    change status be off
     public function off(){
         if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else {
             $id_komponen = $this->input->post("id_komponen");
             $result = $this->penilaian_model->off($id_komponen);
@@ -84,16 +69,13 @@ class Penilaian extends BaseController
             } else {
                 $this->session->set_flashdata('error', 'Penilaian gagal non-aktif. Masalah database');
             };
-
             redirect('akademik/penilaian');
         }
     }
 //    change status be on
     public function on(){
         if($this->isAkademik() == TRUE)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else {
             $id_komponen = $this->input->post("id_komponen");
             $result = $this->penilaian_model->on($id_komponen);
@@ -102,10 +84,10 @@ class Penilaian extends BaseController
             } else {
                 $this->session->set_flashdata('error', 'Penilaian gagal diaktifkan. Masalah database');
             };
-
             redirect('akademik/penilaian');
         }
     }
+
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';

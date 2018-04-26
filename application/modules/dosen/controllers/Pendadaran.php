@@ -51,9 +51,12 @@ class Pendadaran extends BaseController
         {
             $userId = $this->vendorId;
             $data['nilaiInfo'] = $this->pendadaran_model->getNilaiInfo($userId, $idNilai);
-            $data['totalNilaiInfo'] = $this->pendadaran_model->getTotalNilaiInfo($userId, $idNilai);
+            $data['nilaiInfoEdit'] = $this->pendadaran_model->getNilaiInfoEdit($userId, $idNilai);
+            $data['totalNilaiInfoKetua'] = $this->pendadaran_model->getTotalNilaiInfoKetua($userId, $idNilai);
             $data['revisiInfo'] = $this->pendadaran_model->getRevisiInfo($userId);
             $data['ketuaInfo'] = $this->pendadaran_model->getKetua($userId);
+            $data['sekreInfo'] = $this->pendadaran_model->getSekre($userId);
+            $data['anggotaInfo'] = $this->pendadaran_model->getAnggota($userId);
             $data['penilaianInfo'] = $this->pendadaran_model->getPenilaian($idSidang);
             $data['penilaianRataInfo'] = $this->pendadaran_model->getPenilaianRata($idSidang);
 
@@ -129,9 +132,7 @@ class Pendadaran extends BaseController
 //    penentuan lulus
     function submitPenentuanLulus() {
         if ($this->isDosen() == true)
-        {
-            $this->loadThis();
-        }
+        {$this->loadThis();}
         else
         {
             $idMhs = $this->input->post('id_mahasiswa');
@@ -247,18 +248,13 @@ class Pendadaran extends BaseController
      * This function is used to submit report revision each dosen
      */
     function submitRevisi () {
-        if($this->isDosen() == TRUE)
-        {
-            $this->loadThis();
-        }
-        else
-        {
+        if($this->isDosen() == TRUE){$this->loadThis();}
+        else{
             $this->load->library('form_validation');
 //            get id needed
             $nama_dosen_revisi = $this->input->post('nama_dosen_revisi');
             $id_penilaian = $this->input->post('id_penilaian');
             $id_sidang = $this->input->post('id_sidang');
-//            $idMhs = $this->input->post('id_mahasiswa');
 //            validation
             $this->form_validation->set_rules('id_anggota_sidang','id','required');
 
@@ -291,7 +287,6 @@ class Pendadaran extends BaseController
                         'id_anggota_sidang' => $id_anggota_sidang
                     );
                     $result = $this->pendadaran_model->addNewRevisi($revisiInfo);
-
                     if ($result == true) {
                         $this->session->set_flashdata('success', 'Unggah revisi berhasil!');
                     } else {

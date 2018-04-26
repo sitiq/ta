@@ -67,6 +67,7 @@
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
                                         </div>
+                                        <div id="errordiv"></div>
                                     </div>
                                     <div class="col-md-5 col-sm-5 col-xs-12">
                                         <div class='input-group date myDatepicker5' id='myDatepicker5'>
@@ -75,6 +76,7 @@
                                                 <span class="glyphicon glyphicon-time"></span>
                                             </span>
                                         </div>
+                                        <div id="errordiv-waktu"></div>
                                     </div>
                                 </div>
                             </div>
@@ -85,6 +87,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="col-md-7 col-sm-7 col-xs-12">
                                         <input value="<?php echo $sidangInfo[0]->ruang?>" name="editRuangJadwal" id="editRuangJadwal" type='text' class="form-control"/>
+                                        <div id="errordiv-ruang"></div>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +124,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label for="sekre">Sekretaris</label><small></small>
                                 <?php if ($sekreInfo!=null){?>
-                                    <input type="text" name="editIdSekre" id="editIdSekre" value="<?php echo $sekreInfo[0]->id_anggota_sidang?>">
+                                    <input type="hidden" name="editIdSekre" id="editIdSekre" value="<?php echo $sekreInfo[0]->id_anggota_sidang?>">
                                 <?php }?>
                                 <select class="form-control col-md-7 col-xs-12" id="editDataSekre" name="editDataSekre">
                                     <option value="">Tidak ada sekretaris</option>
@@ -153,6 +156,7 @@
                                     }
                                     ?>
                                 </select>
+                                <div id="errordiv-sekre"></div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label for="anggota">Dosen Pembimbing</label><small></small>
