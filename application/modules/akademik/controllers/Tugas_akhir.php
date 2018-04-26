@@ -53,6 +53,7 @@ class Tugas_akhir extends BaseController
         $this->loadViews("detail_ta",$this->global,$data);
     }
 
+    /* MENAMPILKAN HALAMAN INFORMASI MAHASISWA YANG MENGAJUKAN TA*/
     public function plotting($id){
         $data['dataTA'] = $this->ta_model->getTA($id);
         $data['dataDosen'] = $this->ta_model->getDosen();
@@ -102,6 +103,7 @@ class Tugas_akhir extends BaseController
             redirect('akademik/tugas_akhir/plotting/' . $this->input->post('id_ta'));
         } else {
             $tipe_plotting = $this->input->post('terima');
+            /* Cek apakah dipilihkan ke proyek secara manual dari akademik atau tidak*/
             if($tipe_plotting == 'manual'){
                 $this->form_validation->set_rules('proyek', 'Proyek', 'required');
                 if ($this->form_validation->run() == FALSE) {

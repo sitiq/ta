@@ -31,7 +31,7 @@
             </div>
             <div class="x_content">
                 <a href="adduser.html">
-                    <a href="<?php echo base_url() ?>akademik/pengumuman/add_form" class="btn btn-success pull-right" style="margin-bottom: 2%">Buat Pengumuman</button>
+                    <a href="<?php echo base_url() ?>akademik/pengumuman/add_form" class="btn btn-success pull-right" style="margin-bottom: 2%"><i class="fa fa-plus"></i> Buat Pengumuman</button>
                     </a>
                     <table id="datatable" class="table table-striped table-bordered dt-responsive bulk_action" cellspacing="0" width="100%">
                         <thead>

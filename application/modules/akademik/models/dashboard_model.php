@@ -4,7 +4,6 @@ class Dashboard_model extends CI_Model{
     public function getPeriodeAktif(){
         $this->db->select("*");
         $this->db->from('periode');
-        $this->db->where('isDeleted',0);
         $this->db->where('status_periode',1);
         $query = $this->db->get();
         if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
@@ -138,6 +137,10 @@ class Dashboard_model extends CI_Model{
         $this->db->select('nilai_akhir_sidang');
         $this->db->from('sidang');
         $this->db->where('id_periode',$id_periode);
+        $this->db->group_start();
+        $this->db->where('status','lulus');
+        $this->db->or_where('status','lulus_revisi');
+        $this->db->group_end();
         $query = $this->db->get();
 
         if($query->num_rows() > 0){ return $query->result(); } else { return FALSE; }

@@ -4,7 +4,6 @@ class Periode_model extends CI_Model{
     public function getPeriodeAktif(){
         $this->db->select("*");
         $this->db->from('periode');
-        $this->db->where('isDeleted',0);
         $this->db->where('status_periode',1);
         $query = $this->db->get();
         if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
@@ -45,19 +44,6 @@ class Periode_model extends CI_Model{
         $this->db->trans_start();
         $this->db->where('id_periode',$id);
         $this->db->update('periode',$data);
-        $this->db->trans_complete();
-        $result = $this->db->trans_status();
-        
-        return $result;
-    }
-
-    public function delete($id){
-        $this->db->trans_start();
-        
-        $this->db->set('isDeleted',1);
-        $this->db->where('id_periode',$id);
-        $this->db->update('periode');
-
         $this->db->trans_complete();
         $result = $this->db->trans_status();
         

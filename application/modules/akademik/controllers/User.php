@@ -58,6 +58,7 @@ class User extends BaseController
         if($_FILES["file_excel"]){
             $new_name = date("YmdHis") . "-" . $_FILES["file_excel"]['name'];
         } else {
+            delete_files('./uploads/data_users/');
             if($role == ROLE_MAHASISWA) {
                 $this->session->set_flashdata('error', 'Pilih file (.xlsx) terlebih dahulu');
                 redirect('akademik/akun_mahasiswa/add_form');
@@ -94,7 +95,6 @@ class User extends BaseController
             $file_extension = $this->upload->data('file_ext');
             $data['file_extension'] = $file_extension;
             $data['dataThead'] = array();
-            echo $file_extension;
             if($file_extension == '.xlsx'){
                 $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
             } else {
@@ -162,23 +162,12 @@ class User extends BaseController
         } else {
             $result = $this->user_model->insert_multiple($data);
             if($result){
+                unlink('./uploads/data_users/' . $filename);
                 $this->session->set_flashdata('success', 'User telah berhasil dibuat');
             } else {
                 $this->session->set_flashdata('error', 'User gagal dibuat');
             };
         }
-
-
-        //echo $data[0]['nama'];
-        //$count = count($data);
-        // foreach ($data as $dataPerson) {
-        //     foreach ($dataPerson as $key => $value) {
-        //         echo $key . '=' . $value . '<br>';
-        //     }
-        //     echo '<br>';
-        // }
-        //var_dump($data);
-        
         
         if($role == ROLE_MAHASISWA){
             redirect('akademik/akun_mahasiswa/');

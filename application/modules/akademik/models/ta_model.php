@@ -9,7 +9,7 @@ class Ta_model extends CI_Model{
         if($id != NULL){
             $this->db->where('id_ta',$id);
         } else {
-            $this->db->order_by('ta.createdDtm','DESC');
+            $this->db->order_by('ta.status_pengambilan, ta.createdDtm DESC');
         }
         $query = $this->db->get();
 
@@ -42,13 +42,25 @@ class Ta_model extends CI_Model{
     }
 
     public function getProyek($id_proyek = NULL){
-        $this->db->select("*,p.nama nama_proyek,d.nama nama_dosen");
-        $this->db->from('proyek p');
-        $this->db->join('dosen d','d.id_dosen = p.id_dosen','inner');
-        if($id_proyek != NULL){
-            $this->db->where('id_proyek',$id_proyek);
+        if($id_proyek == NULL) {
+            $query = $this->db->query
+            (
+                'SELECT *,p.nama nama_proyek,d.nama nama_dosen FROM proyek p
+                INNER JOIN dosen d ON d.id_dosen = p.id_dosen
+                WHERE p.id_proyek 
+                NOT IN (
+                SELECT id_proyek FROM pengajuan_ta pt WHERE pt.status = \'diterima\' AND id_proyek IS NOT NULL
+                ) AND p.status = \'disetujui\''
+            );
         }
-        $query = $this->db->get();
+        
+        if($id_proyek != NULL){
+            $this->db->select("*,p.nama nama_proyek,d.nama nama_dosen");
+            $this->db->from('proyek p');
+            $this->db->join('dosen d','d.id_dosen = p.id_dosen','inner');
+            $this->db->where('id_proyek',$id_proyek);
+            $query = $this->db->get();
+        }
 
         return $query->result();
     }
@@ -132,22 +144,15 @@ class Ta_model extends CI_Model{
             $this->db->where('id_pengajuan_ta',$id_pengajuan_ta);
             $this->db->update('pengajuan_ta',$data);
 
-            $data_another_row = array(
-                'status' => 'ditolak'
-            );
             $this->db->where('id_pengajuan_ta !=', $id_pengajuan_ta);
             $this->db->where('id_ta',$id_ta);
-            $this->db->update('pengajuan_ta',$data_another_row);
+            $this->db->delete('pengajuan_ta');
         } else {
-            $data_another_row = array(
-                'status' => 'ditolak'
-            );
             $this->db->where('id_ta',$id_ta);
-            $this->db->update('pengajuan_ta',$data_another_row);
+            $this->db->delete('pengajuan_ta',$data_another_row);
             
             /* Insert tabel pengajuan_ta */
             $this->db->insert('pengajuan_ta',$data);
-
         }
         
         
