@@ -5,7 +5,6 @@
  * Time: 08:27
  * Description:
  */
-var_dump($dataTable)
 ?>
 <div class="">
     <div class="page-title">

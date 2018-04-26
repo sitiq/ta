@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="x_content">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>Tanggal Daftar</th>
@@ -98,13 +98,17 @@
                                     </td>
                                     <td>
                                         <?php if ($record->tanggal == null){?>
-                                            <a href="<?php echo base_url() ?>akademik/sidang/plot/<?php echo $record->id_sidang?>" class="btn btn-info">
-                                                <i class="fa fa-clock-o"></i>
-                                            </a>
+                                            <?php if ($record->tanggal == null){?>
+                                                <a href="<?php echo base_url() ?>akademik/sidang/plot/<?php echo $record->id_sidang?>" class="btn btn-info">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </a>
+                                            <?php }else{?>
+                                                <a href="<?php echo base_url() ?>akademik/sidang/editplot/<?php echo $record->id_sidang?>" class="btn btn-info">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </a>
+                                            <?php }?>
                                         <?php }else{?>
-                                            <a href="<?php echo base_url() ?>akademik/sidang/editplot/<?php echo $record->id_sidang?>" class="btn btn-info">
-                                                <i class="fa fa-clock-o"></i>
-                                            </a>
+                                            Sudah sidang
                                         <?php }?>
                                     </td>
                                 </tr>
@@ -119,3 +123,15 @@
         </div>
     </div>
 </div>
+<script>
+$(function () {
+    $('#datatable').DataTable({
+        'paging' : true,
+        'lengthChange' : true,
+        'searching' :true,
+        'ordering' : false,
+        'info' : true,
+        'autoWidth' : true
+    })
+})
+</script>

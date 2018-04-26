@@ -22,6 +22,7 @@ class sidang_model extends CI_Model
         $this->db->join('dosbing ds', 'ds.id_mahasiswa = m.id_mahasiswa','left');
         $this->db->join('dosen d', 'd.id_dosen = ds.id_dosen','left');
         $this->db->join('jadwal_sidang j', 'j.id_sidang = s.id_sidang','left');
+        $this->db->order_by('s.createdDtm DESC');
         if ($sidangId!=null){
             $this->db->where('s.id_sidang', $sidangId);
         }
