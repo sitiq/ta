@@ -8,6 +8,7 @@
                 </h2>
                 <div class="clearfix"></div>
             </div>
+            <?php //var_dump($dataTable);?>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <?php
                         $this->load->helper('form');
@@ -33,20 +34,21 @@
             </div>
             <div class="x_content">
                 <a href="adduser.html">
-                    <a href="<?php echo base_url() ?>akademik/akun_mahasiswa/add_form" class="btn btn-success pull-right" style="margin-bottom: 2%">Add New User</button>
+                    <a href="<?php echo base_url() ?>akademik/akun_mahasiswa/add_form" class="btn btn-success pull-right" style="margin-bottom: 2%"><i class="fa fa-plus"></i> Tambah User Mahasiswa</button>
                     </a>
-                    <table id="datatable-checkbox" class="table table-striped table-bordered dt-responsive nowrap bulk_action" cellspacing="0"
+                    <table id="datatable-checkbox" class="table table-striped table-bordered dt-responsive bulk_action" cellspacing="0"
                         width="100%">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Username</th>
-                                <th>Action</th>
+                                <th class="col-md-4">Nama</th>
+                                <th class="col-md-3">Username</th>
+                                <th class="col-md-2"><center>Action</center></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php 
                                 $i=1;
+                                if($dataTable) {
                                 foreach($dataTable as $data) {
                             ?>
                             <tr>
@@ -56,16 +58,19 @@
                                 <td style="vertical-align:middle">
                                     <?php echo $data->username; ?>
                                 </td>
-                                <td>
+                                <td style="vertical-align:middle">
+                                    <center>
                                     <a href="<?php echo base_url()?>akademik/akun_mahasiswa/edit_form/<?php echo $data->id_user ?>" class="btn btn-sm btn-primary">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a data-id="<?php echo $data->id_user; ?>" class="btn btn-sm btn-danger" data-toggle='modal' id="delete_modal" data-target='#deleteModal'>
                                         <i class="fa fa-trash"></i>
                                     </a>
+                                    </center>
                                 </td>
                             </tr>
                             <?php $i++; } ?>
+                        <?php } ?>
                         </tbody>
                     </table>
             </div>

@@ -2,8 +2,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Daftar Dosen
-                </h2>
+                <h2>Daftar Dosen</h2>
                 <div class="clearfix"></div>
             </div>
             <?php //var_dump($dataTable)?><br><br>
@@ -47,8 +46,8 @@
                                         <th>NID</th>
                                         <th>Nama</th>
                                         <th>No. HP</th>
-                                        <th>Bimbingan</th>
-                                        <th>Pendadaran</th>
+                                        <th>Jmlh. Mahasiswa yang Dibimbing</th>
+                                        <th>Partisipasi Pendadaran</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -57,12 +56,12 @@
                                         <td style="vertical-align:middle"><?php echo $data['nid']; ?></td>
                                         <td style="vertical-align:middle"><?php echo $data['nama_dosen']; ?></td>
                                         <td style="vertical-align:middle"><?php echo $data['mobile']; ?></td>
-                                        <td style="vertical-align:middle">
+                                        <td style="vertical-align:middle"><center>
                                         
                                         <?php echo ($data['bimbingan'] != NULL ? $data['bimbingan'] : '<i>(Tidak ada data)</i>'); ?>
                                         <a href="<?php echo base_url(); ?>akademik/daftar_dosen/bimbingan/<?php echo $data['id_dosen']?>" class="btn btn-primary btn-sm pull-right"><i class="fa fa-eye"></i></a>
                                         
-                                        </td>
+                                        </center></td>
                                         <td style="vertical-align:middle"><?php echo $data['sidang']; ?></td>
                                     </tr>
                                     <?php } ?>

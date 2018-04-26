@@ -48,9 +48,7 @@
     <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url()?>elusistatic/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
-    <!-- jQuery -->
-    
+    <!-- jQuery validate -->
     <script src="<?php echo base_url()?>elusistatic/js/jquery.validate.js"></script>
 
     <script type="text/javascript">

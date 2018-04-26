@@ -86,8 +86,8 @@ if (!empty($taInfo)) {
         </div>
     </div>
     <div class="clearfix"></div>
+    <?php //var_dump($proyekInfo);?>
 <!--    validasi berdasarkan periode-->
-    <?php if ($periode == 1 && $date_now >= $awal && $date_now <= $akhir){?>
         <div class="row">
             <div class="col-md-12">
                 <?php
@@ -119,19 +119,20 @@ if (!empty($taInfo)) {
                 </div>
             </div>
         </div>
+        <?php if ($periode == 1 && $date_now >= $awal && $date_now <= $akhir){?>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x-panel">
                     <?php if (!empty($taInfo)) {?>
                         <div class="x_panel">
                             <div class="x_title">
-                                <h3><strong>STATUS : AKTIF</strong></h3>
+                                <h3><strong>STATUS : PENDING</strong></h3>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="tab-content">
                                 <a class="btn btn-primary pull-right" data-toggle="tab" href="#edit" ><i class="fa fa-edit"></i> Edit</a>
 <!--                                <button class="btn btn-warning pull-right"><i class="fa fa-edit"></i> Ganti Judul</button>-->
-                                <!--                        form info-->
+                                <!-- form info-->
                                 <div class="tab-pane active fade in" id="content">
                                     <div class="x_content">
                                         <div class="form-group">
@@ -139,7 +140,7 @@ if (!empty($taInfo)) {
                                             foreach ($taInfo as $record) {
                                                 if($record->jenis == "proyek") {
                                                     ?>
-                                                    <!--                                    proyek-->
+                                                    <!--proyek-->
                                                     <div class="row">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan <?php echo $record->pilihan ?></label>
                                                         <div style="padding-left: 0px;" class="col-md-6 col-sm-6 col-xs-12">
@@ -147,8 +148,8 @@ if (!empty($taInfo)) {
                                                         </div>
                                                         <div class="clearfix" style="margin-bottom: 2%"></div>
                                                     </div>
-                                                <?php } else {?>
-                                                    <!--                                    usulan-->
+                                                <?php } else { ?>
+                                                    <!--usulan-->
                                                     <div class="row">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan <?php echo $record->pilihan ?></label>
                                                         <div class="well col-md-8">
@@ -186,11 +187,11 @@ if (!empty($taInfo)) {
                                         </div>
                                     </div>
                                 </div>
-                                <!--                        end tab pane-->
+                                <!-- end tab pane-->
                                 <div class="tab-pane fade in" id="edit">
                                     <a href="#content" data-toggle="tab" class="btn btn-primary" ><i class="fa fa-angle-double-left"></i> Back</a>
                                     <div class="x_content">
-                                        <form role="form" id="daftar" action="<?php echo base_url()?>mahasiswa/pengajuan/edit_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" >
+                                        <form role="form" id="daftar" action="<?php echo base_url()?>mahasiswa/pengajuan/edit_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" enctype="multipart/form-data">
                                             <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan <font color="red">*</font></label>
@@ -263,7 +264,7 @@ if (!empty($taInfo)) {
                                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Usulan Judul <span class="required">*</span>
                                                                     </label>
                                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <input type="text" name="judul" class="form-control col-md-7 col-xs-12" placeholder="jawaban anda" value="<?php echo $judul ?>" >
+                                                                        <input type="text" name="judul" class="form-control col-md-7 col-xs-12" placeholder="Tuliskan judul anda" value="<?php echo $judul ?>" >
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -327,164 +328,46 @@ if (!empty($taInfo)) {
                                         </form>
                                     </div>
                                 </div>
-                                <!--                        end tab pane-->
-                                <!--                        form edit-->
-                                <div class="tab-pane fade in" id="edit">
-                                    <a href="#content" data-toggle="tab" class="btn btn-primary" ><i class="fa fa-angle-double-left"></i> Back</a>
-                                    <div class="x_content">
-                                        <form role="form" id="daftar" action="<?php echo base_url() ?>mahasiswa/pengajuan/edit_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" >
-                                            <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan <font color="red">*</font></label>
-                                                <input style="display: inline; width: 55px; padding: 6px 12px;" type="number" min="1" max="3" class="col-md-3 col-sm-3 col-xs-12 form-control distinctemails" name="satu" value="<?php echo $pilihan[0]; ?>" >
-                                                <!-- Get Id Pengajuan TA -->
-                                                <input type="hidden" name="pilihan1" value="<?php echo $id_pengajuan_ta[0] ?>">
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <select name="proyeksatu" class="form-control">
-                                                        <option value="">Pilih ..</option>
-                                                        <?php
-                                                        if(!empty($proyekInfo)) {
-                                                            foreach($proyekInfo as $record) {
-                                                                ?>
-                                                                <option value="<?php echo $record->id_proyek ?>" <?php if ($proyek[0]==$record->id_proyek){ echo "selected";} ?> ><?php echo $record->nama ?></option>
-                                                                <?php
-                                                            }
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                                <div class="clearfix" style="margin-bottom: 2%"></div>
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan <font color="red">*</font></label>
-                                                <input style="display: inline; width: 55px; padding: 6px 12px;" type="number" min="1" max="3" class="col-md-3 col-sm-3 col-xs-12 form-control distinctemails" name="dua" value="<?php echo $pilihan[1]; ?>" >
-                                                <!-- Get Id Pengajuan TA -->
-                                                <input type="hidden" name="pilihan2" value="<?php echo $id_pengajuan_ta[1] ?>">
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <select name="proyekdua" class="form-control">
-                                                        <option value="">Pilih ..</option>
-                                                        <?php
-                                                        if(!empty($proyekInfo)) {
-                                                            foreach($proyekInfo as $record) {
-                                                                ?>
-                                                                <option value="<?php echo $record->id_proyek ?>" <?php if ($proyek[1]==$record->id_proyek){ echo "selected";} ?> ><?php echo $record->nama ?></option>
-                                                                <?php
-                                                            }
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                                <div class="clearfix" style="margin-bottom: 2%"></div>
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan <font color="red">*</font></label>
-                                                <input style="display: inline; width: 55px; padding: 6px 12px;" type="number" min="1" max="3" class="col-md-3 col-sm-3 col-xs-12 form-control distinctemails" id="tiga" name="tiga" value="<?php echo $pilihan[2]; ?>" >
-                                                <!-- Get Id Pengajuan TA -->
-                                                <input type="hidden" name="pilihan3" value="<?php echo $id_pengajuan_ta[2] ?>">
-                                                <input type="hidden" name="jenis_pilihan3" value="<?php echo $jenis ?>">
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="btn-group" data-toggle="buttons" id="pilihan3">
-                                                        <a class="<?php if($active_usulan != 0) {echo 'active ';} ?>btn btn-default" href="#tab_content3" role="tab" data-toggle="tab" aria-expanded="true"><input type="radio" name="jenis" value="usul" <?php if($active_usulan != 0) {echo 'checked ';} ?> >Usulan</a>
-                                                        <a class="<?php if($active_proyek != 0) {echo 'active ';} ?>btn btn-default" href="#tab_content4" role="tab" data-toggle="tab" aria-expanded="true"><input type="radio" name="jenis" value="proyek" <?php if($active_proyek != 0) {echo 'checked ';} ?> >Project</a>
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix" style="margin-bottom: 2%"></div>
-                                                <!--pane 2-->
-                                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                                                    <div id="myTabContent" class="tab-content">
-                                                        <!--pane ide-->
-                                                        <div role="tabpanel" class="<?php if($active_usulan != 0) {echo 'active ';} ?>tab-pane fade in" id="tab_content3" aria-labelledby="home-tab">
-                                                            <!--pilihan usulan-->
-                                                            <div class="row">
-                                                                <br/>
-                                                                <h4><strong>Usulan Ide</strong></h4>
-                                                                <small>
-                                                                    Lengkapi form sesuai dengan usulan ide<br/>
-                                                                    <!-- Get Id Usulan -->
-                                                                    <input type="hidden" name="id_usulan" value="<?php echo $id_usulan ?>">
-                                                                    <br/>
-                                                                </small>
-                                                                <br/>
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Usulan Judul <span class="required">*</span>
-                                                                    </label>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <input type="text" name="judul" class="form-control col-md-7 col-xs-12" placeholder="jawaban anda" value="<?php echo $judul ?>" >
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Deskripsi Project <span class="required">*</span>
-                                                                    </label>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <textarea type="text" name="deskripsi" id="deskripsi" class="form-control col-md-7 col-xs-12" placeholder="Deskripsikan dengan singkat dan jelas"><?php echo $deskripsi ?></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Business Rule <span class="required">*</span>
-                                                                    </label>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <textarea type="text" name="bisnis_rule" id="bisnis" class="form-control col-md-7 col-xs-12" placeholder="Bisnis yang diusulkan meliputi alur proses yang ada, data dan pengguna yang terlibat di dalamnya"><?php echo $bisnis_rule ?></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Persetujuan Institusi
-                                                                    </label><small>Bagi yang mengajukan project dari institusi (jika ada)</small>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <input type="file" name="file_persetujuan" class="form-control col-md-7 col-xs-12">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group col-md-9">
-                                                                    <input type="submit" class="btn btn-success pull-right" value="Submit">
-                                                                </div>
-                                                            </div>
-                                                            <!--end usulan-->
-                                                        </div>
-                                                        <!--end ide-->
-
-                                                        <!--start project-->
-                                                        <div role="tabpanel" class="<?php if($active_proyek != 0) {echo 'active ';}?>tab-pane fade in" id="tab_content4" aria-labelledby="home-tab">
-                                                            <div class="row">
-                                                                <div>
-                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">&nbsp;</label>
-                                                                    <!-- Get Id Pengajuan TA Proyek -->
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <select name="proyektiga" class="form-control">
-                                                                            <option value="">Pilih ..</option>
-                                                                            <?php
-                                                                            if(!empty($proyekInfo)) {
-                                                                                foreach($proyekInfo as $record) {
-                                                                                    ?>
-                                                                                    <option value="<?php echo $record->id_proyek ?>" <?php if(!empty($proyek[2])){ if ($proyek[2]==$record->id_proyek){ echo "selected";} } ?> ><?php echo $record->nama ?></option>
-                                                                                    <?php
-                                                                                }
-                                                                            }
-                                                                            ?>
-                                                                        </select>
-                                                                        <input type="submit" class="btn btn-success pull-right" style="margin-top: 3%" value="Submit" >
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--end project-->
-                                                    </div>
-                                                </div>
-                                                <!--end pane 2-->
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!--                        end tab pane-->
+                                <!--end tab pane-->
+                                <!--form edit-->
+                            
+                                <!-- end tab pane-->
                             </div>
                         </div>
-                        <?php
-                    } else {
-                        ?>
+                        <?php } elseif($taTerplotting) { ?>
+                        <!-- start bila sudah terplotting di TA-->
+                        <div class="x_panel">
+                            <div class="alert alert-warning">
+                            <h4><i class="fa fa-warning"></i> PERHATIAN!</h4> 
+                            Anda telah terplotting pada tugas akhir yang tertera di bawah ini.
+
+                            Jika anda ingin mengubah tugas akhir, anda bisa menekan tombol "Ganti tugas akhir" dengan konsekuensi tugas akhir yang sudah anda ganti akan menjadi nonaktif dan 
+                            digantikan dengan tugas akhir baru yang telah anda pilih.
+                            </div>
+                            <h3><strong>STATUS : <span class="label label-success">AKTIF</span></strong></h3>
+                            <div class="clearfix"></div>
+                            <center>
+                                <h4><span class="label label-default">Judul Tugas Akhir</span></h4><br>
+                                <h3><?php echo $taTerplotting['judul_ta']; ?></h3><br>
+                                <h4><span class="label label-default">Dosen Pembimbing</h4><br>
+                                <h3><?php echo $taTerplotting['dosbing']; ?></h3><br>
+                            </center>
+                            
+                            <a data-toggle="modal" data-target="#ubahTA" type="button" class="btn btn-default pull-right"><i class="fa fa-edit"></i> Ganti Tugas Akhir</a>
+                            
+                        </div>
+                        <!-- end bila sudah terplotting di TA-->
+                        <?php } else { ?>
                         <div class="x_panel">
                             <div class="x_title">
-                                <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada
+                                <h5 class="badge bg-red">Pastikan Anda telah melengkapi
                                     <a href="<?php base_url()?>../profil" style="color: white"><u>PROFIL</u></a>
-                                    Anda</h5>
+                                    dengan benar</h5>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
                                 <br>
-                                <form role="form" id="daftar" action="<?php echo base_url() ?>mahasiswa/pengajuan/daftar_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" >
+                                <form role="form" id="daftar" action="<?php echo base_url() ?>mahasiswa/pengajuan/daftar_ta" method="POST" data-parsley-validate class="form-horizontal form-label-left" role="form" enctype="multipart/form-data">
                                     <input type="hidden" name="id_periode" value="<?php echo $id_periode?>">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Pilihan <font color="red">*</font></label>
@@ -548,7 +431,7 @@ if (!empty($taInfo)) {
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Usulan Judul <span class="required">*</span>
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="text" name="judul" class="form-control col-md-7 col-xs-12" placeholder="jawaban anda">
+                                                                <input type="text" name="judul" class="form-control col-md-7 col-xs-12" placeholder="Tuliskan judul anda">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -635,6 +518,30 @@ if (!empty($taInfo)) {
             </div>
         </div>
     <?php }?>
+</div>
+<!-- Modal Ubah Tanggal Yudisium-->
+<div class="modal fade" id="ubahTA" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ganti Tugas Akhir</h4>
+            </div>
+            <div class="modal-body">
+            <center><h5><strong>Apakah anda yakin ingin mengganti tugas akhir?</strong></h5></center>
+            </div>
+            <form action="<?php echo base_url(); ?>mahasiswa/pengajuan/setNonaktifTA" method="post">
+                <div class="modal-footer">
+                    <input type="hidden" name="is_ubah" id="is_ubah" value="1">
+                    <input type="hidden" name="judul_ta" id="judul_ta" value="<?php echo $taTerplotting['judul_ta']; ?>">
+                    <input type="hidden" name="id_ta" id="id_ta" value=<?php echo $taTerplotting['id_ta']?>>
+                    <button type="submit" class="btn btn-primary">Ubah</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <script>
     $(document).ready(function(){

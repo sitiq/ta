@@ -38,7 +38,7 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" id="addPeriodeForm" action="<?php echo base_url() . 'akademik/periode/add_edit_period'?>"
+                    <form class="form-horizontal form-label-left" id="addPeriodeForm" action="<?php echo base_url() . 'akademik/periode/add_period'?>"
                         method="post">
                         <div class="form-group">
                             <label class="control-label col-md-4 col-sm-4 col-xs-12">Semester
@@ -100,7 +100,6 @@
         $("#thn1").on('change keyup', function () {
                 $("#thn2").val(parseInt($(this).val()) + 1);
             }
-
         );
     </script>
     <script>

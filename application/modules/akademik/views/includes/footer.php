@@ -49,6 +49,8 @@
 <script src="<?php echo base_url()?>elusistatic/vendors/starrr/dist/starrr.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="<?php echo base_url()?>elusistatic/build/js/custom.js"></script>
+<!-- ECharts -->
+<script src="<?php echo base_url()?>elusistatic/vendors/echarts/dist/echarts.min.js"></script>
 <!-- Datatables -->
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url()?>elusistatic/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
