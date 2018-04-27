@@ -12,6 +12,7 @@ class Profil extends BaseController
         parent::__construct();
         $this->load->model('profil_model');
         $this->isLoggedIn();
+        $this->isMahasiswa();
     }
 
     /**

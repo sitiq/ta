@@ -15,6 +15,7 @@ class Mahasiswa extends BaseController
         parent::__construct();
         $this->load->model('dashboard_model');
         $this->isLoggedIn();
+        $this->isMahasiswa();
     }
     /**
      * This function is used to load the main page

@@ -6,6 +6,7 @@ class Periode extends BaseController
         parent::__construct();
         $this->load->model('periode_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     public function index(){

@@ -45,6 +45,8 @@ class Login_admin extends CI_Controller
                 redirect('akademik');
             }elseif($id_user_role == ROLE_KAPRODI) {
                 redirect('kaprodi');
+            }else{
+                redirect('error_404');
             }
         }
     }

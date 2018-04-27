@@ -16,6 +16,7 @@ class Dosen extends BaseController
         parent::__construct();
         $this->load->model('dashboard_model');
         $this->isLoggedIn();
+        $this->isDosen();
     }
     /**
      * This function is used to load the dashboard items

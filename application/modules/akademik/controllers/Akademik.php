@@ -5,10 +5,12 @@ class Akademik extends BaseController
     public function __construct() {
         parent::__construct();
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     public function index(){
         redirect('akademik/dashboard');
+        
     }
     function pageNotFound()
     {

@@ -15,6 +15,7 @@ class Sidang extends BaseController
         parent::__construct();
         $this->load->model('sidang_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
     /**
      * This function is used to load the main page

@@ -6,6 +6,7 @@ class Akun_mahasiswa extends BaseController
         parent::__construct();
         $this->load->model('user_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     public function index(){

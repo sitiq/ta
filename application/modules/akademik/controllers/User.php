@@ -6,6 +6,7 @@ class User extends BaseController
         parent::__construct();
         $this->isLoggedIn();
         $this->load->model('user_model');
+        $this->isAkademik();
     }
 
     public function add_user($role){
@@ -17,7 +18,7 @@ class User extends BaseController
                 'id_user_role' => $role,
                 'nomor_induk' => trim($this->input->post('nim')),
             );
-        } elseif($role = ROLE_DOSEN || $role = ROLE_KAPRODI){
+        } elseif($role == ROLE_DOSEN || $role == ROLE_KAPRODI){
             $data = array(
                 'nama' => trim($this->input->post('fname')),
                 'username' => trim($this->input->post('username')),

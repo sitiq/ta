@@ -47,6 +47,7 @@
                         <tbody>
                             <?php 
                                 $i=1;
+                                if($dataTable) {
                                 foreach($dataTable as $data) {
                             ?>
                             <tr>
@@ -65,7 +66,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            <?php $i++; } ?>
+                            <?php $i++; } }?>
                         </tbody>
                     </table>
             </div>

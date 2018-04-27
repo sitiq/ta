@@ -6,6 +6,7 @@ class Daftar_dosen extends BaseController
         parent::__construct();
         $this->load->model('daftar_dosen_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     public function index(){

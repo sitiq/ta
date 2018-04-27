@@ -12,6 +12,7 @@ class Penilaian extends BaseController
         parent::__construct();
         $this->load->model('penilaian_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     public function index(){

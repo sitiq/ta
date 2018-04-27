@@ -12,6 +12,7 @@ class Berkas_yudisium extends BaseController
         parent::__construct();
         $this->load->model('berkas_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     public function index(){

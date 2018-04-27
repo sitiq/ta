@@ -5,6 +5,7 @@ class Kaprodi extends BaseController
     public function __construct() {
         parent::__construct();
         $this->isLoggedIn();
+        $this->isKaprodi();
     }
 
     public function index(){
