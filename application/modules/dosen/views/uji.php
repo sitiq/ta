@@ -56,7 +56,7 @@
                             <td><?php echo $record->nama ?></td>
                             <td>
                                 <?php if ($record->path != ''){?>
-                                    <a href="<?php echo base_url()?>uploads/sidang/14/<?php echo $record->path?>" class="btn btn-sm btn-info" download>
+                                    <a href="<?php echo base_url()?>uploads/sidang/1/<?php echo $record->path?>" class="btn btn-sm btn-info" download>
                                         <i class="fa fa-download"></i>
                                     </a>
                                 <?php }else{?>
