@@ -380,7 +380,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <?php if($data->isValid != 0 ) { ?>
-                                                                    <a href="<?php echo base_url()?>uploads/yudisium/<?php echo $data->id_berkas_sidang . '/' . $data->path ?>" class="btn btn-sm btn-info"
+                                                                    <a href="<?php echo base_url()?>uploads/yudisium/<?php echo $data->id_berkas_yudisium . '/' . $data->path ?>" class="btn btn-sm btn-info"
                                                                         target="_blank">
                                                                         <i class="fa fa-eye"></i>
                                                                     </a>

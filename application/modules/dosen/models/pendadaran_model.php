@@ -28,6 +28,7 @@ class pendadaran_model extends CI_Model
         $this->db->where('u.id_user',$userId);
         $this->db->where('v.id_berkas_sidang',1);
         $this->db->where('v.isValid','2');
+        $this->db->order_by('j.tanggal DESC');
         $query = $this->db->get();
 
         $result = $query->result();
