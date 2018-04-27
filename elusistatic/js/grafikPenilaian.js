@@ -52,10 +52,8 @@ $(document).ready(function () {
                         },
                         toolbox: {
                             show: true,
+                            showTitle: false,
                             feature: {
-                                mark: {
-                                    show: true
-                                },
                                 saveAsImage: {
                                     show: true
                                 }
@@ -95,11 +93,9 @@ $(document).ready(function () {
                     data: ['No Data']
                 },
                 toolbox: {
+                    showTitle: false,
                     show: true,
                     feature: {
-                        mark: {
-                            show: true
-                        },
                         saveAsImage: {
                             show: true
                         }

@@ -107,8 +107,8 @@ class Yudisium extends BaseController
 // upload files based on each folder in uploads folder
             for ($i=1;$i<=$total_syarat;$i++)
             {
-                $config['upload_path'] = 'uploads/sidang/'.$id_folder;
-                $new_name = "sidang-".$id_folder."-".time();
+                $config['upload_path'] = 'uploads/yudisium/'.$id_folder;
+                $new_name = "yudisium-".$id_folder."-".time();
                 $config['file_name'] = $new_name;
             }
             $config['allowed_types'] = 'pdf';

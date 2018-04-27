@@ -251,4 +251,26 @@ class pengajuan_model extends CI_Model
         
         return $result;
     }
+
+    function isDataMahasiswaLengkap($id_mahasiswa){
+        $this->db->select('*');
+        $this->db->from('mahasiswa');
+        $this->db->where('id_mahasiswa',$id_mahasiswa);
+        $query = $this->db->get();
+        
+        $result = $query->result();
+        $nim = $result[0]->nama;
+        $mobile = $result[0]->mobile;
+        $email = $result[0]->email;
+        $ipk = $result[0]->ipk;
+        $jumlah_SKS = $result[0]->jumlah_SKS;
+        $skill = $result[0]->skill;
+        $pengalaman = $result[0]->pengalaman;
+
+        if(empty($nim) || empty($mobile) || empty($email) || empty($ipk) || empty($jumlah_SKS) || empty($skill) || empty($pengalaman)){
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
 }

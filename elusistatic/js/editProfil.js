@@ -80,7 +80,7 @@ $(document).ready(function () {
             ipk: {
                 required: "IPK harus diisi",
                 noSpace: "IPK tidak boleh kosong",
-                minlength: "Contoh : 3.95",
+                minlength: "Format nya harus 2 digit dibelakang koma",
             },
             jumlah_SKS: {
                 required: "sks harus diisi",
