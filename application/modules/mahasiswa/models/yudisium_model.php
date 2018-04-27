@@ -15,7 +15,6 @@ class yudisium_model extends CI_Model
     function getPeriode(){
         $this->db->select('id_periode, status_periode, tgl_awal_regis_yudisium, tgl_akhir_regis_yudisium');
         $this->db->from('periode');
-        $this->db->where('isDeleted',0);
         $query = $this->db->get();
 
         $result = $query->result();

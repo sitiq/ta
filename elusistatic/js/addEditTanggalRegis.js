@@ -64,7 +64,7 @@ $(document).ready(function () {
 			},
 			tanggal_akhir_yudisium: { 
 				required : true,
-				greaterThanDate: "#tanggal_awal_ta",
+				greaterThanDate: "#tanggal_awal_yudisium",
 			}
 		},
 		messages: {

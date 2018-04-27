@@ -79,11 +79,11 @@ class Dashboard_model extends CI_Model{
                 $periode = $this->getPeriode('genap',$tahun_ajaran);
                 
                 if($periode != FALSE) {
-                $id_periode = $periode[0]->id_periode;
-                $semester = $periode[0]->semester;
-                $tahun_ajaran = $periode[0]->tahun_ajaran;
+                    $id_periode = $periode[0]->id_periode;
+                    $semester = $periode[0]->semester;
+                    $tahun_ajaran = $periode[0]->tahun_ajaran;
 
-                $array = ['id_periode' => $id_periode, 'nama_periode' => $thn1 . '/' . $thn2 . ' ' . ucfirst($semester)];
+                    $array = ['id_periode' => $id_periode, 'nama_periode' => $thn1 . '/' . $thn2 . ' ' . ucfirst($semester)];
 
                     array_push($array_periode,$array);
                 } else {

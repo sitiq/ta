@@ -364,9 +364,9 @@
                                                                 <td>
                                                                     <?php echo $i; ?>
                                                                 </td>
-                                                                <th>
+                                                                <td>
                                                                     <?php echo $data->nama_berkas; ?>
-                                                                </th>
+                                                                </td>
                                                                 <td>
                                                                     <?php if($data->isValid == 0) {
                                                                             echo 'Belum diupload'; 
@@ -387,13 +387,12 @@
                                                                     <?php } ?>
                                                                 </td>
                                                             </tr>
+                                                    <?php $i++;} ?>
                                                         </tbody>
                                                     </table>
-                                                    </div>
+                                                </div>
                                                     <!--end table berkas yudisium-->
-                                                    <?php $i++;}
-                                                        } else {
-                                                    ?>
+                                                    <?php    } else { ?>
                                                     <div class="col-md-12 col-xs-12 col-sm-12">
                                                         <div class="x_title">
                                                             <h3>Berkas Yudisium</h3>
@@ -407,7 +406,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <!--tab panel-->
