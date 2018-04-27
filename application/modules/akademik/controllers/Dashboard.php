@@ -6,6 +6,7 @@ class Dashboard extends BaseController {
         parent::__construct();
         $this->load->model('dashboard_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     function index(){

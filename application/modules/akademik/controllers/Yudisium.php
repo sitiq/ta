@@ -12,6 +12,7 @@ class Yudisium extends BaseController
         parent::__construct();
         $this->load->model('yudisium_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     function index()

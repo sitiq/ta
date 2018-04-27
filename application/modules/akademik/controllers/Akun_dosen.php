@@ -6,12 +6,13 @@ class Akun_dosen extends BaseController
         parent::__construct();
         $this->load->model('user_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     public function index(){
         $data['dataTable'] = $this->user_model->getUserTable(ROLE_DOSEN);
         $data['role'] = ROLE_DOSEN;
-        $this->global['pageTitle'] = "Elusi : Dashboard User Mahasiswa"; 
+        $this->global['pageTitle'] = "Elusi : Dashboard User Dosen"; 
         $this->loadViews("dashboard_dosen",$this->global,$data);
     }
 

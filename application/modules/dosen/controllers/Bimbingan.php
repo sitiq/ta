@@ -16,6 +16,7 @@ class Bimbingan extends BaseController
         parent::__construct();
         $this->load->model('bimbingan_model');
         $this->isLoggedIn();
+        $this->isDosen();
     }
     /**
      * This function is used to load the main page

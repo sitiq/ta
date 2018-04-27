@@ -6,6 +6,7 @@ class Pengumuman extends BaseController
         parent::__construct();
         $this->load->model('pengumuman_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     public function index(){

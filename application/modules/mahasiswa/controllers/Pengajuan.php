@@ -18,6 +18,7 @@ class Pengajuan extends BaseController
         parent::__construct();
         $this->load->model('pengajuan_model');
         $this->isLoggedIn();
+        $this->isMahasiswa();
     }
 
     /**

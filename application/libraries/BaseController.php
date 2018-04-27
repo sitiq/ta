@@ -54,17 +54,17 @@ class BaseController extends CI_Controller {
      */
     function isKaprodi() {
         if ($this->role != ROLE_KAPRODI) {
-            return true;
-        } else {
-            return false;
-        }
+			redirect ( 'error_404' );
+		} else {
+			return false;
+		}
     }
 	/**
 	 * This function is used to check the access
 	 */
 	function isAkademik() {
 		if ($this->role != ROLE_AKADEMIK) {
-			return true;
+			redirect ( 'error_404' );
 		} else {
 			return false;
 		}
@@ -75,10 +75,10 @@ class BaseController extends CI_Controller {
      */
     function isDosen() {
         if ($this->role != ROLE_DOSEN) {
-            return true;
-        } else {
-            return false;
-        }
+			redirect ( 'error_404' );
+		} else {
+			return false;
+		}
     }
 
     /**
@@ -86,21 +86,21 @@ class BaseController extends CI_Controller {
      */
     function isMahasiswa() {
         if ($this->role != ROLE_MAHASISWA) {
-            return true;
-        } else {
-            return false;
-        }
+			redirect ( 'error_404' );
+		} else {
+			return false;
+		}
     }
 
 	/**
 	 * This function is used to load the set of views
 	 */
 	function loadThis() {
-		$this->global ['pageTitle'] = 'CodeInsect : Access Denied';
+		// $this->global ['pageTitle'] = 'Elusi : Access Denied';
 
-		$this->load->view ( 'includes/header', $this->global );
-		$this->load->view ( 'access' );
-		$this->load->view ( 'includes/footer' );
+		//$this->load->view ( 'includes/header', $this->global );
+		$this->load->view ( 'error_404' );
+		//$this->load->view ( 'includes/footer' );
 	}
 
 	/**

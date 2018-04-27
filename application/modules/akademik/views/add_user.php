@@ -9,7 +9,7 @@
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <?php //var_dump($role);?>
+            <?php var_dump($role);?>
             <div class="x_panel">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <?php

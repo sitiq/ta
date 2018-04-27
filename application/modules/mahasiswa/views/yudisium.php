@@ -70,9 +70,9 @@ if(!empty($berkasInfo))
                                         <br>
                                         <li>Maksimal ukuran berkas 8Mb</li>
                                     </ul>
-                                    <h5 class="badge bg-red">Pastikan Data Diri Terbaru pada
-                                        <a href="<?php base_url()?>../mahasiswa/profil" style="color: white"><u>PROFIL</u></a>
-                                        Anda</h5>
+                                    <h5 class="badge bg-red">Pastikan Anda telah melengkapi
+                                    <a href="<?php base_url()?>../profil" style="color: white"><u>PROFIL</u></a>
+                                    dengan benar</h5>
                                 </small></h2>
                         </div>
                         <div class="col-md-6">

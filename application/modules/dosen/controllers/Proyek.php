@@ -13,6 +13,7 @@ class Proyek extends BaseController
         parent::__construct();
         $this->load->model('proyek_model');
         $this->isLoggedIn();
+        $this->isDosen();
     }
 
     function index()

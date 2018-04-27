@@ -15,6 +15,7 @@ class Pengumuman extends BaseController
         parent::__construct();
         $this->load->model('pengumuman_model');
         $this->isLoggedIn();
+        $this->isMahasiswa();
     }
     /**
      * This function is used to load the main page

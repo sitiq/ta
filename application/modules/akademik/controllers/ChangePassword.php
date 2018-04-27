@@ -17,6 +17,7 @@ class ChangePassword extends BaseController
         parent::__construct();
         $this->load->model('change_password_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     /**

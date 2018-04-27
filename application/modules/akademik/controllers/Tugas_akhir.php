@@ -7,6 +7,7 @@ class Tugas_akhir extends BaseController
         $this->load->model('ta_model');
         $this->isLoggedIn();
         $this->load->library('form_validation');
+        $this->isAkademik();
     }
 
     public function index(){

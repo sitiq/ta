@@ -6,6 +6,7 @@ class Daftar_mahasiswa extends BaseController
         parent::__construct();
         $this->load->model('daftar_mahasiswa_model');
         $this->isLoggedIn();
+        $this->isAkademik();
     }
 
     public function index(){
