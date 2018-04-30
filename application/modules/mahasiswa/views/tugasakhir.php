@@ -174,7 +174,7 @@ if (!empty($taInfo)) {
                                                             <div class="clearfix" style="margin-bottom: 2%"></div>
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Persetujuan Instansi</label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <a href=""><?php echo $record->file_persetujuan ?></a>
+                                                                <a target="_blank" href="<?php echo base_url(); ?>uploads/persetujuan/<?php echo $record->file_persetujuan; ?>"><?php echo $record->file_persetujuan ?></a>
                                                             </div>
                                                             <div class="clearfix" style="margin-bottom: 2%"></div>
                                                         </div>

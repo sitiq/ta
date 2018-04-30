@@ -281,10 +281,10 @@ class Pengajuan extends BaseController
 
                         // cek apakah jenis pengajuan ta (proyek/usulan)
                         if ($jenis[$i] == "proyek") {
-                            if ($jenis_pilihan3 == "usul" && $jenis[2] != 'usul') {
+                            if ($jenis_pilihan3 == "usul" && $jenis[2] != 'usul' && $i=2) {
                                 // apabila jenis pengajuan ta sebelumnya adalah usulan
                                 
-                                // edit data tabel usulans
+                                // edit data tabel usulan
                                 $resultUsulan = $this->pengajuan_model->deleteUsulan($id_usulan);
                             }
 

@@ -68,9 +68,9 @@ class Daftar_dosen_model extends CI_Model{
                 $this->db->from('usulan');
                 $this->db->where('id_pengajuan_ta',$id_pengajuan_ta);
 
-                $query_usulan = $this->db->get()[0]->judul;
+                $query_usulan = $this->db->get();
 
-                return $query_usulan->result();
+                return $query_usulan->result()[0]->judul;
             }
         } else {
             return FALSE;
