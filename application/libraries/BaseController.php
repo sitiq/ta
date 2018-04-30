@@ -53,8 +53,12 @@ class BaseController extends CI_Controller {
      * This function is used to check the access
      */
     function isKaprodi() {
-        if ($this->role != ROLE_KAPRODI) {
-			redirect ( 'error_404' );
+        if (!$this->session->userdata('isKaprodi')) {
+			if ($this->role != ROLE_KAPRODI) {
+				redirect ( 'error_404' );
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		}

@@ -159,6 +159,7 @@ class User extends BaseController
         }
 
         if(empty($data)){
+            unlink('./uploads/data_users/' . $filename);
             $this->session->set_flashdata('error', 'Seluruh data yang diimpor sudah ada di database');
         } else {
             $result = $this->user_model->insert_multiple($data);
@@ -166,6 +167,7 @@ class User extends BaseController
                 unlink('./uploads/data_users/' . $filename);
                 $this->session->set_flashdata('success', 'User telah berhasil dibuat');
             } else {
+                unlink('./uploads/data_users/' . $filename);
                 $this->session->set_flashdata('error', 'User gagal dibuat');
             };
         }

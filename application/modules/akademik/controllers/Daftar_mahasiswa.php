@@ -16,6 +16,7 @@ class Daftar_mahasiswa extends BaseController
                 $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa();
             } else {
                 $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa(NULL,$angkatan);
+                $data['pilihan'] = intval(substr(date('Y'),0,2))*100+intval($angkatan);
             }
         } else {
             $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa();

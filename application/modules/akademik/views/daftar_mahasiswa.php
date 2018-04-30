@@ -43,7 +43,17 @@
                                     <select style="margin-bottom:2%" name="angkatan" id="angkatan" class="form-control">
                                         <option value="all">Semua Angkatan</option>
                                     <?php foreach ($arrayAngkatan as $data) { ?>
-                                        <option value="<?php echo $data->angkatan;?>"><?php echo intval(substr(date('Y'),0,2))*100+intval($data->angkatan); ?></option>
+                                        <?php if($pilihan) {?>
+                                            <?php 
+                                            $tahun = intval(substr(date('Y'),0,2))*100+intval($data->angkatan); 
+                                            if($pilihan == $tahun){ ?>
+                                                <option selected="selected" value="<?php echo $data->angkatan;?>"><?php echo $tahun?></option>
+                                            <?php } else {?>
+                                                <option value="<?php echo $data->angkatan;?>"><?php echo intval(substr(date('Y'),0,2))*100+intval($data->angkatan);?></option>
+                                            <?php } ?>  
+                                        <?php } else {?>
+                                            <option value="<?php echo $data->angkatan;?>"><?php echo intval(substr(date('Y'),0,2))*100+intval($data->angkatan);?></option>
+                                        <?php } ?>
                                     <?php } ?>
                                     </select>
                                     <input type="submit" class="btn btn-default" value="Filter"></input>
