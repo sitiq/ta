@@ -6,7 +6,7 @@
  * Description:
  */
 
-class sidang_model extends CI_Model
+class Sidang_model extends CI_Model
 {
     /**
      * This function is used to get the mahasiswa sidang list

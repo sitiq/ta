@@ -4,13 +4,13 @@ class Akun_akademik extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('user_model');
+        $this->load->model('User_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
 
     public function index(){
-        $data['dataTable'] = $this->user_model->getUserTable(ROLE_AKADEMIK);
+        $data['dataTable'] = $this->User_model->getUserTable(ROLE_AKADEMIK);
         $data['role'] = ROLE_AKADEMIK;
         $this->global['pageTitle'] = "Elusi : Dashboard User Mahasiswa"; 
         $this->loadViews("dashboard_akademik",$this->global,$data);
@@ -24,7 +24,7 @@ class Akun_akademik extends BaseController
 
     public function edit_form($id){
         $data['role'] = ROLE_AKADEMIK;
-        $data['dataUser'] = $this->user_model->getUser($id);
+        $data['dataUser'] = $this->User_model->getUser($id);
         $this->global['pageTitle'] = "Elusi : Edit User"; 
         $this->loadViews("edit_user",$this->global,$data);
     }

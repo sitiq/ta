@@ -4,27 +4,27 @@ class Proyek extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('proyek_model');
+        $this->load->model('Proyek_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
 
     public function index(){
-        $data['dataTable'] = $this->proyek_model->getProyek();
+        $data['dataTable'] = $this->Proyek_model->getProyek();
         $this->global['pageTitle'] = "Elusi : Proyek"; 
         $this->loadViews("dashboard_proyek",$this->global,$data);
     }
 
     public function add_form(){
-        $data['dataDosen'] = $this->proyek_model->getDosen();
+        $data['dataDosen'] = $this->Proyek_model->getDosen();
         $this->global['pageTitle'] = "Elusi : Tambah Proyek"; 
         $this->loadViews("add_proyek",$this->global,$data);
     }
 
     public function edit_form($id){
-        $data['dataDosen'] = $this->proyek_model->getDosen();
-        $data['dataProyek'] = $this->proyek_model->getProyek($id);
-        $data['dataStatus'] = $this->proyek_model->getStatus();
+        $data['dataDosen'] = $this->Proyek_model->getDosen();
+        $data['dataProyek'] = $this->Proyek_model->getProyek($id);
+        $data['dataStatus'] = $this->Proyek_model->getStatus();
         $this->global['pageTitle'] = "Elusi : Tambah Proyek"; 
         $this->loadViews("edit_proyek",$this->global,$data);
     }
@@ -42,7 +42,7 @@ class Proyek extends BaseController
             'status'=> 'pending'
         );
 
-        $result = $this->proyek_model->insert($data);
+        $result = $this->Proyek_model->insert($data);
         if($result){
             $this->session->set_flashdata('success', 'Proyek baru telah ditambahkan');
         } else {
@@ -66,7 +66,7 @@ class Proyek extends BaseController
             'status'=> $status
         );
         
-        $result = $this->proyek_model->update($data,$id_proyek);
+        $result = $this->Proyek_model->update($data,$id_proyek);
         if($result){
             $this->session->set_flashdata('success', 'Proyek telah diubah');
         } else {
@@ -78,7 +78,7 @@ class Proyek extends BaseController
 
     public function delete(){
         $id_proyek = $this->input->post("id_proyek");
-        $result = $this->proyek_model->delete($id_proyek);
+        $result = $this->Proyek_model->delete($id_proyek);
         if($result){
             $this->session->set_flashdata('success', 'Proyek berhasil dihapus');
         } else {
@@ -90,8 +90,8 @@ class Proyek extends BaseController
 
     public function accept(){
         $id_proyek = $this->input->post('id_proyek');
-        $result = $this->proyek_model->change_status($id_proyek,1);
-        $nama = $this->proyek_model->getProyek($id_proyek)[0]->nama_proyek;
+        $result = $this->Proyek_model->change_status($id_proyek,1);
+        $nama = $this->Proyek_model->getProyek($id_proyek)[0]->nama_proyek;
         if($result){
             $this->session->set_flashdata('success', 'Proyek '. $nama .' telah disetujui');
         } else {
@@ -102,8 +102,8 @@ class Proyek extends BaseController
 
     public function decline(){
         $id_proyek = $this->input->post('id_proyek');
-        $result = $this->proyek_model->change_status($id_proyek,0);
-        $nama = $this->proyek_model->getProyek($id_proyek)[0]->nama_proyek;
+        $result = $this->Proyek_model->change_status($id_proyek,0);
+        $nama = $this->Proyek_model->getProyek($id_proyek)[0]->nama_proyek;
         if($result){
             $this->session->set_flashdata('success', 'Proyek '. $nama .' telah ditolak');
         } else {
@@ -117,7 +117,7 @@ class Proyek extends BaseController
         $submit = $this->input->post('submit_form');
         if(!empty($array_data) && $submit == 1){
             for ($i=0; $i < count($array_data); $i++) { 
-                $result = $this->proyek_model->change_status($array_data[$i],1);
+                $result = $this->Proyek_model->change_status($array_data[$i],1);
             }
             if($result){
                 $this->session->set_flashdata('success', count($array_data) . ' Proyek telah disetujui');
@@ -126,7 +126,7 @@ class Proyek extends BaseController
             };
         } elseif(!empty($array_data) && $submit == 0){
             for ($i=0; $i < count($array_data); $i++) { 
-                $result = $this->proyek_model->change_status($array_data[$i],0);
+                $result = $this->Proyek_model->change_status($array_data[$i],0);
             }
             if($result){
                 $this->session->set_flashdata('success', count($array_data) . ' Proyek telah ditolak');

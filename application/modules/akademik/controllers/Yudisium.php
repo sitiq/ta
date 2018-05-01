@@ -10,7 +10,7 @@ class Yudisium extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('yudisium_model');
+        $this->load->model('Yudisium_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
@@ -23,7 +23,7 @@ class Yudisium extends BaseController
         }
         else
         {
-            $data['yudisiumInfo'] = $this->yudisium_model->getYudisiumInfo();
+            $data['yudisiumInfo'] = $this->Yudisium_model->getYudisiumInfo();
             $this->loadViews("dashboard_yudisium", $this->global, $data, NULL);
         }
     }
@@ -39,8 +39,8 @@ class Yudisium extends BaseController
             {
                 redirect('akademik/yudisium');
             }
-            $data['yudisiumInfo'] = $this->yudisium_model->getYudisiumInfo($yudisiumId);
-            $data['berkasInfo'] = $this->yudisium_model->getBerkas($yudisiumId);
+            $data['yudisiumInfo'] = $this->Yudisium_model->getYudisiumInfo($yudisiumId);
+            $data['berkasInfo'] = $this->Yudisium_model->getBerkas($yudisiumId);
             $this->loadViews("edit_yudisium", $this->global, $data, NULL);
         }
     }
@@ -57,7 +57,7 @@ class Yudisium extends BaseController
                     'isValid' => 2,
                 );
 
-                $result = $this->yudisium_model->accBerkas($berkasInfo, $idValidYudisium);
+                $result = $this->Yudisium_model->accBerkas($berkasInfo, $idValidYudisium);
 
                 if ($result == true) {
                     $this->session->set_flashdata('success', 'Berkas diterima');
@@ -91,7 +91,7 @@ class Yudisium extends BaseController
                         'id_valid_yudisium' => $idValidYudisium,
                         'isValid' => 3,
                     );
-                    $result = $this->yudisium_model->decBerkas($berkasInfo, $idValidYudisium);
+                    $result = $this->Yudisium_model->decBerkas($berkasInfo, $idValidYudisium);
                     if ($result == true) {
                         $this->session->set_flashdata('success', 'Berkas berhasil ditolak!');
                     } else {
@@ -102,7 +102,7 @@ class Yudisium extends BaseController
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
                 $pesanInfo = array('id_mahasiswa'=>$idMhs, 'nama'=>$nama, 'deskripsi'=>$deskripsi);
-                $result = $this->yudisium_model->addPesan($pesanInfo);
+                $result = $this->Yudisium_model->addPesan($pesanInfo);
                 if($result > 0)
                 {$this->session->set_flashdata('success', 'Revisi berhasill dikirim!');}
                 else{$this->session->set_flashdata('error', 'Revisi gagal dikirim!');}
@@ -126,14 +126,14 @@ class Yudisium extends BaseController
                     'status' => 'disetujui'
                 );
 
-                $status = $this->yudisium_model->status($statusInfo, $idYudisium);
+                $status = $this->Yudisium_model->status($statusInfo, $idYudisium);
                 $pesanInfo = array(
                     'id_mahasiswa'=>$idMhs,
                     'nama'=>'Pendaftaran Yudisium',
                     'deskripsi'=>'Berkas yudisium anda telah diterima, silahkan menghubungi pihak akademik untuk lebih lanjut'
                 );
 
-                $result = $this->yudisium_model->addPesan($pesanInfo);
+                $result = $this->Yudisium_model->addPesan($pesanInfo);
 
                 if ($result == true) {
                     $this->session->set_flashdata('success', 'Yudisium berhasil diterima!');

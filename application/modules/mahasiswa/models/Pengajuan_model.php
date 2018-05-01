@@ -6,7 +6,7 @@
  * Description:
  */
 
-class pengajuan_model extends CI_Model
+class Pengajuan_model extends CI_Model
 {
     /**
      * This function is used to get the periode to access page

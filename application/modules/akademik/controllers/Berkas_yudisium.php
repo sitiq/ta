@@ -10,7 +10,7 @@ class Berkas_yudisium extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('berkas_model');
+        $this->load->model('Berkas_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
@@ -21,7 +21,7 @@ class Berkas_yudisium extends BaseController
             $this->loadThis();
         }
         else {
-            $data['dataTable'] = $this->berkas_model->getBerkasYudisium();
+            $data['dataTable'] = $this->Berkas_model->getBerkasYudisium();
             $this->global['pageTitle'] = "Elusi : Berkas Yudisium";
             $this->loadViews("dashboard_berkas_yudisium", $this->global, $data);
         }
@@ -32,7 +32,7 @@ class Berkas_yudisium extends BaseController
         else {
             $nama_berkas = trim($this->input->post('nama_berkas'));
             $data = array('nama_berkas' => $nama_berkas);
-            $id_berkas_yudisium = $this->berkas_model->insertYudisium($data);
+            $id_berkas_yudisium = $this->Berkas_model->insertYudisium($data);
             //        mkdir
             if (!is_dir('uploads/yudisium/' . $id_berkas_yudisium)) {
                 mkdir('./uploads/yudisium/' . $id_berkas_yudisium, 0777, TRUE);
@@ -52,7 +52,7 @@ class Berkas_yudisium extends BaseController
             $id_berkas_yudisium = $this->input->post('id_berkas_yudisium_edit');
             $nama_berkas = trim($this->input->post('nama_berkas_edit'));
             $data = array('nama_berkas' => $nama_berkas);
-            $result = $this->berkas_model->updateYudisium($data, $id_berkas_yudisium);
+            $result = $this->Berkas_model->updateYudisium($data, $id_berkas_yudisium);
             if ($result) {
                 $this->session->set_flashdata('success', 'Berkas berhasil diubah');
             } else {
@@ -69,7 +69,7 @@ class Berkas_yudisium extends BaseController
         }
         else {
             $id_berkas_yudisium = $this->input->post("id_berkas_yudisium");
-            $result = $this->berkas_model->offYudisium($id_berkas_yudisium);
+            $result = $this->Berkas_model->offYudisium($id_berkas_yudisium);
             if ($result) {
                 $this->session->set_flashdata('success', 'Berkas berhasil non-aktif');
             } else {
@@ -87,7 +87,7 @@ class Berkas_yudisium extends BaseController
         }
         else {
             $id_berkas_yudisium = $this->input->post("id_berkas_yudisium");
-            $result = $this->berkas_model->onYudisium($id_berkas_yudisium);
+            $result = $this->Berkas_model->onYudisium($id_berkas_yudisium);
             if ($result) {
                 $this->session->set_flashdata('success', 'Berkas berhasil diaktifkan');
             } else {

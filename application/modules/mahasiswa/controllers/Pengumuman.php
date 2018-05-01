@@ -13,7 +13,7 @@ class Pengumuman extends BaseController
      */
     public function __construct() {
         parent::__construct();
-        $this->load->model('pengumuman_model');
+        $this->load->model('Pengumuman_model');
         $this->isLoggedIn();
         $this->isMahasiswa();
     }
@@ -21,7 +21,7 @@ class Pengumuman extends BaseController
      * This function is used to load the main page
      */
     public function index(){
-        $data['dataTable'] = $this->pengumuman_model->getPengumumanList();
+        $data['dataTable'] = $this->Pengumuman_model->getPengumumanList();
         $this->global['pageTitle'] = "Elusi : Pengumuman";
         $this->loadViews("pengumuman",$this->global,$data);
     }

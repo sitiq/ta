@@ -6,7 +6,7 @@
  * Description:
  */
 
-class change_password_model extends CI_Model
+class Change_password_model extends CI_Model
 {
     /**
      * This function is used to get the user roles information

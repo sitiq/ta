@@ -13,7 +13,7 @@ class Sidang extends BaseController
      */
     public function __construct() {
         parent::__construct();
-        $this->load->model('sidang_model');
+        $this->load->model('Sidang_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
@@ -28,12 +28,12 @@ class Sidang extends BaseController
         }
         else
         {
-            $data['sidangInfo'] = $this->sidang_model->getSidangInfo();
-            $data['dosenInfo'] = $this->sidang_model->getDosen();
-            $data['komponenInfo'] = $this->sidang_model->getCountKomponen();
-//            $data['ketuaInfo'] = $this->sidang_model->getKetuaInfo();
-//            $data['sekreInfo'] = $this->sidang_model->getSekreInfo();
-//            $data['anggotaInfo'] = $this->sidang_model->getAnggotaInfo();
+            $data['sidangInfo'] = $this->Sidang_model->getSidangInfo();
+            $data['dosenInfo'] = $this->Sidang_model->getDosen();
+            $data['komponenInfo'] = $this->Sidang_model->getCountKomponen();
+//            $data['ketuaInfo'] = $this->Sidang_model->getKetuaInfo();
+//            $data['sekreInfo'] = $this->Sidang_model->getSekreInfo();
+//            $data['anggotaInfo'] = $this->Sidang_model->getAnggotaInfo();
             $this->loadViews("dashboard_sidang", $this->global, $data, NULL);
         }
     }
@@ -52,8 +52,8 @@ class Sidang extends BaseController
             {
                 redirect('akademik/sidang');
             }
-            $data['sidangInfo'] = $this->sidang_model->getSidangInfo($sidangId);
-            $data['berkasInfo'] = $this->sidang_model->getBerkas($sidangId);
+            $data['sidangInfo'] = $this->Sidang_model->getSidangInfo($sidangId);
+            $data['berkasInfo'] = $this->Sidang_model->getBerkas($sidangId);
             $this->loadViews("edit_sidang", $this->global, $data, NULL);
         }
     }
@@ -70,7 +70,7 @@ class Sidang extends BaseController
                     'id_valid_sidang' => $idValidSidang,
                     'isValid' => 2,
                 );
-                $result = $this->sidang_model->accBerkas($berkasInfo, $idValidSidang);
+                $result = $this->Sidang_model->accBerkas($berkasInfo, $idValidSidang);
                 if ($result == true) {
                     $this->session->set_flashdata('success', 'Berkas berhasil diterima!');
                 } else {
@@ -102,7 +102,7 @@ class Sidang extends BaseController
                         'id_valid_sidang' => $idValidSidang,
                         'isValid' => 3,
                     );
-                    $result = $this->sidang_model->decBerkas($berkasInfo, $idValidSidang);
+                    $result = $this->Sidang_model->decBerkas($berkasInfo, $idValidSidang);
                     if ($result == true) {
                         $this->session->set_flashdata('success', 'Berkas berhasil ditolak!');
                     } else {
@@ -112,7 +112,7 @@ class Sidang extends BaseController
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
                 $pesanInfo = array('id_mahasiswa'=>$idMhs, 'nama'=>$nama, 'deskripsi'=>$deskripsi);
-                $result = $this->sidang_model->addPesan($pesanInfo);
+                $result = $this->Sidang_model->addPesan($pesanInfo);
                 if($result > 0)
                 {$this->session->set_flashdata('success', 'Revisi berhasill dikirim!');}
                 else{$this->session->set_flashdata('error', 'Revisi gagal dikirim!');}
@@ -135,8 +135,8 @@ class Sidang extends BaseController
             {
                 redirect('akademik/sidang');
             }
-            $data['sidangInfo'] = $this->sidang_model->getSidangInfo($sidangId);
-            $data['dosenInfo'] = $this->sidang_model->getDosen();
+            $data['sidangInfo'] = $this->Sidang_model->getSidangInfo($sidangId);
+            $data['dosenInfo'] = $this->Sidang_model->getDosen();
 
             $this->loadViews("add_jadwal", $this->global, $data, NULL);
         }
@@ -156,12 +156,12 @@ class Sidang extends BaseController
             {
                 redirect('akademik/sidang');
             }
-            $data['sidangInfo'] = $this->sidang_model->getDetailSidang($sidangId);
-            $data['ketuaInfo'] = $this->sidang_model->getKetuaInfo($sidangId);
-            $data['sekreInfo'] = $this->sidang_model->getSekreInfo($sidangId);
-            $data['anggotaInfo'] = $this->sidang_model->getAnggotaInfo($sidangId);
-            $data['dosenInfo'] = $this->sidang_model->getDosen();
-            $data['komponenInfo'] = $this->sidang_model->getCountKomponen();
+            $data['sidangInfo'] = $this->Sidang_model->getDetailSidang($sidangId);
+            $data['ketuaInfo'] = $this->Sidang_model->getKetuaInfo($sidangId);
+            $data['sekreInfo'] = $this->Sidang_model->getSekreInfo($sidangId);
+            $data['anggotaInfo'] = $this->Sidang_model->getAnggotaInfo($sidangId);
+            $data['dosenInfo'] = $this->Sidang_model->getDosen();
+            $data['komponenInfo'] = $this->Sidang_model->getCountKomponen();
             $this->loadViews("edit_jadwal", $this->global, $data, NULL);
         }
     }
@@ -232,7 +232,7 @@ class Sidang extends BaseController
                         'id_sidang' => $idSidang,
                         'status' => 'disetujui',
                     );
-                    $status = $this->sidang_model->editStatus($statusInfo, $idSidang);
+                    $status = $this->Sidang_model->editStatus($statusInfo, $idSidang);
 
                     if ($dataSekre != null){
                         $pesanInfo = array(
@@ -288,7 +288,7 @@ class Sidang extends BaseController
                             </table> '
                         );
                     }
-                    $resultPesan = $this->sidang_model->addPesan($pesanInfo);
+                    $resultPesan = $this->Sidang_model->addPesan($pesanInfo);
 
                     $jadwalInfo = array(
                         'id_sidang' => $idSidang,
@@ -296,7 +296,7 @@ class Sidang extends BaseController
                         'tanggal' => $tanggal,
                         'ruang' => $ruang,
                     );
-                    $jadwal = $this->sidang_model->addJadwal($jadwalInfo);
+                    $jadwal = $this->Sidang_model->addJadwal($jadwalInfo);
 
 //                    dipisah 3x karena berbeda role pada tbl anggota_sidang
                     $ketuaInfo = array(
@@ -304,7 +304,7 @@ class Sidang extends BaseController
                         'id_dosen' => $id_ketua,
                         'role' => 'ketua'
                     );
-                    $dosen1 = $this->sidang_model->addAnggota($ketuaInfo);
+                    $dosen1 = $this->Sidang_model->addAnggota($ketuaInfo);
                     if ($dataSekre!=null)
                     {
                         $sekreInfo = array(
@@ -312,38 +312,38 @@ class Sidang extends BaseController
                             'id_dosen' => $id_sekre,
                             'role' => 'sekretaris'
                         );
-                        $dosen2 = $this->sidang_model->addAnggota($sekreInfo);
+                        $dosen2 = $this->Sidang_model->addAnggota($sekreInfo);
                     }
                     $anggotaInfo = array(
                         'id_sidang' => $idSidang,
                         'id_dosen' => $id_anggota,
                         'role' => 'anggota'
                     );
-                    $dosen3 = $this->sidang_model->addAnggota($anggotaInfo);
+                    $dosen3 = $this->Sidang_model->addAnggota($anggotaInfo);
 
                     $penilaianInfo = array(
                         "id_sidang"=>$idSidang,
                         "id_anggota_sidang"=>$dosen1
                     );
-                    $idPenilaian = $this->sidang_model->addPenilaian($penilaianInfo);
+                    $idPenilaian = $this->Sidang_model->addPenilaian($penilaianInfo);
                     if ($dataSekre != null)
                     {
                         $penilaianInfo2 = array(
                             "id_sidang"=>$idSidang,
                             "id_anggota_sidang"=>$dosen2
                         );
-                        $idPenilaian2 = $this->sidang_model->addPenilaian($penilaianInfo2);
+                        $idPenilaian2 = $this->Sidang_model->addPenilaian($penilaianInfo2);
                     }
                     $penilaianInfo3 = array(
                         "id_sidang"=>$idSidang,
                         "id_anggota_sidang"=>$dosen3
                     );
-                    $idPenilaian3 = $this->sidang_model->addPenilaian($penilaianInfo3);
+                    $idPenilaian3 = $this->Sidang_model->addPenilaian($penilaianInfo3);
 
                     //insert to komponen nilai table
 
-                    $dataPenilaian = $this->sidang_model->getPenilaian($idSidang);
-                    $dataKomponen = $this->sidang_model->getKomponen();
+                    $dataPenilaian = $this->Sidang_model->getPenilaian($idSidang);
+                    $dataKomponen = $this->Sidang_model->getKomponen();
 
 //                    insert to komponen_nilai table by anggota_sidang
                     foreach ($dataPenilaian AS $record_penilaian){
@@ -352,7 +352,7 @@ class Sidang extends BaseController
                                 'id_penilaian' => $record_penilaian->id_penilaian,
                                 'id_komponen' => $record_komponen->id_komponen,
                             );
-                            $result = $this->sidang_model->addNewKomponenNilai($data_table_komponen_nilai);
+                            $result = $this->Sidang_model->addNewKomponenNilai($data_table_komponen_nilai);
                         }
                     }
                     if ($result == true) {
@@ -460,7 +460,7 @@ class Sidang extends BaseController
                             </tr>
                             </table> '
                         );
-                        $resultPesan1 = $this->sidang_model->addPesan($pesanInfo);
+                        $resultPesan1 = $this->Sidang_model->addPesan($pesanInfo);
                     }else{
                         $pesanInfo = array(
                             'id_mahasiswa'=>$idMhs,
@@ -489,7 +489,7 @@ class Sidang extends BaseController
                             </tr>
                             </table> '
                         );
-                        $resultPesan2 = $this->sidang_model->addPesan($pesanInfo);
+                        $resultPesan2 = $this->Sidang_model->addPesan($pesanInfo);
                     }
 
                     $jadwalInfo = array(
@@ -498,7 +498,7 @@ class Sidang extends BaseController
                         'tanggal' => $tanggal,
                         'ruang' => $ruang,
                     );
-                    $jadwal = $this->sidang_model->editJadwal($jadwalInfo, $idSidang);
+                    $jadwal = $this->Sidang_model->editJadwal($jadwalInfo, $idSidang);
 
                     $ketuaInfo = array(
                         'id_sidang' => $idSidang,
@@ -510,24 +510,24 @@ class Sidang extends BaseController
                                 'id_sidang' => $idSidang,
                                 'id_dosen' => $id_sekre
                             );
-                            $dosenSekre1 = $this->sidang_model->editAnggotaSidang($sekreInfo, $idSekreAnggota);
+                            $dosenSekre1 = $this->Sidang_model->editAnggotaSidang($sekreInfo, $idSekreAnggota);
                         }else{
                             $sekreInfo = array(
                                 'id_sidang' => $idSidang,
                                 'id_dosen' => $id_sekre,
                                 'role' => 'sekretaris'
                             );
-                            $dosenSekre = $this->sidang_model->addAnggota($sekreInfo);
+                            $dosenSekre = $this->Sidang_model->addAnggota($sekreInfo);
                         }
                     }else{
                         $sekreInfo = array(
                             'id_sidang' => $idSidang,
                             'id_dosen' => null
                         );
-                        $dosenSekre2 = $this->sidang_model->editAnggotaSidang($sekreInfo, $idSekreAnggota);
+                        $dosenSekre2 = $this->Sidang_model->editAnggotaSidang($sekreInfo, $idSekreAnggota);
                     }
 
-                    $result = $this->sidang_model->editAnggotaSidang($ketuaInfo, $idKetuaAnggota);
+                    $result = $this->Sidang_model->editAnggotaSidang($ketuaInfo, $idKetuaAnggota);
 
                     if ($result == true) {
                         $this->session->set_flashdata('success', 'Jadwal berhasil diubah!');

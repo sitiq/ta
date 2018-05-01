@@ -6,7 +6,7 @@
  * Description:
  */
 
-class bimbingan_model extends CI_Model
+class Bimbingan_model extends CI_Model
 {
     /**
      * This function is used to get the bimbingan list

@@ -14,7 +14,7 @@ class Sidang extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('sidang_model');
+        $this->load->model('Sidang_model');
         $this->isLoggedIn();
         $this->isMahasiswa();
     }
@@ -30,13 +30,13 @@ class Sidang extends BaseController
         else
         {
             $userId = $this->vendorId;
-            $data['berkasInfo'] = $this->sidang_model->getBerkasInfo($userId);
-            $data['idBerkas'] = $this->sidang_model->getIdBerkas();
-            $data['idPeriode'] = $this->sidang_model->getIdPeriode();
-            $data['totalSyarat'] = $this->sidang_model->getCountBerkas();
-            $data['ta'] = $this->sidang_model->getTa($userId);
+            $data['berkasInfo'] = $this->Sidang_model->getBerkasInfo($userId);
+            $data['idBerkas'] = $this->Sidang_model->getIdBerkas();
+            $data['idPeriode'] = $this->Sidang_model->getIdPeriode();
+            $data['totalSyarat'] = $this->Sidang_model->getCountBerkas();
+            $data['ta'] = $this->Sidang_model->getTa($userId);
 
-            $data['idMahasiswa'] = $this->sidang_model->cekMahasiswa($userId);
+            $data['idMahasiswa'] = $this->Sidang_model->cekMahasiswa($userId);
 
             $this->global['pageTitle'] = "Elusi : Sidang";
 
@@ -56,18 +56,18 @@ class Sidang extends BaseController
 //            get first id syarat berkas
             $id_syarat = $this->input->post('id_syarat');
 //            get id_mahasiswa based on who is logged in
-            $cek = $this->sidang_model->cekMahasiswa($id_user);
+            $cek = $this->Sidang_model->cekMahasiswa($id_user);
             $id_mahasiswa = $cek[0]->id_mahasiswa;
             $infoSidang = array("id_mahasiswa"=>$id_mahasiswa,"id_periode"=>$id_periode);
 //            insert to table sidang / registration sidang new
-            $idSidang = $this->sidang_model->addNewSidang($infoSidang);
+            $idSidang = $this->Sidang_model->addNewSidang($infoSidang);
 //            insert to validasi_berkas_sidang table, make 10 files important to Sidang
             for ($i=1;$i<=$total_syarat;$i++){
                 $daftarId = array(
                     "id_sidang"=>$idSidang,
                     "id_berkas_sidang"=>$id_syarat
                 );
-                $result = $this->sidang_model->addNewValidasi($daftarId);
+                $result = $this->Sidang_model->addNewValidasi($daftarId);
                 $id_syarat++;
             }
 //            lebih dari 0 berarti ada data yg masuk
@@ -91,18 +91,18 @@ class Sidang extends BaseController
 //            get id_periode
         $id_periode = $this->input->post('id_periode');
 //            get id_mahasiswa based on who is logged in
-        $cek = $this->sidang_model->cekMahasiswa($id_user);
+        $cek = $this->Sidang_model->cekMahasiswa($id_user);
         $id_mahasiswa = $cek[0]->id_mahasiswa;
         $infoSidang = array(
             "id_mahasiswa"=>$id_mahasiswa,
             "id_periode"=>$id_periode,
         );
 //            insert to table sidang / registration sidang new
-        $idSidang = $this->sidang_model->addNewSidang($infoSidang);
+        $idSidang = $this->Sidang_model->addNewSidang($infoSidang);
         $berkasInfo = array(
             "id_sidang"=>$idSidang
         );
-        $result = $this->sidang_model->editBerkasSidang($berkasInfo, $id_sidang_lama);
+        $result = $this->Sidang_model->editBerkasSidang($berkasInfo, $id_sidang_lama);
 
 //            lebih dari 0 berarti ada data yg masuk
         if ($result>0)
@@ -121,7 +121,7 @@ class Sidang extends BaseController
 //            get id berkas where to edit by folder
             $id_folder = $this->input->post('id_berkas_sidang');
             $nim = $this->input->post('id_mahasiswa');
-            $cekMhs = $this->sidang_model->cekMahasiswa($nim);
+            $cekMhs = $this->Sidang_model->cekMahasiswa($nim);
             if (!$cekMhs)
             $this->load->library('form_validation');
             $this->form_validation->set_rules('id_valid_sidang','ID','required');
@@ -153,7 +153,7 @@ class Sidang extends BaseController
                     'path'=>$terupload['file_name'],
                     'isValid'=>1
                 );
-                $result = $this->sidang_model->editBerkas($berkasInfo, $id_berkas);
+                $result = $this->Sidang_model->editBerkas($berkasInfo, $id_berkas);
                 if($result == true){
                     $this->session->set_flashdata('success', 'Berkas berhasil diunggah');
                 }else{

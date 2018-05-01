@@ -6,7 +6,7 @@
  * Description:
  */
 
-class proyek_model extends CI_Model
+class Proyek_model extends CI_Model
 {
     /**
      * This function used to get proyek information by id

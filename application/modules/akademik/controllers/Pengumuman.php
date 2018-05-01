@@ -4,13 +4,13 @@ class Pengumuman extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('pengumuman_model');
+        $this->load->model('Pengumuman_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
 
     public function index(){
-        $data['dataTable'] = $this->pengumuman_model->getPengumumanList();
+        $data['dataTable'] = $this->Pengumuman_model->getPengumumanList();
         $this->global['pageTitle'] = "Elusi : Pengumuman"; 
         $this->loadViews("dashboard_pengumuman",$this->global,$data);
     }
@@ -21,7 +21,7 @@ class Pengumuman extends BaseController
     }
 
     public function edit_form($id){
-        $data['dataPengumuman'] = $this->pengumuman_model->getPengumumanList($id);
+        $data['dataPengumuman'] = $this->Pengumuman_model->getPengumumanList($id);
         $this->global['pageTitle'] = "Elusi : Edit Pengumuman"; 
         $this->loadViews("edit_pengumuman",$this->global,$data);
     }
@@ -54,7 +54,7 @@ class Pengumuman extends BaseController
                     'deskripsi' => $deskripsi,
                     'lampiran' => $config['file_name']
                 );
-                $result = $this->pengumuman_model->insert($data);
+                $result = $this->Pengumuman_model->insert($data);
 
                 if($result){
                     $this->session->set_flashdata('success', 'Pengumuman berhasil dipublish');
@@ -68,7 +68,7 @@ class Pengumuman extends BaseController
                 'judul' => $judul,
                 'deskripsi' => $deskripsi
             );
-            $result = $this->pengumuman_model->insert($data);
+            $result = $this->Pengumuman_model->insert($data);
 
             if($result){
                 $this->session->set_flashdata('success', 'Pengumuman berhasil dipublish');
@@ -108,7 +108,7 @@ class Pengumuman extends BaseController
                     'deskripsi' => $deskripsi,
                     'lampiran' => $config['file_name']
                 );
-                $result = $this->pengumuman_model->update($data,$id_p);
+                $result = $this->Pengumuman_model->update($data,$id_p);
 
                 if($result){
                     $this->session->set_flashdata('success', 'Pengumuman berhasil diedit');
@@ -122,7 +122,7 @@ class Pengumuman extends BaseController
                 'judul' => $judul,
                 'deskripsi' => $deskripsi
             );
-            $result = $this->pengumuman_model->update($data,$id_p);
+            $result = $this->Pengumuman_model->update($data,$id_p);
 
             if($result){
                 $this->session->set_flashdata('success', 'Pengumuman berhasil diedit');
@@ -135,7 +135,7 @@ class Pengumuman extends BaseController
 
     public function delete(){
         $id_p = $this->input->post("id_p");
-        $result = $this->pengumuman_model->delete($id_p);
+        $result = $this->Pengumuman_model->delete($id_p);
         if($result){
             $this->session->set_flashdata('success', 'Pengumuman berhasil dihapus');
         } else {

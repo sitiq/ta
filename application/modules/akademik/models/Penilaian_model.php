@@ -6,7 +6,7 @@
  * Description:
  */
 
-class penilaian_model extends CI_Model
+class Penilaian_model extends CI_Model
 {
     public function getKomponen($id = NULL){
         $this->db->select("*");

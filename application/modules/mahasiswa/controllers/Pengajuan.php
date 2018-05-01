@@ -16,7 +16,7 @@ class Pengajuan extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('pengajuan_model');
+        $this->load->model('Pengajuan_model');
         $this->isLoggedIn();
         $this->isMahasiswa();
     }
@@ -35,12 +35,12 @@ class Pengajuan extends BaseController
             $data['userId'] = $userId;
             $data['userRole'] = $this->role;
 
-            $data['proyekInfo'] = $this->pengajuan_model->getProyek();
-            $data['periodeInfo'] = $this->pengajuan_model->getPeriode();
+            $data['proyekInfo'] = $this->Pengajuan_model->getProyek();
+            $data['periodeInfo'] = $this->Pengajuan_model->getPeriode();
 
             // apabila dia sudah mendaftarkan TA
-            $id_mahasiswa = $this->pengajuan_model->getIdMahasiswa($userId);
-            $ta_terplotting = $this->pengajuan_model->getTATerplotting($id_mahasiswa[0]->id_mahasiswa);
+            $id_mahasiswa = $this->Pengajuan_model->getIdMahasiswa($userId);
+            $ta_terplotting = $this->Pengajuan_model->getTATerplotting($id_mahasiswa[0]->id_mahasiswa);
             if($ta_terplotting){
                 $array = [
                     'id_ta' => $ta_terplotting['id_ta'],
@@ -50,7 +50,7 @@ class Pengajuan extends BaseController
                 $data['taTerplotting'] = $array;
             } else {
                 $data['taTerplotting'] = $ta_terplotting;
-                $taInfo = $this->pengajuan_model->getTa($id_mahasiswa[0]->id_mahasiswa);
+                $taInfo = $this->Pengajuan_model->getTa($id_mahasiswa[0]->id_mahasiswa);
                 $data['taInfo'] = $taInfo;
                
             }
@@ -72,9 +72,9 @@ class Pengajuan extends BaseController
             
             $userId = $this->vendorId;
             // get id mahasiswa yang sedang login
-            $id_mahasiswa = $this->pengajuan_model->getIdMahasiswa($userId);
+            $id_mahasiswa = $this->Pengajuan_model->getIdMahasiswa($userId);
             
-            $isLengkap = $this->pengajuan_model->isDataMahasiswaLengkap($id_mahasiswa[0]->id_mahasiswa);
+            $isLengkap = $this->Pengajuan_model->isDataMahasiswaLengkap($id_mahasiswa[0]->id_mahasiswa);
 
             if(!$isLengkap) {
                 $this->session->set_flashdata('error', 'Lengkapi data diri Anda terlebih dahulu');
@@ -122,7 +122,7 @@ class Pengajuan extends BaseController
                         );
         
                         // get id_ta yang barusan dibuat
-                        $id_ta = $this->pengajuan_model->addNewTa($ta);
+                        $id_ta = $this->Pengajuan_model->addNewTa($ta);
         
                         for ($i=0; $i<3; $i++) {
                             // cek apakah jenis pengajuan ta (proyek/usulan)
@@ -140,7 +140,7 @@ class Pengajuan extends BaseController
                                     );
         
                                     // insert ke tabel pengajuan TA
-                                    $resultta = $this->pengajuan_model->addNewPengajuanTa($pengajuan_ta);
+                                    $resultta = $this->Pengajuan_model->addNewPengajuanTa($pengajuan_ta);
                                 }
                             } else {
                                 // apabila jenis pengajuan ta = usulan
@@ -151,7 +151,7 @@ class Pengajuan extends BaseController
                                 );
         
                                 // get id_pengajuan_ta yang telah dibuat insert ke tabel usulan
-                                $id_pengajuan_ta = $this->pengajuan_model->addNewPengajuanTa($pengajuan_ta);
+                                $id_pengajuan_ta = $this->Pengajuan_model->addNewPengajuanTa($pengajuan_ta);
                                 if (empty($_FILES['file_persetujuan']['name'])) {
                                     $usulan = array(
                                         'id_pengajuan_ta' => $id_pengajuan_ta,
@@ -187,7 +187,7 @@ class Pengajuan extends BaseController
                                     }
                                 }
                                 // add data ke tabel usulan
-                                $resultusulan = $this->pengajuan_model->addNewUsulan($usulan);
+                                $resultusulan = $this->Pengajuan_model->addNewUsulan($usulan);
                             }
                         }
         
@@ -235,7 +235,7 @@ class Pengajuan extends BaseController
             {
                 $userId = $this->vendorId;
                 // get id mahasiswa yang sedang login
-                $id_mahasiswa = $this->pengajuan_model->getIdMahasiswa($userId);
+                $id_mahasiswa = $this->Pengajuan_model->getIdMahasiswa($userId);
 
                 // get id_pengajuan_ta
                 $id_pengajuan_ta = array (
@@ -285,7 +285,7 @@ class Pengajuan extends BaseController
                                 // apabila jenis pengajuan ta sebelumnya adalah usulan
                                 
                                 // edit data tabel usulan
-                                $resultUsulan = $this->pengajuan_model->deleteUsulan($id_usulan);
+                                $resultUsulan = $this->Pengajuan_model->deleteUsulan($id_usulan);
                             }
 
                             // inputan 1&2 pasti jenis pengajuan ta = proyek
@@ -296,7 +296,7 @@ class Pengajuan extends BaseController
                             );
 
                             // edit data pengajuan ta dengan id_pengajuan_ta masing-masing
-                            $resultPengajuanTA = $this->pengajuan_model->editPengajuanTa($pengajuan_ta, $id_pengajuan_ta[$i]);
+                            $resultPengajuanTA = $this->Pengajuan_model->editPengajuanTa($pengajuan_ta, $id_pengajuan_ta[$i]);
                         } else {
                             //validasi isian usulan
                             $judul = $this->input->post('judul');
@@ -348,7 +348,7 @@ class Pengajuan extends BaseController
                                         }
                                     }
                                     // edit data usulan table
-                                    $resultUsulan = $this->pengajuan_model->editUsulan($usulan, $id_usulan);
+                                    $resultUsulan = $this->Pengajuan_model->editUsulan($usulan, $id_usulan);
                                 } else {
                                     //jenis pengajuan ta = usulan
                                     //jika pilihan sebelumnya = proyek
@@ -390,7 +390,7 @@ class Pengajuan extends BaseController
                                         }
                                     }
                                     // insert data to usulan table
-                                    $resultUsulan = $this->pengajuan_model->addNewUsulan($usulan);
+                                    $resultUsulan = $this->Pengajuan_model->addNewUsulan($usulan);
                                 }
                             }
 
@@ -402,7 +402,7 @@ class Pengajuan extends BaseController
                             );
 
                             // edit data pengajuan_ta by id_pengajuan_ta
-                            $resultPengajuanTA = $this->pengajuan_model->editPengajuanTa($pengajuan_ta, $id_pengajuan_ta[$i]);
+                            $resultPengajuanTA = $this->Pengajuan_model->editPengajuanTa($pengajuan_ta, $id_pengajuan_ta[$i]);
                         }
                     }
 
@@ -429,7 +429,7 @@ class Pengajuan extends BaseController
             $array = [
                 'status_pengambilan' => 'nonaktif'
             ];
-            $result = $this->pengajuan_model->nonaktivasiTA($id_ta,$array,$judul_ta);
+            $result = $this->Pengajuan_model->nonaktivasiTA($id_ta,$array,$judul_ta);
             if ($result == TRUE) {
                 $this->session->set_flashdata('success', 'Tugas Akhir anda berhasil diganti');
                 redirect('mahasiswa/pengajuan/tugasakhir');

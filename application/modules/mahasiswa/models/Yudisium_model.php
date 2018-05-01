@@ -6,7 +6,7 @@
  * Description:
  */
 
-class yudisium_model extends CI_Model
+class Yudisium_model extends CI_Model
 {
     /**
      * This function is used to get the periode to access page

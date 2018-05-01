@@ -6,7 +6,7 @@
  * Description:
  */
 
-class pengumuman_model extends CI_Model
+class Pengumuman_model extends CI_Model
 {
     /**
      * This function is used to get the pengumuman by id

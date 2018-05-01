@@ -6,7 +6,7 @@
  * Description:
  */
 
-class pendadaran_model extends CI_Model
+class Pendadaran_model extends CI_Model
 {
     /**
      * This function is used to get the mahasiswa pendadaran list

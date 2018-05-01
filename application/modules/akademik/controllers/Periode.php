@@ -4,13 +4,13 @@ class Periode extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('periode_model');
+        $this->load->model('Periode_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
 
     public function index(){
-        $data['dataPeriode'] = $this->periode_model->getPeriodeAktif();
+        $data['dataPeriode'] = $this->Periode_model->getPeriodeAktif();
         $this->global['pageTitle'] = "Elusi : Periode";
         $this->loadViews("dashboard_periode",$this->global,$data);
     }
@@ -40,7 +40,7 @@ class Periode extends BaseController
             'status_periode' => 1
         );
 
-        $result = $this->periode_model->insert($data_periode);
+        $result = $this->Periode_model->insert($data_periode);
         if($result){
             $this->session->set_flashdata('success', 'Periode berhasil diganti');
         } else {
@@ -53,9 +53,9 @@ class Periode extends BaseController
 
     public function change_status($id_periode,$jenis,$status){
         if($jenis == 'ta'){
-            $result = $this->periode_model->edit_status($id_periode,'ta',$status);
+            $result = $this->Periode_model->edit_status($id_periode,'ta',$status);
         } else {
-            $result = $this->periode_model->edit_status($id_periode,'yudisium',$status);
+            $result = $this->Periode_model->edit_status($id_periode,'yudisium',$status);
         }
             
         if($result){
@@ -79,7 +79,7 @@ class Periode extends BaseController
                 'tgl_awal_regis_ta' => $tanggal_awal_ta,
                 'tgl_akhir_regis_ta' => $tanggal_akhir_ta
             );
-            $result = $this->periode_model->update($data,$id_periode);
+            $result = $this->Periode_model->update($data,$id_periode);
             if($result){
                 $this->session->set_flashdata('success', 'Tanggal registrasi tugas akhir telah terupdate');
             } else {
@@ -94,7 +94,7 @@ class Periode extends BaseController
                 'tgl_akhir_regis_yudisium' => $tanggal_akhir_yudisium
             );
 
-            $result = $this->periode_model->update($data,$id_periode);
+            $result = $this->Periode_model->update($data,$id_periode);
             if($result){
                 $this->session->set_flashdata('success', 'Tanggal registrasi yudisium telah terupdate');
             } else {
@@ -108,7 +108,7 @@ class Periode extends BaseController
 
     public function delete(){
         $id_periode = $this->input->post("id_periode");
-        $result = $this->periode_model->delete($id_periode);
+        $result = $this->Periode_model->delete($id_periode);
         if($result){
             $this->session->set_flashdata('success', 'Periode berhasil dihapus');
         } else {

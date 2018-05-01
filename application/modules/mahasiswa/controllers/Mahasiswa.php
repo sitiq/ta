@@ -13,7 +13,7 @@ class Mahasiswa extends BaseController
      */
     public function __construct() {
         parent::__construct();
-        $this->load->model('dashboard_model');
+        $this->load->model('Dashboard_model');
         $this->isLoggedIn();
         $this->isMahasiswa();
     }
@@ -22,8 +22,8 @@ class Mahasiswa extends BaseController
      */
     public function index() {
         $userId = $this->vendorId;
-        $data['pesanInfo'] = $this->dashboard_model->getPesanList($userId);
-        $data['revisiInfo'] = $this->dashboard_model->getRevisiSidang($userId);
+        $data['pesanInfo'] = $this->Dashboard_model->getPesanList($userId);
+        $data['revisiInfo'] = $this->Dashboard_model->getRevisiSidang($userId);
         $this->global['pageTitle'] = "Elusi : Dashboard";
         $this->loadViews("dashboard",$this->global,$data);
     }

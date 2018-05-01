@@ -4,20 +4,20 @@
 class Dashboard extends BaseController {
     public function __construct(){
         parent::__construct();
-        $this->load->model('dashboard_model');
+        $this->load->model('Dashboard_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
 
     function index(){
-        $data['dataPeriode'] = $this->dashboard_model->getPeriodeAktif();
-        $data['countProyek'] = $this->dashboard_model->getProyekCount();
+        $data['dataPeriode'] = $this->Dashboard_model->getPeriodeAktif();
+        $data['countProyek'] = $this->Dashboard_model->getProyekCount();
         if($data['dataPeriode']){
-            $data['countSidang'] = $this->dashboard_model->getSidangCount($data['dataPeriode'][0]->id_periode);
-            $data['countYudisium'] = $this->dashboard_model->getYudisiumCount($data['dataPeriode'][0]->id_periode);
+            $data['countSidang'] = $this->Dashboard_model->getSidangCount($data['dataPeriode'][0]->id_periode);
+            $data['countYudisium'] = $this->Dashboard_model->getYudisiumCount($data['dataPeriode'][0]->id_periode);
             $data['dataNilai'] = $this->getNilaiPerPeriode();
             // $data['dataNilaiAkhirSidang'] = $this->getPenilaianSidang();
-            $data['arrayPeriode'] = $this->dashboard_model->getArrayPeriode(5);
+            $data['arrayPeriode'] = $this->Dashboard_model->getArrayPeriode(5);
         } else {
             $data['countSidang'] = 0;
             $data['countYudisium'] = 0;
@@ -33,8 +33,8 @@ class Dashboard extends BaseController {
     }
 
     function getNilaiPerPeriode(){
-        $arrayPeriode = $this->dashboard_model->getArrayPeriode(5);
-        $dataKomponen = $this->dashboard_model->getKomponen();
+        $arrayPeriode = $this->Dashboard_model->getArrayPeriode(5);
+        $dataKomponen = $this->Dashboard_model->getKomponen();
 
         $arrayNilai = array();
         
@@ -45,7 +45,7 @@ class Dashboard extends BaseController {
             foreach ($dataKomponen as $komponen) {
                 $id_komponen = $komponen->id_komponen;
 
-                $record = $this->dashboard_model->getPenilaian($id_periode,$id_komponen);
+                $record = $this->Dashboard_model->getPenilaian($id_periode,$id_komponen);
                 $count = 0;
                 $total_nilai = 0;
                 if($record != FALSE) {
@@ -71,7 +71,7 @@ class Dashboard extends BaseController {
 
     function getPenilaianSidang(){
         $id_periode = $this->input->get('id_periode');
-        $result = $this->dashboard_model->getNilaiSidang($id_periode);
+        $result = $this->Dashboard_model->getNilaiSidang($id_periode);
         $array_nilai = [
             'A' => 0,
             'A-' => 0,

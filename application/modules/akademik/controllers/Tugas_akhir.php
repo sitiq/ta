@@ -4,24 +4,24 @@ class Tugas_akhir extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('ta_model');
+        $this->load->model('Ta_model');
         $this->isLoggedIn();
         $this->load->library('form_validation');
         $this->isAkademik();
     }
 
     public function index(){
-        $data['dataTable'] = $this->ta_model->getTA();
+        $data['dataTable'] = $this->Ta_model->getTA();
         $this->global['pageTitle'] = "Elusi : Tugas Akhir";
         $this->loadViews("dashboard_ta",$this->global,$data);
     }
 
     public function detail($id){
-        $data['dataMahasiswa'] = $this->ta_model->getTA($id);
-        $result = $this->ta_model->getPengajuanTA($id,'diterima');
+        $data['dataMahasiswa'] = $this->Ta_model->getTA($id);
+        $result = $this->Ta_model->getPengajuanTA($id,'diterima');
 
         if($result[0]->jenis == 'proyek'){
-            $detail_proyek = $this->ta_model->getProyek($result[0]->id_proyek);
+            $detail_proyek = $this->Ta_model->getProyek($result[0]->id_proyek);
 
             $pilihan_ta = array(
                 'pilihan' => $result[0]->pilihan,
@@ -33,7 +33,7 @@ class Tugas_akhir extends BaseController
             );
         } else {
             
-            $detail_usulan = $this->ta_model->getUsulan($result[0]->id_pengajuan_ta);
+            $detail_usulan = $this->Ta_model->getUsulan($result[0]->id_pengajuan_ta);
             $pilihan_ta = array(
                 'judul' => $detail_usulan[0]->judul,
                 'deskripsi'=> $detail_usulan[0]->deskripsi,
@@ -45,7 +45,7 @@ class Tugas_akhir extends BaseController
                 'id_dosen' => $detail_usulan[0]->id_dosen,
                 'id_pengajuan_ta' => $result[0]->id_pengajuan_ta
             );
-            $data['dataDosen'] = $this->ta_model->getDosen();
+            $data['dataDosen'] = $this->Ta_model->getDosen();
         }
 
         
@@ -56,17 +56,17 @@ class Tugas_akhir extends BaseController
 
     /* MENAMPILKAN HALAMAN INFORMASI MAHASISWA YANG MENGAJUKAN TA*/
     public function plotting($id){
-        $data['dataTA'] = $this->ta_model->getTA($id);
-        $data['dataDosen'] = $this->ta_model->getDosen();
-        $data['dataProyek'] = $this->ta_model->getProyek();
-        $data['isMasaRegis'] = $this->ta_model->isMasaRegisTA();
+        $data['dataTA'] = $this->Ta_model->getTA($id);
+        $data['dataDosen'] = $this->Ta_model->getDosen();
+        $data['dataProyek'] = $this->Ta_model->getProyek();
+        $data['isMasaRegis'] = $this->Ta_model->isMasaRegisTA();
         /* Mendapatkan informasi tentang pilihan tugas akhir yang diambil */
-        $data_pengajuan = $this->ta_model->getPengajuanTA($id);
+        $data_pengajuan = $this->Ta_model->getPengajuanTA($id);
         $i=1;
         $pilihan_ta = array();
         foreach ($data_pengajuan as $result) {
             if($result->jenis == 'proyek'){
-                $detail_proyek = $this->ta_model->getProyek($result->id_proyek);
+                $detail_proyek = $this->Ta_model->getProyek($result->id_proyek);
 
                 $array = array(
                     'pilihan' => $result->pilihan,
@@ -78,7 +78,7 @@ class Tugas_akhir extends BaseController
                 );
                 array_push($pilihan_ta,$array);
             } else {
-                $detail_usulan = $this->ta_model->getUsulan($result->id_pengajuan_ta);
+                $detail_usulan = $this->Ta_model->getUsulan($result->id_pengajuan_ta);
                 $array = array(
                     'judul' => $detail_usulan[0]->judul,
                     'deskripsi'=> $detail_usulan[0]->deskripsi,
@@ -114,7 +114,7 @@ class Tugas_akhir extends BaseController
                     $id_proyek = $this->input->post('proyek');
                     $id_ta = $this->input->post('id_ta');
                     $id_mahasiswa = $this->input->post('id_mahasiswa');
-                    if($this->ta_model->check_proyek($id_proyek)){
+                    if($this->Ta_model->check_proyek($id_proyek)){
                         $this->session->set_flashdata('error', 'Proyek yang terpilih sudah terplotting di mahasiswa lain');
                         
                         redirect('akademik/tugas_akhir/plotting/' . $id_ta);
@@ -126,7 +126,7 @@ class Tugas_akhir extends BaseController
                             'status' => 'diterima',
                             'jenis' => 'proyek'
                         );
-                        $result = $this->ta_model->terima_ta($id_ta,NULL,$id_mahasiswa,$data,$id_proyek,NULL);
+                        $result = $this->Ta_model->terima_ta($id_ta,NULL,$id_mahasiswa,$data,$id_proyek,NULL);
     
                         if($result){
                             $this->session->set_flashdata('success', 'Tugas akhir telah terploting');
@@ -145,7 +145,7 @@ class Tugas_akhir extends BaseController
                 if($jenis != 'usulan'){
                     $id_proyek = $jenis;
     
-                    if($this->ta_model->check_proyek($id_proyek)){
+                    if($this->Ta_model->check_proyek($id_proyek)){
                         $this->session->set_flashdata('error', 'Proyek yang terpilih sudah terplotting di mahasiswa lain');
                         
                         redirect('akademik/tugas_akhir/plotting/' . $id_ta);
@@ -153,7 +153,7 @@ class Tugas_akhir extends BaseController
                         $data = array(
                             'status' => 'diterima'
                         );
-                        $result = $this->ta_model->terima_ta($id_ta,$id_pengajuan_ta,$id_mahasiswa,$data,$id_proyek,NULL);
+                        $result = $this->Ta_model->terima_ta($id_ta,$id_pengajuan_ta,$id_mahasiswa,$data,$id_proyek,NULL);
     
                         if($result){
                             $this->session->set_flashdata('success', 'Tugas akhir telah terploting');
@@ -175,7 +175,7 @@ class Tugas_akhir extends BaseController
                         $data = array(
                             'status' => 'diterima'
                         );
-                        $result = $this->ta_model->terima_ta($id_ta,$id_pengajuan_ta,$id_mahasiswa,$data,NULL,$id_dosen);
+                        $result = $this->Ta_model->terima_ta($id_ta,$id_pengajuan_ta,$id_mahasiswa,$data,NULL,$id_dosen);
     
                         if($result){
                             $this->session->set_flashdata('success', 'Tugas akhir telah terploting');
@@ -195,7 +195,7 @@ class Tugas_akhir extends BaseController
         $id_dosen = $this->input->post('dosen');
         $id_ta = $this->input->post('id_ta');
 
-        $result = $this->ta_model->edit_dosbing($id_mahasiswa, $id_pengajuan_ta, $id_dosen);
+        $result = $this->Ta_model->edit_dosbing($id_mahasiswa, $id_pengajuan_ta, $id_dosen);
 
         if($result){
             $this->session->set_flashdata('success', 'Dosbing telah diubah');

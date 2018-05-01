@@ -5,7 +5,7 @@ class User extends BaseController
     public function __construct() {
         parent::__construct();
         $this->isLoggedIn();
-        $this->load->model('user_model');
+        $this->load->model('User_model');
         $this->isAkademik();
     }
 
@@ -35,7 +35,7 @@ class User extends BaseController
             );
         }
             
-        $result = $this->user_model->insert($data);
+        $result = $this->User_model->insert($data);
         
         
         if($result){
@@ -127,7 +127,7 @@ class User extends BaseController
         $column_username = $this->input->post('username');
         $prodi = $this->input->post('prodi');
         $data = array();
-        $this->load->model('user_model');
+        $this->load->model('User_model');
         $role = $this->input->post('role');
         if($file_extension == '.xlsx'){
             $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
@@ -143,7 +143,7 @@ class User extends BaseController
         for ($row = 2; $row <= $highestRow; ++$row) {
             $full_username = explode("/",trim($worksheet->getCell($column_username . $row)->getValue()));
             $username = (empty($full_username[1]) ? $full_username[0] : $full_username[1]);
-            $check = $this->user_model->checkUsername($username);
+            $check = $this->User_model->checkUsername($username);
             if($check){
                 continue;
             } else {
@@ -162,7 +162,7 @@ class User extends BaseController
             unlink('./uploads/data_users/' . $filename);
             $this->session->set_flashdata('error', 'Seluruh data yang diimpor sudah ada di database');
         } else {
-            $result = $this->user_model->insert_multiple($data);
+            $result = $this->User_model->insert_multiple($data);
             if($result){
                 unlink('./uploads/data_users/' . $filename);
                 $this->session->set_flashdata('success', 'User telah berhasil dibuat');
@@ -230,7 +230,7 @@ class User extends BaseController
             }
         }
         $user_id = $this->input->post('userId');
-        $result = $this->user_model->update($data,$user_id,$role);
+        $result = $this->User_model->update($data,$user_id,$role);
         if($result){
             $this->session->set_flashdata('success', 'User telah berhasil diubah');
         } else {
@@ -255,9 +255,9 @@ class User extends BaseController
         $email = $this->input->post("email");
 
         if(empty($userId)){
-            $result = $this->user_model->checkEmail($email);
+            $result = $this->User_model->checkEmail($email);
         } else {
-            $result = $this->user_model->checkEmail($email, $userId);
+            $result = $this->User_model->checkEmail($email, $userId);
         }
 
         if ($result) {
@@ -273,9 +273,9 @@ class User extends BaseController
         $username = $this->input->post("username");
 
         if(empty($userId)){
-            $result = $this->user_model->checkUsername($username);
+            $result = $this->User_model->checkUsername($username);
         } else {
-            $result = $this->user_model->checkUsername($username, $userId);
+            $result = $this->User_model->checkUsername($username, $userId);
         }
 
         if ($result) {
@@ -291,9 +291,9 @@ class User extends BaseController
         $nim = $this->input->post("nim");
 
         if(empty($userId)){
-            $result = $this->user_model->checkNIM($nim);
+            $result = $this->User_model->checkNIM($nim);
         } else {
-            $result = $this->user_model->checkNIM($nim, $userId);
+            $result = $this->User_model->checkNIM($nim, $userId);
         }
 
         if ($result) {
@@ -309,9 +309,9 @@ class User extends BaseController
         $nid = $this->input->post("nid");
 
         if(empty($userId)){
-            $result = $this->user_model->checkNID($nid);
+            $result = $this->User_model->checkNID($nid);
         } else {
-            $result = $this->user_model->checkNID($nid, $userId);
+            $result = $this->User_model->checkNID($nid, $userId);
         }
 
         if ($result) {
@@ -324,7 +324,7 @@ class User extends BaseController
     public function delete_user(){
         $user_id = $this->input->post("userId");
         $role = $this->input->post('role');
-        $result = $this->user_model->delete($user_id);
+        $result = $this->User_model->delete($user_id);
         if($result){
             $this->session->set_flashdata('success', 'User telah dihapus');
         } else {

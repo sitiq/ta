@@ -10,7 +10,7 @@ class Profil extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('profil_model');
+        $this->load->model('Profil_model');
         $this->isLoggedIn();
         $this->isMahasiswa();
     }
@@ -29,7 +29,7 @@ class Profil extends BaseController
             $userId = $this->vendorId;
             $userRole = $this->role;
 
-            $data['profilInfo'] = $this->profil_model->getMahasiswa($userId);
+            $data['profilInfo'] = $this->Profil_model->getMahasiswa($userId);
             $data['userId'] = $userId;
             $data['userRole'] = $userRole;
             $this->global['pageTitle'] = "Elusi : Profil";
@@ -68,8 +68,8 @@ class Profil extends BaseController
                 'pengalaman'=>$pengalaman);
 
             $userInfo = array('nama'=>$nama);
-            $resultUser = $this->profil_model->editUser($userInfo,$id_user);
-            $result = $this->profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
+            $resultUser = $this->Profil_model->editUser($userInfo,$id_user);
+            $result = $this->Profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
 
             if($result > 0)
             {$this->session->set_flashdata('success', 'Profil berhasil diubah!');}
@@ -112,7 +112,7 @@ class Profil extends BaseController
                 $terupload = $this->upload->data();
                 $mahasiswaInfo = array('foto'=>$terupload['file_name']);
 
-                $result = $this->profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
+                $result = $this->Profil_model->editProfil($mahasiswaInfo, $id_mahasiswa);
                 if($result == true)
                 {
                     $this->session->set_flashdata('success', 'Ubah foto berhasil!');
@@ -131,9 +131,9 @@ class Profil extends BaseController
         $email = $this->input->post("email");
 
         if(empty($idMhs)){
-            $result = $this->profil_model->checkEmail($email);
+            $result = $this->Profil_model->checkEmail($email);
         } else {
-            $result = $this->profil_model->checkEmail($email, $idMhs);
+            $result = $this->Profil_model->checkEmail($email, $idMhs);
         }
 
         if ($result) {
@@ -149,9 +149,9 @@ class Profil extends BaseController
         $nim = $this->input->post("nim");
 
         if(empty($idMhs)){
-            $result = $this->profil_model->checkNim($nim);
+            $result = $this->Profil_model->checkNim($nim);
         } else {
-            $result = $this->profil_model->checkNim($nim, $idMhs);
+            $result = $this->Profil_model->checkNim($nim, $idMhs);
         }
 
         if ($result) {

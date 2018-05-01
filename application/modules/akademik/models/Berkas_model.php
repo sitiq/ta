@@ -6,7 +6,7 @@
  * Description:
  */
 
-class berkas_model extends CI_Model
+class Berkas_model extends CI_Model
 {
     public function getBerkas($id = NULL){
         $this->db->select("*");

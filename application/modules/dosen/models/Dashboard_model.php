@@ -6,7 +6,7 @@
  * Description:
  */
 
-class dashboard_model extends CI_Model
+class Dashboard_model extends CI_Model
 {
     /**
      * This function is used to get total bimbingan mahasiswa

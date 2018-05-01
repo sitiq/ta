@@ -4,7 +4,7 @@ class Daftar_mahasiswa extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('daftar_mahasiswa_model');
+        $this->load->model('Daftar_mahasiswa_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
@@ -13,19 +13,19 @@ class Daftar_mahasiswa extends BaseController
         if($this->input->get('angkatan')){
             $angkatan = $this->input->get('angkatan');
             if($angkatan == "all"){
-                $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa();
+                $data_mahasiswa = $this->Daftar_mahasiswa_model->getMahasiswa();
             } else {
-                $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa(NULL,$angkatan);
+                $data_mahasiswa = $this->Daftar_mahasiswa_model->getMahasiswa(NULL,$angkatan);
                 $data['pilihan'] = intval(substr(date('Y'),0,2))*100+intval($angkatan);
             }
         } else {
-            $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa();
+            $data_mahasiswa = $this->Daftar_mahasiswa_model->getMahasiswa();
         }
-        $data['arrayAngkatan'] = $this->daftar_mahasiswa_model->getAngkatan();
+        $data['arrayAngkatan'] = $this->Daftar_mahasiswa_model->getAngkatan();
         $track_mahasiswa = array();
         foreach ($data_mahasiswa as $result) {
             $id_mahasiswa = $result->id_mahasiswa;
-            $nilai_result = $this->daftar_mahasiswa_model->get_nilai_akhir($id_mahasiswa);
+            $nilai_result = $this->Daftar_mahasiswa_model->get_nilai_akhir($id_mahasiswa);
             
             if($nilai_result != FALSE){
                 $nilai_akhir = $nilai_result[0]->nilai_akhir_sidang;
@@ -38,30 +38,30 @@ class Daftar_mahasiswa extends BaseController
                 'nim' => $result->nim,
                 'nama' => $result->nama,
                 'no_hp'=> $result->mobile,
-                'judul' => $this->daftar_mahasiswa_model->isJudul($id_mahasiswa),
-                'sidang' => $this->daftar_mahasiswa_model->isSidang($id_mahasiswa),
+                'judul' => $this->Daftar_mahasiswa_model->isJudul($id_mahasiswa),
+                'sidang' => $this->Daftar_mahasiswa_model->isSidang($id_mahasiswa),
                 'nilai_akhir' => $nilai_akhir,
-                'yudisium' => $this->daftar_mahasiswa_model->isYudisium($id_mahasiswa)
+                'yudisium' => $this->Daftar_mahasiswa_model->isYudisium($id_mahasiswa)
             );
 
             array_push($track_mahasiswa,$array_mahasiswa);
         }
 
         $this->global['pageTitle'] = "Elusi : Daftar Mahasiswa"; 
-        //$data['nilai'] = $this->daftar_mahasiswa_model->get_nilai_akhir(1)->row()->nilai_akhir_sidang;
+        //$data['nilai'] = $this->Daftar_mahasiswa_model->get_nilai_akhir(1)->row()->nilai_akhir_sidang;
         $data['dataTable'] = $track_mahasiswa;
         //echo json_encode($track_mahasiswa);
         $this->loadViews("daftar_mahasiswa",$this->global,$data);
     }
 
     public function detail_mahasiswa($id_mahasiswa){
-        $data['dataMahasiswa'] = $this->daftar_mahasiswa_model->getMahasiswa($id_mahasiswa);
-        $data['dataDosbing'] = $this->daftar_mahasiswa_model->getDosbing($id_mahasiswa);
-        $data['dataJudulTA'] = $this->daftar_mahasiswa_model->getJudulTA($id_mahasiswa);
-        $data['dataBerkasSidang'] = $this->daftar_mahasiswa_model->getBerkasSidang($id_mahasiswa);
-        $data['dataBerkasYudisium'] = $this->daftar_mahasiswa_model->getBerkasYudisium($id_mahasiswa);
+        $data['dataMahasiswa'] = $this->Daftar_mahasiswa_model->getMahasiswa($id_mahasiswa);
+        $data['dataDosbing'] = $this->Daftar_mahasiswa_model->getDosbing($id_mahasiswa);
+        $data['dataJudulTA'] = $this->Daftar_mahasiswa_model->getJudulTA($id_mahasiswa);
+        $data['dataBerkasSidang'] = $this->Daftar_mahasiswa_model->getBerkasSidang($id_mahasiswa);
+        $data['dataBerkasYudisium'] = $this->Daftar_mahasiswa_model->getBerkasYudisium($id_mahasiswa);
         
-        $dataSidang = $this->daftar_mahasiswa_model->getNilaiSidang($id_mahasiswa);
+        $dataSidang = $this->Daftar_mahasiswa_model->getNilaiSidang($id_mahasiswa);
         
         if(!$dataSidang){
             $data['dataNilaiSidang'] = FALSE;
@@ -93,12 +93,12 @@ class Daftar_mahasiswa extends BaseController
         }
 
         /* Mendapatkan nilai rata-rata dari masing-masing komponen nilai*/
-        $dataKomponen = $this->daftar_mahasiswa_model->getKomponen();
+        $dataKomponen = $this->Daftar_mahasiswa_model->getKomponen();
 
         $dataPenilaian = array();
         if($dataKomponen != FALSE){
             foreach ($dataKomponen as $record_komponen) {
-                $data_nilai = $this->daftar_mahasiswa_model->getPenilaian($id_mahasiswa,$record_komponen->id_komponen);
+                $data_nilai = $this->Daftar_mahasiswa_model->getPenilaian($id_mahasiswa,$record_komponen->id_komponen);
                 
                 if($data_nilai != NULL){
                     $nilai = 0;
@@ -123,11 +123,11 @@ class Daftar_mahasiswa extends BaseController
     }
 
     public function exportToExcel(){
-        $data_mahasiswa = $this->daftar_mahasiswa_model->getMahasiswa();
+        $data_mahasiswa = $this->Daftar_mahasiswa_model->getMahasiswa();
         $track_mahasiswa = array();
         foreach ($data_mahasiswa as $result) {
             $id_mahasiswa = $result->id_mahasiswa;
-            $nilai_result = $this->daftar_mahasiswa_model->get_nilai_akhir($id_mahasiswa);
+            $nilai_result = $this->Daftar_mahasiswa_model->get_nilai_akhir($id_mahasiswa);
             
             if($nilai_result != FALSE){
                 $nilai_akhir = $nilai_result[0]->nilai_akhir_sidang;
@@ -139,10 +139,10 @@ class Daftar_mahasiswa extends BaseController
                 'nim' => $result->nim,
                 'nama' => $result->nama,
                 'no_hp'=> ($result->mobile == NULL ? '' : $result->mobile),
-                'judul' => ($this->daftar_mahasiswa_model->isJudul($id_mahasiswa) ? 'Terdaftar' : 'Belum Terdaftar'),
-                'sidang' => ($this->daftar_mahasiswa_model->isSidang($id_mahasiswa) ? 'Terdaftar' : 'Belum Terdaftar'),
+                'judul' => ($this->Daftar_mahasiswa_model->isJudul($id_mahasiswa) ? 'Terdaftar' : 'Belum Terdaftar'),
+                'sidang' => ($this->Daftar_mahasiswa_model->isSidang($id_mahasiswa) ? 'Terdaftar' : 'Belum Terdaftar'),
                 'nilai_akhir' => $nilai_akhir,
-                'yudisium' => ($this->daftar_mahasiswa_model->isYudisium($id_mahasiswa) ? 'Terdaftar' : 'Belum Terdaftar')
+                'yudisium' => ($this->Daftar_mahasiswa_model->isYudisium($id_mahasiswa) ? 'Terdaftar' : 'Belum Terdaftar')
             );
 
             array_push($track_mahasiswa,$array_mahasiswa);

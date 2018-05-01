@@ -10,7 +10,7 @@ class Berkas_sidang extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('berkas_model');
+        $this->load->model('Berkas_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
@@ -21,7 +21,7 @@ class Berkas_sidang extends BaseController
             $this->loadThis();
         }
         else {
-            $data['dataTable'] = $this->berkas_model->getBerkas();
+            $data['dataTable'] = $this->Berkas_model->getBerkas();
             $this->global['pageTitle'] = "Elusi : Berkas Sidang";
             $this->loadViews("dashboard_berkas_sidang", $this->global, $data);
         }
@@ -32,7 +32,7 @@ class Berkas_sidang extends BaseController
         else {
             $nama_berkas = trim($this->input->post('nama_berkas'));
             $data = array('nama_berkas' => $nama_berkas);
-            $id_berkas_sidang = $this->berkas_model->insert($data);
+            $id_berkas_sidang = $this->Berkas_model->insert($data);
 //            mkdir if !dir
             if (!is_dir('uploads/sidang/' . $id_berkas_sidang)) {
                 mkdir('./uploads/sidang/' . $id_berkas_sidang, 0777, TRUE);
@@ -53,7 +53,7 @@ class Berkas_sidang extends BaseController
             $id_berkas_sidang = $this->input->post('id_berkas_sidang_edit');
             $nama_berkas = trim($this->input->post('nama_berkas_edit'));
             $data = array('nama_berkas' => $nama_berkas);
-            $result = $this->berkas_model->update($data, $id_berkas_sidang);
+            $result = $this->Berkas_model->update($data, $id_berkas_sidang);
             if ($result) {
                 $this->session->set_flashdata('success', 'Berkas berhasil diubah');
             } else {
@@ -69,7 +69,7 @@ class Berkas_sidang extends BaseController
         {$this->loadThis();}
         else {
             $id_berkas_sidang = $this->input->post("id_berkas_sidang");
-            $result = $this->berkas_model->off($id_berkas_sidang);
+            $result = $this->Berkas_model->off($id_berkas_sidang);
             if ($result) {
                 $this->session->set_flashdata('success', 'Berkas berhasil non-aktif');
             } else {
@@ -86,7 +86,7 @@ class Berkas_sidang extends BaseController
         }
         else {
             $id_berkas_sidang = $this->input->post("id_berkas_sidang");
-            $result = $this->berkas_model->on($id_berkas_sidang);
+            $result = $this->Berkas_model->on($id_berkas_sidang);
             if ($result) {
                 $this->session->set_flashdata('success', 'Berkas berhasil diaktifkan');
             } else {

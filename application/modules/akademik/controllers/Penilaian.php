@@ -10,7 +10,7 @@ class Penilaian extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('penilaian_model');
+        $this->load->model('Penilaian_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
@@ -21,7 +21,7 @@ class Penilaian extends BaseController
             $this->loadThis();
         }
         else {
-            $data['dataTable'] = $this->penilaian_model->getKomponen();
+            $data['dataTable'] = $this->Penilaian_model->getKomponen();
             $this->global['pageTitle'] = "Elusi : Berkas Penilaian";
             $this->loadViews("dashboard_penilaian", $this->global, $data);
         }
@@ -32,7 +32,7 @@ class Penilaian extends BaseController
         else {
             $nama = trim($this->input->post('nama'));
             $data = array('nama' => $nama);
-            $result = $this->penilaian_model->insert($data);
+            $result = $this->Penilaian_model->insert($data);
             if ($result) {
                 $this->session->set_flashdata('success', 'Penilaian berhasil dibuat');
             } else {
@@ -49,7 +49,7 @@ class Penilaian extends BaseController
             $id_komponen = $this->input->post('id_komponen_edit');
             $nama = trim($this->input->post('nama_komponen_edit'));
             $data = array('nama' => $nama,);
-            $result = $this->penilaian_model->update($data, $id_komponen);
+            $result = $this->Penilaian_model->update($data, $id_komponen);
             if ($result) {
                 $this->session->set_flashdata('success', 'Penilaian berhasil diubah');
             } else {
@@ -64,7 +64,7 @@ class Penilaian extends BaseController
         {$this->loadThis();}
         else {
             $id_komponen = $this->input->post("id_komponen");
-            $result = $this->penilaian_model->off($id_komponen);
+            $result = $this->Penilaian_model->off($id_komponen);
             if ($result) {
                 $this->session->set_flashdata('success', 'Penilaian berhasil non-aktif');
             } else {
@@ -79,7 +79,7 @@ class Penilaian extends BaseController
         {$this->loadThis();}
         else {
             $id_komponen = $this->input->post("id_komponen");
-            $result = $this->penilaian_model->on($id_komponen);
+            $result = $this->Penilaian_model->on($id_komponen);
             if ($result) {
                 $this->session->set_flashdata('success', 'Penilaian berhasil diaktifkan');
             } else {

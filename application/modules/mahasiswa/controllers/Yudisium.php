@@ -14,7 +14,7 @@ class Yudisium extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('yudisium_model');
+        $this->load->model('Yudisium_model');
         $this->isLoggedIn();
         $this->isMahasiswa();
     }
@@ -32,12 +32,12 @@ class Yudisium extends BaseController
             $userId = $this->vendorId;
             $this->global['pageTitle'] = "Elusi : Yudisium";
 
-            $data['berkasInfo'] = $this->yudisium_model->getBerkasInfo($userId);
-            $data['periodeInfo'] = $this->yudisium_model->getPeriode();
-            $data['idBerkas'] = $this->yudisium_model->getIdBerkas();
-            $data['totalSyarat'] = $this->yudisium_model->getCountBerkas();
-            $data['sidang'] = $this->yudisium_model->getSidang($userId);
-            $data['idMahasiswa'] = $this->yudisium_model->cekMahasiswa($userId);
+            $data['berkasInfo'] = $this->Yudisium_model->getBerkasInfo($userId);
+            $data['periodeInfo'] = $this->Yudisium_model->getPeriode();
+            $data['idBerkas'] = $this->Yudisium_model->getIdBerkas();
+            $data['totalSyarat'] = $this->Yudisium_model->getCountBerkas();
+            $data['sidang'] = $this->Yudisium_model->getSidang($userId);
+            $data['idMahasiswa'] = $this->Yudisium_model->cekMahasiswa($userId);
 
             $this->loadViews("yudisium", $this->global, $data, NULL);
         }
@@ -53,7 +53,7 @@ class Yudisium extends BaseController
 //            get first id syarat berkas
         $id_syarat = $this->input->post('id_syarat');
 //            get id_mahasiswa based on who is logged in
-        $cek = $this->yudisium_model->cekMahasiswa($id_user);
+        $cek = $this->Yudisium_model->cekMahasiswa($id_user);
         $id_mahasiswa = $cek[0]->id_mahasiswa;
 //        get id_periode
         $id_periode = $this->input->post('id_periode');
@@ -63,14 +63,14 @@ class Yudisium extends BaseController
             "id_periode"=>$id_periode
         );
         //            insert to table yudisium / registration yudisium new
-        $idYudisium = $this->yudisium_model->addNewYudisium($infoYudisium);
+        $idYudisium = $this->Yudisium_model->addNewYudisium($infoYudisium);
 //            insert to validasi yudisium table, based on active files important to yudisium
         for ($i=1;$i<=$total_syarat;$i++){
             $daftarId = array(
                 "id_yudisium"=>$idYudisium,
                 "id_berkas_yudisium"=>$id_syarat
             );
-            $result = $this->yudisium_model->addNewValidasi($daftarId);
+            $result = $this->Yudisium_model->addNewValidasi($daftarId);
             $id_syarat++;
         }
 //            lebih dari 0 berarti ada data yg masuk
@@ -97,7 +97,7 @@ class Yudisium extends BaseController
         {
             $id_folder = $this->input->post('id_berkas_yudisium');
             $nim = $this->input->post('id_mahasiswa');
-            $cekMhs = $this->yudisium_model->cekMahasiswa($nim);
+            $cekMhs = $this->Yudisium_model->cekMahasiswa($nim);
 
             if (!$cekMhs)
                 $this->load->library('form_validation');
@@ -132,7 +132,7 @@ class Yudisium extends BaseController
                     'isValid'=>1
                 );
 
-                $result = $this->yudisium_model->editBerkas($berkasInfo, $id_berkas);
+                $result = $this->Yudisium_model->editBerkas($berkasInfo, $id_berkas);
 
                 if($result == true)
                 {

@@ -4,13 +4,13 @@ class Akun_dosen extends BaseController
 {
     public function __construct() {
         parent::__construct();
-        $this->load->model('user_model');
+        $this->load->model('User_model');
         $this->isLoggedIn();
         $this->isAkademik();
     }
 
     public function index(){
-        $data['dataTable'] = $this->user_model->getUserTable(ROLE_DOSEN);
+        $data['dataTable'] = $this->User_model->getUserTable(ROLE_DOSEN);
         $data['role'] = ROLE_DOSEN;
         $this->global['pageTitle'] = "Elusi : Dashboard User Dosen"; 
         $this->loadViews("dashboard_dosen",$this->global,$data);
@@ -24,7 +24,7 @@ class Akun_dosen extends BaseController
 
     public function edit_form($id){
         $data['role'] = ROLE_DOSEN;
-        $data['dataUser'] = $this->user_model->getUser($id,ROLE_DOSEN);
+        $data['dataUser'] = $this->User_model->getUser($id,ROLE_DOSEN);
         $this->global['pageTitle'] = "Elusi : Edit User"; 
         $this->loadViews("edit_user",$this->global,$data);
     }

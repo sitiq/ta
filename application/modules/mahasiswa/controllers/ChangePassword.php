@@ -15,7 +15,7 @@ class ChangePassword extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('change_password_model');
+        $this->load->model('Change_password_model');
         $this->isLoggedIn();
         $this->isMahasiswa();
     }
@@ -63,7 +63,7 @@ class ChangePassword extends BaseController
                 $oldPassword = $this->input->post('oldPassword');
                 $newPassword = $this->input->post('newPassword');
 
-                $resultPas = $this->change_password_model->matchOldPassword($this->vendorId, $oldPassword);
+                $resultPas = $this->Change_password_model->matchOldPassword($this->vendorId, $oldPassword);
 
                 if(empty($resultPas))
                 {
@@ -74,7 +74,7 @@ class ChangePassword extends BaseController
                 {
                     $usersData = array('password'=>getHashedPassword($newPassword), 'updatedDtm'=>date('Y-m-d H:i:s'));
 
-                    $result = $this->change_password_model->changePassword($this->vendorId, $usersData);
+                    $result = $this->Change_password_model->changePassword($this->vendorId, $usersData);
 
                     if($result > 0) { $this->session->set_flashdata('success', 'Ubah password berhasil!'); }
                     else { $this->session->set_flashdata('error', 'Ubah password gagal!'); }
