@@ -84,7 +84,7 @@ $array_usulan = [];
                                     </p>
                                     <p>
                                         <span class="badge">TMT</span>&emsp;
-                                        <?php echo $dataTA[0]->nim . " " . $dataTA[0]->tahun_ajaran ?>
+                                        <?php echo "Semester ".ucfirst($dataTA[0]->semester)." ".$dataTA[0]->tahun_ajaran ?>
                                     </p>
                                 </div>
                                 <div class="col-md-12">
