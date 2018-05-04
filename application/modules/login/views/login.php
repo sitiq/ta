@@ -64,6 +64,7 @@
                             <input type="password" name="password" class="form-control" placeholder="Password" required />
                         </div>
                         <div>
+                            <span class="pull-left">Lupa password? Hubungi akademik</span>
                             <input type="submit" class="btn btn-default submit btn-success pull-right" value="Log In" />
                         </div>
                     </form>
