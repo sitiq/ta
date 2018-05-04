@@ -269,7 +269,7 @@ class Pendadaran extends BaseController
 //                upload file revision
                 $config['upload_path'] = 'uploads/revisi_sidang';
                 $config['allowed_types'] = 'pdf';
-                $config['max_size'] = 8000;
+                $config['max_size'] = 10000;
                 $config['max_width'] = 1024;
                 $config['max_height'] = 1024;
                 $new_name = "revisi-" . time() . "-" . $nama_dosen_revisi;

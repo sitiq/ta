@@ -48,7 +48,7 @@ if(!empty($berkasInfo))
                         <h2>Penting !<br><small>
                                 <ul>
                                     <li>Diwajibkan untuk membaca tata cara pada PENGUMUMAN</li>
-                                    <li>Maksimal ukuran berkas 8Mb</li>
+                                    <li>Maksimal ukuran berkas 10Mb</li>
                                 </ul>
                                 <h5 class="badge bg-red">Pastikan Anda telah melengkapi
                                     <a href="<?php base_url()?>../profil" style="color: white"><u>PROFIL</u></a>
@@ -126,7 +126,7 @@ if(!empty($berkasInfo))
                                             </tr>
                                             <form action="<?php echo base_url();?>mahasiswa/sidang/editBerkas" enctype="multipart/form-data" method="post">
                                                 <tr>
-                                                    <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 8mb</th>
+                                                    <th colspan="2"><strong>Unggah[*pdf]</strong> <br> Maksimal 10mb</th>
                                                     <th>
                                                         <input type="hidden" value="<?php echo $record->id_mahasiswa?>">
                                                         <input type="hidden" name="total_syarat" value="<?php echo $totalSyarat?>">
