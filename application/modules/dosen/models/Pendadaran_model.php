@@ -35,21 +35,6 @@ class Pendadaran_model extends CI_Model
         return $result;
     }
     /**
-     * This function is used to get the mahasiswa info
-     * @return array $result : This is result
-     */
-    function getMahasiswaInfo($idMhs)
-    {
-        $this->db->select('s.id_sidang, m.id_mahasiswa');
-        $this->db->from('sidang s');
-        $this->db->join('mahasiswa m','m.id_mahasiswa = s.id_mahasiswa');
-        $this->db->where('m.id_mahasiswa', $idMhs);
-
-        $query = $this->db->get();
-        $result = $query->result();
-        return $result;
-    }
-    /**
      * This function is used to get the nilai info mahasiswa
      * @param $userId : This is get from user who is logged in
      * @return array $result : This is result
@@ -152,6 +137,7 @@ class Pendadaran_model extends CI_Model
         $query = $this->db->get();
         return count($query->result());
     }
+//
     function getSekre($userId)
     {
         $this->db->select('a.role, d.nama');
@@ -187,18 +173,6 @@ class Pendadaran_model extends CI_Model
         $query = $this->db->get();
 
         if( $query->num_rows() > 0 ){ return $query->result(); } else { return FALSE; }
-    }
-    function getKetuaTotal($userId)
-    {
-        $this->db->select('k.nilai');
-        $this->db->from('komponen_nilai k');
-        $this->db->join('dosen d','d.id_dosen=a.id_dosen');
-        $this->db->join('user u','u.id_user=d.id_user');
-        $this->db->where('u.id_user',$userId);
-        $this->db->where('a.role','ketua');
-        $query = $this->db->get();
-
-        if( $query->num_rows() > 0 ){ return count($query->result()); } else { return FALSE; }
     }
 //    get total penilaian seluruh oleh anggota sidang  > show to ketua sidang
     function getPenilaian($idSidang)
@@ -253,18 +227,11 @@ class Pendadaran_model extends CI_Model
         return TRUE;
     }
     /**
-     * This function is used to edit sidang mahasiswa
-     * @param array $nilaiAkhir : This is array data include nilai_akhir_dosen average
-     * @param $sidangId : This is get id each sidang
+     * This function is used to edit sidang mahasiswa STATUS = lulus || lulus_revisi || mengulang
+     * @param array $sidangInfo : This is array data include status, nilai_akhir_sidang
+     * @param $idSidang : This is get id each sidang
      * @return bool true : where affected row increase
      */
-//    function editSidang($nilaiAkhir, $sidangId)
-//    {
-//        $this->db->set('nilai_akhir_sidang', "nilai_akhir_sidang + $nilaiAkhir", false);
-//        $this->db->where('id_sidang', $sidangId);
-//        $this->db->update('sidang');
-//        return TRUE;
-//    }
     function editSidang($sidangInfo, $idSidang)
     {
         $this->db->where('id_sidang', $idSidang);

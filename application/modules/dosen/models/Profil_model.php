@@ -64,22 +64,6 @@ class Profil_model extends CI_Model
     }
 
     /**
-     * This function used to get dosen information by id
-     * @param number $id : This is dosen id
-     * @return array $result : This is dosen information
-     */
-    function getProfilInfo($id)
-    {
-        $this->db->select('id_dosen, nama');
-        $this->db->from('dosen');
-        $this->db->where('isDeleted', 0);
-        $this->db->where('id_dosen', $id);
-        $query = $this->db->get();
-
-        return $query->result();
-    }
-
-    /**
      * This function is used to update the dosen information
      * @param array $dosenInfo : This is dosens updated information
      * @return array $result : This is result

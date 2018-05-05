@@ -37,7 +37,6 @@ class Profil extends BaseController
         }
     }
     function checkNidExists(){
-        //if (array_key_exists('email', $_POST)) {
         $idDosen = $this->input->post("id_dosen");
         $nid = $this->input->post("nid");
 
@@ -54,7 +53,6 @@ class Profil extends BaseController
         }
     }
     function checkEmailExists(){
-        //if (array_key_exists('email', $_POST)) {
         $idDosen = $this->input->post("id_dosen");
         $email = $this->input->post("email");
 
@@ -139,7 +137,7 @@ class Profil extends BaseController
                 // bila uplod foto error
                 $error = array('error' => $this->upload->display_errors());
                 // echo $error['error'];
-                $this->session->set_flashdata('error', 'Ukuran maksimum 4mb');
+                $this->session->set_flashdata('error', 'Maksimum 4mb dan 1024x1024');
             }else{
                 // bila upload foto berhasil
                 $terupload = $this->upload->data();

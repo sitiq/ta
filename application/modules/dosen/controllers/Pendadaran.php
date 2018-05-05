@@ -61,7 +61,6 @@ class Pendadaran extends BaseController
             $data['penilaianInfo'] = $this->pendadaran_model->getPenilaian($idSidang);
             $data['penilaianRataInfo'] = $this->pendadaran_model->getPenilaianRata($idSidang);
 
-//            $data['mahasiswaInfo'] = $this->pendadaran_model->getMahasiswaInfo($idMhs);
             $this->global['pageTitle'] = "Elusi : Sidang";
             $this->loadViews("nilai", $this->global, $data, NULL);
         }
