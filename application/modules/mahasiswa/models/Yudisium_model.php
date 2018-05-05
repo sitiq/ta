@@ -20,6 +20,7 @@ class Yudisium_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+//    get id mahasiswa where have been sidang, mahasiswa have to sidang if wanna yudisium
     function getSidang($userId)
     {
         $this->db->select('s.id_mahasiswa');
@@ -59,6 +60,7 @@ class Yudisium_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+//    get berkas where active
     function getIdBerkas()
     {
         $this->db->select('b.id_berkas_yudisium');
@@ -69,6 +71,7 @@ class Yudisium_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+//    get total berkas where active
     function getCountBerkas()
     {
         $this->db->select('b.id_berkas_yudisium, b.nama_berkas, b.isDeleted');

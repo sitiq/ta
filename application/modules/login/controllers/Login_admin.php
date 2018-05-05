@@ -6,7 +6,7 @@
  * Created by nad.
  * Date: 07/03/2018
  * Time: 12:50
- * Description:
+ * Description: 1=Kaprodi , 2=Akademik , 3=Dosen , 4=Mahasiswa
  */
 class Login_admin extends CI_Controller
 {

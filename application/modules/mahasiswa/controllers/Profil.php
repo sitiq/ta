@@ -125,8 +125,8 @@ class Profil extends BaseController
             redirect('mahasiswa/profil');
         }
     }
+//    email can't be same
     function checkEmailExists(){
-        //if (array_key_exists('email', $_POST)) {
         $idMhs = $this->input->post("id_mahasiswa");
         $email = $this->input->post("email");
 
@@ -142,7 +142,7 @@ class Profil extends BaseController
             echo json_encode(TRUE);
         }
     }
-
+//      nim is unique
     function checkNimExists(){
         //if (array_key_exists('email', $_POST)) {
         $idMhs = $this->input->post("id_mahasiswa");

@@ -62,7 +62,7 @@ class Yudisium extends BaseController
             "id_mahasiswa"=>$id_mahasiswa,
             "id_periode"=>$id_periode
         );
-        //            insert to table yudisium / registration yudisium new
+//            insert to table yudisium / registration yudisium new
         $idYudisium = $this->Yudisium_model->addNewYudisium($infoYudisium);
 //            insert to validasi yudisium table, based on active files important to yudisium
         for ($i=1;$i<=$total_syarat;$i++){

@@ -47,9 +47,9 @@ class Sidang extends BaseController
      * This function is used to registration Sidang
      */
     function daftar(){
-            //get id user who is logged in
+//          get id user who is logged in
             $id_user = $this->vendorId;
-            //get total syarat where active
+//          get total syarat where active
             $total_syarat = $this->input->post('total_syarat');
 //            get id_periode
             $id_periode = $this->input->post('id_periode');
@@ -61,7 +61,7 @@ class Sidang extends BaseController
             $infoSidang = array("id_mahasiswa"=>$id_mahasiswa,"id_periode"=>$id_periode);
 //            insert to table sidang / registration sidang new
             $idSidang = $this->Sidang_model->addNewSidang($infoSidang);
-//            insert to validasi_berkas_sidang table, make 10 files important to Sidang
+//            insert to validasi_berkas_sidang table, make files important to Sidang
             for ($i=1;$i<=$total_syarat;$i++){
                 $daftarId = array(
                     "id_sidang"=>$idSidang,
@@ -147,7 +147,7 @@ class Sidang extends BaseController
                 $error = array('error' => $this->upload->display_errors());
                 $this->session->set_flashdata('error', 'Berkas tidak sesuai ketentuan');
             }else{
-                // if upload success
+                // if upload success, isValid = 1 = proses
                 $terupload = $this->upload->data();
                 $berkasInfo = array(
                     'path'=>$terupload['file_name'],

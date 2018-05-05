@@ -19,7 +19,6 @@ class Pengumuman_model extends CI_Model
             $this->db->where('id_pengumuman',$id);
         }
         $query = $this->db->get();
-
         return $query->result();
     }
 }

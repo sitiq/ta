@@ -28,6 +28,7 @@ class Sidang_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+//    sidang happen when periode is on || status_periode = 1
     function getIdPeriode()
     {
         $this->db->select('id_periode, status_periode');
@@ -38,6 +39,7 @@ class Sidang_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+//    mahasiswa could regist sidang if mahasiswa have plotted proyek tugas akhir
     function getTa($userId)
     {
         $this->db->select('ta.id_mahasiswa');
@@ -55,21 +57,7 @@ class Sidang_model extends CI_Model
             return FALSE;
         }
     }
-//    function getTa($userId)
-//    {
-//        $this->db->select('ta.id_mahasiswa');
-//        $this->db->from('mahasiswa m');
-//        $this->db->join('tugas_akhir ta','ta.id_mahasiswa = m.id_mahasiswa','left');
-//        $this->db->join('user u','u.id_user = m.id_user');
-//        $this->db->where('ta.status_pengambilan','terplotting');
-////        $this->db->where('u.id_user', $userId);
-//        $this->db->where('u.id_user', $userId);
-//
-//        $query = $this->db->get();
-//        $result = $query->result();
-//
-//        return $result;
-//    }
+//    get total berkas where active
     function getCountBerkas()
     {
         $this->db->select('b.id_berkas_sidang, b.nama_berkas, b.isDeleted');
@@ -79,6 +67,7 @@ class Sidang_model extends CI_Model
         $query = $this->db->get();
         return count($query->result());
     }
+//    get berkas where active
     function getIdBerkas()
     {
         $this->db->select('b.id_berkas_sidang');

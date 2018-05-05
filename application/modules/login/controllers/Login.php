@@ -5,7 +5,7 @@
  * Created by nad.
  * Date: 07/03/2018
  * Time: 12:33
- * Description:
+ * Description: 1=Kaprodi , 2=Akademik , 3=Dosen , 4=Mahasiswa
  */
 class Login extends CI_Controller
 {
@@ -52,7 +52,6 @@ class Login extends CI_Controller
         }
     }
 
-
     /**
      * This function used to logged in ta
      */
@@ -78,22 +77,22 @@ class Login extends CI_Controller
             {
                 foreach ($result as $res)
                 {
-        					$id_user_role = $res->id_user_role;
+                    $id_user_role = $res->id_user_role;
 
-                            $sessionArray = array('id_user'=>$res->id_user,
-                                                    'role'=>$res->id_user_role,
-                                                    'roleText'=>$res->role,
-                                                    'name'=>$res->nama,
-                                                    'isLoggedIn' => TRUE
-                                            );
+                    $sessionArray = array(
+                        'id_user'=>$res->id_user,
+                        'role'=>$res->id_user_role,
+                        'roleText'=>$res->role,
+                        'name'=>$res->nama,
+                        'isLoggedIn' => TRUE);
 
-                            $this->session->set_userdata($sessionArray);
+                    $this->session->set_userdata($sessionArray);
 
-                            if($id_user_role == 4) {
-        						redirect('mahasiswa');
-        					}else if($id_user_role == 3) {
-        						redirect('dosen');
-        					}
+                    if($id_user_role == 4) {
+                        redirect('mahasiswa');
+                    }else if($id_user_role == 3) {
+                        redirect('dosen');
+                    }
                 }
             }
             else

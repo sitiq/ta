@@ -63,22 +63,6 @@ class Profil_model extends CI_Model
         }
     }
     
-	/**
-     * This function used to get mahasiswa information by id
-     * @param number $id : This is mahasiswa id
-     * @return array $result : This is mahasiswa information
-     */
-    function getProfilInfo($id)
-    {
-        $this->db->select('id_mahasiswa, nama');
-        $this->db->from('mahasiswa');
-        $this->db->where('isDeleted', 0);
-        $this->db->where('id_mahasiswa', $id);
-        $query = $this->db->get();
-        
-        return $query->result();
-    }
-    
     /**
      * This function is used to edit the mahasiswa information
      * @param array $mahasiswaInfo : This is mahasiswas updated information
