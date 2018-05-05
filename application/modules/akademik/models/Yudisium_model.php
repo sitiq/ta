@@ -87,4 +87,27 @@ class Yudisium_model extends CI_Model
         $this->db->update('yudisium', $statusInfo);
         return true;
     }
+    function isBerkasYudisiumLengkap($id_mahasiswa){
+        $this->db->select('v.*');
+        $this->db->from('validasi_berkas_yudisium v');
+        $this->db->join('yudisium y','y.id_yudisium = v.id_yudisium', 'left');
+        $this->db->where('y.id_yudisium',$id_mahasiswa);
+        $query = $this->db->get();
+        $result = $query->result();
+
+        $p = 0;
+        foreach ($result as $info){
+            if ($info->path != ""){
+                $p=1;
+            }else{
+                $p=0;
+                break;
+            }
+        }
+        if ($p==1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

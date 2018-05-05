@@ -5,8 +5,6 @@
  * Time: 21:21
  * Description:
  */
-//var_dump($berkasInfo);
-//var_dump($yudisiumInfo);
 ?>
 <?php
 $id_berkas_yudisium = '';
