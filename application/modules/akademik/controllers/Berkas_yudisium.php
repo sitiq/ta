@@ -14,7 +14,6 @@ class Berkas_yudisium extends BaseController
         $this->isLoggedIn();
         $this->isAkademik();
     }
-
     public function index(){
         if($this->isAkademik() == TRUE)
         {
@@ -26,6 +25,7 @@ class Berkas_yudisium extends BaseController
             $this->loadViews("dashboard_berkas_yudisium", $this->global, $data);
         }
     }
+//    tambah syarat yudisium
     public function add(){
         if($this->isAkademik() == TRUE)
         {$this->loadThis();}
@@ -45,6 +45,7 @@ class Berkas_yudisium extends BaseController
             redirect('akademik/berkas_yudisium');
         }
     }
+//    edit syarat yudisium
     public function edit(){
         if($this->isAkademik() == TRUE)
         {$this->loadThis();}
@@ -61,7 +62,7 @@ class Berkas_yudisium extends BaseController
             redirect('akademik/berkas_yudisium');
         }
     }
-//    change status be off
+//    non-aktif syarat yudisium
     public function off(){
         if($this->isAkademik() == TRUE)
         {
@@ -79,7 +80,7 @@ class Berkas_yudisium extends BaseController
             redirect('akademik/berkas_yudisium');
         }
     }
-//    change status be on
+//    aktif syarat yudisium
     public function on(){
         if($this->isAkademik() == TRUE)
         {

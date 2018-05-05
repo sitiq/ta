@@ -87,6 +87,7 @@ class Yudisium_model extends CI_Model
         $this->db->update('yudisium', $statusInfo);
         return true;
     }
+//    check berkas yudisium should accepted all, if status yudisium wanna accepted
     function isBerkasYudisiumLengkap($id_mahasiswa){
         $this->db->select('v.*');
         $this->db->from('validasi_berkas_yudisium v');
@@ -94,10 +95,9 @@ class Yudisium_model extends CI_Model
         $this->db->where('y.id_yudisium',$id_mahasiswa);
         $query = $this->db->get();
         $result = $query->result();
-
         $p = 0;
-        foreach ($result as $info){
-            if ($info->path != ""){
+        foreach ($result as $infoResult){
+            if ($infoResult->path != ""){
                 $p=1;
             }else{
                 $p=0;

@@ -29,22 +29,7 @@ class Sidang_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-    function getDetailSidang($sidangId=NULL)
-    {
-        $this->db->select('s.id_sidang, m.id_mahasiswa, j.tanggal, j.ruang, j.waktu, ds.id_dosen id_dosbing, d.nama nama_dosbing');
-        $this->db->from('sidang s');
-        $this->db->join('mahasiswa m', 'm.id_mahasiswa = s.id_mahasiswa','left');
-        $this->db->join('dosbing ds', 'ds.id_mahasiswa = m.id_mahasiswa','left');
-        $this->db->join('dosen d', 'd.id_dosen = ds.id_dosen','left');
-//        $this->db->join('anggota_sidang a', 'a.id_sidang = s.id_sidang','left');
-        $this->db->join('jadwal_sidang j', 'j.id_sidang = s.id_sidang','left');
-//        $this->db->group_by('m.nim');
-        if ($sidangId!=null){
-            $this->db->where('s.id_sidang', $sidangId);
-        }
-        $query = $this->db->get();
-        return $query->result();
-    }
+//    get data ketua where join to sidang
     function getKetuaInfo($sidangId=NULL)
     {
         $this->db->select('a.id_sidang, a.id_anggota_sidang, d.nama nama_dosen, d.id_dosen');
@@ -57,6 +42,7 @@ class Sidang_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+//    get data sekretaris where join to sidang
     function getSekreInfo($sidangId=NULL)
     {
         $this->db->select('a.id_sidang, a.id_anggota_sidang, d.nama nama_dosen, d.id_dosen');
@@ -73,6 +59,7 @@ class Sidang_model extends CI_Model
             return false;
         }
     }
+//    get data anggota where join to sidang
     function getAnggotaInfo($sidangId=NULL)
     {
         $this->db->select('a.id_sidang, a.id_anggota_sidang, d.nama nama_dosen, d.id_dosen');
@@ -100,36 +87,6 @@ class Sidang_model extends CI_Model
         return $query->result();
     }
     /**
-     * This function is used to get the anggota_sidang info where is ketua
-     * @return array $result : This is result
-     */
-    function getPengujiKetua()
-    {
-        $this->db->select('a.id_dosen, a.role, d.nama');
-        $this->db->from('anggota_sidang a');
-        $this->db->join('dosen d','d.id_dosen = a.id_dosen');
-        $this->db->join('sidang s','s.id_sidang = a.id_sidang');
-        $this->db->where('d.isDeleted', 0);
-        $this->db->where('a.role', 'ketua');
-        $query = $this->db->get();
-        return $query->result();
-    }
-    /**
-     * This function is used to get the anggota_sidang info where is sekretaris
-     * @return array $result : This is result
-     */
-    function getPengujiSekre()
-    {
-        $this->db->select('a.id_dosen, a.role, d.nama');
-        $this->db->from('anggota_sidang a');
-        $this->db->join('dosen d','d.id_dosen = a.id_dosen');
-        $this->db->join('sidang s','s.id_sidang = a.id_sidang');
-        $this->db->where('d.isDeleted', 0);
-        $this->db->where('a.role', 'sekretaris');
-        $query = $this->db->get();
-        return $query->result();
-    }
-    /**
      * This function is used to get the berkas info
      * @param number $idMhs : This is id mahasiswa having berkas
      * @return array $result : This is result
@@ -143,6 +100,7 @@ class Sidang_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+//    get total komponen where active to become in form penilaian komponen
     function getCountKomponen()
     {
         $this->db->select('k.id_komponen, k.isDeleted');
@@ -152,6 +110,7 @@ class Sidang_model extends CI_Model
         $query = $this->db->get();
         return count($query->result());
     }
+//    get rata-rata nilai akhir tiap sidang
     function getPenilaian($idSidang)
     {
         $this->db->select('p.id_penilaian, p.id_sidang');
@@ -161,6 +120,7 @@ class Sidang_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+//    get komponen nilai where active
     function getKomponen()
     {
         $this->db->select('k.id_komponen');
@@ -169,18 +129,6 @@ class Sidang_model extends CI_Model
 
         $query = $this->db->get();
         return $query->result();
-    }
-    /**
-     * This function is used to edit status sidang to be accepted
-     * @param array $berkasInfo : Status where accepted
-     * @param array $idValidSidang : Where is id wanna change to be accepted
-     * @return bool true : where affected row increase
-     */
-    function accSidang($berkasInfo, $idValidSidang)
-    {
-        $this->db->where('id_valid_sidang', $idValidSidang);
-        $this->db->update('sidang', $berkasInfo);
-        return true;
     }
     /**
      * This function is used to edit status berkas sidang to accepted
@@ -315,25 +263,6 @@ class Sidang_model extends CI_Model
             return true;
         }else{
             return false;
-        }
-    }
-    /**
-     * GA KEPAKE ALHAMDULILLAH
-     * @param array $idAnggota : info id anggota sidang
-     * @return bool true : where affected row increase
-     */
-    function checkAnggota($idAnggota = null){
-        $this->db->select("id_anggota_sidang");
-        $this->db->from("anggota_sidang");
-        if($idAnggota != null){
-            $this->db->where("id_anggota_sidang !=", $idAnggota);
-        }
-        $query = $this->db->get();
-
-        if( $query->num_rows() > 0 ){
-            return TRUE;
-        } else {
-            return FALSE;
         }
     }
 }

@@ -31,9 +31,6 @@ class Sidang extends BaseController
             $data['sidangInfo'] = $this->Sidang_model->getSidangInfo();
             $data['dosenInfo'] = $this->Sidang_model->getDosen();
             $data['komponenInfo'] = $this->Sidang_model->getCountKomponen();
-//            $data['ketuaInfo'] = $this->Sidang_model->getKetuaInfo();
-//            $data['sekreInfo'] = $this->Sidang_model->getSekreInfo();
-//            $data['anggotaInfo'] = $this->Sidang_model->getAnggotaInfo();
             $this->loadViews("dashboard_sidang", $this->global, $data, NULL);
         }
     }
@@ -156,7 +153,7 @@ class Sidang extends BaseController
             {
                 redirect('akademik/sidang');
             }
-            $data['sidangInfo'] = $this->Sidang_model->getDetailSidang($sidangId);
+            $data['sidangInfo'] = $this->Sidang_model->getSidangInfo($sidangId);
             $data['ketuaInfo'] = $this->Sidang_model->getKetuaInfo($sidangId);
             $data['sekreInfo'] = $this->Sidang_model->getSekreInfo($sidangId);
             $data['anggotaInfo'] = $this->Sidang_model->getAnggotaInfo($sidangId);
@@ -180,7 +177,7 @@ class Sidang extends BaseController
             $tanggalUji = $this->input->post('tanggalJadwal');
             $waktu = $this->input->post('waktuJadwal');
             $ruang = $this->input->post('ruangJadwal');
-//            get id dan nama
+//            get id dan nama, sekretaris is optional
             $dataKetua = $this->input->post('dataKetua');
             $dataSekre = $this->input->post('dataSekretaris');
             $dataAnggota = $this->input->post('dataAnggota');
@@ -197,7 +194,7 @@ class Sidang extends BaseController
             {
                 $tanggal = date_format(date_create_from_format('d/m/Y', $this->input->post('tanggalJadwal')), 'Y-m-d');
                 if (!empty($idSidang)) {
-//                    get id dan nama ketua penguji
+//                    seperate id and nama ketua penguji
                     $array_explode = explode(' ',$dataKetua);
                     $sizeArray = sizeof($array_explode);
                     $id_ketua = $array_explode[0];
@@ -206,7 +203,7 @@ class Sidang extends BaseController
                     {
                         $nama_ketua = $nama_ketua. ' ' .$array_explode[$i];
                     }
-//                    get id dan nama sekretaris penguji
+//                    seperate id and nama sekretaris penguji
                     if ($dataSekre != null)
                     {
                         $array_explode_sekre = explode(' ',$dataSekre);
@@ -218,7 +215,7 @@ class Sidang extends BaseController
                             $nama_sekre = $nama_sekre. ' ' .$array_explode_sekre[$i];
                         }
                     }
-//                    get id dan nama anggota penguji
+//                    seperate id and nama anggota penguji
                     $array_explode_anggota = explode(' ',$dataAnggota);
                     $sizeArrayAnggota = sizeof($array_explode_anggota);
                     $id_anggota = $array_explode_anggota[0];
@@ -227,13 +224,14 @@ class Sidang extends BaseController
                     {
                         $nama_anggota = $nama_anggota. ' ' .$array_explode_anggota[$i];
                     }
-
+//                  when sidang scheduled automate sidang is 'disetujui'
                     $statusInfo = array(
                         'id_sidang' => $idSidang,
                         'status' => 'disetujui',
                     );
                     $status = $this->Sidang_model->editStatus($statusInfo, $idSidang);
-
+//                  post pesan to mahasiswa if there is sekretaris to the schedule
+//                  else no sekretaris
                     if ($dataSekre != null){
                         $pesanInfo = array(
                             'id_mahasiswa'=>$idMhs,
@@ -289,7 +287,7 @@ class Sidang extends BaseController
                         );
                     }
                     $resultPesan = $this->Sidang_model->addPesan($pesanInfo);
-
+//                  post schedule sidang mahasiswa
                     $jadwalInfo = array(
                         'id_sidang' => $idSidang,
                         'waktu' => $waktu,
@@ -298,7 +296,7 @@ class Sidang extends BaseController
                     );
                     $jadwal = $this->Sidang_model->addJadwal($jadwalInfo);
 
-//                    dipisah 3x karena berbeda role pada tbl anggota_sidang
+//                    dipisah 3x karena berbeda role pada tbl anggota_sidang (ketua, sekretaris, anggota/dosbing)
                     $ketuaInfo = array(
                         'id_sidang' => $idSidang,
                         'id_dosen' => $id_ketua,
@@ -320,7 +318,7 @@ class Sidang extends BaseController
                         'role' => 'anggota'
                     );
                     $dosen3 = $this->Sidang_model->addAnggota($anggotaInfo);
-
+//                  when sidang scheduled, so form penilaian is created 3x based on anggota_sidang
                     $penilaianInfo = array(
                         "id_sidang"=>$idSidang,
                         "id_anggota_sidang"=>$dosen1
@@ -340,8 +338,7 @@ class Sidang extends BaseController
                     );
                     $idPenilaian3 = $this->Sidang_model->addPenilaian($penilaianInfo3);
 
-                    //insert to komponen nilai table
-
+//                  after penilaian created, insert to komponen nilai table get id from komponen table
                     $dataPenilaian = $this->Sidang_model->getPenilaian($idSidang);
                     $dataKomponen = $this->Sidang_model->getKomponen();
 
@@ -380,11 +377,11 @@ class Sidang extends BaseController
             $tanggalUji = $this->input->post('editTanggalJadwal');
             $waktu = $this->input->post('editWaktuJadwal');
             $ruang = $this->input->post('editRuangJadwal');
-            //            get id dan nama dosen
+//            get id dan nama dosen
             $dataKetua = $this->input->post('editDataKetua');
             $dataSekre = $this->input->post('editDataSekre');
             $dataAnggota = $this->input->post('editDataAnggota');
-            // get id anggota_sidang
+//            get id anggota_sidang
             $idKetuaAnggota = $this->input->post('editIdKetua');
             $idSekreAnggota = $this->input->post('editIdSekre');
 

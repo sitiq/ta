@@ -26,6 +26,7 @@ class Yudisium extends BaseController
             $this->loadViews("dashboard_yudisium", $this->global, $data, NULL);
         }
     }
+//    load form persetujuan berkas yudisium by akademik
     function detail($yudisiumId = NULL)
     {
         if($this->isAkademik() == TRUE)
@@ -44,6 +45,7 @@ class Yudisium extends BaseController
             $this->loadViews("edit_yudisium", $this->global, $data, NULL);
         }
     }
+//    accept each berkas yudisium
     function accept($idValidYudisium=null, $idYudisium)
     {
         if($this->isAkademik() == TRUE)
@@ -69,7 +71,8 @@ class Yudisium extends BaseController
         }
     }
     /**
-     * This function is used to add new message to the system
+     * This function is used to add new message to the system when berkas yudisium is declined
+     * isValid : 0 = belum diunggah, 1 = proses, 2 = diterima, 3 = ditolak
      */
     function pesan($idValidYudisium=null , $idYudisium)
     {
@@ -100,17 +103,27 @@ class Yudisium extends BaseController
                 }
                 $nama = $this->input->post('nama');
                 $deskripsi = $this->input->post('deskripsi');
-                $pesanInfo = array('id_mahasiswa'=>$idMhs, 'nama'=>$nama, 'deskripsi'=>$deskripsi);
+                $pesanInfo = array(
+                    'id_mahasiswa'=>$idMhs,
+                    'nama'=>$nama,
+                    'deskripsi'=>$deskripsi
+                );
                 $result = $this->Yudisium_model->addPesan($pesanInfo);
+
                 if($result > 0)
-                {$this->session->set_flashdata('success', 'Revisi berhasill dikirim!');}
-                else{$this->session->set_flashdata('error', 'Revisi gagal dikirim!');}
+                {
+                    $this->session->set_flashdata('success', 'Revisi berhasill dikirim!');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Revisi gagal dikirim!');
+                }
                 redirect('akademik/yudisium/detail/'.$idYudisium);
             }
         }
     }
     /**
-     * This function is used to change status yudisium to accepted
+     * This function is used to change status yudisium to be accepted, when all of berkas yudisium is submit
      */
     function status($idYudisium, $idMhs)
     {
@@ -119,6 +132,7 @@ class Yudisium extends BaseController
             $this->loadThis();
         }
         else {
+//            cek berkas yudisium accepted all
             $isLengkap = $this->Yudisium_model->isBerkasYudisiumLengkap($idYudisium);
             if($isLengkap==false) {
                 $this->session->set_flashdata('error', 'Berkas belum lengkap');

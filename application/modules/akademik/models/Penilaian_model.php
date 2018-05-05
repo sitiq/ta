@@ -8,6 +8,7 @@
 
 class Penilaian_model extends CI_Model
 {
+//    get all items in komponen penilaian
     public function getKomponen($id = NULL){
         $this->db->select("*");
         $this->db->from('komponen');
@@ -18,6 +19,7 @@ class Penilaian_model extends CI_Model
 
         return $query->result();
     }
+//    add new komponen penilaian
     public function insert($data)
     {
         $this->db->trans_start();
@@ -26,6 +28,7 @@ class Penilaian_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
+//    update komponen penilaian
     public function update($data,$id){
         $this->db->trans_start();
         $this->db->where('id_komponen',$id);
@@ -35,6 +38,7 @@ class Penilaian_model extends CI_Model
 
         return $result;
     }
+//    non-active syarat komponen penilaian
     public function off($id){
         $this->db->trans_start();
 
@@ -47,6 +51,7 @@ class Penilaian_model extends CI_Model
 
         return $result;
     }
+//    active syarat komponen penilaian
     public function on($id){
         $this->db->trans_start();
 

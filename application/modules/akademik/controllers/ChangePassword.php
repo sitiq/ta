@@ -20,9 +20,7 @@ class ChangePassword extends BaseController
         $this->isAkademik();
     }
 
-    /**
-     * This function is used to load the change password screen
-     */
+// This function is used to load the change password screen
     function index()
     {
         if($this->isAkademik() == TRUE)
@@ -31,7 +29,7 @@ class ChangePassword extends BaseController
         }
         else
         {
-            $this->global['pageTitle'] = 'Komsi : Change Password';
+            $this->global['pageTitle'] = 'Elusi : Change Password';
 
             $this->loadViews("change_password", $this->global, NULL, NULL);
         }

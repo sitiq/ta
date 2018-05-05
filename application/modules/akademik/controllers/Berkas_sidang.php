@@ -14,7 +14,6 @@ class Berkas_sidang extends BaseController
         $this->isLoggedIn();
         $this->isAkademik();
     }
-
     public function index(){
         if($this->isAkademik() == TRUE)
         {
@@ -26,6 +25,7 @@ class Berkas_sidang extends BaseController
             $this->loadViews("dashboard_berkas_sidang", $this->global, $data);
         }
     }
+//    tambah syarat berkas sidang
     public function add(){
         if($this->isAkademik() == TRUE)
         {$this->loadThis();}
@@ -46,10 +46,14 @@ class Berkas_sidang extends BaseController
             redirect('akademik/berkas_sidang');
         }
     }
+//    edit syarat berkas sidang
     public function edit(){
         if($this->isAkademik() == TRUE)
-        {$this->loadThis();}
-        else {
+        {
+            $this->loadThis();
+        }
+        else
+        {
             $id_berkas_sidang = $this->input->post('id_berkas_sidang_edit');
             $nama_berkas = trim($this->input->post('nama_berkas_edit'));
             $data = array('nama_berkas' => $nama_berkas);
@@ -63,7 +67,7 @@ class Berkas_sidang extends BaseController
         }
     }
 
-//    change status be off
+//    non-aktif syarat berkas sidang
     public function off(){
         if($this->isAkademik() == TRUE)
         {$this->loadThis();}
@@ -78,7 +82,7 @@ class Berkas_sidang extends BaseController
             redirect('akademik/berkas_sidang');
         }
     }
-//    change status be on
+//    aktif syarat berkas sidang
     public function on(){
         if($this->isAkademik() == TRUE)
         {
@@ -96,6 +100,7 @@ class Berkas_sidang extends BaseController
             redirect('akademik/berkas_sidang');
         }
     }
+//    page not found
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'Elusi : 404 - Page Not Found';

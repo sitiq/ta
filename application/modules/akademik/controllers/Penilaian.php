@@ -14,7 +14,6 @@ class Penilaian extends BaseController
         $this->isLoggedIn();
         $this->isAkademik();
     }
-
     public function index(){
         if($this->isAkademik() == TRUE)
         {
@@ -26,6 +25,7 @@ class Penilaian extends BaseController
             $this->loadViews("dashboard_penilaian", $this->global, $data);
         }
     }
+//    add new syarat penilaian
     public function add(){
         if($this->isAkademik() == TRUE)
         {$this->loadThis();}
@@ -41,7 +41,7 @@ class Penilaian extends BaseController
             redirect('akademik/penilaian');
         }
     }
-
+//  update syarat penilaian
     public function edit(){
         if($this->isAkademik() == TRUE)
         {$this->loadThis();}

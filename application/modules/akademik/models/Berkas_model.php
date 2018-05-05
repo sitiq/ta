@@ -8,6 +8,7 @@
 
 class Berkas_model extends CI_Model
 {
+//    get all item in berkas sidang table
     public function getBerkas($id = NULL){
         $this->db->select("*");
         $this->db->from('berkas_sidang');
@@ -18,6 +19,7 @@ class Berkas_model extends CI_Model
 
         return $query->result();
     }
+//    get all item in berkas yudisium table
     public function getBerkasYudisium($id = NULL){
         $this->db->select("*");
         $this->db->from('berkas_yudisium');
@@ -28,7 +30,7 @@ class Berkas_model extends CI_Model
 
         return $query->result();
     }
-
+//     insert to berkas_sidang (syarat sidang)
     public function insert($data)
     {
         $this->db->trans_start();
@@ -37,6 +39,7 @@ class Berkas_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
+//     insert to berkas_yudisium (syarat yudisium)
     public function insertYudisium($data)
     {
         $this->db->trans_start();
@@ -45,7 +48,7 @@ class Berkas_model extends CI_Model
         $this->db->trans_complete();
         return $insert_id;
     }
-
+//     update to berkas_sidang
     public function update($data,$id){
         $this->db->trans_start();
         $this->db->where('id_berkas_sidang',$id);
@@ -55,6 +58,7 @@ class Berkas_model extends CI_Model
 
         return $result;
     }
+//     update to berkas_yudisium
     public function updateYudisium($data,$id){
         $this->db->trans_start();
         $this->db->where('id_berkas_yudisium',$id);
@@ -64,7 +68,7 @@ class Berkas_model extends CI_Model
 
         return $result;
     }
-
+//     update to berkas_sidang (non active syarat sidang)
     public function off($id){
         $this->db->trans_start();
         $this->db->set('isDeleted',1);
@@ -74,6 +78,7 @@ class Berkas_model extends CI_Model
         $result = $this->db->trans_status();
         return $result;
     }
+//     update to berkas_sidang (active syarat sidang)
     public function on($id){
         $this->db->trans_start();
         $this->db->set('isDeleted',0);
@@ -83,7 +88,7 @@ class Berkas_model extends CI_Model
         $result = $this->db->trans_status();
         return $result;
     }
-
+//     update to berkas_yudisium (non active syarat yudisium)
     public function offYudisium($id){
         $this->db->trans_start();
         $this->db->set('isDeleted',1);
@@ -93,6 +98,7 @@ class Berkas_model extends CI_Model
         $result = $this->db->trans_status();
         return $result;
     }
+//     update to berkas_yudisium (active syarat yudisium)
     public function onYudisium($id){
         $this->db->trans_start();
         $this->db->set('isDeleted',0);
